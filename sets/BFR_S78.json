@@ -1,0 +1,1286 @@
+{
+  "BFR/S78-076": {
+    "id": "BFR/S78-076",
+    "name": "公會長之間的對決",
+    "type": "CX",
+    "color": "紅",
+    "level": 0,
+    "cost": 0,
+    "power": 0,
+    "soul": 0,
+    "trigger": "STANDBY",
+    "traits": [],
+    "default_count": 2,
+    "effects": [
+      "CX_STANDBY"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_076.png",
+    "text": "【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你從自己的休息室選擇自己等級+1的等級的角色1張，【橫置】放置到任意的格子。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-076",
+    "is_high_rarity": false,
+    "rarity": "CR",
+    "high_rarity_id": "BFR/S78-076R",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_076.png",
+      "https://img.bottleneko.app/BFR_S78_076.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_076.png"
+    ]
+  },
+  "BFR/S78-076R": {
+    "id": "BFR/S78-076R",
+    "name": "公會長之間的對決",
+    "type": "CX",
+    "color": "紅",
+    "level": 0,
+    "cost": 0,
+    "power": 0,
+    "soul": 0,
+    "trigger": "STANDBY",
+    "traits": [],
+    "default_count": 0,
+    "effects": [
+      "CX_STANDBY"
+    ],
+    "url": "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_076R.png",
+    "text": "【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你從自己的休息室選擇自己等級+1的等級的角色1張，【橫置】放置到任意的格子。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-076",
+    "is_high_rarity": true,
+    "rarity": "RRR",
+    "high_rarity_id": "BFR/S78-076R",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_076R.png",
+      "https://img.bottleneko.app/BFR_S78_076R.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_076R.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_076r.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_076r.gif"
+    ]
+  },
+  "BFR/S78-077": {
+    "id": "BFR/S78-077",
+    "name": "Boss級怪物",
+    "type": "CX",
+    "color": "紅",
+    "level": 0,
+    "cost": 0,
+    "power": 0,
+    "soul": 0,
+    "trigger": "STANDBY",
+    "traits": [],
+    "default_count": 2,
+    "effects": [
+      "CX_STANDBY"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_077.png",
+    "text": "【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你從自己的休息室選擇自己等級+1的等級的角色1張，【橫置】放置到任意的格子。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-077",
+    "is_high_rarity": false,
+    "rarity": "CR",
+    "high_rarity_id": "BFR/S78-077R",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_077.png",
+      "https://img.bottleneko.app/BFR_S78_077.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_077.png"
+    ]
+  },
+  "BFR/S78-077R": {
+    "id": "BFR/S78-077R",
+    "name": "Boss級怪物",
+    "type": "CX",
+    "color": "紅",
+    "level": 0,
+    "cost": 0,
+    "power": 0,
+    "soul": 0,
+    "trigger": "STANDBY",
+    "traits": [],
+    "default_count": 0,
+    "effects": [
+      "CX_STANDBY"
+    ],
+    "url": "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_077R.png",
+    "text": "【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你從自己的休息室選擇自己等級+1的等級的角色1張，【橫置】放置到任意的格子。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-077",
+    "is_high_rarity": true,
+    "rarity": "RRR",
+    "high_rarity_id": "BFR/S78-077R",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_077R.png",
+      "https://img.bottleneko.app/BFR_S78_077R.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_077R.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_077r.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_077r.gif"
+    ]
+  },
+  "BFR/S78-078": {
+    "id": "BFR/S78-078",
+    "name": "炎帝之國的公會長",
+    "type": "CX",
+    "color": "紅",
+    "level": 0,
+    "cost": 0,
+    "power": 0,
+    "soul": 0,
+    "trigger": "STANDBY",
+    "traits": [],
+    "default_count": 2,
+    "effects": [
+      "CX_STANDBY"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_078.png",
+    "text": "【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你從自己的休息室選擇自己等級+1的等級的角色1張，【橫置】放置到任意的格子。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-078",
+    "is_high_rarity": false,
+    "rarity": "CR",
+    "high_rarity_id": "BFR/S78-078R",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_078.png",
+      "https://img.bottleneko.app/BFR_S78_078.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_078.png"
+    ]
+  },
+  "BFR/S78-078R": {
+    "id": "BFR/S78-078R",
+    "name": "炎帝之國的公會長",
+    "type": "CX",
+    "color": "紅",
+    "level": 0,
+    "cost": 0,
+    "power": 0,
+    "soul": 0,
+    "trigger": "STANDBY",
+    "traits": [],
+    "default_count": 0,
+    "effects": [
+      "CX_STANDBY"
+    ],
+    "url": "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_078R.png",
+    "text": "【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你從自己的休息室選擇自己等級+1的等級的角色1張，【橫置】放置到任意的格子。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-078",
+    "is_high_rarity": true,
+    "rarity": "RRR",
+    "high_rarity_id": "BFR/S78-078R",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_078R.png",
+      "https://img.bottleneko.app/BFR_S78_078R.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_078R.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_078r.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_078r.gif"
+    ]
+  },
+  "BFR/S78-107": {
+    "id": "BFR/S78-107",
+    "name": "展開．左手",
+    "type": "CX",
+    "color": "藍",
+    "level": 0,
+    "cost": 0,
+    "power": 0,
+    "soul": 0,
+    "trigger": "GATE",
+    "traits": [],
+    "default_count": 2,
+    "effects": [
+      "CX_ALL_1000_1SOUL"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_107.png",
+    "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n城門：當你判定出此卡時，你可以選擇自己休息室的1張名場面，回到手牌。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-107",
+    "is_high_rarity": false,
+    "rarity": "CR",
+    "high_rarity_id": "BFR/S78-107R",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_107.png",
+      "https://img.bottleneko.app/BFR_S78_107.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_107.png"
+    ]
+  },
+  "BFR/S78-107R": {
+    "id": "BFR/S78-107R",
+    "name": "展開．左手",
+    "type": "CX",
+    "color": "藍",
+    "level": 0,
+    "cost": 0,
+    "power": 0,
+    "soul": 0,
+    "trigger": "GATE",
+    "traits": [],
+    "default_count": 0,
+    "effects": [
+      "CX_ALL_1000_1SOUL"
+    ],
+    "url": "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_107R.png",
+    "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n城門：當你判定出此卡時，你可以選擇自己休息室的1張名場面，回到手牌。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-107",
+    "is_high_rarity": true,
+    "rarity": "RRR",
+    "high_rarity_id": "BFR/S78-107R",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_107R.png",
+      "https://img.bottleneko.app/BFR_S78_107R.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_107R.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_107r.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_107r.gif"
+    ]
+  },
+  "BFR/S78-075": {
+    "id": "BFR/S78-075",
+    "name": "獨有系列",
+    "type": "EVENT",
+    "color": "紅",
+    "level": 1,
+    "cost": 1,
+    "power": 0,
+    "soul": 0,
+    "trigger": "NONE",
+    "traits": [],
+    "default_count": 2,
+    "effects": [
+      "EVENT_COUNTER_2500_MEMORY",
+      "MEMORY_MAIN_START_RETURN"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_075.png",
+    "text": "【反擊】你選擇自己的《遊戲》的角色1張，在那個回合中，攻擊力+2500。將此卡放到回憶區。\n【自】記憶 ［手牌的《遊戲》的角色1張放到休息室］ 在你的主要階段開始時，回憶區有此卡存在的話，你可以支付代價。支付代價的話，將此卡返回手牌。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-075",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": null,
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_075.png",
+      "https://img.bottleneko.app/BFR_S78_075.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_075.png"
+    ]
+  },
+  "BFR/S78-015": {
+    "id": "BFR/S78-015",
+    "name": "雙胞胎的妹妹 結衣",
+    "type": "CHAR",
+    "color": "黃",
+    "level": 0,
+    "cost": 0,
+    "power": 3000,
+    "soul": 1,
+    "trigger": "NONE",
+    "traits": [
+      "遊戲",
+      "雙胞胎"
+    ],
+    "default_count": 2,
+    "effects": [
+      "CONT_CANNOT_SIDE_ATTACK",
+      "AUTO_ON_PLAY_SWAP_CX"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_015.png",
+    "text": "【永】此卡不能側打。\n【自】［(1) 手牌1張名場面放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的名場面1張，回到手牌。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-015",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": null,
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_015.png",
+      "https://img.bottleneko.app/BFR_S78_015.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_015.png"
+    ]
+  },
+  "BFR/S78-001": {
+    "id": "BFR/S78-001",
+    "name": "戰鬥的工匠 伊茲",
+    "type": "CHAR",
+    "color": "黃",
+    "level": 0,
+    "cost": 0,
+    "power": 1500,
+    "soul": 1,
+    "trigger": "NONE",
+    "traits": [
+      "遊戲",
+      "鍛造"
+    ],
+    "default_count": 3,
+    "effects": [
+      "AUTO_ON_PLAY_CLOCK_SEARCH_LV1",
+      "AUTO_OTHER_REVERSE_BUFF_1000"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_001.png",
+    "text": "【自】［(1) 你的牌組上方1張放到傷害區］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇等級1以下的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。\n【自】其他的你的角色的戰鬥對手【倒置】時，在那個回合中，此卡的攻擊力+1000。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-001",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": "BFR/S78-001SP",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_001.png",
+      "https://img.bottleneko.app/BFR_S78_001.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_001.png"
+    ]
+  },
+  "BFR/S78-001SP": {
+    "id": "BFR/S78-001SP",
+    "name": "戰鬥的工匠 伊茲",
+    "type": "CHAR",
+    "color": "黃",
+    "level": 0,
+    "cost": 0,
+    "power": 1500,
+    "soul": 1,
+    "trigger": "NONE",
+    "traits": [
+      "遊戲",
+      "鍛造"
+    ],
+    "default_count": 0,
+    "effects": [
+      "AUTO_ON_PLAY_CLOCK_SEARCH_LV1",
+      "AUTO_OTHER_REVERSE_BUFF_1000"
+    ],
+    "url": "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_001SP.png",
+    "text": "【自】［(1) 你的牌組上方1張放到傷害區］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇等級1以下的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。\n【自】其他的你的角色的戰鬥對手【倒置】時，在那個回合中，此卡的攻擊力+1000。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-001",
+    "is_high_rarity": true,
+    "rarity": "SP",
+    "high_rarity_id": "BFR/S78-001SP",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_001SP.png",
+      "https://img.bottleneko.app/BFR_S78_001SP.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_001SP.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_001sp.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_001sp.gif",
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_001S.png",
+      "https://img.bottleneko.app/BFR_S78_001S.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_001S.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_001s.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_001s.gif"
+    ]
+  },
+  "BFR/S78-031": {
+    "id": "BFR/S78-031",
+    "name": "多彩多樣 莎莉",
+    "type": "CHAR",
+    "color": "綠",
+    "level": 0,
+    "cost": 0,
+    "power": 500,
+    "soul": 1,
+    "trigger": "NONE",
+    "traits": [
+      "遊戲",
+      "水"
+    ],
+    "default_count": 3,
+    "effects": [
+      "CONT_IGNORE_CX_COLOR",
+      "AUTO_ON_CX_LOOT",
+      "ACT_CONCENTRATE_SINGLE"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_031.png",
+    "text": "【永】你的名場面可以無需滿足顏色條件從手牌使用。\n【自】［手牌1張放到休息室］ 當你的名場面被放置到名場面區時，你可以支付代價。支付代價的話，你抽1張牌。\n【起】集中 ［(1) 將此卡【橫置】］ 你從自己的牌組上方翻4張，放到休息室。那些卡片中每有1張名場面，你從自己的牌組選擇《遊戲》的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-031",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": "BFR/S78-031SP",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_031.png",
+      "https://img.bottleneko.app/BFR_S78_031.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_031.png"
+    ]
+  },
+  "BFR/S78-031SP": {
+    "id": "BFR/S78-031SP",
+    "name": "多彩多樣 莎莉",
+    "type": "CHAR",
+    "color": "綠",
+    "level": 0,
+    "cost": 0,
+    "power": 500,
+    "soul": 1,
+    "trigger": "NONE",
+    "traits": [
+      "遊戲",
+      "水"
+    ],
+    "default_count": 0,
+    "effects": [
+      "CONT_IGNORE_CX_COLOR",
+      "AUTO_ON_CX_LOOT",
+      "ACT_CONCENTRATE_SINGLE"
+    ],
+    "url": "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_031SP.png",
+    "text": "【永】你的名場面可以無需滿足顏色條件從手牌使用。\n【自】［手牌1張放到休息室］ 當你的名場面被放置到名場面區時，你可以支付代價。支付代價的話，你抽1張牌。\n【起】集中 ［(1) 將此卡【橫置】］ 你從自己的牌組上方翻4張，放到休息室。那些卡片中每有1張名場面，你從自己的牌組選擇《遊戲》的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-031",
+    "is_high_rarity": true,
+    "rarity": "SP",
+    "high_rarity_id": "BFR/S78-031SP",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_031SP.png",
+      "https://img.bottleneko.app/BFR_S78_031SP.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_031SP.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_031sp.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_031sp.gif",
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_031S.png",
+      "https://img.bottleneko.app/BFR_S78_031S.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_031S.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_031s.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_031s.gif"
+    ]
+  },
+  "BFR/S78-062": {
+    "id": "BFR/S78-062",
+    "name": "咬咬 梅普露",
+    "type": "CHAR",
+    "color": "紅",
+    "level": 0,
+    "cost": 0,
+    "power": 2000,
+    "soul": 1,
+    "trigger": "NONE",
+    "traits": [
+      "遊戲",
+      "盾"
+    ],
+    "default_count": 3,
+    "effects": [
+      "AUTO_STAGE_TO_WR_LOOK4_STEPWISE"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_062.png",
+    "text": "【自】［手牌1張放到休息室］ 此卡從舞台被放到休息室時，你可以支付代價。支付代價的話，你從自己的牌組上方看最多4張，選擇等級1以上的卡片最多1張給對手確認，加到手牌，剩下的卡片放到休息室。名場面的等級視為0。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-062",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": "BFR/S78-062S",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_062.png",
+      "https://img.bottleneko.app/BFR_S78_062.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_062.png"
+    ]
+  },
+  "BFR/S78-062S": {
+    "id": "BFR/S78-062S",
+    "name": "咬咬 梅普露",
+    "type": "CHAR",
+    "color": "紅",
+    "level": 0,
+    "cost": 0,
+    "power": 2000,
+    "soul": 1,
+    "trigger": "NONE",
+    "traits": [
+      "遊戲",
+      "盾"
+    ],
+    "default_count": 0,
+    "effects": [
+      "AUTO_STAGE_TO_WR_LOOK4_STEPWISE"
+    ],
+    "url": "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_062S.png",
+    "text": "【自】［手牌1張放到休息室］ 此卡從舞台被放到休息室時，你可以支付代價。支付代價的話，你從自己的牌組上方看最多4張，選擇等級1以上的卡片最多1張給對手確認，加到手牌，剩下的卡片放到休息室。名場面的等級視為0。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-062",
+    "is_high_rarity": true,
+    "rarity": "SR",
+    "high_rarity_id": "BFR/S78-062S",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_062S.png",
+      "https://img.bottleneko.app/BFR_S78_062S.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_062S.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_062s.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_062s.gif"
+    ]
+  },
+  "BFR/S78-061": {
+    "id": "BFR/S78-061",
+    "name": "作戰變更 米瑟莉",
+    "type": "CHAR",
+    "color": "紅",
+    "level": 0,
+    "cost": 0,
+    "power": 1500,
+    "soul": 1,
+    "trigger": "NONE",
+    "traits": [
+      "遊戲",
+      "炎"
+    ],
+    "default_count": 2,
+    "effects": [
+      "ACT_MARKER_OR_STOCK"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_061.png",
+    "text": "【起】［將此卡【橫置】］ 此卡下方沒有標記的話，你將自己的牌組上方1張公開。那張卡片的等級是1以上的話作為標記以裏側表示放到此卡下方。名場面的等級視為0。如果不是的話放回原位。\n【起】［將此卡【橫置】］ 你將此卡下方的標記1張放到能量區。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-061",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": null,
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_061.png",
+      "https://img.bottleneko.app/BFR_S78_061.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_061.png"
+    ]
+  },
+  "BFR/S78-060": {
+    "id": "BFR/S78-060",
+    "name": "焰火飛馳 蜜伊",
+    "type": "CHAR",
+    "color": "紅",
+    "level": 0,
+    "cost": 0,
+    "power": 1000,
+    "soul": 1,
+    "trigger": "NONE",
+    "traits": [
+      "遊戲",
+      "炎"
+    ],
+    "default_count": 3,
+    "effects": [
+      "AUTO_ON_PLAY_DEBUFF_AND_SEARCH"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_060.png",
+    "text": "【自】此卡從手牌被放置到舞台時，你選擇對手前列的角色1張，在那個回合中，攻擊力-1000。\n【自】［(1) 手牌1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇《遊戲》的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-060",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": "BFR/S78-060S",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_060.png",
+      "https://img.bottleneko.app/BFR_S78_060.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_060.png"
+    ]
+  },
+  "BFR/S78-060S": {
+    "id": "BFR/S78-060S",
+    "name": "焰火飛馳 蜜伊",
+    "type": "CHAR",
+    "color": "紅",
+    "level": 0,
+    "cost": 0,
+    "power": 1000,
+    "soul": 1,
+    "trigger": "NONE",
+    "traits": [
+      "遊戲",
+      "炎"
+    ],
+    "default_count": 0,
+    "effects": [
+      "AUTO_ON_PLAY_DEBUFF_AND_SEARCH"
+    ],
+    "url": "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_060S.png",
+    "text": "【自】此卡從手牌被放置到舞台時，你選擇對手前列的角色1張，在那個回合中，攻擊力-1000。\n【自】［(1) 手牌1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇《遊戲》的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-060",
+    "is_high_rarity": true,
+    "rarity": "SR",
+    "high_rarity_id": "BFR/S78-060S",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_060S.png",
+      "https://img.bottleneko.app/BFR_S78_060S.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_060S.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_060s.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_060s.gif"
+    ]
+  },
+  "BFR/S78-083": {
+    "id": "BFR/S78-083",
+    "name": "情報戰 莎莉",
+    "type": "CHAR",
+    "color": "藍",
+    "level": 0,
+    "cost": 0,
+    "power": 500,
+    "soul": 1,
+    "trigger": "NONE",
+    "traits": [
+      "遊戲",
+      "水"
+    ],
+    "default_count": 2,
+    "effects": [
+      "AUTO_ON_PLAY_SCRY2_AND_GUESS_DRAW"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_083.png",
+    "text": "【自】此卡從手牌被放置到舞台時，你看自己的牌組上方最多2張，以任意順序放回牌組上方。\n【自】此卡從手牌被放置到舞台時，對手宣言0或1或2或3。你將自己的牌組上方1張，放到休息室，那張卡片是對手宣言的等級的卡片的話，你抽最多X張牌。X等於對手宣言的數字+1。名場面的等級視為0。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-083",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": null,
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_083.png",
+      "https://img.bottleneko.app/BFR_S78_083.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_083.png"
+    ]
+  },
+  "BFR/S78-073": {
+    "id": "BFR/S78-073",
+    "name": "不屈的守護者 梅普露",
+    "type": "CHAR",
+    "color": "紅",
+    "level": 1,
+    "cost": 1,
+    "power": 5500,
+    "soul": 1,
+    "trigger": "NONE",
+    "traits": [
+      "遊戲",
+      "盾"
+    ],
+    "default_count": 3,
+    "effects": [
+      "CONT_OTHER_2GAME_BUFF_2000",
+      "AUTO_HAND_ENCORE"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_073.png",
+    "text": "【永】其他的你的《遊戲》的角色存在2張以上的話，此卡的攻擊力+2000。\n【自】安可 ［手牌的角色1張放到休息室］",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-073",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": null,
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_073.png",
+      "https://img.bottleneko.app/BFR_S78_073.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_073.png"
+    ]
+  },
+  "BFR/S78-057": {
+    "id": "BFR/S78-057",
+    "name": "移動要塞 梅普露",
+    "type": "CHAR",
+    "color": "紅",
+    "level": 1,
+    "cost": 0,
+    "power": 4500,
+    "soul": 1,
+    "trigger": "NONE",
+    "traits": [
+      "遊戲",
+      "盾"
+    ],
+    "default_count": 4,
+    "effects": [
+      "AUTO_ON_PLAY_BUFF_1500",
+      "CX_COMBO_ATK_START_STAND_SALVAGE"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_057.png",
+    "text": "【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+1500。\n【自】【CX連動】 ［手牌的「移動要塞 梅普露」1張放到休息室，你的名場面區的「公會長之間的對決」1張放到休息室］ 在你的攻擊階段開始時，此卡存在於前列的話，你可以支付代價。支付代價的話，你選擇其他的自己的《遊戲》的角色最多1張，【正置】，選擇自己休息室的《遊戲》的角色最多1張，回到手牌。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-057",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": "BFR/S78-057SP",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_057.png",
+      "https://img.bottleneko.app/BFR_S78_057.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_057.png"
+    ]
+  },
+  "BFR/S78-057SP": {
+    "id": "BFR/S78-057SP",
+    "name": "移動要塞 梅普露",
+    "type": "CHAR",
+    "color": "紅",
+    "level": 1,
+    "cost": 0,
+    "power": 4500,
+    "soul": 1,
+    "trigger": "NONE",
+    "traits": [
+      "遊戲",
+      "盾"
+    ],
+    "default_count": 0,
+    "effects": [
+      "AUTO_ON_PLAY_BUFF_1500",
+      "CX_COMBO_ATK_START_STAND_SALVAGE"
+    ],
+    "url": "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_057SP.png",
+    "text": "【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+1500。\n【自】【CX連動】 ［手牌的「移動要塞 梅普露」1張放到休息室，你的名場面區的「公會長之間的對決」1張放到休息室］ 在你的攻擊階段開始時，此卡存在於前列的話，你可以支付代價。支付代價的話，你選擇其他的自己的《遊戲》的角色最多1張，【正置】，選擇自己休息室的《遊戲》的角色最多1張，回到手牌。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-057",
+    "is_high_rarity": true,
+    "rarity": "SP",
+    "high_rarity_id": "BFR/S78-057SP",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_057SP.png",
+      "https://img.bottleneko.app/BFR_S78_057SP.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_057SP.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_057sp.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_057sp.gif",
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_057S.png",
+      "https://img.bottleneko.app/BFR_S78_057S.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_057S.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_057s.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_057s.gif"
+    ]
+  },
+  "BFR/S78-102": {
+    "id": "BFR/S78-102",
+    "name": "通往勝利的方程式 梅普露",
+    "type": "CHAR",
+    "color": "藍",
+    "level": 1,
+    "cost": 1,
+    "power": 3000,
+    "soul": 1,
+    "trigger": "SOUL",
+    "traits": [
+      "遊戲",
+      "盾"
+    ],
+    "default_count": 2,
+    "effects": [
+      "CONT_LEVEL_ASSIST",
+      "AUTO_ON_ACT_BUFF_1000"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_102.png",
+    "text": "【永】應援 此卡前面的你的《遊戲》的角色全部，攻擊力+X。X等於那張角色的等級×500。\n【自】此能力每1回合最多發動1次。當你使用【起】的時候，你選擇自己的角色1張，在那個回合中，攻擊力+1000。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-102",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": null,
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_102.png",
+      "https://img.bottleneko.app/BFR_S78_102.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_102.png"
+    ]
+  },
+  "BFR/S78-087": {
+    "id": "BFR/S78-087",
+    "name": "盾與盾 梅普露＆莎莉",
+    "type": "CHAR",
+    "color": "藍",
+    "level": 1,
+    "cost": 0,
+    "power": 4500,
+    "soul": 1,
+    "trigger": "NONE",
+    "traits": [
+      "遊戲",
+      "盾"
+    ],
+    "default_count": 2,
+    "effects": [
+      "AUTO_ON_PLAY_FORCE_OPP_SWAP"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_087.png",
+    "text": "【自】［手牌1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇對手的等級1以上的角色1張，對手選擇自己休息室的等級X以下的角色1張，交換位置。X等於你選擇的角色的等級-1。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-087",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": null,
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_087.png",
+      "https://img.bottleneko.app/BFR_S78_087.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_087.png"
+    ]
+  },
+  "BFR/S78-072": {
+    "id": "BFR/S78-072",
+    "name": "火炎牢 蜜伊",
+    "type": "CHAR",
+    "color": "紅",
+    "level": 1,
+    "cost": 0,
+    "power": 4500,
+    "soul": 1,
+    "trigger": "NONE",
+    "traits": [
+      "遊戲",
+      "炎"
+    ],
+    "default_count": 2,
+    "effects": [
+      "AUTO_ON_PLAY_SCALING_BUFF_AND_LOCK"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_072.png",
+    "text": "【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+X。X等於你的《遊戲》的角色張數×500。\n【自】此卡從手牌被放置到舞台時，你選擇對手的角色1張，在那個回合中，給予以下能力。『【永】此卡不能回到手牌，不能放到回憶區。』",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-072",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": null,
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_072.png",
+      "https://img.bottleneko.app/BFR_S78_072.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_072.png"
+    ]
+  },
+  "BFR/S78-058": {
+    "id": "BFR/S78-058",
+    "name": "聖女米瑟莉",
+    "type": "CHAR",
+    "color": "紅",
+    "level": 2,
+    "cost": 2,
+    "power": 7000,
+    "soul": 2,
+    "trigger": "SOUL",
+    "traits": [
+      "遊戲",
+      "炎"
+    ],
+    "default_count": 1,
+    "effects": [
+      "CONT_ALL_GAME_BUFF_3000",
+      "AUTO_DIRECT_ATK_STOCK_CHARGE"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_058.png",
+    "text": "【永】你的角色全部都是《遊戲》的話，此卡的攻擊力+3000。\n【自】此卡直接攻擊時，你可以選擇自己休息室的《遊戲》的角色1張，放到能量區。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-058",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": "BFR/S78-058SP",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_058.png",
+      "https://img.bottleneko.app/BFR_S78_058.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_058.png"
+    ]
+  },
+  "BFR/S78-058SP": {
+    "id": "BFR/S78-058SP",
+    "name": "聖女米瑟莉",
+    "type": "CHAR",
+    "color": "紅",
+    "level": 2,
+    "cost": 2,
+    "power": 7000,
+    "soul": 2,
+    "trigger": "SOUL",
+    "traits": [
+      "遊戲",
+      "炎"
+    ],
+    "default_count": 0,
+    "effects": [
+      "CONT_ALL_GAME_BUFF_3000",
+      "AUTO_DIRECT_ATK_STOCK_CHARGE"
+    ],
+    "url": "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_058SP.png",
+    "text": "【永】你的角色全部都是《遊戲》的話，此卡的攻擊力+3000。\n【自】此卡直接攻擊時，你可以選擇自己休息室的《遊戲》的角色1張，放到能量區。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-058",
+    "is_high_rarity": true,
+    "rarity": "SP",
+    "high_rarity_id": "BFR/S78-058SP",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_058SP.png",
+      "https://img.bottleneko.app/BFR_S78_058SP.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_058SP.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_058sp.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_058sp.gif",
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_058S.png",
+      "https://img.bottleneko.app/BFR_S78_058S.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_058S.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_058s.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_058s.gif"
+    ]
+  },
+  "BFR/S78-069": {
+    "id": "BFR/S78-069",
+    "name": "被託付的生命 蜜伊",
+    "type": "CHAR",
+    "color": "紅",
+    "level": 2,
+    "cost": 1,
+    "power": 5000,
+    "soul": 1,
+    "trigger": "SOUL",
+    "traits": [
+      "遊戲",
+      "炎"
+    ],
+    "default_count": 1,
+    "effects": [
+      "AUTO_FRONT_ATK_LOWER_LEVEL",
+      "AUTO_REVERSE_BOMB_LV2"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_069.png",
+    "text": "【自】［(1)］ 此卡正打時，你可以支付代價。支付代價的話，你選擇對手的角色1張，在那個回合中，等級-1。\n【自】此卡【倒置】時，此卡的戰鬥對手是等級2以下的話，你可以將那張角色【倒置】。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-069",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": null,
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_069.png",
+      "https://img.bottleneko.app/BFR_S78_069.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_069.png"
+    ]
+  },
+  "BFR/S78-089": {
+    "id": "BFR/S78-089",
+    "name": "大摯友 梅普露＆莎莉",
+    "type": "CHAR",
+    "color": "藍",
+    "level": 2,
+    "cost": 2,
+    "power": 7000,
+    "soul": 2,
+    "trigger": "SOUL",
+    "traits": [
+      "遊戲",
+      "盾"
+    ],
+    "default_count": 1,
+    "effects": [
+      "CONT_OPP_BACKROW_BUFF_1500",
+      "AUTO_DEFEND_IMMUNE_REVERSE"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_089.png",
+    "text": "【永】對手的後列的角色每有1張，此卡的攻擊力+1500。\n【自】［(1) 手牌的《遊戲》的角色1張放到休息室］ 此卡被正打時，你可以支付代價。支付代價的話，在那個回合中，此卡不會【倒置】。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-089",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": "BFR/S78-089S",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_089.png",
+      "https://img.bottleneko.app/BFR_S78_089.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_089.png"
+    ]
+  },
+  "BFR/S78-089S": {
+    "id": "BFR/S78-089S",
+    "name": "大摯友 梅普露＆莎莉",
+    "type": "CHAR",
+    "color": "藍",
+    "level": 2,
+    "cost": 2,
+    "power": 7000,
+    "soul": 2,
+    "trigger": "SOUL",
+    "traits": [
+      "遊戲",
+      "盾"
+    ],
+    "default_count": 0,
+    "effects": [
+      "CONT_OPP_BACKROW_BUFF_1500",
+      "AUTO_DEFEND_IMMUNE_REVERSE"
+    ],
+    "url": "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_089S.png",
+    "text": "【永】對手的後列的角色每有1張，此卡的攻擊力+1500。\n【自】［(1) 手牌的《遊戲》的角色1張放到休息室］ 此卡被正打時，你可以支付代價。支付代價的話，在那個回合中，此卡不會【倒置】。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-089",
+    "is_high_rarity": true,
+    "rarity": "SR",
+    "high_rarity_id": "BFR/S78-089S",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_089S.png",
+      "https://img.bottleneko.app/BFR_S78_089S.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_089S.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_089s.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_089s.gif"
+    ]
+  },
+  "BFR/S78-063": {
+    "id": "BFR/S78-063",
+    "name": "暴虐 梅普露",
+    "type": "CHAR",
+    "color": "紅",
+    "level": 3,
+    "cost": 2,
+    "power": 9500,
+    "soul": 2,
+    "trigger": "SOUL",
+    "traits": [
+      "遊戲",
+      "盾"
+    ],
+    "default_count": 2,
+    "effects": [
+      "AUTO_ON_PLAY_3000_AND_SALVAGE_CX",
+      "CX_COMBO_REVERSE_BURN_1_2_3"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063.png",
+    "text": "【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+3000。\n【自】［(1)］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的名場面1張，回到手牌。\n【自】【CX連動】 ［(6) 手牌2張放到休息室，你的名場面區的「Boss級怪物」1張放到休息室］ 此卡的戰鬥對手【倒置】時，你可以支付代價。支付代價的話，給對手1點傷害，給對手2點傷害，給對手3點傷害。會發生傷害取消。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-063",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": "BFR/S78-063S",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_063.png",
+      "https://img.bottleneko.app/BFR_S78_063.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063.png"
+    ]
+  },
+  "BFR/S78-063S": {
+    "id": "BFR/S78-063S",
+    "name": "暴虐 梅普露",
+    "type": "CHAR",
+    "color": "紅",
+    "level": 3,
+    "cost": 2,
+    "power": 9500,
+    "soul": 2,
+    "trigger": "SOUL",
+    "traits": [
+      "遊戲",
+      "盾"
+    ],
+    "default_count": 0,
+    "effects": [
+      "AUTO_ON_PLAY_3000_AND_SALVAGE_CX",
+      "CX_COMBO_REVERSE_BURN_1_2_3"
+    ],
+    "url": "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_063S.png",
+    "text": "【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+3000。\n【自】［(1)］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的名場面1張，回到手牌。\n【自】【CX連動】 ［(6) 手牌2張放到休息室，你的名場面區的「Boss級怪物」1張放到休息室］ 此卡的戰鬥對手【倒置】時，你可以支付代價。支付代價的話，給對手1點傷害，給對手2點傷害，給對手3點傷害。會發生傷害取消。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-063",
+    "is_high_rarity": true,
+    "rarity": "SR",
+    "high_rarity_id": "BFR/S78-063S",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_063S.png",
+      "https://img.bottleneko.app/BFR_S78_063S.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_063S.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063s.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063s.gif",
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_063SEC.png",
+      "https://img.bottleneko.app/BFR_S78_063SEC.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_063SEC.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063sec.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063sec.gif",
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_063SP.png",
+      "https://img.bottleneko.app/BFR_S78_063SP.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_063SP.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063sp.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063sp.gif"
+    ]
+  },
+  "BFR/S78-064": {
+    "id": "BFR/S78-064",
+    "name": "炎帝 蜜伊",
+    "type": "CHAR",
+    "color": "紅",
+    "level": 3,
+    "cost": 2,
+    "power": 10000,
+    "soul": 2,
+    "trigger": "SOUL",
+    "traits": [
+      "遊戲",
+      "炎"
+    ],
+    "default_count": 2,
+    "effects": [
+      "AUTO_ON_PLAY_HEAL",
+      "CX_COMBO_STANDBY_STAND"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_064.png",
+    "text": "【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】【CX連動】 ［手牌的《遊戲》的角色3張放到休息室］ 此卡因為「炎帝之國的公會長」的效果被放到舞台時，你可以支付代價。支付代價的話，將此卡【正置】。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-064",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": "BFR/S78-064S",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_064.png",
+      "https://img.bottleneko.app/BFR_S78_064.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_064.png"
+    ]
+  },
+  "BFR/S78-064S": {
+    "id": "BFR/S78-064S",
+    "name": "炎帝 蜜伊",
+    "type": "CHAR",
+    "color": "紅",
+    "level": 3,
+    "cost": 2,
+    "power": 10000,
+    "soul": 2,
+    "trigger": "SOUL",
+    "traits": [
+      "遊戲",
+      "炎"
+    ],
+    "default_count": 0,
+    "effects": [
+      "AUTO_ON_PLAY_HEAL",
+      "CX_COMBO_STANDBY_STAND"
+    ],
+    "url": "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_064S.png",
+    "text": "【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】【CX連動】 ［手牌的《遊戲》的角色3張放到休息室］ 此卡因為「炎帝之國的公會長」的效果被放到舞台時，你可以支付代價。支付代價的話，將此卡【正置】。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-064",
+    "is_high_rarity": true,
+    "rarity": "SR",
+    "high_rarity_id": "BFR/S78-064S",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_064S.png",
+      "https://img.bottleneko.app/BFR_S78_064S.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_064S.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_064s.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_064s.gif",
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_064SP.png",
+      "https://img.bottleneko.app/BFR_S78_064SP.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_064SP.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_064sp.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_064sp.gif"
+    ]
+  },
+  "BFR/S78-081": {
+    "id": "BFR/S78-081",
+    "name": "天才少年 奏",
+    "type": "CHAR",
+    "color": "藍",
+    "level": 3,
+    "cost": 2,
+    "power": 9000,
+    "soul": 2,
+    "trigger": "SOUL",
+    "traits": [
+      "遊戲",
+      "武器"
+    ],
+    "default_count": 1,
+    "effects": [
+      "CONT_EARLY_PLAY_4GAME",
+      "AUTO_ON_PLAY_HEAL",
+      "AUTO_ON_PLAY_OTHER_GAME_2000"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_081.png",
+    "text": "【永】你的《遊戲》的角色存在4張以上的話，你的手牌的此卡等級-1。\n【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】此卡從手牌被放置到舞台時，有其他的你的《遊戲》的角色存在的話，在那個回合中，此卡的攻擊力+2000。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-081",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": "BFR/S78-081SP",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_081.png",
+      "https://img.bottleneko.app/BFR_S78_081.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_081.png"
+    ]
+  },
+  "BFR/S78-081SP": {
+    "id": "BFR/S78-081SP",
+    "name": "天才少年 奏",
+    "type": "CHAR",
+    "color": "藍",
+    "level": 3,
+    "cost": 2,
+    "power": 9000,
+    "soul": 2,
+    "trigger": "SOUL",
+    "traits": [
+      "遊戲",
+      "武器"
+    ],
+    "default_count": 0,
+    "effects": [
+      "CONT_EARLY_PLAY_4GAME",
+      "AUTO_ON_PLAY_HEAL",
+      "AUTO_ON_PLAY_OTHER_GAME_2000"
+    ],
+    "url": "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_081SP.png",
+    "text": "【永】你的《遊戲》的角色存在4張以上的話，你的手牌的此卡等級-1。\n【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】此卡從手牌被放置到舞台時，有其他的你的《遊戲》的角色存在的話，在那個回合中，此卡的攻擊力+2000。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-081",
+    "is_high_rarity": true,
+    "rarity": "SP",
+    "high_rarity_id": "BFR/S78-081SP",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_081SP.png",
+      "https://img.bottleneko.app/BFR_S78_081SP.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_081SP.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_081sp.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_081sp.gif",
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_081S.png",
+      "https://img.bottleneko.app/BFR_S78_081S.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_081S.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_081s.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_081s.gif"
+    ]
+  },
+  "BFR/S78-082": {
+    "id": "BFR/S78-082",
+    "name": "機械神 梅普露",
+    "type": "CHAR",
+    "color": "藍",
+    "level": 3,
+    "cost": 2,
+    "power": 10000,
+    "soul": 2,
+    "trigger": "SOUL",
+    "traits": [
+      "遊戲",
+      "盾"
+    ],
+    "default_count": 1,
+    "effects": [
+      "AUTO_ON_PLAY_RESHUFFLE_OPP_STOCK",
+      "CX_COMBO_ATK_BOTTOM_MILL4_BURN"
+    ],
+    "url": "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_082.png",
+    "text": "【自】［(1)］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，對手將自己的能量區全部，放到休息室，從自己的牌組上方將相同張數放到能量區。\n【自】【CX連動】 此卡攻擊時，名場面區有「展開．左手」的話，你將對手的牌組下方4張，放到休息室，給對手X點傷害。X等於那些卡片中的名場面張數。會發生傷害取消。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-082",
+    "is_high_rarity": false,
+    "rarity": "R",
+    "high_rarity_id": "BFR/S78-082SP",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_082.png",
+      "https://img.bottleneko.app/BFR_S78_082.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_082.png"
+    ]
+  },
+  "BFR/S78-082SP": {
+    "id": "BFR/S78-082SP",
+    "name": "機械神 梅普露",
+    "type": "CHAR",
+    "color": "藍",
+    "level": 3,
+    "cost": 2,
+    "power": 10000,
+    "soul": 2,
+    "trigger": "SOUL",
+    "traits": [
+      "遊戲",
+      "盾"
+    ],
+    "default_count": 0,
+    "effects": [
+      "AUTO_ON_PLAY_RESHUFFLE_OPP_STOCK",
+      "CX_COMBO_ATK_BOTTOM_MILL4_BURN"
+    ],
+    "url": "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_082SP.png",
+    "text": "【自】［(1)］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，對手將自己的能量區全部，放到休息室，從自己的牌組上方將相同張數放到能量區。\n【自】【CX連動】 此卡攻擊時，名場面區有「展開．左手」的話，你將對手的牌組下方4張，放到休息室，給對手X點傷害。X等於那些卡片中的名場面張數。會發生傷害取消。",
+    "series": "BFR/S78",
+    "base_id": "BFR/S78-082",
+    "is_high_rarity": true,
+    "rarity": "SP",
+    "high_rarity_id": "BFR/S78-082SP",
+    "parallel_urls": [
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_082SP.png",
+      "https://img.bottleneko.app/BFR_S78_082SP.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_082SP.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_082sp.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_082sp.gif",
+      "https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_082S.png",
+      "https://img.bottleneko.app/BFR_S78_082S.png",
+      "https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_082S.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_082s.png",
+      "https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_082s.gif"
+    ]
+  }
+}
