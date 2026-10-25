@@ -10,6 +10,7 @@ import os
 import tkinter as tk
 from tkinter import filedialog, colorchooser, messagebox
 from PIL import Image, ImageDraw, ImageFilter, ImageTk
+from win32_ico_builder import save_win32_dib_ico
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -257,7 +258,7 @@ class IconMakerApp:
         if not out_ico:
             return
         hi_icon = render_circular_transparent_icon(self.src_img, self.cx, self.cy, self.zoom, self.ring_color, self.inner_color, out_size=512)
-        hi_icon.save(out_ico, format="ICO", sizes=[(256, 256), (128, 128), (64, 64), (48, 48), (32, 32), (16, 16)])
+        save_win32_dib_ico(hi_icon, out_ico)
         png_path = os.path.splitext(out_ico)[0] + ".png"
         hi_icon.save(png_path, format="PNG")
         self.lbl_status.config(text=f"✔ 已成功匯出圖標：{os.path.basename(out_ico)} 與去背 {os.path.basename(png_path)}！", fg="#06d6a0")
@@ -266,7 +267,7 @@ class IconMakerApp:
         hi_icon = render_circular_transparent_icon(self.src_img, self.cx, self.cy, self.zoom, self.ring_color, self.inner_color, out_size=512)
         ico_p = os.path.join(BASE_DIR, "maple_icon.ico")
         png_p = os.path.join(BASE_DIR, "maple_icon.png")
-        hi_icon.save(ico_p, format="ICO", sizes=[(256, 256), (128, 128), (64, 64), (48, 48), (32, 32), (16, 16)])
+        save_win32_dib_ico(hi_icon, ico_p)
         hi_icon.save(png_p, format="PNG")
         self.lbl_status.config(text="✔ 已成功更新遊戲預設圖標 maple_icon.ico 與 maple_icon.png！", fg="#06d6a0")
 
