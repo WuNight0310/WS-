@@ -111,6 +111,10 @@ def load_all_card_sets(sets_dir="sets"):
                         if isinstance(cinfo, dict) and "name" in cinfo:
                             scode = explicit_series or _infer_series_code(cid, cinfo, file_stem)
                             cinfo["series"] = scode
+                            if "parsed_abilities" not in cinfo and "ChineseEffectParser" in globals():
+                                cinfo["parsed_abilities"] = ChineseEffectParser.parse_card_effects(
+                                    cinfo.get("text", cinfo.get("effect", "")), cinfo.get("type", "CHAR")
+                                )
                             card_db[cid] = cinfo
                             series_db.setdefault(scode, {})[cid] = cinfo
                             if cinfo.get("default_count", 0) > 0:

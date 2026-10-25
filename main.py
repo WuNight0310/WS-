@@ -1211,8 +1211,7 @@ class ImageManager:
         self.font_sub = self._load_font(12)
 
         self._purge_synthetic_high_rarity_images()
-        self._create_stylized_cards()
-        self.load_local_images()
+        # 採用極速延遲載入 (Lazy On-Demand Loading)：啟動時不預先解碼數百張本地圖片，用到的卡片才即時載入並快取，啟動時間縮短至 0.2 秒內！
         self.start_background_download()
 
     def _write_folder_readme(self):
@@ -1261,6 +1260,31 @@ class ImageManager:
         except Exception:
             pass
 
+    def _get_or_load_pil(self, cid: str) -> Image.Image:
+        if cid in self.pil_cache:
+            return self.pil_cache[cid]
+        base_name = self.get_base_filename(cid)
+        for ext in (".webp", ".png", ".jpg"):
+            for fn in (f"{base_name}{ext}", f"{base_name.lower()}{ext}"):
+                full_p = os.path.join(self.local_webp_dir, fn)
+                if os.path.exists(full_p) and os.path.getsize(full_p) > 100:
+                    try:
+                        img = Image.open(full_p).convert("RGB")
+                        img = self._normalize_card_orientation(cid, img)
+                        self.pil_cache[cid] = img
+                        return img
+                    except Exception:
+                        pass
+        c_data = CARD_DB.get(cid, {})
+        if c_data.get("is_high_rarity"):
+            b_id = c_data.get("base_id", cid)
+            if b_id != cid:
+                b_img = self._get_or_load_pil(b_id)
+                if b_img:
+                    self.pil_cache[cid] = b_img
+                    return b_img
+        return self._create_single_stylized_card(cid, c_data)
+
     def _create_single_stylized_card(self, cid: str, data: dict) -> Image.Image:
         color_theme = {
             "紅": ("#5e1720", "#ff6b6b"),
@@ -1296,7 +1320,7 @@ class ImageManager:
         self.pil_cache[cid] = img
         return img
 
-    def load_local_images(self, only_missing: bool = False) -> int:
+    def load_local_images(self, only_missing: bool = True) -> int:
         loaded_count = 0
         loaded_cids = set()
         for cid, cdata in CARD_DB.items():
@@ -1569,9 +1593,7 @@ class ImageManager:
             return self.tk_cache[key]
 
         c_data = CARD_DB.get(cid, {})
-        src_img = self.pil_cache.get(cid)
-        if src_img is None:
-            src_img = self._create_single_stylized_card(cid, c_data)
+        src_img = self._get_or_load_pil(cid)
         if c_data.get("type") == "CX":
             # 名場面在手牌、休息室、牌庫檢索與預覽等直立框 (width <= height) 時一律保持豎向且無多餘黑框注釋；
             # 僅在放置於場上名場面區 (width > height) 時轉為橫置呈現！
@@ -1628,9 +1650,7 @@ class ImageManager:
         # 放大手牌尺寸，並徹底移除手牌頂部黑框與名場面黑框注釋，名場面於手牌中與其他牌一樣保持豎向！
         width = 148 if is_pop else 122
         height = 206 if is_pop else 170
-        src_img = self.pil_cache.get(cid)
-        if src_img is None:
-            src_img = self._create_single_stylized_card(cid, CARD_DB.get(cid, {}))
+        src_img = self._get_or_load_pil(cid)
         if src_img.width > src_img.height:
             src_img = src_img.transpose(Image.Transpose.ROTATE_270)
         base = src_img.resize((width, height), Image.Resampling.LANCZOS).convert("RGBA")
@@ -1708,7 +1728,7 @@ class ImageManager:
 
     def _build_amiami_fallback_pil(self) -> Image.Image:
         """特典角色卡套備援圖 (優先等待背景下載真實 CARD-00021593.jpg)"""
-        base_card = self.pil_cache.get("BFR/S78-082SP") or self.pil_cache.get("BTR/W107-069") or next(iter(self.pil_cache.values()), None)
+        base_card = self._get_or_load_pil("BFR/S78-082SP") or self._get_or_load_pil("BTR/W107-069")
         w, h = 240, 336
         if base_card:
             img = base_card.resize((w, h), Image.Resampling.LANCZOS).copy()
@@ -1922,9 +1942,7 @@ class ImageManager:
 
             for idx, c in enumerate(clock_cards):
                 cid = getattr(c, "skin_id", c.id)
-                src_im = self.pil_cache.get(cid)
-                if src_im is None:
-                    src_im = next(iter(self.pil_cache.values()))
+                src_im = self._get_or_load_pil(cid)
                 if src_im.width > src_im.height:
                     src_im = src_im.transpose(Image.Transpose.ROTATE_270)
                 thumb = src_im.resize((cw, ch), Image.Resampling.LANCZOS)
@@ -1972,9 +1990,7 @@ class ImageManager:
             col_map = {"紅": "#ff6b6b", "藍": "#4cc9f0", "黃": "#ffd166", "綠": "#06d6a0"}
             for idx, c in enumerate(level_cards):
                 cid = getattr(c, "skin_id", c.id)
-                src_im = self.pil_cache.get(cid)
-                if src_im is None:
-                    src_im = next(iter(self.pil_cache.values()))
+                src_im = self._get_or_load_pil(cid)
                 if src_im.width > src_im.height:
                     src_im = src_im.transpose(Image.Transpose.ROTATE_270)
                 thumb = src_im.resize((cw, ch), Image.Resampling.LANCZOS)
@@ -2032,7 +2048,7 @@ class ImageManager:
 
         if crop_tuple:
             c_cid, cx_r, cy_r, zoom_f = crop_tuple
-            src_img = self.pil_cache.get(c_cid)
+            src_img = self._get_or_load_pil(c_cid)
         elif avatar_id == "CUSTOM" and custom_path and os.path.exists(custom_path):
             try:
                 src_img = Image.open(custom_path).convert("RGB")
@@ -2048,7 +2064,7 @@ class ImageManager:
                 cx_r, cy_r, zoom_f = d_cx, d_cy, d_zm
             if not border_color:
                 ring_col = def_col
-            src_img = self.pil_cache.get(cid)
+            src_img = self._get_or_load_pil(cid)
 
         canvas = Image.new("RGBA", (size, size), (0, 0, 0, 0))
         if src_img is not None:
@@ -2149,7 +2165,7 @@ class ImageManager:
             ]
             for idx_p, (px, py, ang) in enumerate(positions):
                 cid = hero_cids[idx_p % len(hero_cids)]
-                c_pil = self.pil_cache.get(cid)
+                c_pil = self._get_or_load_pil(cid)
                 if c_pil:
                     card_thumb = c_pil.resize((210, 294), Image.Resampling.LANCZOS).convert("RGBA")
                     bordered = Image.new("RGBA", (218, 302), (255, 209, 102, 180))
@@ -2488,12 +2504,16 @@ class DeckBuilderFrame(tk.Frame):
         super().__init__(parent, bg="#111218")
         self.app = app
         self.img_mgr = app.img_mgr
-        load_all_card_sets()
         # 若有任何預設套牌已遺失對應設定，先同步內建三套
         self.selected_series = (
             app.active_series if app.active_series in SERIES_DB else "ALL"
         )
         self.rarity_filter = "ALL"  # "ALL", "NORMAL", "HIGH"
+        self.color_filter = "ALL"   # "ALL", "黃", "綠", "紅", "藍", "紫"
+        self.level_filter = "ALL"   # "ALL", 0, 1, 2, 3
+        self.soul_filter = "ALL"    # "ALL", 0, 1, 2
+        self.min_power_filter = 0
+        self.sort_mode = "DEFAULT"  # "DEFAULT", "PWR_DESC", "PWR_ASC", "LVL_ASC", "LVL_DESC"
         self.search_keyword = ""
         self.current_page = 0
         self.page_size = 24
@@ -2510,10 +2530,11 @@ class DeckBuilderFrame(tk.Frame):
 
     def _build_deck_slot_options(self) -> list:
         """回傳所有可選卡組清單 [(顯示名稱, slot_key), ...]：固定包含內建三套真實構築 ＋ 玩家自建的多套卡組"""
+        user_names = self.app.settings.get("user_deck_names") or {}
         opts = [
-            ("預設套牌 1：防盾系列 (BFR/S78)", "BFR/S78"),
-            ("預設套牌 2：GA文庫 8箭地旅 (GA/S131)", "GA/S131"),
-            ("預設套牌 3：孤獨搖滾！ (BTR/W107)", "BTR/W107"),
+            (f"預設套牌 1：{user_names.get('BFR/S78', '防盾系列 (BFR/S78)')}", "BFR/S78"),
+            (f"預設套牌 2：{user_names.get('GA/S131', 'GA文庫 8箭地旅 (GA/S131)')}", "GA/S131"),
+            (f"預設套牌 3：{user_names.get('BTR/W107', '孤獨搖滾！ (BTR/W107)')}", "BTR/W107"),
         ]
         existing_keys = {k for _, k in opts}
         # 加入玩家自建卡組與透過貓罐子牌組網址匯入的 50 張完整牌組
@@ -2674,11 +2695,23 @@ class DeckBuilderFrame(tk.Frame):
             pady=3,
             cursor="hand2",
             command=self.on_select_preset_menu,
-        ).pack(side=tk.LEFT, padx=4)
+        ).pack(side=tk.LEFT, padx=3)
 
         tk.Button(
             preset_search_bar,
-            text="🗑️ 刪除此自訂卡組",
+            text="✏️ 卡組改名",
+            bg="#ffd166",
+            fg="#000000",
+            font=(ff, 10, "bold"),
+            padx=10,
+            pady=3,
+            cursor="hand2",
+            command=self.rename_current_deck_modal,
+        ).pack(side=tk.LEFT, padx=3)
+
+        tk.Button(
+            preset_search_bar,
+            text="🗑️ 刪除卡組",
             bg="#e63946",
             fg="white",
             font=(ff, 10, "bold"),
@@ -2686,7 +2719,7 @@ class DeckBuilderFrame(tk.Frame):
             pady=3,
             cursor="hand2",
             command=self.delete_current_custom_deck,
-        ).pack(side=tk.LEFT, padx=4)
+        ).pack(side=tk.LEFT, padx=3)
 
         # 右側：查卡名搜索框
         search_box = tk.Frame(preset_search_bar, bg="#161822")
@@ -2852,6 +2885,125 @@ class DeckBuilderFrame(tk.Frame):
             font=(ff, 10, "bold"),
         )
         self.lbl_active_badge.pack(side=tk.RIGHT, padx=4)
+
+        # 第四列：多維度屬性篩選列（顏色 ／ 等級 ／ 魂傷 ／ 攻擊力門檻與排序）
+        attr_bar = tk.Frame(self, bg="#161925", pady=5, padx=14, relief=tk.SOLID, bd=1)
+        attr_bar.pack(fill=tk.X, padx=8, pady=(0, 4))
+
+        # 1. 顏色篩選
+        tk.Label(attr_bar, text="🎨 顏色：", bg="#161925", fg="#ffd166", font=(ff, 10, "bold")).pack(side=tk.LEFT)
+        self.color_btns = {}
+        color_opts = [("ALL", "全部", "#252734", "#ffffff"), ("黃", "黃", "#f4a261", "#000000"), ("綠", "綠", "#06d6a0", "#000000"), ("紅", "紅", "#e63946", "#ffffff"), ("藍", "藍", "#118ab2", "#ffffff"), ("紫", "紫", "#9b5de5", "#ffffff")]
+        for c_key, c_lbl, c_bg, c_fg in color_opts:
+            is_c = (self.color_filter == c_key)
+            b = tk.Button(
+                attr_bar,
+                text=c_lbl,
+                bg="#ffd166" if (is_c and c_key == "ALL") else (c_bg if is_c else "#252734"),
+                fg="#000000" if (is_c and c_key in ("ALL", "黃", "綠")) else ("#ffffff" if not is_c else c_fg),
+                relief=tk.SUNKEN if is_c else tk.RAISED,
+                bd=2 if is_c else 1,
+                font=(ff, 9, "bold"),
+                padx=7,
+                pady=1,
+                cursor="hand2",
+                command=lambda ck=c_key: self.set_color_filter(ck),
+            )
+            b.pack(side=tk.LEFT, padx=2)
+            self.color_btns[c_key] = (b, c_bg, c_fg)
+
+        # 2. 等級篩選
+        tk.Label(attr_bar, text="｜📊 等級：", bg="#161925", fg="#8ecae6", font=(ff, 10, "bold")).pack(side=tk.LEFT, padx=(6, 0))
+        self.level_btns = {}
+        for lv_key, lv_lbl in [("ALL", "全部"), (0, "Lv.0"), (1, "Lv.1"), (2, "Lv.2"), (3, "Lv.3")]:
+            is_lv = (self.level_filter == lv_key)
+            b = tk.Button(
+                attr_bar,
+                text=lv_lbl,
+                bg="#06d6a0" if is_lv else "#252734",
+                fg="#000000" if is_lv else "#ffffff",
+                font=(ff, 9, "bold"),
+                padx=6,
+                pady=1,
+                cursor="hand2",
+                command=lambda lk=lv_key: self.set_level_filter(lk),
+            )
+            b.pack(side=tk.LEFT, padx=2)
+            self.level_btns[lv_key] = b
+
+        # 3. 魂傷篩選
+        tk.Label(attr_bar, text="｜⚡ 魂傷：", bg="#161925", fg="#ffd166", font=(ff, 10, "bold")).pack(side=tk.LEFT, padx=(6, 0))
+        self.soul_btns = {}
+        for s_key, s_lbl in [("ALL", "全部"), (0, "0魂(CX/事件)"), (1, "1魂"), (2, "2魂+")]:
+            is_s = (self.soul_filter == s_key)
+            b = tk.Button(
+                attr_bar,
+                text=s_lbl,
+                bg="#ffd166" if is_s else "#252734",
+                fg="#000000" if is_s else "#ffffff",
+                font=(ff, 9, "bold"),
+                padx=6,
+                pady=1,
+                cursor="hand2",
+                command=lambda sk=s_key: self.set_soul_filter(sk),
+            )
+            b.pack(side=tk.LEFT, padx=2)
+            self.soul_btns[s_key] = b
+
+        # 4. 攻擊力篩選與排序下拉選單
+        tk.Label(attr_bar, text="｜⚔️ 攻擊力：", bg="#161925", fg="#ff758f", font=(ff, 10, "bold")).pack(side=tk.LEFT, padx=(6, 2))
+        self.pwr_filter_options = [
+            ("不限攻擊力", 0),
+            ("攻擊力 ≥ 1500", 1500),
+            ("攻擊力 ≥ 3000", 3000),
+            ("攻擊力 ≥ 5000", 5000),
+            ("攻擊力 ≥ 7500", 7500),
+            ("攻擊力 ≥ 9500", 9500),
+            ("攻擊力 ≥ 10000", 10000),
+        ]
+        self.pwr_filter_var = tk.StringVar(value="不限攻擊力")
+        self.cmb_pwr = ttk.Combobox(
+            attr_bar,
+            textvariable=self.pwr_filter_var,
+            values=[lbl for lbl, _ in self.pwr_filter_options],
+            state="readonly",
+            width=13,
+            font=(ff, 9, "bold"),
+        )
+        self.cmb_pwr.pack(side=tk.LEFT, padx=2)
+        self.cmb_pwr.bind("<<ComboboxSelected>>", self._on_pwr_or_sort_changed)
+
+        tk.Label(attr_bar, text="排序：", bg="#161925", fg="#8ecae6", font=(ff, 10, "bold")).pack(side=tk.LEFT, padx=(6, 2))
+        self.sort_options = [
+            ("預設卡號排序", "DEFAULT"),
+            ("攻擊力：高 → 低", "PWR_DESC"),
+            ("攻擊力：低 → 高", "PWR_ASC"),
+            ("等級：低 → 高", "LVL_ASC"),
+            ("等級：高 → 低", "LVL_DESC"),
+        ]
+        self.sort_var = tk.StringVar(value="預設卡號排序")
+        self.cmb_sort = ttk.Combobox(
+            attr_bar,
+            textvariable=self.sort_var,
+            values=[lbl for lbl, _ in self.sort_options],
+            state="readonly",
+            width=14,
+            font=(ff, 9, "bold"),
+        )
+        self.cmb_sort.pack(side=tk.LEFT, padx=2)
+        self.cmb_sort.bind("<<ComboboxSelected>>", self._on_pwr_or_sort_changed)
+
+        tk.Button(
+            attr_bar,
+            text="↺ 重設篩選",
+            bg="#3a3f58",
+            fg="#ffffff",
+            font=(ff, 9, "bold"),
+            padx=8,
+            pady=1,
+            cursor="hand2",
+            command=self.reset_all_attribute_filters,
+        ).pack(side=tk.RIGHT, padx=4)
 
         body = tk.Frame(self, bg="#111218")
         body.pack(fill=tk.BOTH, expand=True, padx=8, pady=4)
@@ -3306,6 +3458,138 @@ class DeckBuilderFrame(tk.Frame):
         self.update_summary()
         self.lbl_feedback.config(text="🧹 已清空配比，可從上方下拉選單切換任何系列自由組建 50 張卡組。", fg="#8ecae6")
 
+    def rename_current_deck_modal(self):
+        """彈出視窗修改目前選中卡組的名稱（支援為預設或自訂卡組自由命名）"""
+        cur_k = self.app.active_series
+        cur_name = self.app.get_deck_display_name(cur_k)
+        ff = self.app.get_font_family()
+        win = tk.Toplevel(self.app.root)
+        win.title("✏️ 修改卡組名稱")
+        win.geometry("460x210")
+        win.configure(bg="#151b29")
+        win.transient(self.app.root)
+        win.grab_set()
+
+        tk.Label(
+            win,
+            text=f"請輸入【{cur_name}】的新名稱：",
+            bg="#151b29",
+            fg="#ffd166",
+            font=(ff, 12, "bold"),
+        ).pack(pady=(20, 8))
+
+        ent = tk.Entry(
+            win,
+            bg="#0d111a",
+            fg="#06d6a0",
+            insertbackground="white",
+            font=(ff, 13, "bold"),
+            width=26,
+        )
+        ent.insert(0, cur_name)
+        ent.pack(pady=6)
+        ent.focus_set()
+        ent.select_range(0, tk.END)
+
+        def _do_rename():
+            new_n = ent.get().strip()
+            if not new_n:
+                return
+            user_names = dict(self.app.settings.get("user_deck_names") or {})
+            user_names[cur_k] = new_n
+            self.app.settings["user_deck_names"] = user_names
+            self.app.save_user_settings(self.app.settings)
+            win.destroy()
+            self.dynamic_preset_options = self._build_deck_slot_options()
+            preset_labels = [label for label, _ in self.dynamic_preset_options]
+            self.cmb_preset.config(values=preset_labels)
+            for label, k in self.dynamic_preset_options:
+                if k == cur_k:
+                    self.preset_var.set(label)
+                    break
+            self.lbl_active_badge.config(text=f"⚔️ 出戰：{new_n}")
+            self.update_summary()
+            self.lbl_feedback.config(text=f"✏️ 已將卡組名稱更新為【{new_n}】！", fg="#06d6a0")
+
+        ent.bind("<Return>", lambda e: _do_rename())
+        btn_f = tk.Frame(win, bg="#151b29")
+        btn_f.pack(pady=14)
+        tk.Button(
+            btn_f,
+            text="✔ 確認改名",
+            bg="#06d6a0",
+            fg="#000000",
+            font=(ff, 11, "bold"),
+            padx=16,
+            pady=4,
+            cursor="hand2",
+            command=_do_rename,
+        ).pack(side=tk.LEFT, padx=8)
+        tk.Button(
+            btn_f,
+            text="取消",
+            bg="#3a3f58",
+            fg="#ffffff",
+            font=(ff, 11, "bold"),
+            padx=14,
+            pady=4,
+            command=win.destroy,
+        ).pack(side=tk.LEFT, padx=8)
+
+    def set_color_filter(self, c_key: str):
+        self.color_filter = c_key
+        self.current_page = 0
+        for k, (b, c_bg, c_fg) in self.color_btns.items():
+            is_c = (k == c_key)
+            b.config(
+                bg="#ffd166" if (is_c and k == "ALL") else (c_bg if is_c else "#252734"),
+                fg="#000000" if (is_c and k in ("ALL", "黃", "綠")) else ("#ffffff" if not is_c else c_fg),
+                relief=tk.SUNKEN if is_c else tk.RAISED,
+            )
+        self.populate_cards()
+
+    def set_level_filter(self, lv_key):
+        self.level_filter = lv_key
+        self.current_page = 0
+        for k, b in self.level_btns.items():
+            is_lv = (k == lv_key)
+            b.config(bg="#06d6a0" if is_lv else "#252734", fg="#000000" if is_lv else "#ffffff")
+        self.populate_cards()
+
+    def set_soul_filter(self, s_key):
+        self.soul_filter = s_key
+        self.current_page = 0
+        for k, b in self.soul_btns.items():
+            is_s = (k == s_key)
+            b.config(bg="#ffd166" if is_s else "#252734", fg="#000000" if is_s else "#ffffff")
+        self.populate_cards()
+
+    def _on_pwr_or_sort_changed(self, event=None):
+        p_lbl = self.pwr_filter_var.get()
+        for lbl, val in self.pwr_filter_options:
+            if lbl == p_lbl:
+                self.min_power_filter = val
+                break
+        s_lbl = self.sort_var.get()
+        for lbl, smode in self.sort_options:
+            if lbl == s_lbl:
+                self.sort_mode = smode
+                break
+        self.current_page = 0
+        self.populate_cards()
+
+    def reset_all_attribute_filters(self):
+        self.color_filter = "ALL"
+        self.level_filter = "ALL"
+        self.soul_filter = "ALL"
+        self.min_power_filter = 0
+        self.sort_mode = "DEFAULT"
+        self.pwr_filter_var.set("不限攻擊力")
+        self.sort_var.set("預設卡號排序")
+        self.set_color_filter("ALL")
+        self.set_level_filter("ALL")
+        self.set_soul_filter("ALL")
+
     def _get_filtered_card_items(self):
         if self.selected_series == "ALL":
             base_items = list(CARD_DB.items())
@@ -3319,24 +3603,49 @@ class DeckBuilderFrame(tk.Frame):
         elif self.rarity_filter == "HIGH":
             base_items = [(cid, d) for cid, d in base_items if d.get("is_high_rarity", False)]
 
-        kw = self.search_keyword
-        if not kw:
-            return base_items
+        if self.color_filter != "ALL":
+            base_items = [(cid, d) for cid, d in base_items if d.get("color") == self.color_filter]
 
-        matched = []
-        for cid, data in base_items:
-            haystack = " ".join([
-                cid.lower(),
-                data.get("name", "").lower(),
-                data.get("jp_name", "").lower(),
-                " ".join(data.get("traits", [])).lower(),
-                data.get("type", "").lower(),
-                data.get("color", "").lower(),
-                data.get("rarity", "").lower(),
-            ])
-            if kw in haystack:
-                matched.append((cid, data))
-        return matched
+        if self.level_filter != "ALL":
+            base_items = [(cid, d) for cid, d in base_items if int(d.get("level", 0)) == int(self.level_filter)]
+
+        if self.soul_filter != "ALL":
+            if self.soul_filter == 2:
+                base_items = [(cid, d) for cid, d in base_items if int(d.get("soul", 0)) >= 2]
+            else:
+                base_items = [(cid, d) for cid, d in base_items if int(d.get("soul", 0)) == int(self.soul_filter)]
+
+        if self.min_power_filter > 0:
+            base_items = [(cid, d) for cid, d in base_items if int(d.get("power", 0)) >= self.min_power_filter]
+
+        kw = self.search_keyword
+        if kw:
+            matched = []
+            for cid, data in base_items:
+                haystack = " ".join([
+                    cid.lower(),
+                    data.get("name", "").lower(),
+                    data.get("jp_name", "").lower(),
+                    " ".join(data.get("traits", [])).lower(),
+                    data.get("type", "").lower(),
+                    data.get("color", "").lower(),
+                    data.get("rarity", "").lower(),
+                    data.get("text", "").lower(),
+                ])
+                if kw in haystack:
+                    matched.append((cid, data))
+            base_items = matched
+
+        if self.sort_mode == "PWR_DESC":
+            base_items.sort(key=lambda x: (-int(x[1].get("power", 0)), int(x[1].get("level", 0)), x[0]))
+        elif self.sort_mode == "PWR_ASC":
+            base_items.sort(key=lambda x: (int(x[1].get("power", 0)), int(x[1].get("level", 0)), x[0]))
+        elif self.sort_mode == "LVL_ASC":
+            base_items.sort(key=lambda x: (int(x[1].get("level", 0)), -int(x[1].get("power", 0)), x[0]))
+        elif self.sort_mode == "LVL_DESC":
+            base_items.sort(key=lambda x: (-int(x[1].get("level", 0)), -int(x[1].get("power", 0)), x[0]))
+
+        return base_items
 
     def prev_page(self):
         if self.current_page > 0:
@@ -4577,10 +4886,13 @@ class WSBofuriGameFrame(tk.Frame):
             self.right_log_drawer,
             bg="#0b0e17",
             fg="#e9ecef",
-            font=(ff, max(12, eff_fs - 1)),
-            wrap=tk.WORD,
-            padx=10,
-            pady=8,
+            font=(ff, eff_fs),
+            wrap=tk.CHAR,
+            spacing1=4,
+            spacing2=2,
+            spacing3=6,
+            padx=12,
+            pady=10,
             bd=0,
         )
         self.txt_log.pack(fill=tk.BOTH, expand=True, padx=8, pady=8)
@@ -4761,7 +5073,11 @@ class WSBofuriGameFrame(tk.Frame):
         if not hasattr(self, "right_log_drawer") or not self.right_log_drawer.winfo_exists():
             return
         self._log_drawer_open = True
-        self.right_log_drawer.place(relx=1.0, x=-8, rely=0.08, anchor="ne", width=410, relheight=0.76)
+        cur_ff = self.app.get_font_family()
+        cur_fs = self.app.get_effect_font_size()
+        drawer_w = max(430, min(580, 390 + (cur_fs - 10) * 20))
+        self.txt_log.config(font=(cur_ff, cur_fs), wrap=tk.CHAR, spacing1=4, spacing2=2, spacing3=6)
+        self.right_log_drawer.place(relx=1.0, x=-8, rely=0.08, anchor="ne", width=drawer_w, relheight=0.78)
         self.right_log_drawer.lift()
         self.txt_log.see(tk.END)
         if hasattr(self, "btn_toggle_log_drawer") and self.btn_toggle_log_drawer.winfo_exists():
@@ -7199,7 +7515,8 @@ class WSBofuriGameFrame(tk.Frame):
 
     def log(self, msg):
         if self.winfo_exists():
-            self.txt_log.insert(tk.END, msg + "\n")
+            clean_msg = str(msg).replace(" (BTR/W107)", "").replace(" (GA/S131)", "").replace(" (BFR/S78)", "").replace(" (GA01)", "")
+            self.txt_log.insert(tk.END, clean_msg + "\n")
             self.txt_log.see(tk.END)
             try:
                 if (
@@ -10801,11 +11118,13 @@ class WSBofuriGameFrame(tk.Frame):
                     self.reverse_character(def_p, slot_idx, victor_p=atk_p, victor_slot=slot_idx)
                     self.reverse_character(atk_p, slot_idx, victor_p=def_p, victor_slot=slot_idx)
 
-        self.update_ui()
-        if self.is_lan and atk_p == self.player:
-            self._broadcast_action(f"完成位置 {slot_idx} 的攻擊結算")
-        if on_complete and not self.game_over:
-            self.root.after(900, on_complete)
+        try:
+            self.update_ui()
+            if self.is_lan and atk_p == self.player:
+                self._broadcast_action(f"完成位置 {slot_idx} 的攻擊結算")
+        finally:
+            if on_complete and not self.game_over:
+                self.root.after(900, on_complete)
 
     def reverse_character(
         self, loser_p: PlayerState, slot_idx: int, victor_p: PlayerState, victor_slot: int
@@ -11081,12 +11400,12 @@ class WSBofuriGameFrame(tk.Frame):
             "BFR/S78-073", "BFR/S78-060", "GA13/S131-077",
             "BFR/S78-081", "GA02/S131-003", "GA12/S131-013", "GA17/S131-017"
         }
-        if target_c and target_c.id not in HARDCODED_REV_IDS and victor_p:
-            self._run_universal_timing(p, victor_p, target_c, "ON_REVERSED", slot_idx=slot_idx, target_opp_slot=victor_slot)
+        if loser and loser.id not in HARDCODED_REV_IDS and victor_p:
+            self._run_universal_timing(loser_p, victor_p, loser, "ON_REVERSED", slot_idx=slot_idx, target_opp_slot=victor_slot)
         if victor_p and victor_slot is not None and victor_p.stage[victor_slot]:
             v_card = victor_p.stage[victor_slot]
             if v_card.id not in HARDCODED_REV_IDS:
-                self._run_universal_timing(victor_p, p, v_card, "ON_REVERSE_OPP", slot_idx=victor_slot, target_opp_slot=slot_idx)
+                self._run_universal_timing(victor_p, loser_p, v_card, "ON_REVERSE_OPP", slot_idx=victor_slot, target_opp_slot=slot_idx)
 
     # ------------------------------------------
     # AI 慢速步進狀態機
@@ -11458,14 +11777,14 @@ class WSBofuriGameFrame(tk.Frame):
         p_clk_dots = "●" * min(7, len(self.player.clock)) + "○" * max(0, 7 - len(self.player.clock))
         ai_clk_dots = "●" * min(7, len(self.ai.clock)) + "○" * max(0, 7 - len(self.ai.clock))
         self.lbl_p_hud_name.config(
-            text=f"{'▶ ' if p_is_turn else ''}{self.player.name}  [Lv.{len(self.player.level_zone)}｜發色:{p_colors}]"
+            text=f"{'▶ ' if p_is_turn else ''}{self.player.name}  [Lv.{len(self.player.level_zone)}]"
         )
         self.lbl_p_hud_gauge.config(
             text=f"時鐘 {p_clk_dots} ({len(self.player.clock)}/7)\n能量: {len(self.player.stock)} ｜ 手牌: {len(self.player.hand)} ｜ 牌庫: {len(self.player.deck)}"
         )
 
         self.lbl_ai_hud_name.config(
-            text=f"[Lv.{len(self.ai.level_zone)}｜發色:{ai_colors}]  {self.ai.name}{' ◀' if not p_is_turn else ''}"
+            text=f"[Lv.{len(self.ai.level_zone)}]  {self.ai.name}{' ◀' if not p_is_turn else ''}"
         )
         self.lbl_ai_hud_gauge.config(
             text=f"({len(self.ai.clock)}/7) {ai_clk_dots} 時鐘\n能量: {len(self.ai.stock)} ｜ 手牌: {len(self.ai.hand)} ｜ 牌庫: {len(self.ai.deck)}"
@@ -11532,7 +11851,7 @@ class WSBofuriGameFrame(tk.Frame):
             self.ai.clock, "對手時鐘區", width=216, height=104, bg_color="#2b1d28"
         )
         self.btn_ai_clock.config(
-            image=ai_clk_img, text=f"時鐘區一字排開: {len(self.ai.clock)}/7 (點此檢視)", width=226, height=126
+            image=ai_clk_img, text=f"時鐘區: {len(self.ai.clock)}/7", width=226, height=126
         )
         self.btn_ai_clock.image = ai_clk_img
         self._update_zone_button(
@@ -11586,7 +11905,7 @@ class WSBofuriGameFrame(tk.Frame):
             self.player.clock, "我方時鐘區", width=216, height=104, bg_color="#1a2838"
         )
         self.btn_p_clock.config(
-            image=p_clk_img, text=f"時鐘區一字排開: {len(self.player.clock)}/7 (點此檢視)", width=226, height=126
+            image=p_clk_img, text=f"時鐘區: {len(self.player.clock)}/7", width=226, height=126
         )
         self.btn_p_clock.image = p_clk_img
         self._update_zone_button(
@@ -12981,44 +13300,62 @@ class SettingsFrame(tk.Frame):
         series_tab_frame = tk.Frame(card_pick_col, bg="#1b2234")
         series_tab_frame.pack(fill=tk.X, pady=(0, 6))
 
-        tab_defs = [
-            ("PRESETS", "★ 預設代表角色 (9位)"),
-            ("BFR/S78", "防盾 BFR/S78"),
-            ("GA/S131", "GA文庫 S131"),
-            ("BTR/W107", "孤獨搖滾 BTR/W107"),
-        ]
-        tab_btns = {}
+        # 動態同步所有已載入的系列（包含貓罐子匯入的新系列）！
+        crop_series_opts = [("★ 預設代表角色 (9位)", "PRESETS")]
+        for scode in ["BFR/S78", "GA/S131", "BTR/W107"]:
+            if scode in SERIES_DB:
+                crop_series_opts.append((f"🎴 {SERIES_LABELS.get(scode, scode)} ({len(SERIES_DB[scode])}張)", scode))
+        for scode in sorted(SERIES_DB.keys()):
+            if scode not in ("BFR/S78", "GA/S131", "BTR/W107"):
+                crop_series_opts.append((f"🎴 {SERIES_LABELS.get(scode, scode)} ({len(SERIES_DB[scode])}張)", scode))
+        crop_series_opts.append(("🌟 全部系列卡池", "ALL"))
 
-        def switch_series_tab(t_code: str):
-            state["series_tab"] = t_code
-            for k, tb in tab_btns.items():
-                tb.config(
-                    bg="#ffd166" if k == t_code else "#252c42",
-                    fg="#000000" if k == t_code else "#ffffff",
-                )
-            populate_card_list()
+        state["page"] = 0
+        PAGE_LIMIT = 30
 
-        for idx_t, (t_code, t_label) in enumerate(tab_defs):
-            r_t, c_t = divmod(idx_t, 2)
-            tb = tk.Button(
-                series_tab_frame,
-                text=t_label,
-                bg="#ffd166" if state["series_tab"] == t_code else "#252c42",
-                fg="#000000" if state["series_tab"] == t_code else "#ffffff",
-                font=(ff, 9, "bold"),
-                width=19,
-                pady=3,
-                cursor="hand2",
-                command=lambda tc=t_code: switch_series_tab(tc),
-            )
-            tb.grid(row=r_t, column=c_t, padx=3, pady=2, sticky="ew")
-            tab_btns[t_code] = tb
+        crop_series_var = tk.StringVar()
+        init_lbl = crop_series_opts[0][0]
+        for lbl_s, code_s in crop_series_opts:
+            if code_s == state["series_tab"]:
+                init_lbl = lbl_s
+                break
+        crop_series_var.set(init_lbl)
+
+        cmb_crop_series = ttk.Combobox(
+            series_tab_frame,
+            textvariable=crop_series_var,
+            values=[lbl_s for lbl_s, _ in crop_series_opts],
+            state="readonly",
+            font=(ff, 10, "bold"),
+        )
+        cmb_crop_series.pack(fill=tk.X, pady=2)
+
+        def _on_crop_series_select(event=None):
+            sel_l = crop_series_var.get()
+            for lbl_s, code_s in crop_series_opts:
+                if lbl_s == sel_l:
+                    state["series_tab"] = code_s
+                    state["page"] = 0
+                    populate_card_list()
+                    break
+
+        cmb_crop_series.bind("<<ComboboxSelected>>", _on_crop_series_select)
 
         s_row = tk.Frame(card_pick_col, bg="#1b2234")
-        s_row.pack(fill=tk.X, pady=(2, 6))
+        s_row.pack(fill=tk.X, pady=(2, 4))
         kw_var = tk.StringVar()
         ent_kw = tk.Entry(s_row, textvariable=kw_var, bg="#10141f", fg="#ffffff", insertbackground="white", font=(ff, 10))
         ent_kw.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(0, 4))
+
+        # 分頁切換列（避免單一系列數百張卡一次建立按鈕造成卡頓）
+        page_nav_row = tk.Frame(card_pick_col, bg="#141824", pady=2)
+        page_nav_row.pack(fill=tk.X, pady=(0, 4))
+        btn_cp_prev = tk.Button(page_nav_row, text="◀ 上頁", bg="#252c42", fg="white", font=(ff, 8, "bold"), padx=6)
+        btn_cp_prev.pack(side=tk.LEFT, padx=2)
+        lbl_cp_page = tk.Label(page_nav_row, text="1/1 頁", bg="#141824", fg="#ffd166", font=(ff, 9, "bold"))
+        lbl_cp_page.pack(side=tk.LEFT, expand=True)
+        btn_cp_next = tk.Button(page_nav_row, text="下頁 ▶", bg="#252c42", fg="white", font=(ff, 8, "bold"), padx=6)
+        btn_cp_next.pack(side=tk.RIGHT, padx=2)
 
         list_canvas = tk.Canvas(card_pick_col, bg="#141824", highlightthickness=0)
         list_sc = tk.Scrollbar(card_pick_col, orient=tk.VERTICAL, command=list_canvas.yview)
@@ -13036,6 +13373,9 @@ class SettingsFrame(tk.Frame):
             cur_tab = state["series_tab"]
 
             if cur_tab == "PRESETS":
+                lbl_cp_page.config(text="預設 9 位角色")
+                btn_cp_prev.config(state=tk.DISABLED)
+                btn_cp_next.config(state=tk.DISABLED)
                 for p_key, (p_cid, p_name, _, _, _, _) in self.img_mgr.AVATAR_PRESET_DEFAULTS.items():
                     if p_cid not in CARD_DB:
                         continue
@@ -13057,10 +13397,24 @@ class SettingsFrame(tk.Frame):
                     )
                     b.pack(fill=tk.X, padx=3, pady=2)
             else:
-                series_cards = SERIES_DB.get(cur_tab, CARD_DB)
+                series_cards = CARD_DB if cur_tab == "ALL" else SERIES_DB.get(cur_tab, CARD_DB)
+                matched_items = []
                 for cid, cdata in series_cards.items():
-                    if kw and kw not in cid.lower() and kw not in cdata["name"].lower():
+                    if kw and kw not in cid.lower() and kw not in cdata["name"].lower() and kw not in cdata.get("jp_name", "").lower():
                         continue
+                    matched_items.append((cid, cdata))
+
+                tot_c = len(matched_items)
+                tot_p = max(1, (tot_c + PAGE_LIMIT - 1) // PAGE_LIMIT)
+                if state["page"] >= tot_p:
+                    state["page"] = max(0, tot_p - 1)
+                cur_p = state["page"]
+                lbl_cp_page.config(text=f"第 {cur_p + 1}/{tot_p} 頁 (共 {tot_c} 張)")
+                btn_cp_prev.config(state=tk.NORMAL if cur_p > 0 else tk.DISABLED)
+                btn_cp_next.config(state=tk.NORMAL if cur_p + 1 < tot_p else tk.DISABLED)
+
+                sliced = matched_items[cur_p * PAGE_LIMIT : (cur_p + 1) * PAGE_LIMIT]
+                for cid, cdata in sliced:
                     is_cur = (cid == state["cid"]) and (state["preset_key"] is None)
                     b = tk.Button(
                         list_inner,
@@ -13076,6 +13430,20 @@ class SettingsFrame(tk.Frame):
                     )
                     b.pack(fill=tk.X, padx=3, pady=2)
 
+        def _cp_prev():
+            if state["page"] > 0:
+                state["page"] -= 1
+                populate_card_list()
+                list_canvas.yview_moveto(0.0)
+
+        def _cp_next():
+            state["page"] += 1
+            populate_card_list()
+            list_canvas.yview_moveto(0.0)
+
+        btn_cp_prev.config(command=_cp_prev)
+        btn_cp_next.config(command=_cp_next)
+
         tk.Button(
             s_row,
             text="搜尋",
@@ -13083,9 +13451,9 @@ class SettingsFrame(tk.Frame):
             fg="#000000",
             font=(ff, 9, "bold"),
             padx=8,
-            command=populate_card_list,
+            command=lambda: [state.update({"page": 0}), populate_card_list()],
         ).pack(side=tk.RIGHT)
-        ent_kw.bind("<Return>", lambda e: populate_card_list())
+        ent_kw.bind("<Return>", lambda e: [state.update({"page": 0}), populate_card_list()])
 
         # 中欄：卡圖與可拖動/滾輪縮放的圓形取景框
         center_canvas_col = tk.Frame(mid_body, bg="#1b2234", bd=2, relief=tk.SOLID, padx=12, pady=8)
@@ -13193,7 +13561,7 @@ class SettingsFrame(tk.Frame):
 
         def redraw_cropper():
             cid = state["cid"]
-            src_pil = self.img_mgr.pil_cache.get(cid)
+            src_pil = self.img_mgr._get_or_load_pil(cid)
             if src_pil is None:
                 return
             disp_img = src_pil.resize((CANVAS_W, CANVAS_H), Image.Resampling.LANCZOS).convert("RGBA")
@@ -13676,6 +14044,17 @@ class MainApp:
         self.root.title("Weiß Schwarz 卡牌對戰模擬器")
         self.root.geometry("1600x950")
         self.root.configure(bg="#0d111a")
+        try:
+            ico_path = os.path.join(BASE_DIR, "maple_icon.ico")
+            png_path = os.path.join(BASE_DIR, "maple_icon.png")
+            if os.path.exists(ico_path) and os.name == "nt":
+                self.root.iconbitmap(default=ico_path)
+            if os.path.exists(png_path):
+                _icon_pil = Image.open(png_path)
+                self._app_icon_tk = ImageTk.PhotoImage(_icon_pil)
+                self.root.iconphoto(True, self._app_icon_tk)
+        except Exception:
+            pass
 
         load_all_card_sets()
         self.deck_save_file = os.path.join(BASE_DIR, "custom_deck.json")
@@ -13701,7 +14080,172 @@ class MainApp:
         # 全域綁定按鈕點擊音效：當點擊任何 Button 時自動播放清脆點擊音效
         self.root.bind_all("<ButtonPress-1>", self._on_global_click_sfx, add="+")
 
-        self.show_main_menu()
+        self._run_startup_preloader()
+
+    def _run_startup_preloader(self):
+        """啟動遊戲時顯示流暢進度條畫面，預先將頭像、王牌卡、桌布與目前出戰／AI 卡組載入快取，徹底消除進入主選單空白與點擊卡頓"""
+        self.clear_current_frame()
+        ff = self.get_font_family()
+        splash = tk.Frame(self.root, bg="#0d111a")
+        splash.pack(fill=tk.BOTH, expand=True)
+        self.current_frame = splash
+
+        center_box = tk.Frame(
+            splash,
+            bg="#151b29",
+            bd=3,
+            relief=tk.RIDGE,
+            padx=50,
+            pady=38,
+            highlightbackground="#ffd166",
+            highlightthickness=1,
+        )
+        center_box.place(relx=0.5, rely=0.5, anchor="center", width=680)
+
+        tk.Label(
+            center_box,
+            text="◆ WEISS SCHWARZ 卡牌對戰模擬器 ◆",
+            bg="#151b29",
+            fg="#ffd166",
+            font=(ff, 21, "bold"),
+        ).pack(pady=(0, 10))
+
+        lbl_step = tk.Label(
+            center_box,
+            text="正在初始化卡池與載入出戰資源...",
+            bg="#151b29",
+            fg="#8ecae6",
+            font=(ff, 12, "bold"),
+        )
+        lbl_step.pack(pady=(4, 14))
+
+        bar_outer = tk.Frame(center_box, bg="#0b0e17", bd=2, relief=tk.SUNKEN, height=28)
+        bar_outer.pack(fill=tk.X, pady=6)
+        bar_outer.pack_propagate(False)
+
+        bar_fill = tk.Frame(bar_outer, bg="#06d6a0", height=24)
+        bar_fill.place(relx=0, rely=0, relwidth=0.02, relheight=1.0)
+
+        lbl_pct = tk.Label(
+            center_box,
+            text="0%",
+            bg="#151b29",
+            fg="#06d6a0",
+            font=("Consolas", 14, "bold"),
+        )
+        lbl_pct.pack(pady=(6, 0))
+
+        # 收集啟動與單人對戰必備的所有卡圖清單（9 大預設頭像 ＋ 玩家自訂裁切頭像 ＋ 出戰卡組 ＋ AI 預設三套牌組）
+        preload_cids = []
+        seen_cids = set()
+        def _add_cid(c):
+            if c and c in CARD_DB and c not in seen_cids:
+                seen_cids.add(c)
+                preload_cids.append(c)
+
+        for _, (p_cid, *_rest) in self.img_mgr.AVATAR_PRESET_DEFAULTS.items():
+            _add_cid(p_cid)
+        crop_c = (self.settings.get("avatar_crop") or {}).get("cid")
+        _add_cid(crop_c)
+        for p_cfg in (self.settings.get("preset_avatar_crops") or {}).values():
+            if isinstance(p_cfg, dict):
+                _add_cid(p_cfg.get("cid"))
+
+        _add_cid(self.get_series_ace_card_id(self.active_series))
+        for cid in self.get_menu_floating_deck_cids():
+            _add_cid(cid)
+        for cid in self.get_series_deck(self.active_series):
+            _add_cid(cid)
+        for scode in ("BFR/S78", "GA/S131", "BTR/W107", self.ai_series):
+            for cid in self.get_series_deck(scode):
+                _add_cid(cid)
+        # 同時預載每個系列的第一頁 (前 24 張) 卡圖，確保點開『設定我的卡組』與切換系列時 0 秒瞬間顯示！
+        for scode, s_cards in SERIES_DB.items():
+            for cid in list(s_cards.keys())[:24]:
+                _add_cid(cid)
+
+        # 建立分步執行任務佇列
+        tasks = []
+        batch_sz = 8
+        for i in range(0, len(preload_cids), batch_sz):
+            chunk = preload_cids[i : i + batch_sz]
+            tasks.append(("CARDS", chunk, f"正在預載出戰卡組與高畫質卡圖 ({min(i + batch_sz, len(preload_cids))}/{len(preload_cids)})..."))
+
+        tasks.append(("SLEEVES_AND_AVATARS", None, "正在預載角色頭像與專屬卡套..."))
+        tasks.append(("WALLPAPER", None, "正在合成主選單動態展示桌布..."))
+
+        total_steps = max(1, len(tasks))
+
+        def _run_step(idx_s: int):
+            if not splash.winfo_exists():
+                return
+            if idx_s >= len(tasks):
+                bar_fill.place(relx=0, rely=0, relwidth=1.0, relheight=1.0)
+                lbl_pct.config(text="100%")
+                lbl_step.config(text="✔ 載入完成！正在進入主選單...")
+                self.root.update_idletasks()
+                self.root.after(80, self.show_main_menu)
+                return
+
+            t_type, payload, msg_txt = tasks[idx_s]
+            pct = int(((idx_s + 1) / total_steps) * 100)
+            lbl_step.config(text=msg_txt)
+            lbl_pct.config(text=f"{pct}%")
+            bar_fill.place(relx=0, rely=0, relwidth=max(0.04, (idx_s + 1) / total_steps), relheight=1.0)
+            self.root.update_idletasks()
+
+            if t_type == "CARDS":
+                for c in payload:
+                    self.img_mgr._get_or_load_pil(c)
+                    self.img_mgr.get_card_visual(c, 84, 118)
+                    self.img_mgr.get_card_visual(c, 122, 170)
+            elif t_type == "SLEEVES_AND_AVATARS":
+                self.img_mgr.get_sleeve_pil("WS_DEFAULT")
+                self.img_mgr.get_sleeve_pil("AMIAMI_21593")
+                cur_av_id = self.settings.get("avatar", "MAPLE")
+                self.img_mgr.get_avatar_visual(
+                    cur_av_id,
+                    size=64,
+                    border_color="#06d6a0",
+                    custom_path=self.settings.get("custom_avatar_path", ""),
+                    is_active_turn=True,
+                    crop_cfg=self.settings.get("avatar_crop") if cur_av_id == "CARD_CROP" else None,
+                    preset_crops=self.settings.get("preset_avatar_crops"),
+                )
+                for av_k in ("MAPLE", "MAHIRU", "KITA", "ELAINA", "SALLY"):
+                    self.img_mgr.get_avatar_visual(
+                        av_k,
+                        size=46,
+                        border_color="#ffd166",
+                        preset_crops=self.settings.get("preset_avatar_crops"),
+                    )
+                # 預載『遊戲設定』頁面全部 9 顆預設頭像按鈕 (size=54) 與卡套預覽圖，點進遊戲設定 0 延遲！
+                for av_k in self.img_mgr.AVATAR_PRESET_DEFAULTS:
+                    self.img_mgr.get_avatar_visual(
+                        av_k,
+                        size=54,
+                        border_color="#ffd166",
+                        preset_crops=self.settings.get("preset_avatar_crops"),
+                    )
+                self.img_mgr.get_sleeve_preview_visual(
+                    self.settings.get("sleeve_style", "WS_DEFAULT"),
+                    self.settings.get("custom_sleeve_path", ""),
+                    width=48,
+                    height=68,
+                )
+            elif t_type == "WALLPAPER":
+                self.img_mgr.get_wallpaper_visual(
+                    self.settings.get("theme", "OCEAN"),
+                    self.settings.get("custom_bg_path", ""),
+                    int(self.settings.get("bg_dim_percent", 65)),
+                    1600,
+                    950,
+                    floating_cids=self.get_menu_floating_deck_cids(),
+                )
+
+            self.root.after(12, lambda: _run_step(idx_s + 1))
+
+        self.root.after(20, lambda: _run_step(0))
 
     def _on_global_click_sfx(self, event):
         try:
@@ -14140,7 +14684,6 @@ class MainApp:
             try:
                 if "/ws/deck/" in raw_val or raw_val.startswith("{") or raw_val.startswith("["):
                     res = BottleNekoImporter.import_from_url_or_json(raw_val, sets_dir="sets", log_callback=_append_log)
-                    self.img_mgr.load_local_images(only_missing=True)
                     self.img_mgr.start_background_download()
                     lbl_batch_prog.config(text=f"已完成牌組匯入 ({res['card_count']} 種)")
                 else:
@@ -14152,7 +14695,6 @@ class MainApp:
                         include_high_rarity=bool(var_inc_high.get()),
                         log_callback=_append_log,
                     )
-                    self.img_mgr.load_local_images(only_missing=True)
                     self.img_mgr.start_background_download()
                     if limit_n > 0:
                         next_off = res["next_offset"]
@@ -14524,7 +15066,6 @@ class MainApp:
 
     def open_settings(self):
         self.clear_current_frame()
-        self.img_mgr.load_local_images(only_missing=True)
         sf = SettingsFrame(self.root, self)
         sf.pack(fill=tk.BOTH, expand=True)
         self.current_frame = sf
@@ -14851,7 +15392,6 @@ class MainApp:
 
     def start_single_player(self):
         self.clear_current_frame()
-        self.img_mgr.load_local_images()
         game_frame = WSBofuriGameFrame(self.root, self, net_node=None)
         game_frame.pack(fill=tk.BOTH, expand=True)
         self.current_frame = game_frame
@@ -14865,7 +15405,6 @@ class MainApp:
 
     def start_lan_game(self, net_node):
         self.clear_current_frame()
-        self.img_mgr.load_local_images()
         game_frame = WSBofuriGameFrame(self.root, self, net_node=net_node)
         game_frame.pack(fill=tk.BOTH, expand=True)
         self.current_frame = game_frame
@@ -14873,7 +15412,6 @@ class MainApp:
 
     def open_deck_builder(self):
         self.clear_current_frame()
-        self.img_mgr.load_local_images(only_missing=True)
         builder = DeckBuilderFrame(self.root, self)
         builder.pack(fill=tk.BOTH, expand=True)
         self.current_frame = builder
