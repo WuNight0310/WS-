@@ -16,9 +16,14 @@ set /p REPO_URL="請貼上你在 GitHub 建立的空白倉庫網址 (例如 http
 if not "%REPO_URL%"=="" (
     git remote remove origin 2>nul
     git remote add origin %REPO_URL%
-    git push -u origin main
-    echo.
-    echo ✔ 已成功推送至 GitHub！
+    git push -u origin main --force
+    if %ERRORLEVEL% NEQ 0 (
+        echo.
+        echo ❌ 推送失敗！請檢查上方報錯資訊或 GitHub 權限。
+    ) else (
+        echo.
+        echo ✔ 已成功強制推送至 GitHub！
+    )
 ) else (
     echo 尚未輸入網址，已先完成本地 Git Commit。
 )
