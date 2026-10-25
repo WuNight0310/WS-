@@ -23,13 +23,41 @@ jobs:
           distribution: 'temurin'
           java-version: 17
 
-      - name: Initialize Capacitor Android Project & Lock Landscape Orientation & Maple Icon
+      - name: Initialize Capacitor Android Project, Lock Landscape & Inject Maple APK Icon
         working-directory: ./android_apk_builder
         run: |
           npm install
           npx cap add android
-          # Force Landscape orientation in AndroidManifest.xml
+          # 1. Force Landscape orientation in AndroidManifest.xml
           sed -i 's/android:name=".MainActivity"/android:name=".MainActivity" android:screenOrientation="sensorLandscape"/' android/app/src/main/AndroidManifest.xml
+          # 2. Inject user's Maple icon (maple_icon.png) into all Android mipmap directories so the APK has the Maple icon!
+          python3 -m pip install pillow
+          python3 - << 'PY'
+          import os, shutil
+          from PIL import Image
+          src_icon = "../maple_icon.png" if os.path.exists("../maple_icon.png") else ("../maple_angel_icon.png" if os.path.exists("../maple_angel_icon.png") else "")
+          res_dir = "android/app/src/main/res"
+          if src_icon and os.path.exists(res_dir):
+              im = Image.open(src_icon).convert("RGBA")
+              # Remove adaptive vector XML folder so Android uses our transparent circular PNG icons directly
+              anydpi = os.path.join(res_dir, "mipmap-anydpi-v26")
+              if os.path.exists(anydpi):
+                  shutil.rmtree(anydpi)
+              sizes = {
+                  "mipmap-mdpi": 48,
+                  "mipmap-hdpi": 72,
+                  "mipmap-xhdpi": 96,
+                  "mipmap-xxhdpi": 144,
+                  "mipmap-xxxhdpi": 192,
+              }
+              for folder, px in sizes.items():
+                  f_path = os.path.join(res_dir, folder)
+                  os.makedirs(f_path, exist_ok=True)
+                  resized = im.resize((px, px), Image.Resampling.LANCZOS)
+                  for fn in ("ic_launcher.png", "ic_launcher_round.png", "ic_launcher_foreground.png"):
+                      resized.save(os.path.join(f_path, fn), format="PNG")
+              print("Successfully injected Maple icon into all Android APK mipmap folders!")
+          PY
           npx cap sync android
           chmod +x android/gradlew
           cd android && ./gradlew assembleDebug
