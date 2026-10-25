@@ -91,6 +91,6 @@
     "BFR/S78-081SP": 1,
     "BFR/S78-082SP": 1
   },
-  "_active_series": "BFR/S78",
-  "_ai_series": "GA/S131"
+  "_active_series": "CUSTOM",
+  "_ai_series": "NIK/S117"
 }

@@ -3,9 +3,9 @@
   "avatar": "CARD_CROP",
   "custom_avatar_path": "",
   "avatar_crop": {
-    "cid": "BFR/S78-057",
-    "cx": 0.504,
-    "cy": 0.191,
+    "cid": "BFR/S78-P02",
+    "cx": 0.5,
+    "cy": 0.268,
     "zoom": 1.85
   },
   "preset_avatar_crops": {
@@ -29,9 +29,9 @@
     },
     "MAHIRU": {
       "cid": "GA02/S131-003",
-      "cx": 0.632,
-      "cy": 0.227,
-      "zoom": 1.9
+      "cx": 0.629,
+      "cy": 0.255,
+      "zoom": 1.4
     },
     "RYU": {
       "cid": "GA10/S131-012",
@@ -54,7 +54,8 @@
   },
   "ace_card_by_series": {
     "GA/S131": "GA10/S131-030",
-    "BFR/S78": "BFR/S78-057SP"
+    "BFR/S78": "BFR/S78-082SP",
+    "CUSTOM": "BFR/S78-082SP"
   },
   "ai_flip_interval_sec": 2.0,
   "ai_flip_end_pause_sec": 3.0,
@@ -80,5 +81,6 @@
   },
   "custom_audio_paths": {
     "bgm_battle": "C:/Users/87qaz/Downloads/WS_Bofuri_Simulator/ws_audio/bgm_battle.mp3"
-  }
+  },
+  "user_deck_names": {}
 }
