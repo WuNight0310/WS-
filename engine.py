@@ -102,12 +102,14 @@ def load_all_card_sets(sets_dir="sets"):
                 if not isinstance(data, dict):
                     continue
                 file_stem = os.path.splitext(os.path.basename(path))[0]
-                explicit_series = data.get("series_name") or data.get("series_code") or ""
+                explicit_series = data.get("series_code") or data.get("series_name") or ""
+                if explicit_series and data.get("series_title"):
+                    SERIES_LABELS[explicit_series] = data["series_title"]
                 cards_dict = data.get("cards", data)
                 if isinstance(cards_dict, dict):
                     for cid, cinfo in cards_dict.items():
                         if isinstance(cinfo, dict) and "name" in cinfo:
-                            scode = _infer_series_code(cid, cinfo, explicit_series or file_stem)
+                            scode = explicit_series or _infer_series_code(cid, cinfo, file_stem)
                             cinfo["series"] = scode
                             card_db[cid] = cinfo
                             series_db.setdefault(scode, {})[cid] = cinfo
@@ -171,7 +173,8 @@ class CardInstance:
         raw_effects = data.get("effects", data.get("effect_tags", []))
         self.effects = list(raw_effects)
         self.effect_tags = self.effects
-        self.text = data["text"]
+        self.text = data.get("text", data.get("effect", ""))
+        self.parsed_abilities = data.get("parsed_abilities") or ChineseEffectParser.parse_card_effects(self.text, self.type)
         self.reset_stage_state()
 
     def has_effect(self, tag: str) -> bool:
@@ -323,6 +326,19 @@ class RuleEngine:
                 wr_cx = sum(1 for c in p.waiting_room if c.type == "CX")
                 if wr_cx <= 2 or wr_cx >= 6:
                     return max(0, card.base_level - 1)
+        if stage_idx is None and card in p.hand and getattr(card, "parsed_abilities", None):
+            for ab in card.parsed_abilities:
+                if ab.get("category") == "CONT":
+                    eff = ab.get("effect")
+                    if eff == "early_play_stage_4":
+                        if sum(1 for c in p.stage if c is not None) >= 4:
+                            return max(0, card.base_level + ab.get("level_mod", -1))
+                    elif eff == "early_play_wr_cx_2_or_less":
+                        if sum(1 for c in p.waiting_room if c.type == "CX") <= 2:
+                            return max(0, card.base_level + ab.get("level_mod", -1))
+                    elif eff == "early_play_wr_cx_6_or_more":
+                        if sum(1 for c in p.waiting_room if c.type == "CX") >= 6:
+                            return max(0, card.base_level + ab.get("level_mod", -1))
         if stage_idx is not None:
             return max(0, card.base_level + card.temp_level)
         return card.base_level
@@ -398,6 +414,46 @@ class RuleEngine:
                 pwr += 11000
             if (card.has_effect("CONT_HAND5_BUFF_2000") or card.id == "GA10/S131-T09") and len(p.hand) >= 5:
                 pwr += 2000
+
+        # [萬用資料驅動 CONT 效果結算] 若非既有硬編碼特例，自動套用 parsed_abilities
+        HARDCODED_CONT_IDS = {
+            "BFR/S78-073", "BFR/S78-058", "BFR/S78-089", "BFR/S78-102",
+            "BTR/W107-076", "BTR/W107-075", "BTR/W107-T16", "BTR/W107-T13",
+            "GA04/S131-100", "GA17/S131-015", "GA17/S131-017", "GA10/S131-T09"
+        }
+        if card.id not in HARDCODED_CONT_IDS:
+            for ab in getattr(card, "parsed_abilities", []):
+                if ab.get("category") == "CONT":
+                    eff = ab.get("effect")
+                    if ab.get("my_turn_only") and not is_my_turn:
+                        continue
+                    if eff == "per_other_char_buff":
+                        other_cnt = sum(1 for i, c in enumerate(p.stage) if i != stage_idx and c is not None)
+                        pwr += other_cnt * ab.get("power", 500)
+                    elif eff == "other_char_count_buff":
+                        other_cnt = sum(1 for i, c in enumerate(p.stage) if i != stage_idx and c is not None)
+                        if other_cnt >= ab.get("min_count", 2):
+                            pwr += ab.get("power", 1000)
+                    elif eff == "my_turn_self_buff" and is_my_turn:
+                        pwr += ab.get("power", 1000)
+
+        # 檢查舞台上其他角色的萬用應援 (assist_level / assist_flat / global_other_buff)
+        for i, other_c in enumerate(p.stage):
+            if other_c is None or i == stage_idx or other_c.id in HARDCODED_CONT_IDS:
+                continue
+            for ab in getattr(other_c, "parsed_abilities", []):
+                if ab.get("category") == "CONT":
+                    eff = ab.get("effect")
+                    if eff == "global_other_buff":
+                        if not ab.get("my_turn_only") or is_my_turn:
+                            pwr += ab.get("power", 500)
+                    elif eff == "assist_flat":
+                        if (i == 3 and stage_idx in [0, 1]) or (i == 4 and stage_idx in [1, 2]):
+                            pwr += ab.get("power", 500)
+                    elif eff == "assist_level":
+                        if (i == 3 and stage_idx in [0, 1]) or (i == 4 and stage_idx in [1, 2]):
+                            char_lvl = RuleEngine.get_effective_level(p, card, stage_idx)
+                            pwr += char_lvl * ab.get("multiplier", 500)
 
         return pwr
 
@@ -493,3 +549,782 @@ def _launch_from_any_file():
 
 if __name__ == "__main__":
     _launch_from_any_file()
+
+
+
+
+# ==============================================================================
+# 萬用資料驅動效果解析器與貓罐子 (BottleNeko) 全系列／分批／牌組匯入引擎
+# ==============================================================================
+import re
+import urllib.request
+import urllib.parse
+import ssl
+
+
+class ChineseEffectParser:
+    """
+    將 Weiß Schwarz 繁體中文效果文（同時相容「官方台版譯名：牌組/休息室/名場面/時鐘區/攻擊力/安可」
+    與「貓罐子 BottleNeko 譯名：山札/控室/高潮區/鐘區/戰力/再場」）自動編譯為標準化 AST 結構 (parsed_abilities)，
+    擺脫逐張寫死 if card.id == ... 的土法鍊鋼架構。
+    """
+
+    @classmethod
+    def normalize_terms(cls, text: str) -> str:
+        """將貓罐子 (BottleNeko) 常見譯名統一正規化為模擬器內部標準術語，確保雙語系 100% 互通"""
+        if not text:
+            return ""
+        t = text
+        replacements = [
+            ("山札頂", "牌組上方"),
+            ("山札上方", "牌組上方"),
+            ("山札底", "牌組下方"),
+            ("山札", "牌組"),
+            ("控室", "休息室"),
+            ("控え室", "休息室"),
+            ("高潮區", "名場面區"),
+            ("高潮卡", "名場面"),
+            ("高潮", "名場面"),
+            ("クライマックス", "名場面"),
+            ("鐘區", "時鐘區"),
+            ("時計區", "時鐘區"),
+            ("クロック", "時鐘區"),
+            ("戰力", "攻擊力"),
+            ("パワー", "攻擊力"),
+            ("再場", "安可"),
+            ("アンコール", "安可"),
+            ("放置到", "放到"),
+            ("置於", "放到"),
+            ("置入", "放到"),
+            ("加入手牌", "加到手牌"),
+            ("返回手牌", "回到手牌"),
+            ("【起】【反擊】", "【起】 助太刀"),
+            ("靈魂值", "魂傷"),
+            ("靈魂", "魂傷"),
+            ("ソウル", "魂傷"),
+            ("給予對手", "給對手造成"),
+            ("點傷害", "傷害"),
+        ]
+        for old_w, new_w in replacements:
+            t = t.replace(old_w, new_w)
+        # 修正「1傷害」->「1點傷害」
+        t = re.sub(r"造成(\d+)傷害", r"造成\1點傷害", t)
+        return t
+
+    @classmethod
+    def parse_card_effects(cls, effect_text: str, card_type: str = "CHAR") -> list:
+        if not effect_text:
+            return []
+        norm_text = cls.normalize_terms(effect_text)
+        abilities = []
+        raw_lines = [line.strip() for line in effect_text.replace("\r\n", "\n").split("\n") if line.strip()]
+        norm_lines = [line.strip() for line in norm_text.replace("\r\n", "\n").split("\n") if line.strip()]
+
+        for idx, line in enumerate(norm_lines):
+            orig_line = raw_lines[idx] if idx < len(raw_lines) else line
+            if line.startswith("【永】") or line.startswith("[永]"):
+                abilities.extend(cls._parse_cont(line, orig_line))
+            elif line.startswith("【自】") or line.startswith("[自]"):
+                abilities.extend(cls._parse_auto(line, orig_line))
+            elif line.startswith("【起】") or line.startswith("[起]"):
+                abilities.extend(cls._parse_act(line, orig_line))
+        return abilities
+
+    @classmethod
+    def _parse_cost(cls, line: str) -> dict:
+        cost = {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": False,
+            "send_self_memory": False,
+        }
+        m = re.search(r"[［\[\(（]([^］\]\)）]+)[］\]\)）]", line)
+        if not m:
+            return cost
+        cost_str = m.group(1)
+        m_stock = re.search(r"[\(（](\d+)[\)）]", cost_str)
+        if m_stock:
+            cost["stock"] = int(m_stock.group(1))
+        elif "①" in cost_str:
+            cost["stock"] = 1
+        elif "②" in cost_str:
+            cost["stock"] = 2
+        elif "③" in cost_str:
+            cost["stock"] = 3
+
+        if "手牌1張名場面" in cost_str or "1張名場面從手牌放到休息室" in cost_str:
+            cost["discard_cx"] = 1
+        elif "手牌2張" in cost_str or "2張手牌" in cost_str:
+            cost["discard_hand"] = 2
+        elif "手牌1張" in cost_str or "1張手牌" in cost_str or "手牌的角色1張" in cost_str or "1張角色卡放到休息室" in cost_str:
+            cost["discard_hand"] = 1
+
+        if "牌組上方1張放到時鐘區" in cost_str or "牌組上方1張卡放到時鐘區" in cost_str or "牌組上方1張放到傷害區" in cost_str:
+            cost["clock_top_deck"] = 1
+
+        if "此卡【橫置】" in cost_str or "將此卡【橫置】" in cost_str:
+            cost["rest_self"] = 1
+        if "2張【橫置】" in cost_str:
+            cost["rest_self"] = 2
+
+        if "此卡放到休息室" in cost_str:
+            cost["send_self_wr"] = True
+        if "此卡放到回憶區" in cost_str:
+            cost["send_self_memory"] = True
+        return cost
+
+    @classmethod
+    def _parse_cont(cls, line: str, orig_line: str) -> list:
+        res = []
+        # 應援 等級×X
+        m_lv_assist = re.search(r"應援.*等級[×xX\*](\d+)", line)
+        if m_lv_assist:
+            res.append({"category": "CONT", "effect": "assist_level", "multiplier": int(m_lv_assist.group(1)), "raw": orig_line})
+            return res
+        # 應援 固定數值 +X
+        m_flat_assist = re.search(r"應援.*攻擊力[＋\+](\d+)", line)
+        if m_flat_assist:
+            res.append({"category": "CONT", "effect": "assist_flat", "power": int(m_flat_assist.group(1)), "raw": orig_line})
+            return res
+        # 早出し：舞台4張以上 等級-1
+        if ("等級-1" in line or "等級－1" in line) and ("4張以上" in line or "四張以上" in line):
+            res.append({"category": "CONT", "effect": "early_play_stage_4", "level_mod": -1, "raw": orig_line})
+            return res
+        # 早出し：休息室名場面2張以下 等級-1
+        if ("等級-1" in line or "等級－1" in line) and ("2張以下" in line or "兩張以下" in line):
+            res.append({"category": "CONT", "effect": "early_play_wr_cx_2_or_less", "level_mod": -1, "raw": orig_line})
+            return res
+        # 早出し：休息室名場面6張以上 等級-1
+        if ("等級-1" in line or "等級－1" in line) and ("6張以上" in line or "六張以上" in line):
+            res.append({"category": "CONT", "effect": "early_play_wr_cx_6_or_more", "level_mod": -1, "raw": orig_line})
+            return res
+        # 不能側打
+        if "不能側打" in line or "不可側擊" in line or "不能側面攻擊" in line:
+            res.append({"category": "CONT", "effect": "cannot_side_attack", "raw": orig_line})
+        # 無視顏色條件
+        if "無需滿足顏色條件" in line or "無視顏色條件" in line or "不需滿足顏色條件" in line:
+            target = "climax" if "名場面" in line else "all"
+            res.append({"category": "CONT", "effect": "ignore_color", "target": target, "raw": orig_line})
+        # 每有1張其他的角色 +X
+        m_per = re.search(r"其他的你的.*每有1張.*攻擊力[＋\+](\d+)", line)
+        if not m_per:
+            m_per = re.search(r"每有1張其他的你的.*攻擊力[＋\+](\d+)", line)
+        if m_per:
+            res.append({
+                "category": "CONT",
+                "effect": "per_other_char_buff",
+                "power": int(m_per.group(1)),
+                "my_turn_only": ("你的回合中" in line),
+                "raw": orig_line,
+            })
+            return res
+        # 其他的角色N張以上 +X 或 全部角色均為《...》 +X
+        m_cnt = re.search(r"其他的你的.*(\d+)張以上.*攻擊力[＋\+](\d+)", line)
+        if m_cnt:
+            res.append({
+                "category": "CONT",
+                "effect": "other_char_count_buff",
+                "min_count": int(m_cnt.group(1)),
+                "power": int(m_cnt.group(2)),
+                "my_turn_only": ("你的回合中" in line),
+                "raw": orig_line,
+            })
+            return res
+        m_all_trait = re.search(r"你全部的角色.*攻擊力[＋\+](\d+)", line)
+        if m_all_trait:
+            res.append({
+                "category": "CONT",
+                "effect": "other_char_count_buff",
+                "min_count": 1,
+                "power": int(m_all_trait.group(1)),
+                "my_turn_only": ("你的回合中" in line),
+                "raw": orig_line,
+            })
+            if "安可" in line and "手牌" in line:
+                res.append({"category": "CONT", "effect": "hand_encore", "raw": orig_line})
+            return res
+        # 全體其他角色 +X
+        m_all = re.search(r"其他的你的.*角色全部，攻擊力[＋\+](\d+)", line)
+        if m_all:
+            res.append({
+                "category": "CONT",
+                "effect": "global_other_buff",
+                "power": int(m_all.group(1)),
+                "my_turn_only": ("你的回合中" in line),
+                "raw": orig_line,
+            })
+            return res
+        # 你的回合中 此卡攻擊力+X
+        m_my = re.search(r"你的回合中.*此卡的攻擊力[＋\+](\d+)", line)
+        if m_my:
+            res.append({"category": "CONT", "effect": "my_turn_self_buff", "power": int(m_my.group(1)), "raw": orig_line})
+            return res
+        # 名場面全體 +1000/+1魂
+        if ("你所有的角色" in line or "你全部的角色" in line) and "1000" in line and ("魂傷+1" in line or "魂傷＋1" in line):
+            res.append({"category": "CONT", "effect": "climax_1k1", "power": 1000, "soul": 1, "raw": orig_line})
+            return res
+        # 名場面全體 +2魂
+        if ("你所有的角色" in line or "你全部的角色" in line) and ("魂傷+2" in line or "魂傷＋2" in line):
+            res.append({"category": "CONT", "effect": "climax_2soul", "soul": 2, "raw": orig_line})
+            return res
+        return res
+
+    @classmethod
+    def _parse_auto(cls, line: str, orig_line: str) -> list:
+        res = []
+        cost = cls._parse_cost(line)
+        is_cx_combo = ("【CX連動】" in line or "CX連動" in line or "高潮連動" in line)
+        cx_name = None
+        m_cx = re.search(r"「([^」]+)」", line)
+        if is_cx_combo and m_cx:
+            cx_name = m_cx.group(1)
+
+        timing = "OTHER"
+        if "從手牌被放到舞台時" in line or "從手牌放到舞台時" in line or "登場時" in line:
+            timing = "ON_PLAY"
+        elif "此卡攻擊時" in line or "這張卡攻擊時" in line:
+            timing = "ON_ATTACK"
+        elif "戰鬥對手【倒置】時" in line:
+            timing = "ON_REVERSE_OPP"
+        elif "此卡【倒置】時" in line:
+            timing = "ON_REVERSED"
+        elif "從舞台被放到休息室時" in line or "從舞台放到休息室時" in line:
+            timing = "ON_STAGE_TO_WR"
+
+        actions = []
+        # 1. 登場回血
+        if "時鐘區上方1張放到休息室" in line or "時鐘區頂1張放到休息室" in line or "時鐘區最多1張放到休息室" in line or "回復1點" in line or "時鐘區頂1張卡放到休息室" in line:
+            actions.append({"action": "heal_to_wr", "amount": 1})
+        elif "時鐘區上方1張放到能量區" in line or "時鐘區最多1張放到能量區" in line:
+            actions.append({"action": "heal_to_stock", "amount": 1})
+
+        # 2. 看牌組頂 X 張選 Y 張加手牌
+        m_look = re.search(r"看.*牌組上方最多(\d+)張.*選.*最多(\d+)張.*加到手牌", line)
+        if m_look:
+            actions.append({"action": "look_top_add_hand", "look": int(m_look.group(1)), "pick": int(m_look.group(2))})
+
+        # 3. 牌組檢索角色加手牌
+        if not m_look and ("從自己的牌組選擇" in line or "從牌組選擇" in line or "從自己牌組找" in line) and "加到手牌" in line:
+            actions.append({"action": "search_deck_char", "count": 1})
+
+        # 4. 休息室回收角色或名場面加手牌
+        if ("從自己的休息室選擇" in line or "選擇自己休息室的" in line) and ("回到手牌" in line or "加到手牌" in line):
+            target_type = "Climax" if "名場面" in line and "角色" not in line else "Character"
+            actions.append({"action": "salvage_wr", "target_type": target_type, "count": 1})
+
+        # 5. 抽牌 / 濾牌
+        m_draw = re.search(r"抽(\d+)張", line)
+        if m_draw:
+            actions.append({"action": "draw", "count": int(m_draw.group(1))})
+            if "手牌放到休息室" in line.split("抽")[1] or "1張手牌放到休息室" in line.split("抽")[1]:
+                actions.append({"action": "discard_hand", "count": 1})
+
+        # 6. 充能
+        m_stock = re.search(r"牌組上方(\d+)張.*放到能量區", line)
+        if m_stock:
+            actions.append({"action": "charge_stock_top", "count": int(m_stock.group(1))})
+
+        # 7. 燒血
+        m_burn = re.search(r"給對手造成(\d+)點傷害", line)
+        if m_burn:
+            actions.append({"action": "burn", "damage": int(m_burn.group(1))})
+
+        # 8. 擊倒踢時鐘 / 踢回憶 / 踢能量
+        if timing == "ON_REVERSE_OPP":
+            if "放到時鐘區" in line:
+                actions.append({"action": "kick_opp_to_clock"})
+            elif "放到回憶區" in line:
+                actions.append({"action": "kick_opp_to_memory"})
+            elif "放到能量區" in line:
+                actions.append({"action": "kick_opp_to_stock"})
+
+        # 9. 相殺
+        if timing == "ON_REVERSED" and "將那個角色【倒置】" in line:
+            actions.append({"action": "reversal_bomb"})
+        elif timing == "ON_REVERSED" and "放到時鐘區" in line:
+            actions.append({"action": "reversal_clock_bomb"})
+
+        # 10. 手牌安可
+        if "安可" in line and ("手牌1張" in line or "1張角色" in line):
+            res.append({"category": "CONT", "effect": "hand_encore", "raw": orig_line})
+            return res
+
+        # 11. 攻擊力增加
+        m_pwr = re.search(r"攻擊力[＋\+](\d+)", line)
+        if m_pwr:
+            pwr_val = int(m_pwr.group(1))
+            if "選擇自己的1張" in line or "選擇其他的你的1張" in line or "選擇你其他1張" in line:
+                actions.append({"action": "buff_ally", "power": pwr_val})
+            else:
+                actions.append({"action": "buff_self", "power": pwr_val})
+
+        if actions:
+            res.append({
+                "category": "AUTO",
+                "timing": timing,
+                "cost": cost,
+                "is_cx_combo": is_cx_combo,
+                "cx_name": cx_name,
+                "actions": actions,
+                "raw": orig_line,
+            })
+        return res
+
+    @classmethod
+    def _parse_act(cls, line: str, orig_line: str) -> list:
+        res = []
+        cost = cls._parse_cost(line)
+        # 1. 助太刀
+        m_backup = re.search(r"助太刀\s*(\d+)\s*等級\s*(\d+)", line)
+        if m_backup or ("助太刀" in line) or ("【反擊】" in orig_line):
+            pwr = int(m_backup.group(1)) if m_backup else 1500
+            lv = int(m_backup.group(2)) if m_backup else 1
+            if not m_backup:
+                m_p = re.search(r"攻擊力[＋\+](\d+)", line)
+                if m_p:
+                    pwr = int(m_p.group(1))
+            res.append({
+                "category": "BACKUP",
+                "power": pwr,
+                "level": lv,
+                "cost": cost,
+                "raw": orig_line,
+            })
+            return res
+
+        # 2. 集中 (Brainstorm)
+        if "集中" in line:
+            flip_cnt = 4
+            m_flip = re.search(r"翻(\d+)張", line)
+            if m_flip:
+                flip_cnt = int(m_flip.group(1))
+            reward = "search"
+            if "抽最多" in line or "抽1張" in line or "抽X張" in line:
+                reward = "draw"
+            elif "休息室選擇" in line or "休息室找" in line:
+                reward = "salvage"
+            res.append({
+                "category": "ACT",
+                "effect": "brainstorm",
+                "flip_count": flip_cnt,
+                "reward": reward,
+                "cost": cost,
+                "raw": orig_line,
+            })
+            return res
+
+        # 3. 一般起動加攻
+        m_pwr = re.search(r"攻擊力[＋\+](\d+)", line)
+        if m_pwr:
+            pwr_val = int(m_pwr.group(1))
+            target = "ally" if ("選擇" in line) else "self"
+            res.append({
+                "category": "ACT",
+                "effect": "act_buff",
+                "target": target,
+                "power": pwr_val,
+                "cost": cost,
+                "raw": orig_line,
+            })
+        return res
+
+
+class BottleNekoImporter:
+    """
+    支援三種免組牌直接擴充卡池的方式：
+    1. 【全系列瀏覽器】：直接連線 `https://api.bottleneko.app/series` 列出貓罐子全部 170+ 個 WS 系列，搜尋關鍵字即可點選！
+    2. 【整個系列一次抓 / 20 張分批抓】：透過 `https://api.bottleneko.app/series/{id}/cards`（或貼上 `https://bottleneko.app/ws/series/172`），
+       免組牌直接把該系列的全部卡片（包含 `i18n.zh` 繁中效果與 `highVer` 高版本 SP/SSP 異畫卡）一次抓下來，或以每次 20 張分批穩定匯入！
+    3. 【貓罐子牌組網址】：相容既有 `https://bottleneko.app/ws/deck/wMI7n` 牌組匯入。
+    """
+
+    @staticmethod
+    def _http_get_json(url: str, timeout: int = 20):
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        req = urllib.request.Request(
+            url,
+            headers={
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                "Accept": "application/json, text/plain, */*",
+            },
+        )
+        with urllib.request.urlopen(req, timeout=timeout, context=ctx) as resp:
+            raw = resp.read().decode("utf-8", errors="replace")
+        return json.loads(raw)
+
+    @classmethod
+    def fetch_all_series_catalog(cls) -> list:
+        """從 https://api.bottleneko.app/series 取得所有 WS 系列清單"""
+        data = cls._http_get_json("https://api.bottleneko.app/series")
+        if not isinstance(data, list):
+            return []
+        catalog = []
+        for item in data:
+            if not isinstance(item, dict):
+                continue
+            sid = item.get("id")
+            jp_name = item.get("name") or ""
+            zh_name = (item.get("i18n", {}).get("zh", {}) or {}).get("name") or jp_name
+            codes = item.get("code") or []
+            if isinstance(codes, str):
+                codes = [codes]
+            catalog.append({
+                "id": sid,
+                "name": zh_name,
+                "jp_name": jp_name,
+                "codes": codes,
+                "display": f"[{sid}] {zh_name} ({'/'.join(codes[:4])})",
+            })
+        return catalog
+
+    @classmethod
+    def _convert_bottleneko_card_obj(cls, c_info: dict, default_series_code: str = "CUSTOM/S01", count: int = 0) -> dict:
+        cid = str(c_info.get("id") or c_info.get("cardId") or c_info.get("code") or "").strip()
+        if not cid:
+            return None
+        zh_block = (c_info.get("i18n") or {}).get("zh") or {}
+        jp_name = c_info.get("title") or c_info.get("jpName") or c_info.get("name") or cid
+        name = zh_block.get("title") or c_info.get("zhName") or jp_name
+
+        raw_type = str(c_info.get("type") or c_info.get("cardType") or "CHAR").upper()
+        if "キャラ" in raw_type or "CHAR" in raw_type or "角色" in raw_type:
+            ctype = "CHAR"
+        elif "イベント" in raw_type or "EVENT" in raw_type or "事件" in raw_type:
+            ctype = "EVENT"
+        elif "クライマックス" in raw_type or "CLIMAX" in raw_type or "CX" in raw_type or "名場面" in raw_type or "高潮" in raw_type:
+            ctype = "CX"
+        else:
+            ctype = "CHAR"
+
+        color_map = {
+            "YELLOW": "黃", "GREEN": "綠", "RED": "紅", "BLUE": "藍", "PURPLE": "紫",
+            "黃": "黃", "綠": "綠", "紅": "紅", "藍": "藍", "紫": "紫",
+        }
+        raw_color = str(c_info.get("color") or "黃").upper()
+        color = color_map.get(raw_color, "黃")
+
+        level = int(c_info.get("level") or 0)
+        cost = int(c_info.get("cost") or 0)
+        power = int(c_info.get("attack") if c_info.get("attack") is not None else (c_info.get("power") or 0))
+        soul = int(c_info.get("soul") if c_info.get("soul") is not None else (0 if ctype != "CHAR" else 1))
+
+        raw_trig = c_info.get("trigger") or []
+        if isinstance(raw_trig, list):
+            trig_str = "+".join(str(t).upper() for t in raw_trig) if raw_trig else "NONE"
+        else:
+            trig_str = str(raw_trig).upper() or "NONE"
+        if "STANDBY" in trig_str:
+            trigger = "STANDBY"
+        elif "GATE" in trig_str or "COMEBACK" in trig_str:
+            trigger = "GATE"
+        elif "CHOICE" in trig_str:
+            trigger = "CHOICE"
+        elif "SOUL" in trig_str or "WIND" in trig_str or "SHOT" in trig_str or "TREASURE" in trig_str or "BOOK" in trig_str or "BAG" in trig_str or "DOOR" in trig_str:
+            trigger = "SOUL"
+        else:
+            trigger = "NONE"
+
+        raw_traits = zh_block.get("feature") or c_info.get("feature") or c_info.get("traits") or []
+        if isinstance(raw_traits, str):
+            raw_traits = [raw_traits]
+        traits = [str(t).replace("《", "").replace("》", "").strip() for t in raw_traits if t]
+
+        effect_text = zh_block.get("effect") or c_info.get("effect") or c_info.get("text") or ""
+        if isinstance(effect_text, list):
+            effect_text = "\n".join(str(x) for x in effect_text)
+
+        scraper_id = c_info.get("scraperId") or cid.replace("/", "_").replace("-", "_")
+        image_url = (
+            c_info.get("imageUrl")
+            or c_info.get("image")
+            or c_info.get("url")
+            or f"https://img.bottleneko.app/w_900,f_webp&q_80/{scraper_id}.png"
+        )
+        # 升級為高畫質 w_900
+        hi_res_url = image_url.replace("w_360,", "w_900,")
+        parallel_urls = [hi_res_url, f"https://img.bottleneko.app/{scraper_id}.png"]
+
+        rare = str(c_info.get("rare") or c_info.get("rarity") or "R")
+        low_vers = c_info.get("lowVer") or []
+        high_vers = c_info.get("highVer") or []
+        is_high_rarity = bool(low_vers) or any(tag in rare for tag in ["SP", "SSP", "SEC", "OFR", "SR", "RRR"])
+        base_id = low_vers[0] if low_vers else cid
+        high_rarity_id = high_vers[-1] if high_vers else None
+
+        series_code = default_series_code
+        if "/" in cid and "-" in cid:
+            series_code = cid.split("-")[0]
+
+        effects_tags = []
+        if ctype == "CX":
+            if "1000" in effect_text and ("魂" in effect_text or "靈魂" in effect_text or "ソウル" in effect_text):
+                effects_tags.append("CX_ALL_1000_1SOUL")
+            elif trigger == "STANDBY" or "開機" in effect_text or "スタンバイ" in effect_text:
+                effects_tags.append("CX_STANDBY")
+
+        parsed_abs = ChineseEffectParser.parse_card_effects(effect_text, ctype)
+        return {
+            "id": cid,
+            "base_id": base_id,
+            "series": series_code,
+            "name": name,
+            "jp_name": jp_name,
+            "type": ctype,
+            "color": color,
+            "level": level,
+            "cost": cost,
+            "power": power,
+            "soul": soul,
+            "trigger": trigger,
+            "traits": traits,
+            "default_count": count,
+            "rarity": rare,
+            "is_high_rarity": is_high_rarity,
+            "high_rarity_id": high_rarity_id,
+            "effects": effects_tags,
+            "text": effect_text,
+            "url": hi_res_url,
+            "parallel_urls": parallel_urls,
+            "parsed_abilities": parsed_abs,
+        }
+
+    @classmethod
+    def import_series_by_id(
+        cls,
+        series_id_or_url: str,
+        sets_dir: str = "sets",
+        batch_offset: int = 0,
+        batch_limit: int = 0,
+        include_high_rarity: bool = True,
+        log_callback=None,
+    ) -> dict:
+        """
+        直接從貓罐子系列 API (`https://api.bottleneko.app/series/{id}/cards`) 抓取整個系列（或指定 20 張分批區間）！
+        - batch_limit = 0 代表一次抓取該系列全部卡片
+        - batch_limit = 20 代表每次抓 20 張（配合 batch_offset = 0, 20, 40... 分批匯入）
+        """
+        def _log(msg):
+            if log_callback:
+                log_callback(msg)
+            print(msg)
+
+        s_str = str(series_id_or_url).strip().rstrip("/")
+        if "bottleneko.app" in s_str and "/series/" in s_str:
+            s_id = s_str.split("/series/")[-1].split("?")[0].split("/")[0]
+        else:
+            s_id = s_str
+
+        meta_url = f"https://api.bottleneko.app/series/{s_id}"
+        cards_url = f"https://api.bottleneko.app/series/{s_id}/cards"
+        _log(f"🌐 正在從貓罐子連線取得系列 #{s_id} 卡表：{cards_url} ...")
+
+        series_title = f"系列 #{s_id}"
+        series_code = f"SERIES_{s_id}"
+        try:
+            meta = cls._http_get_json(meta_url)
+            if isinstance(meta, dict):
+                zh_n = (meta.get("i18n", {}).get("zh", {}) or {}).get("name") or meta.get("name")
+                codes = meta.get("code") or []
+                if codes and isinstance(codes, list):
+                    series_code = codes[0]
+                if zh_n:
+                    series_title = f"{zh_n} ({series_code})"
+        except Exception:
+            pass
+
+        raw_cards = cls._http_get_json(cards_url)
+        if not isinstance(raw_cards, list) or not raw_cards:
+            raise ValueError(f"從 {cards_url} 取得的卡片列表為空！")
+
+        # 過濾是否包含異畫高版本
+        if not include_high_rarity:
+            raw_cards = [c for c in raw_cards if not (c.get("lowVer") and len(c.get("lowVer")) > 0)]
+
+        total_available = len(raw_cards)
+        if batch_limit > 0:
+            sliced_cards = raw_cards[batch_offset : batch_offset + batch_limit]
+            _log(f"📦 分批模式：系列總共 {total_available} 張，本次抓取第 {batch_offset + 1} ~ {min(batch_offset + len(sliced_cards), total_available)} 張（共 {len(sliced_cards)} 張）...")
+        else:
+            sliced_cards = raw_cards
+            _log(f"📦 全系列模式：共取得 {total_available} 張卡片，正在自動編譯中文效果 AST...")
+
+        first_cid = raw_cards[0].get("id", "") if raw_cards else ""
+        if "/S131-" in first_cid:
+            series_code = "GA/S131"
+        elif "/W107-" in first_cid:
+            series_code = "BTR/W107"
+        elif "/S78-" in first_cid:
+            series_code = "BFR/S78"
+        elif "/" in first_cid and "-" in first_cid:
+            # 統一使用該系列共通的編號（避免聯動文庫分拆成幾十個子編號）
+            right_set = first_cid.split("-")[0].split("/")[-1]
+            left_pre = re.sub(r"\d+$", "", first_cid.split("/")[0]) or first_cid.split("/")[0]
+            series_code = f"{left_pre}/{right_set}"
+
+        converted = {}
+        for c_obj in sliced_cards:
+            c_dict = cls._convert_bottleneko_card_obj(c_obj, default_series_code=series_code)
+            if c_dict:
+                c_dict["series"] = series_code
+                converted[c_dict["id"]] = c_dict
+
+        full_sets_dir = os.path.join(BASE_DIR, sets_dir)
+        os.makedirs(full_sets_dir, exist_ok=True)
+        safe_fname = series_code.replace("/", "_") + ".json"
+        out_path = os.path.join(full_sets_dir, safe_fname)
+
+        existing_payload = {
+            "series_code": series_code,
+            "series_name": series_code,
+            "series_title": series_title,
+            "default_deck_recipe": {},
+            "cards": {},
+        }
+        if os.path.exists(out_path):
+            try:
+                with open(out_path, "r", encoding="utf-8") as f:
+                    loaded = json.load(f)
+                if isinstance(loaded, dict):
+                    if "cards" in loaded and isinstance(loaded["cards"], dict):
+                        existing_payload = loaded
+                    else:
+                        existing_payload["cards"] = {k: v for k, v in loaded.items() if isinstance(v, dict) and "name" in v}
+            except Exception:
+                pass
+
+        cards_map = existing_payload.get("cards", {})
+        cards_map.update(converted)
+        existing_payload["cards"] = cards_map
+
+        # 純系列卡表匯入時不自動拼湊隨機 50 張套牌，僅保留貓罐子實際牌組匯入或內建三大真實構築套牌
+
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(existing_payload, f, ensure_ascii=False, indent=2)
+
+        load_all_card_sets(sets_dir)
+        _log(f"✅ 成功寫入 {len(converted)} 張卡片至 {out_path}（目前該系列累計收錄 {len(cards_map)} 張）！")
+        return {
+            "series_code": series_code,
+            "deck_name": series_title,
+            "card_count": len(converted),
+            "total_in_file": len(cards_map),
+            "total_available": total_available,
+            "next_offset": batch_offset + len(sliced_cards),
+            "file_path": out_path,
+        }
+
+    @classmethod
+    def import_from_url_or_json(cls, source_input: str, sets_dir: str = "sets", log_callback=None) -> dict:
+        def _log(msg):
+            if log_callback:
+                log_callback(msg)
+            print(msg)
+
+        source_input = source_input.strip()
+        # 1. 若輸入的是貓罐子系列網址 (https://bottleneko.app/ws/series/172) 或純數字系列 ID
+        if "/ws/series/" in source_input or "/series/" in source_input or source_input.isdigit():
+            return cls.import_series_by_id(source_input, sets_dir=sets_dir, log_callback=log_callback)
+
+        deck_data = None
+        if source_input.startswith("{") or source_input.startswith("["):
+            deck_data = json.loads(source_input)
+        elif os.path.isfile(source_input):
+            with open(source_input, "r", encoding="utf-8") as f:
+                deck_data = json.load(f)
+        else:
+            deck_id = source_input.rstrip("/").split("/")[-1]
+            # 先嘗試貓罐子 API，再嘗試網頁 __NEXT_DATA__
+            url = f"https://bottleneko.app/ws/deck/{deck_id}"
+            _log(f"🌐 正在連線至貓罐子抓取牌組資料：{url} ...")
+            ctx = ssl.create_default_context()
+            ctx.check_hostname = False
+            ctx.verify_mode = ssl.CERT_NONE
+            req = urllib.request.Request(
+                url,
+                headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"},
+            )
+            with urllib.request.urlopen(req, timeout=15, context=ctx) as resp:
+                html = resp.read().decode("utf-8", errors="replace")
+            m_next = re.search(r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>', html, re.S)
+            if m_next:
+                next_json = json.loads(m_next.group(1))
+                deck_data = next_json.get("props", {}).get("pageProps", {}).get("deck") or next_json
+            else:
+                raise ValueError("無法從貓罐子頁面解析出資料，請改用『全系列抓取』或確認網址。")
+
+        raw_cards = []
+        deck_name = "貓罐子匯入卡表"
+        if isinstance(deck_data, dict):
+            deck_name = deck_data.get("name") or deck_data.get("title") or deck_name
+            raw_cards = deck_data.get("cards") or deck_data.get("deckCards") or deck_data.get("list") or []
+        elif isinstance(deck_data, list):
+            raw_cards = deck_data
+
+        if not raw_cards:
+            raise ValueError("未在資料中找到任何卡片清單！")
+
+        converted_cards = {}
+        recipe_dict = {}
+        series_code = None
+
+        for item in raw_cards:
+            c_info = item.get("card", item) if isinstance(item, dict) and "card" in item else item
+            count = int(item.get("count") or item.get("quantity") or 1) if isinstance(item, dict) else 1
+            c_dict = cls._convert_bottleneko_card_obj(c_info, default_series_code=series_code or "CUSTOM/S01", count=count)
+            if not c_dict:
+                continue
+            cid = c_dict["id"]
+            if not series_code and "/" in cid and "-" in cid:
+                series_code = cid.split("-")[0]
+            c_dict["series"] = series_code or "CUSTOM/S01"
+            converted_cards[cid] = c_dict
+            recipe_dict[cid] = recipe_dict.get(cid, 0) + count
+
+        if not series_code:
+            series_code = "CUSTOM/S01"
+        full_sets_dir = os.path.join(BASE_DIR, sets_dir)
+        os.makedirs(full_sets_dir, exist_ok=True)
+        safe_fname = series_code.replace("/", "_") + ".json"
+        out_path = os.path.join(full_sets_dir, safe_fname)
+
+        existing_payload = {
+            "series_code": series_code,
+            "series_name": series_code,
+            "series_title": f"{deck_name} ({series_code})",
+            "default_deck_recipe": recipe_dict,
+            "cards": {},
+        }
+        if os.path.exists(out_path):
+            try:
+                with open(out_path, "r", encoding="utf-8") as f:
+                    loaded_p = json.load(f)
+                if isinstance(loaded_p, dict):
+                    if "cards" in loaded_p and isinstance(loaded_p["cards"], dict):
+                        existing_payload = loaded_p
+                    else:
+                        existing_payload["cards"] = {k: v for k, v in loaded_p.items() if isinstance(v, dict) and "name" in v}
+            except Exception:
+                pass
+
+        existing_map = existing_payload.get("cards", {})
+        existing_map.update(converted_cards)
+        existing_payload["cards"] = existing_map
+        if sum(recipe_dict.values()) == 50:
+            existing_payload["default_deck_recipe"] = recipe_dict
+
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(existing_payload, f, ensure_ascii=False, indent=2)
+
+        load_all_card_sets(sets_dir)
+        _log(f"✅ 成功匯入 {len(converted_cards)} 種卡片至 {out_path}，並完成萬用效果 AST 編譯！")
+        return {
+            "series_code": series_code,
+            "deck_name": deck_name,
+            "card_count": len(converted_cards),
+            "file_path": out_path,
+        }

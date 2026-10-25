@@ -65,6 +65,8 @@ except ImportError:
 
 try:
     from engine import (
+    ChineseEffectParser,
+    BottleNekoImporter,
         CARD_DB,
         DEFAULT_DECK_RECIPE,
         SERIES_DB,
@@ -1259,10 +1261,48 @@ class ImageManager:
         except Exception:
             pass
 
-    def load_local_images(self) -> int:
+    def _create_single_stylized_card(self, cid: str, data: dict) -> Image.Image:
+        color_theme = {
+            "紅": ("#5e1720", "#ff6b6b"),
+            "藍": ("#152a4a", "#4cc9f0"),
+            "黃": ("#594a15", "#ffd166"),
+            "綠": ("#164a2b", "#06d6a0"),
+            "紫": ("#3c1b5c", "#c77dff"),
+        }
+        bg, border = color_theme.get(data.get("color", "黃"), ("#2b2b36", "#aaaaaa"))
+        img = Image.new("RGB", (200, 280), color=bg)
+        draw = ImageDraw.Draw(img)
+        draw.rectangle([4, 4, 195, 275], outline=border, width=4)
+        draw.rectangle([12, 48, 187, 195], fill="#191922", outline=border, width=1)
+        name = data.get("name", cid)
+        line1, line2 = name[:6], name[6:12]
+        if data.get("type") == "CX":
+            draw.text((16, 16), "【名場面】", fill="#ffd166", font=self.font_title)
+            draw.text((18, 95), line1, fill="#ffffff", font=self.font_title)
+            if line2:
+                draw.text((18, 125), line2, fill="#ffd166", font=self.font_title)
+        else:
+            draw.ellipse([10, 10, 44, 44], fill=border)
+            draw.text((16, 15), f"L{data.get('level', 0)}", fill="#000000", font=self.font_title)
+            draw.text((50, 16), f"費用:{data.get('cost', 0)} [{get_card_type_zh(data.get('type', 'CHAR'))}]", fill="#ffffff", font=self.font_sub)
+            draw.text((18, 90), line1, fill="#ffffff", font=self.font_title)
+            if line2:
+                draw.text((18, 120), line2, fill="#ffd166", font=self.font_title)
+            draw.rectangle([12, 232, 187, 266], fill="#0f0f14", outline=border, width=2)
+            if data.get("type") == "CHAR":
+                draw.text((18, 239), f"攻:{data.get('power', 0)} 魂:{data.get('soul', 1)}", fill="#ffffff", font=self.font_sub)
+            else:
+                draw.text((18, 239), f"標記:{get_trigger_zh(data.get('trigger', 'NONE'))}", fill="#ffd166", font=self.font_sub)
+        self.pil_cache[cid] = img
+        return img
+
+    def load_local_images(self, only_missing: bool = False) -> int:
         loaded_count = 0
         loaded_cids = set()
-        for cid in CARD_DB:
+        for cid, cdata in CARD_DB.items():
+            if only_missing and cid in self.pil_cache:
+                loaded_cids.add(cid)
+                continue
             base_name = self.get_base_filename(cid)
             candidates = [
                 f"{base_name}.webp",
@@ -1285,10 +1325,12 @@ class ImageManager:
                         pass
         # 若高版本真實卡圖尚在背景下載中，暫時顯示原版卡圖避免空白方塊，待背景下載完成後自動替換為真實高版本異畫
         for cid, data in CARD_DB.items():
-            if cid not in loaded_cids and data.get("is_high_rarity"):
+            if cid not in self.pil_cache:
                 base_id = data.get("base_id", cid)
-                if base_id in self.pil_cache:
+                if data.get("is_high_rarity") and base_id in self.pil_cache:
                     self.pil_cache[cid] = self.pil_cache[base_id]
+                else:
+                    self._create_single_stylized_card(cid, data)
         self.tk_cache.clear()
         self.hand_dock_cache.clear()
         if hasattr(self, "clock_spread_cache"):
@@ -1362,6 +1404,9 @@ class ImageManager:
                 self.pil_cache[cid] = img
 
     def start_background_download(self):
+        if getattr(self, "_bg_downloading", False):
+            return
+        self._bg_downloading = True
         def fetch_one_card(item):
             cid, data = item
             base_name = self.get_base_filename(cid)
@@ -1484,17 +1529,11 @@ class ImageManager:
                         cid, img = res
                         self.pil_cache[cid] = img
                         updated_count += 1
-                        if updated_count % 6 == 0:
+                        if updated_count % 24 == 0:
                             self.tk_cache.clear()
                             self.hand_dock_cache.clear()
-                            if hasattr(self, "clock_spread_cache"):
-                                self.clock_spread_cache.clear()
-                            if hasattr(self, "level_spread_cache"):
-                                self.level_spread_cache.clear()
-                            self.deck_stack_cache.clear()
-                            self.stock_stack_cache.clear()
-                            self.ai_fan_cache.clear()
-                            self.root.after(50, self._notify_all)
+                            self.root.after(80, self._notify_all)
+            self._bg_downloading = False
             if updated_count > 0:
                 self.tk_cache.clear()
                 self.hand_dock_cache.clear()
@@ -1529,8 +1568,10 @@ class ImageManager:
         if key in self.tk_cache:
             return self.tk_cache[key]
 
-        src_img = self.pil_cache.get(cid)
         c_data = CARD_DB.get(cid, {})
+        src_img = self.pil_cache.get(cid)
+        if src_img is None:
+            src_img = self._create_single_stylized_card(cid, c_data)
         if c_data.get("type") == "CX":
             # 名場面在手牌、休息室、牌庫檢索與預覽等直立框 (width <= height) 時一律保持豎向且無多餘黑框注釋；
             # 僅在放置於場上名場面區 (width > height) 時轉為橫置呈現！
@@ -1588,6 +1629,8 @@ class ImageManager:
         width = 148 if is_pop else 122
         height = 206 if is_pop else 170
         src_img = self.pil_cache.get(cid)
+        if src_img is None:
+            src_img = self._create_single_stylized_card(cid, CARD_DB.get(cid, {}))
         if src_img.width > src_img.height:
             src_img = src_img.transpose(Image.Transpose.ROTATE_270)
         base = src_img.resize((width, height), Image.Resampling.LANCZOS).convert("RGBA")
@@ -2446,9 +2489,14 @@ class DeckBuilderFrame(tk.Frame):
         self.app = app
         self.img_mgr = app.img_mgr
         load_all_card_sets()
-        self.selected_series = "ALL"
+        # 若有任何預設套牌已遺失對應設定，先同步內建三套
+        self.selected_series = (
+            app.active_series if app.active_series in SERIES_DB else "ALL"
+        )
         self.rarity_filter = "ALL"  # "ALL", "NORMAL", "HIGH"
         self.search_keyword = ""
+        self.current_page = 0
+        self.page_size = 24
         self.working_recipe = {}
         self.count_labels = {}
         self.series_buttons = {}
@@ -2460,8 +2508,47 @@ class DeckBuilderFrame(tk.Frame):
         saved = self.app.get_active_deck()
         self.working_recipe = {cid: saved.get(cid, 0) for cid in CARD_DB}
 
+    def _build_deck_slot_options(self) -> list:
+        """回傳所有可選卡組清單 [(顯示名稱, slot_key), ...]：固定包含內建三套真實構築 ＋ 玩家自建的多套卡組"""
+        opts = [
+            ("預設套牌 1：防盾系列 (BFR/S78)", "BFR/S78"),
+            ("預設套牌 2：GA文庫 8箭地旅 (GA/S131)", "GA/S131"),
+            ("預設套牌 3：孤獨搖滾！ (BTR/W107)", "BTR/W107"),
+        ]
+        existing_keys = {k for _, k in opts}
+        # 加入玩家自建卡組與透過貓罐子牌組網址匯入的 50 張完整牌組
+        user_names = self.app.settings.get("user_deck_names") or {}
+        for k, rec in self.app.decks_book.items():
+            if k.startswith("_") or k in existing_keys:
+                continue
+            if self.app._is_valid_recipe(rec):
+                disp = user_names.get(k) or self.app.get_deck_display_name(k)
+                opts.append((f"自訂卡組：{disp}", k))
+                existing_keys.add(k)
+        if "CUSTOM" not in existing_keys:
+            disp_c = user_names.get("CUSTOM", "我的自訂卡組 1")
+            opts.append((f"自訂卡組：{disp_c}", "CUSTOM"))
+        return opts
+
+    def _build_series_filter_options(self) -> list:
+        """回傳下拉選單專用的所有系列清單 [(顯示名稱, series_key), ...]"""
+        opts = [
+            ("🌟 全部系列卡池 (自由混編)", "ALL"),
+            ("✅ 目前卡組已入編卡片", "IN_DECK"),
+        ]
+        for scode in ["BFR/S78", "GA/S131", "BTR/W107"]:
+            if scode in SERIES_DB:
+                cnt = len(SERIES_DB[scode])
+                opts.append((f"🎴 {SERIES_LABELS.get(scode, scode)} ({cnt}張)", scode))
+        for scode in sorted(SERIES_DB.keys()):
+            if scode not in ("BFR/S78", "GA/S131", "BTR/W107"):
+                cnt = len(SERIES_DB[scode])
+                opts.append((f"🎴 {SERIES_LABELS.get(scode, scode)} ({cnt}張)", scode))
+        return opts
+
     def setup_ui(self):
-        # 第一列：返回、卡組張數統計、儲存與清空按鈕
+        ff = self.app.get_font_family()
+        # 第一列：返回、卡組張數統計、匯入、清空、儲存、另存新卡組
         top_bar = tk.Frame(self, bg="#1b1c24", pady=8, padx=14, relief=tk.RIDGE, bd=2)
         top_bar.pack(fill=tk.X, padx=8, pady=(6, 3))
 
@@ -2470,9 +2557,10 @@ class DeckBuilderFrame(tk.Frame):
             text="⬅ 返回主選單",
             bg="#3a3a48",
             fg="white",
-            font=("Microsoft JhengHei", 11, "bold"),
+            font=(ff, 11, "bold"),
             padx=14,
             pady=4,
+            cursor="hand2",
             command=self.app.show_main_menu,
         ).pack(side=tk.LEFT, padx=4)
 
@@ -2481,83 +2569,124 @@ class DeckBuilderFrame(tk.Frame):
             text="",
             bg="#1b1c24",
             fg="#ffd166",
-            font=("Microsoft JhengHei", 13, "bold"),
+            font=(ff, 13, "bold"),
         )
-        self.lbl_summary.pack(side=tk.LEFT, padx=14)
+        self.lbl_summary.pack(side=tk.LEFT, padx=12)
 
         self.lbl_feedback = tk.Label(
             top_bar,
             text="",
             bg="#1b1c24",
             fg="#06d6a0",
-            font=("Microsoft JhengHei", 11, "bold"),
+            font=(ff, 10, "bold"),
         )
-        self.lbl_feedback.pack(side=tk.LEFT, padx=8)
+        self.lbl_feedback.pack(side=tk.LEFT, padx=6)
 
         tk.Button(
             top_bar,
-            text="💾 儲存為我的出戰卡組",
+            text="💾 儲存目前卡組",
             bg="#06d6a0",
             fg="#000000",
-            font=("Microsoft JhengHei", 11, "bold"),
-            padx=16,
+            font=(ff, 11, "bold"),
+            padx=14,
             pady=4,
+            cursor="hand2",
             command=self.save_deck,
-        ).pack(side=tk.RIGHT, padx=5)
+        ).pack(side=tk.RIGHT, padx=4)
 
         tk.Button(
             top_bar,
-            text="🧹 清空配比 (任意編輯)",
-            bg="#4a4e69",
-            fg="white",
-            font=("Microsoft JhengHei", 11, "bold"),
+            text="➕ 另存為新卡組",
+            bg="#ffd166",
+            fg="#000000",
+            font=(ff, 11, "bold"),
             padx=12,
             pady=4,
-            command=self.clear_all_counts,
-        ).pack(side=tk.RIGHT, padx=5)
+            cursor="hand2",
+            command=self.save_as_new_deck_modal,
+        ).pack(side=tk.RIGHT, padx=4)
 
-        # 第二列：預設三套卡組快速套用小選單 ＋ 查卡名即時搜索欄
+        tk.Button(
+            top_bar,
+            text="🧹 清空配比",
+            bg="#4a4e69",
+            fg="white",
+            font=(ff, 10, "bold"),
+            padx=10,
+            pady=4,
+            cursor="hand2",
+            command=self.clear_all_counts,
+        ).pack(side=tk.RIGHT, padx=4)
+
+        tk.Button(
+            top_bar,
+            text="🌐 貓罐子匯入系列/牌組",
+            bg="#9b5de5",
+            fg="white",
+            font=(ff, 10, "bold"),
+            padx=12,
+            pady=4,
+            cursor="hand2",
+            command=lambda: self.app.open_bottleneko_importer_modal(refresh_callback=self.app.open_deck_builder),
+        ).pack(side=tk.RIGHT, padx=4)
+
+        # 第二列：多套卡組切換管理選單 ＋ 查卡名即時搜索欄
         preset_search_bar = tk.Frame(self, bg="#161822", pady=7, padx=14, relief=tk.SOLID, bd=1)
         preset_search_bar.pack(fill=tk.X, padx=8, pady=2)
 
         tk.Label(
             preset_search_bar,
-            text="🃏 快速套用卡組小選單：",
+            text="🃏 切換／管理我的卡組：",
             bg="#161822",
             fg="#ffd166",
-            font=("Microsoft JhengHei", 11, "bold"),
+            font=(ff, 11, "bold"),
         ).pack(side=tk.LEFT, padx=(0, 6))
 
+        self.dynamic_preset_options = self._build_deck_slot_options()
         self.preset_var = tk.StringVar()
-        preset_labels = [label for label, _ in PRESET_DECK_OPTIONS]
+        preset_labels = [label for label, _ in self.dynamic_preset_options]
         cur_idx = 0
-        for i, (_, code_key) in enumerate(PRESET_DECK_OPTIONS):
+        for i, (_, code_key) in enumerate(self.dynamic_preset_options):
             if code_key == self.app.active_series:
                 cur_idx = i
                 break
-        self.preset_var.set(preset_labels[cur_idx])
+        if preset_labels:
+            self.preset_var.set(preset_labels[cur_idx])
 
         self.cmb_preset = ttk.Combobox(
             preset_search_bar,
             textvariable=self.preset_var,
             values=preset_labels,
             state="readonly",
-            width=28,
-            font=("Microsoft JhengHei", 11, "bold"),
+            width=30,
+            font=(ff, 11, "bold"),
         )
         self.cmb_preset.pack(side=tk.LEFT, padx=4)
         self.cmb_preset.bind("<<ComboboxSelected>>", self.on_select_preset_menu)
 
         tk.Button(
             preset_search_bar,
-            text="📥 載入此套牌並設為出戰",
+            text="📥 載入並設為出戰",
             bg="#118ab2",
             fg="white",
-            font=("Microsoft JhengHei", 10, "bold"),
-            padx=12,
+            font=(ff, 10, "bold"),
+            padx=10,
             pady=3,
+            cursor="hand2",
             command=self.on_select_preset_menu,
-        ).pack(side=tk.LEFT, padx=8)
+        ).pack(side=tk.LEFT, padx=4)
+
+        tk.Button(
+            preset_search_bar,
+            text="🗑️ 刪除此自訂卡組",
+            bg="#e63946",
+            fg="white",
+            font=(ff, 10, "bold"),
+            padx=10,
+            pady=3,
+            cursor="hand2",
+            command=self.delete_current_custom_deck,
+        ).pack(side=tk.LEFT, padx=4)
 
         # 右側：查卡名搜索框
         search_box = tk.Frame(preset_search_bar, bg="#161822")
@@ -2565,10 +2694,10 @@ class DeckBuilderFrame(tk.Frame):
 
         tk.Label(
             search_box,
-            text="🔍 查卡名 / 卡號 / 特徵：",
+            text="🔍 搜尋卡名 / 卡號 / 特徵：",
             bg="#161822",
             fg="#8ecae6",
-            font=("Microsoft JhengHei", 11, "bold"),
+            font=(ff, 11, "bold"),
         ).pack(side=tk.LEFT, padx=(0, 4))
 
         self.search_var = tk.StringVar()
@@ -2578,7 +2707,7 @@ class DeckBuilderFrame(tk.Frame):
             bg="#10121a",
             fg="#ffffff",
             insertbackground="white",
-            font=("Microsoft JhengHei", 11, "bold"),
+            font=(ff, 11, "bold"),
             width=20,
         )
         self.ent_search.pack(side=tk.LEFT, padx=4)
@@ -2589,9 +2718,10 @@ class DeckBuilderFrame(tk.Frame):
             text="搜尋",
             bg="#06d6a0",
             fg="#000000",
-            font=("Microsoft JhengHei", 10, "bold"),
+            font=(ff, 10, "bold"),
             padx=8,
             pady=2,
+            cursor="hand2",
             command=self.on_search_change,
         ).pack(side=tk.LEFT, padx=3)
 
@@ -2600,45 +2730,62 @@ class DeckBuilderFrame(tk.Frame):
             text="✖ 清除",
             bg="#3a3f58",
             fg="#ffffff",
-            font=("Microsoft JhengHei", 10, "bold"),
+            font=(ff, 10, "bold"),
             padx=8,
             pady=2,
+            cursor="hand2",
             command=self.clear_search,
         ).pack(side=tk.LEFT, padx=3)
 
-        # 第三列：卡池篩選切換（全部卡池自由編輯 / 各系列 / 僅看已入編卡片）
+        # 第三列：下拉式系列卡池選擇器 ＋ 快速切換「全部/已入編」 ＋ 版本篩選
         series_bar = tk.Frame(self, bg="#141620", pady=6, padx=14, relief=tk.SOLID, bd=1)
         series_bar.pack(fill=tk.X, padx=8, pady=(0, 4))
 
         tk.Label(
             series_bar,
-            text="📚 顯示卡池篩選：",
+            text="📚 選擇卡池系列：",
             bg="#141620",
             fg="#8ecae6",
-            font=("Microsoft JhengHei", 11, "bold"),
+            font=(ff, 11, "bold"),
         ).pack(side=tk.LEFT, padx=(0, 6))
 
-        filter_tabs = [
-            ("ALL", "🌟 全部系列卡池 (任意混編)"),
-            ("IN_DECK", "✅ 已入編卡片"),
-        ]
-        for scode in ["BFR/S78", "GA/S131", "BTR/W107"]:
-            if scode in SERIES_DB:
-                filter_tabs.append((scode, f"🎴 {SERIES_LABELS.get(scode, scode)}"))
-        for scode in sorted(SERIES_DB.keys()):
-            if scode not in ("BFR/S78", "GA/S131", "BTR/W107"):
-                filter_tabs.append((scode, f"🎴 {SERIES_LABELS.get(scode, scode)}"))
+        self.series_filter_options = self._build_series_filter_options()
+        self.series_combo_var = tk.StringVar()
+        s_labels = [lbl for lbl, _ in self.series_filter_options]
+        s_idx = 0
+        for idx_s, (_, skey) in enumerate(self.series_filter_options):
+            if skey == self.selected_series:
+                s_idx = idx_s
+                break
+        if s_labels:
+            self.series_combo_var.set(s_labels[s_idx])
 
-        for f_key, f_label in filter_tabs:
+        self.cmb_series_filter = ttk.Combobox(
+            series_bar,
+            textvariable=self.series_combo_var,
+            values=s_labels,
+            state="readonly",
+            width=34,
+            font=(ff, 10, "bold"),
+        )
+        self.cmb_series_filter.pack(side=tk.LEFT, padx=4)
+        self.cmb_series_filter.bind("<<ComboboxSelected>>", self._on_series_combo_selected)
+
+        # 兩個最常用的快捷篩選鈕：看「已入編卡片」與「全部卡池」
+        for f_key, f_label in [
+            ("IN_DECK", "✅ 只看目前已入編卡片"),
+            ("ALL", "🌟 全部系列卡池"),
+        ]:
             is_cur = f_key == self.selected_series
             b = tk.Button(
                 series_bar,
                 text=f_label,
                 bg="#ffd166" if is_cur else "#252734",
                 fg="#000000" if is_cur else "#ffffff",
-                font=("Microsoft JhengHei", 10, "bold"),
-                padx=12,
-                pady=3,
+                font=(ff, 10, "bold"),
+                padx=10,
+                pady=2,
+                cursor="hand2",
                 command=lambda s=f_key: self.set_series_filter(s),
             )
             b.pack(side=tk.LEFT, padx=4)
@@ -2650,8 +2797,8 @@ class DeckBuilderFrame(tk.Frame):
             text="｜版本：",
             bg="#141620",
             fg="#ffd166",
-            font=("Microsoft JhengHei", 10, "bold"),
-        ).pack(side=tk.LEFT, padx=(6, 2))
+            font=(ff, 10, "bold"),
+        ).pack(side=tk.LEFT, padx=(8, 2))
 
         for r_key, r_lbl in [
             ("ALL", "全部版本"),
@@ -2664,9 +2811,10 @@ class DeckBuilderFrame(tk.Frame):
                 text=r_lbl,
                 bg="#06d6a0" if is_rcur else "#252734",
                 fg="#000000" if is_rcur else "#ffffff",
-                font=("Microsoft JhengHei", 9, "bold"),
+                font=(ff, 9, "bold"),
                 padx=8,
                 pady=2,
+                cursor="hand2",
                 command=lambda rk=r_key: self.set_rarity_filter(rk),
             )
             rb.pack(side=tk.LEFT, padx=2)
@@ -2677,7 +2825,7 @@ class DeckBuilderFrame(tk.Frame):
             text="✨ 全卡組換高版本",
             bg="#9d4edd",
             fg="#ffffff",
-            font=("Microsoft JhengHei", 9, "bold"),
+            font=(ff, 9, "bold"),
             padx=9,
             pady=2,
             cursor="hand2",
@@ -2689,7 +2837,7 @@ class DeckBuilderFrame(tk.Frame):
             text="🎴 全卡組換一般版",
             bg="#3a3f58",
             fg="#ffffff",
-            font=("Microsoft JhengHei", 9, "bold"),
+            font=(ff, 9, "bold"),
             padx=9,
             pady=2,
             cursor="hand2",
@@ -2701,99 +2849,144 @@ class DeckBuilderFrame(tk.Frame):
             text=f"⚔️ 出戰：{self.app.get_deck_display_name(self.app.active_series)}",
             bg="#141620",
             fg="#06d6a0",
-            font=("Microsoft JhengHei", 10, "bold"),
+            font=(ff, 10, "bold"),
         )
         self.lbl_active_badge.pack(side=tk.RIGHT, padx=4)
 
         body = tk.Frame(self, bg="#111218")
         body.pack(fill=tk.BOTH, expand=True, padx=8, pady=4)
 
-        left_panel = tk.Frame(body, bg="#1b1c24", width=560, relief=tk.RIDGE, bd=2)
+        # 左側預覽面板：上方放「卡圖＋規格資訊」，下方整塊滿版全部放「效果文」，零留白浪費！
+        left_panel = tk.Frame(body, bg="#1b1c24", width=520, relief=tk.RIDGE, bd=2)
         left_panel.pack(side=tk.LEFT, fill=tk.Y, padx=(0, 8))
         left_panel.pack_propagate(False)
 
         tk.Label(
             left_panel,
-            text="【卡片詳細預覽 — 名場面自動橫置顯示・中文效果在右】",
+            text="◆ 卡片詳細資訊與效果文預覽 ◆",
             bg="#1b1c24",
             fg="#ffd166",
-            font=("Microsoft JhengHei", 13, "bold"),
-        ).pack(anchor="w", padx=10, pady=(10, 4))
+            font=(ff, 12, "bold"),
+        ).pack(anchor="w", padx=12, pady=(8, 4))
 
         detail_box = tk.Frame(left_panel, bg="#242632", bd=1, relief=tk.SOLID)
-        detail_box.pack(fill=tk.BOTH, expand=True, padx=10, pady=8)
+        detail_box.pack(fill=tk.BOTH, expand=True, padx=10, pady=(0, 10))
 
-        self.lbl_card_img = tk.Label(detail_box, bg="#111218", width=185, height=260)
-        self.lbl_card_img.pack(side=tk.LEFT, anchor="n", padx=10, pady=12)
+        # 上半部：左邊卡圖、右邊規格與高低版本切換
+        top_info_area = tk.Frame(detail_box, bg="#242632")
+        top_info_area.pack(fill=tk.X, padx=10, pady=(10, 6))
 
-        right_text = tk.Frame(detail_box, bg="#242632")
-        right_text.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=(0, 10), pady=12)
+        self.lbl_card_img = tk.Label(top_info_area, bg="#111218", width=165, height=230)
+        self.lbl_card_img.pack(side=tk.LEFT, anchor="n", padx=(0, 12))
+
+        right_meta = tk.Frame(top_info_area, bg="#242632")
+        right_meta.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
         self.lbl_card_title = tk.Label(
-            right_text,
-            text="點擊右側任意卡片預覽",
+            right_meta,
+            text="點擊右側卡片預覽",
             bg="#242632",
             fg="#ffffff",
-            font=("Microsoft JhengHei", 14, "bold"),
+            font=(ff, 13, "bold"),
             anchor="w",
             justify=tk.LEFT,
-            wraplength=310,
+            wraplength=295,
         )
         self.lbl_card_title.pack(fill=tk.X)
 
         self.lbl_card_stats = tk.Label(
-            right_text,
+            right_meta,
             text="",
             bg="#242632",
             fg="#8ecae6",
-            font=("Microsoft JhengHei", 11, "bold"),
+            font=(ff, 10, "bold"),
             anchor="w",
             justify=tk.LEFT,
-            wraplength=310,
+            wraplength=295,
         )
-        self.lbl_card_stats.pack(fill=tk.X, pady=(6, 4))
+        self.lbl_card_stats.pack(fill=tk.X, pady=(6, 6))
 
-        ace_btn_row = tk.Frame(right_text, bg="#242632")
-        ace_btn_row.pack(fill=tk.X, pady=(0, 6))
-        self.btn_set_ace_preview = tk.Button(
-            ace_btn_row,
-            text="★ 設為我的出戰王牌卡",
-            bg="#118ab2",
-            fg="#ffffff",
-            font=("Microsoft JhengHei", 10, "bold"),
-            padx=10,
-            pady=3,
-            cursor="hand2",
-            command=self._on_set_inspected_as_ace,
-        )
-        self.btn_set_ace_preview.pack(side=tk.LEFT, padx=(0, 6))
+        ver_btn_row = tk.Frame(right_meta, bg="#242632")
+        ver_btn_row.pack(fill=tk.X, pady=(2, 0))
 
         self.btn_toggle_rarity_preview = tk.Button(
-            ace_btn_row,
+            ver_btn_row,
             text="✨ 切換看高版本",
             bg="#9d4edd",
             fg="#ffffff",
-            font=("Microsoft JhengHei", 10, "bold"),
-            padx=10,
+            font=(ff, 10, "bold"),
+            padx=12,
             pady=3,
             cursor="hand2",
             command=self._on_toggle_inspected_rarity,
         )
-        self.btn_toggle_rarity_preview.pack(side=tk.LEFT, padx=2)
+        self.btn_toggle_rarity_preview.pack(side=tk.LEFT)
+
+        # 下半部：整塊滿版寬度全部用來顯示卡片效果文，徹底消除左下方空白！
+        effect_header = tk.Frame(detail_box, bg="#1b1e2b", padx=10, pady=4)
+        effect_header.pack(fill=tk.X, padx=10, pady=(4, 0))
+        tk.Label(
+            effect_header,
+            text="📜 卡片效果文",
+            bg="#1b1e2b",
+            fg="#ffd166",
+            font=(ff, 10, "bold"),
+        ).pack(side=tk.LEFT)
 
         self.txt_card_effect = scrolledtext.ScrolledText(
-            right_text,
+            detail_box,
             bg="#14151d",
             fg="#f1faee",
-            font=(self.app.get_font_family(), self.app.get_effect_font_size()),
+            font=(ff, max(12, self.app.get_effect_font_size())),
             wrap=tk.WORD,
             bd=0,
+            padx=10,
+            pady=8,
         )
-        self.txt_card_effect.pack(fill=tk.BOTH, expand=True)
+        self.txt_card_effect.pack(fill=tk.BOTH, expand=True, padx=10, pady=(0, 10))
         self.txt_card_effect.config(state=tk.DISABLED)
 
+        # 右側卡片網格面板
         right_panel = tk.Frame(body, bg="#181922", relief=tk.RIDGE, bd=2)
         right_panel.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+
+        page_bar = tk.Frame(right_panel, bg="#141620", pady=5, padx=10)
+        page_bar.pack(fill=tk.X, side=tk.TOP)
+
+        self.btn_prev_page = tk.Button(
+            page_bar,
+            text="◀ 上一頁",
+            bg="#2b3348",
+            fg="#ffffff",
+            font=(ff, 10, "bold"),
+            padx=12,
+            pady=2,
+            cursor="hand2",
+            command=self.prev_page,
+        )
+        self.btn_prev_page.pack(side=tk.LEFT, padx=4)
+
+        self.lbl_page_info = tk.Label(
+            page_bar,
+            text="第 1 / 1 頁（共 0 張）",
+            bg="#141620",
+            fg="#ffd166",
+            font=(ff, 11, "bold"),
+        )
+        self.lbl_page_info.pack(side=tk.LEFT, padx=12)
+
+        self.btn_next_page = tk.Button(
+            page_bar,
+            text="下一頁 ▶",
+            bg="#2b3348",
+            fg="#ffffff",
+            font=(ff, 10, "bold"),
+            padx=12,
+            pady=2,
+            cursor="hand2",
+            command=self.next_page,
+        )
+        self.btn_next_page.pack(side=tk.LEFT, padx=4)
 
         self.canvas = tk.Canvas(right_panel, bg="#181922", highlightthickness=0)
         scrollbar = tk.Scrollbar(right_panel, orient=tk.VERTICAL, command=self.canvas.yview)
@@ -2823,71 +3016,186 @@ class DeckBuilderFrame(tk.Frame):
         if self.winfo_exists() and event.delta:
             self.canvas.yview_scroll(-1 if event.delta > 0 else 1, "units")
 
+    def _on_series_combo_selected(self, event=None):
+        chosen_lbl = self.series_combo_var.get()
+        for lbl, skey in self.series_filter_options:
+            if lbl == chosen_lbl:
+                self.set_series_filter(skey)
+                break
+
     def on_search_change(self):
         self.search_keyword = self.search_var.get().strip().lower()
+        self.current_page = 0
         self.populate_cards()
 
     def clear_search(self):
         self.search_var.set("")
         self.search_keyword = ""
+        self.current_page = 0
         self.populate_cards()
 
     def on_select_preset_menu(self, event=None):
         chosen_label = self.preset_var.get()
         chosen_key = "BFR/S78"
-        for label, key in PRESET_DECK_OPTIONS:
+        for label, key in self.dynamic_preset_options:
             if label == chosen_label:
                 chosen_key = key
                 break
 
-        if chosen_key == "CUSTOM":
-            recipe = self.app.get_series_deck("CUSTOM")
-        else:
-            recipe = SERIES_DEFAULT_DECKS.get(chosen_key, self.app.get_series_deck(chosen_key))
-            self.selected_series = chosen_key
-            for k, b in self.series_buttons.items():
-                b.config(
-                    bg="#ffd166" if k == self.selected_series else "#252734",
-                    fg="#000000" if k == self.selected_series else "#ffffff",
-                )
-
+        recipe = self.app.get_series_deck(chosen_key)
         self.working_recipe = {cid: recipe.get(cid, 0) for cid in CARD_DB}
-        self.app.save_series_deck(chosen_key, {cid: cnt for cid, cnt in self.working_recipe.items() if cnt > 0})
         self.app.set_active_series(chosen_key)
+
+        # 自動將卡池切換至該套牌所屬系列或「已入編卡片」
+        if chosen_key in SERIES_DB:
+            self.set_series_filter(chosen_key)
+        else:
+            self.set_series_filter("IN_DECK")
+
         self.lbl_active_badge.config(
-            text=f"⚔️ 目前出戰卡組：{self.app.get_deck_display_name(self.app.active_series)}"
+            text=f"⚔️ 出戰：{self.app.get_deck_display_name(self.app.active_series)}"
         )
-        self.populate_cards()
         self.update_summary()
         self.lbl_feedback.config(
-            text=f"📥 已載入【{chosen_label}】50 張標準配比並設為出戰卡組！你可直接微調或任意編輯。",
+            text=f"📥 已載入【{self.app.get_deck_display_name(chosen_key)}】並設為出戰卡組！",
             fg="#06d6a0",
         )
+
+    def save_as_new_deck_modal(self):
+        """彈出命名視窗，讓玩家將目前配比儲存為一套全新的自訂卡組（支援建立多套不同卡組）"""
+        total = sum(self.working_recipe.values())
+        cx_total = sum(
+            cnt for cid, cnt in self.working_recipe.items() if cid in CARD_DB and CARD_DB[cid]["type"] == "CX"
+        )
+        if total != 50:
+            self.lbl_feedback.config(
+                text=f"❌ 另存失敗：卡組必須剛好 50 張（目前 {total} 張）！", fg="#ff4d6d"
+            )
+            return
+        if cx_total > 8:
+            self.lbl_feedback.config(
+                text=f"❌ 另存失敗：名場面不能超過 8 張（目前 {cx_total} 張）！", fg="#ff4d6d"
+            )
+            return
+
+        ff = self.app.get_font_family()
+        win = tk.Toplevel(self.app.root)
+        win.title("➕ 另存為新自訂卡組")
+        win.geometry("460x220")
+        win.configure(bg="#151b29")
+        win.transient(self.app.root)
+        win.grab_set()
+
+        tk.Label(
+            win,
+            text="請輸入這副新卡組的名稱：",
+            bg="#151b29",
+            fg="#ffd166",
+            font=(ff, 13, "bold"),
+        ).pack(pady=(20, 8))
+
+        user_names = dict(self.app.settings.get("user_deck_names") or {})
+        next_num = len(user_names) + 1
+        ent_name = tk.Entry(
+            win,
+            bg="#0d111a",
+            fg="#06d6a0",
+            insertbackground="white",
+            font=(ff, 13, "bold"),
+            width=26,
+        )
+        ent_name.insert(0, f"我的自訂卡組 {next_num}")
+        ent_name.pack(pady=6)
+        ent_name.focus_set()
+
+        def _confirm_create():
+            d_name = ent_name.get().strip() or f"我的自訂卡組 {next_num}"
+            idx_n = 1
+            while f"USER_DECK_{idx_n}" in self.app.decks_book:
+                idx_n += 1
+            new_key = f"USER_DECK_{idx_n}"
+            cleaned = {cid: cnt for cid, cnt in self.working_recipe.items() if cnt > 0}
+            user_names[new_key] = d_name
+            self.app.settings["user_deck_names"] = user_names
+            self.app.save_user_settings(self.app.settings)
+            self.app.save_series_deck(new_key, cleaned)
+            self.app.set_active_series(new_key)
+            win.destroy()
+            # 重新整理卡組下拉選單
+            self.dynamic_preset_options = self._build_deck_slot_options()
+            preset_labels = [label for label, _ in self.dynamic_preset_options]
+            self.cmb_preset.config(values=preset_labels)
+            for label, k in self.dynamic_preset_options:
+                if k == new_key:
+                    self.preset_var.set(label)
+                    break
+            self.lbl_active_badge.config(text=f"⚔️ 出戰：{self.app.get_deck_display_name(new_key)}")
+            self.lbl_feedback.config(text=f"🎉 已成功建立並切換至新卡組【{d_name}】！", fg="#06d6a0")
+
+        btn_f = tk.Frame(win, bg="#151b29")
+        btn_f.pack(pady=16)
+        tk.Button(
+            btn_f,
+            text="✔ 確認儲存新卡組",
+            bg="#06d6a0",
+            fg="#000000",
+            font=(ff, 11, "bold"),
+            padx=16,
+            pady=4,
+            cursor="hand2",
+            command=_confirm_create,
+        ).pack(side=tk.LEFT, padx=8)
+        tk.Button(
+            btn_f,
+            text="取消",
+            bg="#3a3f58",
+            fg="#ffffff",
+            font=(ff, 11, "bold"),
+            padx=14,
+            pady=4,
+            command=win.destroy,
+        ).pack(side=tk.LEFT, padx=8)
+
+    def delete_current_custom_deck(self):
+        cur_k = self.app.active_series
+        if cur_k in ("BFR/S78", "GA/S131", "BTR/W107"):
+            self.lbl_feedback.config(text="⚠️ 內建的三大預設套牌無法刪除，但你可以直接修改或另存新卡組！", fg="#ffd166")
+            return
+        disp_old = self.app.get_deck_display_name(cur_k)
+        self.app.decks_book.pop(cur_k, None)
+        user_names = dict(self.app.settings.get("user_deck_names") or {})
+        user_names.pop(cur_k, None)
+        self.app.settings["user_deck_names"] = user_names
+        self.app.save_user_settings(self.app.settings)
+        self.app.set_active_series("BFR/S78")
+        self._load_active_working_recipe()
+        self.dynamic_preset_options = self._build_deck_slot_options()
+        preset_labels = [label for label, _ in self.dynamic_preset_options]
+        self.cmb_preset.config(values=preset_labels)
+        if preset_labels:
+            self.preset_var.set(preset_labels[0])
+        self.lbl_active_badge.config(text=f"⚔️ 出戰：{self.app.get_deck_display_name(self.app.active_series)}")
+        self.populate_cards()
+        self.update_summary()
+        self.lbl_feedback.config(text=f"🗑️ 已刪除自訂卡組【{disp_old}】，並切回預設套牌。", fg="#ffd166")
 
     def inspect_card(self, cid):
         if cid not in CARD_DB:
             return
         data = CARD_DB[cid]
-        if data["type"] == "CX":
-            img = self.img_mgr.get_card_visual(cid, 236, 168)
-            self.lbl_card_img.config(image=img, width=236, height=168)
-        else:
-            img = self.img_mgr.get_card_visual(cid, 180, 252)
-            self.lbl_card_img.config(image=img, width=180, height=252)
+        img = self.img_mgr.get_card_visual(cid, 165, 230)
+        self.lbl_card_img.config(image=img, width=165, height=230)
         self.lbl_card_img.image = img
 
         self.current_inspected_cid = cid
-        is_ace = self.app.get_series_ace_card_id(self.app.active_series) == cid
         is_hr = bool(data.get("is_high_rarity", False))
         r_tag = data.get("rarity", "R")
         ver_str = f"✨ 高版本 [{r_tag}]" if is_hr else f"一般版 [{r_tag}]"
-        ace_badge = "  ★ [目前出戰王牌]" if is_ace else ""
         self.lbl_card_title.config(
-            text=f"{data['name']}{ace_badge}\n{cid} （{ver_str}）",
+            text=f"{data['name']}\n{cid} （{ver_str}）",
             fg="#ffd166" if is_hr else "#ffffff",
         )
         traits_str = " / ".join(data["traits"]) if data["traits"] else "無"
-        webp_name = self.img_mgr.get_base_filename(cid) + ".webp"
         base_id = data.get("base_id", cid)
         group_total = sum(
             self.working_recipe.get(k, 0)
@@ -2895,18 +3203,12 @@ class DeckBuilderFrame(tk.Frame):
             if v.get("base_id", k) == base_id
         )
         stats_text = (
-            f"系列：{SERIES_LABELS.get(data.get('series', ''), data.get('series', ''))} ｜ 同名合計：{group_total}/4 張\n"
-            f"種類：{get_card_type_zh(data['type'])} ｜ 顏色：{data['color']} ｜ 特徵：{traits_str}\n"
+            f"系列：{SERIES_LABELS.get(data.get('series', ''), data.get('series', ''))}\n"
+            f"同名入編：{group_total} / 4 張 ｜ 種類：{get_card_type_zh(data['type'])} ｜ 顏色：{data['color']}\n"
             f"等級：{data['level']} ｜ 費用：{data['cost']} ｜ 攻擊力：{data['power']} ｜ 魂傷：{data['soul']}\n"
-            f"標記：{get_trigger_zh(data['trigger'])} ｜ 圖檔：{webp_name}"
+            f"標記：{get_trigger_zh(data['trigger'])} ｜ 特徵：{traits_str}"
         )
         self.lbl_card_stats.config(text=stats_text)
-        if hasattr(self, "btn_set_ace_preview"):
-            self.btn_set_ace_preview.config(
-                text="★ 已設為出戰王牌卡" if is_ace else "★ 設為我的出戰王牌卡",
-                bg="#ffd166" if is_ace else "#118ab2",
-                fg="#000000" if is_ace else "#ffffff",
-            )
         if hasattr(self, "btn_toggle_rarity_preview"):
             partner_id = data.get("base_id", cid) if is_hr else data.get("high_rarity_id", cid)
             if partner_id and partner_id in CARD_DB and partner_id != cid:
@@ -2920,7 +3222,7 @@ class DeckBuilderFrame(tk.Frame):
 
         self.txt_card_effect.config(state=tk.NORMAL)
         self.txt_card_effect.delete("1.0", tk.END)
-        self.txt_card_effect.insert(tk.END, data["text"])
+        self.txt_card_effect.insert(tk.END, data["text"] or "（無效果文）")
         self.txt_card_effect.config(state=tk.DISABLED)
 
     def _on_toggle_inspected_rarity(self):
@@ -2935,16 +3237,23 @@ class DeckBuilderFrame(tk.Frame):
 
     def set_series_filter(self, scode: str):
         self.selected_series = scode
+        self.current_page = 0
         for k, b in self.series_buttons.items():
             b.config(
                 bg="#ffd166" if k == scode else "#252734",
                 fg="#000000" if k == scode else "#ffffff",
             )
+        if hasattr(self, "series_filter_options"):
+            for lbl, skey in self.series_filter_options:
+                if skey == scode:
+                    self.series_combo_var.set(lbl)
+                    break
         self.populate_cards()
         self.update_summary()
 
     def set_rarity_filter(self, r_mode: str):
         self.rarity_filter = r_mode
+        self.current_page = 0
         for k, b in self.rarity_buttons.items():
             b.config(
                 bg="#06d6a0" if k == r_mode else "#252734",
@@ -2970,7 +3279,6 @@ class DeckBuilderFrame(tk.Frame):
                 converted_cnt += cnt
             new_recipe[target_id] = new_recipe.get(target_id, 0) + cnt
         self.working_recipe = new_recipe
-        # 同步將目前王牌卡也升級/切換為對應版本
         cur_ace = self.app.get_series_ace_card_id(self.app.active_series)
         if cur_ace in CARD_DB:
             ace_data = CARD_DB[cur_ace]
@@ -2984,9 +3292,9 @@ class DeckBuilderFrame(tk.Frame):
             t_ins = c_ins.get("high_rarity_id", self.current_inspected_cid) if to_high else c_ins.get("base_id", self.current_inspected_cid)
             if t_ins in CARD_DB:
                 self.inspect_card(t_ins)
-        mode_name = "✨ 高版本 (SP/SSP/RRR/SR)" if to_high else "🎴 一般版 (低版本)"
+        mode_name = "✨ 高版本" if to_high else "🎴 一般版"
         self.lbl_feedback.config(
-            text=f"✨ 已將目前卡組全數切換為【{mode_name}】（共轉換 {converted_cnt} 張）！記得點擊右上角『儲存為我的出戰卡組』。",
+            text=f"✨ 已將目前卡組切換為【{mode_name}】（共轉換 {converted_cnt} 張）！記得點擊『儲存目前卡組』。",
             fg="#ffd166" if to_high else "#06d6a0",
         )
 
@@ -2996,7 +3304,7 @@ class DeckBuilderFrame(tk.Frame):
         for cid, lbl in self.count_labels.items():
             lbl.config(text="0 張", fg="#adb5bd")
         self.update_summary()
-        self.lbl_feedback.config(text="🧹 已清空配比，可利用上方搜尋欄或切換系列自由組建 50 張卡組。", fg="#8ecae6")
+        self.lbl_feedback.config(text="🧹 已清空配比，可從上方下拉選單切換任何系列自由組建 50 張卡組。", fg="#8ecae6")
 
     def _get_filtered_card_items(self):
         if self.selected_series == "ALL":
@@ -3030,16 +3338,46 @@ class DeckBuilderFrame(tk.Frame):
                 matched.append((cid, data))
         return matched
 
+    def prev_page(self):
+        if self.current_page > 0:
+            self.current_page -= 1
+            self.populate_cards()
+            self.canvas.yview_moveto(0.0)
+
+    def next_page(self):
+        filtered_items = self._get_filtered_card_items()
+        total_pages = max(1, (len(filtered_items) + self.page_size - 1) // self.page_size)
+        if self.current_page + 1 < total_pages:
+            self.current_page += 1
+            self.populate_cards()
+            self.canvas.yview_moveto(0.0)
+
     def populate_cards(self):
+        if not self.winfo_exists():
+            return
         for w in self.grid_frame.winfo_children():
             w.destroy()
         self.count_labels.clear()
 
         filtered_items = self._get_filtered_card_items()
+        total_count = len(filtered_items)
+        total_pages = max(1, (total_count + self.page_size - 1) // self.page_size)
+        if self.current_page >= total_pages:
+            self.current_page = max(0, total_pages - 1)
+
+        if hasattr(self, "lbl_page_info"):
+            start_n = self.current_page * self.page_size + 1 if total_count > 0 else 0
+            end_n = min(total_count, (self.current_page + 1) * self.page_size)
+            self.lbl_page_info.config(
+                text=f"第 {self.current_page + 1} / {total_pages} 頁 （顯示 {start_n}~{end_n} 張，共 {total_count} 張）"
+            )
+            self.btn_prev_page.config(state=tk.NORMAL if self.current_page > 0 else tk.DISABLED)
+            self.btn_next_page.config(state=tk.NORMAL if self.current_page + 1 < total_pages else tk.DISABLED)
+
         if not filtered_items:
             tk.Label(
                 self.grid_frame,
-                text="🔍 找不到符合搜尋條件的卡片，請嘗試其他卡名關鍵字或切換系列/版本篩選。",
+                text="🔍 找不到符合條件的卡片，請透過上方『📚 選擇卡池系列』下拉選單切換系列或清除關鍵字。",
                 bg="#181922",
                 fg="#ffd166",
                 font=("Microsoft JhengHei", 13, "bold"),
@@ -3048,8 +3386,9 @@ class DeckBuilderFrame(tk.Frame):
             ).grid(row=0, column=0, columnspan=4)
             return
 
+        page_items = filtered_items[self.current_page * self.page_size : (self.current_page + 1) * self.page_size]
         cols = 4
-        for idx, (cid, data) in enumerate(filtered_items):
+        for idx, (cid, data) in enumerate(page_items):
             r, c = divmod(idx, cols)
             is_hr = bool(data.get("is_high_rarity", False))
             r_tag = data.get("rarity", "R")
@@ -3059,19 +3398,20 @@ class DeckBuilderFrame(tk.Frame):
                 bg=box_bg,
                 bd=2,
                 relief=tk.RAISED,
-                padx=8,
+                padx=10,
                 pady=8,
                 highlightbackground="#ffd166" if is_hr else "#252734",
                 highlightthickness=2 if is_hr else 0,
             )
             card_box.grid(row=r, column=c, padx=8, pady=8, sticky="nsew")
 
-            c_img = self.img_mgr.get_card_visual(cid, 115, 160, is_selected=is_hr)
+            c_img = self.img_mgr.get_card_visual(cid, 122, 170, is_selected=is_hr)
             img_btn = tk.Button(
                 card_box,
                 image=c_img,
                 bg="#181922",
                 bd=0,
+                cursor="hand2",
                 command=lambda k=cid: self.inspect_card(k),
             )
             img_btn.image = c_img
@@ -3081,13 +3421,14 @@ class DeckBuilderFrame(tk.Frame):
             ver_badge = f"✨{r_tag}" if is_hr else r_tag
             tk.Label(
                 card_box,
-                text=f"{data['name'][:11]}\n{type_tag} [{ver_badge}] ｜ {cid}",
+                text=f"{data['name'][:12]}\n{type_tag} [{ver_badge}] ｜ {cid}",
                 bg=box_bg,
                 fg="#ffd166" if (is_hr or data["type"] == "CX") else "#ffffff",
                 font=("Microsoft JhengHei", 9, "bold"),
                 justify=tk.CENTER,
             ).pack(pady=4)
 
+            # 僅保留乾淨的「－ / 張數 / ＋」按鈕，移除每張卡多餘的王牌按鈕
             ctrl_row = tk.Frame(card_box, bg=box_bg)
             ctrl_row.pack(pady=2)
 
@@ -3097,7 +3438,8 @@ class DeckBuilderFrame(tk.Frame):
                 bg="#e63946",
                 fg="white",
                 font=("Microsoft JhengHei", 12, "bold"),
-                width=3,
+                width=4,
+                cursor="hand2",
                 command=lambda k=cid: self.change_count(k, -1),
             ).pack(side=tk.LEFT, padx=4)
 
@@ -3108,7 +3450,7 @@ class DeckBuilderFrame(tk.Frame):
                 bg="#14151d",
                 fg="#06d6a0" if cur_cnt > 0 else "#adb5bd",
                 font=("Microsoft JhengHei", 12, "bold"),
-                width=6,
+                width=7,
                 pady=2,
             )
             lbl_cnt.pack(side=tk.LEFT, padx=4)
@@ -3120,39 +3462,10 @@ class DeckBuilderFrame(tk.Frame):
                 bg="#06d6a0",
                 fg="black",
                 font=("Microsoft JhengHei", 12, "bold"),
-                width=3,
-                command=lambda k=cid: self.change_count(k, 1),
-            ).pack(side=tk.LEFT, padx=3)
-
-            is_cur_ace = self.app.get_series_ace_card_id(self.app.active_series) == cid
-            tk.Button(
-                ctrl_row,
-                text="★王牌" if is_cur_ace else "☆王牌",
-                bg="#ffd166" if is_cur_ace else "#3a3f58",
-                fg="#000000" if is_cur_ace else "#ffffff",
-                font=("Microsoft JhengHei", 9, "bold"),
-                padx=5,
-                pady=2,
+                width=4,
                 cursor="hand2",
-                command=lambda k=cid: self.set_card_as_ace(k),
-            ).pack(side=tk.LEFT, padx=3)
-
-    def _on_set_inspected_as_ace(self):
-        cid = getattr(self, "current_inspected_cid", None)
-        if cid:
-            self.set_card_as_ace(cid)
-
-    def set_card_as_ace(self, cid: str):
-        if cid not in CARD_DB:
-            return
-        self.app.set_user_ace_card_id(cid)
-        self.inspect_card(cid)
-        self.populate_cards()
-        c_name = CARD_DB[cid]["name"]
-        self.lbl_feedback.config(
-            text=f"★ 已將【{c_name} ({cid})】設為你的出戰王牌代表卡！（主選單立牌已同步更新）",
-            fg="#ffd166",
-        )
+                command=lambda k=cid: self.change_count(k, 1),
+            ).pack(side=tk.LEFT, padx=4)
 
     def change_count(self, cid, delta):
         if cid not in CARD_DB:
@@ -3171,7 +3484,6 @@ class DeckBuilderFrame(tk.Frame):
                 new_val = min(4, cur + delta)
                 self.working_recipe[cid] = new_val
             elif cur < 4:
-                # 若同名高低版本合計已滿 4 張，點擊「＋」時自動將另一版本的 1 張轉為此版本！
                 other_keys = [k for k in same_group if k != cid and self.working_recipe.get(k, 0) > 0]
                 if other_keys:
                     ok = other_keys[0]
@@ -3204,19 +3516,19 @@ class DeckBuilderFrame(tk.Frame):
         is_valid = total == 50 and cx_total <= 8
         color = "#06d6a0" if is_valid else "#ff6b6b"
         self.lbl_summary.config(
-            text=f"【我的卡組配比】總張數：{total} / 50 張 ｜ 名場面：{cx_total} / 8 張",
+            text=f"【{self.app.get_deck_display_name(self.app.active_series)}】總張數：{total} / 50 張 ｜ 名場面：{cx_total} / 8 張",
             fg=color,
         )
         if total != 50:
             self.lbl_feedback.config(
-                text=f"⚠️ 卡組必須剛好 50 張，目前差 {50 - total} 張", fg="#ff6b6b"
+                text=f"⚠️ 卡組需滿 50 張（目前差 {50 - total} 張）", fg="#ff6b6b"
             )
         elif cx_total > 8:
             self.lbl_feedback.config(
-                text=f"⚠️ 名場面卡不能超過 8 張，目前 {cx_total} 張", fg="#ff6b6b"
+                text=f"⚠️ 名場面不能超過 8 張（目前 {cx_total} 張）", fg="#ff6b6b"
             )
         else:
-            self.lbl_feedback.config(text="✔ 符合 50 張規則，點擊右上角即可儲存為出戰卡組！", fg="#06d6a0")
+            self.lbl_feedback.config(text="✔ 符合 50 張規則！可按『💾 儲存目前卡組』或『➕ 另存為新卡組』。", fg="#06d6a0")
 
     def save_deck(self):
         total = sum(self.working_recipe.values())
@@ -3235,16 +3547,16 @@ class DeckBuilderFrame(tk.Frame):
             return
 
         cleaned = {cid: cnt for cid, cnt in self.working_recipe.items() if cnt > 0}
-        series_in_deck = {CARD_DB[cid].get("series") for cid in cleaned if cid in CARD_DB}
-        target_slot = next(iter(series_in_deck)) if len(series_in_deck) == 1 else "CUSTOM"
-        self.app.save_series_deck("CUSTOM", cleaned)
+        target_slot = self.app.active_series
         self.app.save_series_deck(target_slot, cleaned)
         self.app.set_active_series(target_slot)
         disp_name = self.app.get_deck_display_name(target_slot)
-        self.lbl_active_badge.config(text=f"⚔️ 目前出戰卡組：{disp_name}")
+        self.lbl_active_badge.config(text=f"⚔️ 出戰：{disp_name}")
         self.lbl_feedback.config(
-            text=f"💾 已成功儲存【{disp_name}】並設為單人與多人連線出戰卡組！", fg="#06d6a0"
+            text=f"💾 已成功儲存【{disp_name}】並設為出戰卡組！（若想保留多套不同牌組可點『➕ 另存為新卡組』）",
+            fg="#06d6a0",
         )
+
 
 # ==========================================
 # 對戰主畫面 (WSBofuriGameFrame)
@@ -7146,6 +7458,201 @@ class WSBofuriGameFrame(tk.Frame):
             self.check_deck_refresh(target)
         self.update_ui()
 
+    # ==========================================================================
+    # 萬用資料驅動效果執行引擎 (Universal Data-Driven Effect Engine)
+    # 自動根據 ChineseEffectParser 編譯出的 parsed_abilities AST 執行效果，
+    # 讓任何從貓罐子匯入的新系列／新牌組無須寫死 if card.id == ... 即可運作！
+    # ==========================================================================
+    def _can_pay_universal_cost(self, p: PlayerState, cost: dict, card: CardInstance = None) -> bool:
+        if not cost:
+            return True
+        if len(p.stock) < cost.get("stock", 0):
+            return False
+        if len(p.hand) < cost.get("discard_hand", 0):
+            return False
+        if cost.get("discard_cx", 0) > 0:
+            if sum(1 for c in p.hand if c.type == "CX") < cost["discard_cx"]:
+                return False
+        if cost.get("clock_top_deck", 0) > 0:
+            if len(p.deck) == 0 and len(p.waiting_room) == 0:
+                return False
+        if cost.get("rest_self", 0) == 1 and card and card.state != "STAND":
+            return False
+        return True
+
+    def _pay_universal_cost(self, p: PlayerState, cost: dict, card: CardInstance = None, slot_idx: int = None, title: str = "支付代價") -> bool:
+        if not cost:
+            return True
+        if not self._can_pay_universal_cost(p, cost, card):
+            return False
+        if cost.get("stock", 0) > 0:
+            self.pay_stock(p, cost["stock"])
+        if cost.get("clock_top_deck", 0) > 0:
+            self.check_deck_refresh(p)
+            if p.deck:
+                top_c = self.pop_deck_top(p)
+                p.clock.append(top_c)
+                self.log(f"⏱️ 【{title}】將牌組頂的【{top_c.name}】放到時鐘區作為代價。")
+                self.check_level_up(p)
+        if cost.get("discard_cx", 0) > 0:
+            for _ in range(cost["discard_cx"]):
+                self.select_hand_discard(p, filter_fn=lambda x: x.type == "CX", prompt=f"{title}：請選擇捨棄 1 張名場面")
+        if cost.get("discard_hand", 0) > 0:
+            disc_n = cost["discard_hand"]
+            for idx_d in range(disc_n):
+                self.select_hand_discard(p, prompt=f"{title}：請選擇捨棄第 {idx_d + 1}/{disc_n} 張手牌")
+        if cost.get("rest_self", 0) == 1 and card:
+            card.state = "REST"
+        if cost.get("send_self_wr") and slot_idx is not None and p.stage[slot_idx] == card:
+            self.send_stage_to_wr(p, slot_idx)
+        elif cost.get("send_self_memory") and slot_idx is not None and p.stage[slot_idx] == card:
+            p.stage[slot_idx] = None
+            card.reset_stage_state()
+            p.memory.append(card)
+        return True
+
+    def _execute_universal_ability(self, p: PlayerState, opp: PlayerState, card: CardInstance, ab: dict, slot_idx: int = None, target_opp_slot: int = None):
+        if self.game_over:
+            return
+        if ab.get("is_cx_combo"):
+            cx_name = ab.get("cx_name")
+            if not p.climax_zone:
+                return
+            if cx_name and cx_name not in p.climax_zone.name:
+                return
+        cost = ab.get("cost", {})
+        if not self._can_pay_universal_cost(p, cost, card):
+            return
+        raw_desc = ab.get("raw", card.text)
+        has_any_cost = any(bool(v) for v in cost.values())
+        if has_any_cost or ab.get("category") == "AUTO":
+            ask_ok = True if p.is_ai else self.ask_yes_no_center(
+                f"⚡ 發動效果：【{card.name}】",
+                f"{raw_desc}\n\n是否發動此效果？"
+            )
+            if not ask_ok:
+                return
+        if not self._pay_universal_cost(p, cost, card, slot_idx, title=card.name):
+            return
+
+        for act in ab.get("actions", []):
+            if self.game_over:
+                break
+            atype = act.get("action")
+            if atype == "heal_to_wr":
+                if len(p.clock) > 0:
+                    healed = p.clock.pop()
+                    p.waiting_room.append(healed)
+                    self.log(f"💖 【{card.name}】回復 1 點傷害（移除時鐘區：{healed.name}）！")
+            elif atype == "heal_to_stock":
+                if len(p.clock) > 0:
+                    healed = p.clock.pop()
+                    p.stock.append(healed)
+                    self.log(f"💖⚡ 【{card.name}】將時鐘區頂的【{healed.name}】放到能量區（回血＋充能）！")
+            elif atype == "look_top_add_hand":
+                look_n = act.get("look", 4)
+                looked = self.ask_step_by_step_look_up_to(p, look_n, f"{card.name}：看牌組頂最多 {look_n} 張")
+                if looked:
+                    chars = [c for c in looked if c.type == "CHAR"]
+                    picked = None
+                    if chars:
+                        picked = chars[0] if p.is_ai else self.choose_card_dialog(
+                            f"{card.name}：選擇 1 張角色加入手牌（可略過）", chars, allow_cancel=True
+                        )
+                    if picked:
+                        looked.remove(picked)
+                        p.hand.append(picked)
+                        self.log(f"🔍 【{card.name}】從牌組頂將【{picked.name}】加入手牌！")
+                    p.waiting_room.extend(looked)
+            elif atype == "search_deck_char":
+                cands = [c for c in p.deck if c.type == "CHAR"]
+                if cands:
+                    picked = cands[0] if p.is_ai else self.choose_card_dialog(
+                        f"{card.name}：從牌組選擇 1 張角色加入手牌", cands, allow_cancel=True
+                    )
+                    if picked and picked in p.deck:
+                        p.deck.remove(picked)
+                        p.hand.append(picked)
+                        self.log(f"🔍 【{card.name}】從牌組檢索【{picked.name}】加入手牌！")
+                random.shuffle(p.deck)
+            elif atype == "salvage_wr":
+                t_type = "CX" if act.get("target_type") == "Climax" else "CHAR"
+                cands = [c for c in p.waiting_room if c.type == t_type]
+                if cands:
+                    picked = cands[0] if p.is_ai else self.choose_card_dialog(
+                        f"{card.name}：從休息室選擇 1 張卡片返回手牌", cands, allow_cancel=True
+                    )
+                    if picked and picked in p.waiting_room:
+                        p.waiting_room.remove(picked)
+                        p.hand.append(picked)
+                        self.log(f"♻️ 【{card.name}】從休息室回收【{picked.name}】返回手牌！")
+            elif atype == "draw":
+                cnt = act.get("count", 1)
+                self.draw_cards(p, cnt)
+                self.log(f"🎴 【{card.name}】抽 {cnt} 張牌！")
+            elif atype == "discard_hand":
+                cnt = act.get("count", 1)
+                for _ in range(cnt):
+                    if p.hand:
+                        self.select_hand_discard(p, prompt=f"{card.name}：請選擇捨棄 1 張手牌")
+            elif atype == "charge_stock_top":
+                cnt = act.get("count", 1)
+                for _ in range(cnt):
+                    self.check_deck_refresh(p)
+                    if p.deck:
+                        p.stock.append(self.pop_deck_top(p))
+                self.log(f"⚡ 【{card.name}】從牌組頂充能 +{cnt}！")
+            elif atype == "burn":
+                dmg = act.get("damage", 1)
+                self.log(f"🔥 【{card.name}】發動追加傷害：給予對手 {dmg} 點傷害！")
+                self.deal_damage(opp, dmg, source_text=f"{card.name} 效果傷害")
+            elif atype == "buff_self":
+                pwr = act.get("power", 1000)
+                card.temp_power += pwr
+                self.log(f"⚔️ 【{card.name}】本回合攻擊力 +{pwr}！")
+            elif atype == "buff_ally":
+                pwr = act.get("power", 1000)
+                ally_slots = [i for i in range(5) if p.stage[i] is not None]
+                if ally_slots:
+                    t_s = ally_slots[0] if p.is_ai else self.select_stage_slot_dialog(
+                        p, ally_slots, f"{card.name}：選擇 1 張角色攻擊力 +{pwr}"
+                    )
+                    if p.stage[t_s]:
+                        p.stage[t_s].temp_power += pwr
+                        self.log(f"⚔️ 【{card.name}】使【{p.stage[t_s].name}】本回合攻擊力 +{pwr}！")
+            elif atype == "kick_opp_to_clock" and target_opp_slot is not None and opp.stage[target_opp_slot]:
+                oc = opp.stage[target_opp_slot]
+                opp.stage[target_opp_slot] = None
+                oc.reset_stage_state()
+                opp.clock.append(oc)
+                self.log(f"⏱️ 【{card.name}】將被擊倒的【{oc.name}】直接送入對手時鐘區！")
+                self.check_level_up(opp)
+            elif atype == "kick_opp_to_memory" and target_opp_slot is not None and opp.stage[target_opp_slot]:
+                oc = opp.stage[target_opp_slot]
+                opp.stage[target_opp_slot] = None
+                oc.reset_stage_state()
+                opp.memory.append(oc)
+                self.log(f"🌌 【{card.name}】將被擊倒的【{oc.name}】放逐至對手回憶區！")
+            elif atype == "kick_opp_to_stock" and target_opp_slot is not None and opp.stage[target_opp_slot]:
+                oc = opp.stage[target_opp_slot]
+                opp.stage[target_opp_slot] = None
+                oc.reset_stage_state()
+                opp.stock.append(oc)
+                self.log(f"⚡ 【{card.name}】將被擊倒的【{oc.name}】送入對手能量區！")
+            elif atype == "reversal_bomb" and target_opp_slot is not None and opp.stage[target_opp_slot]:
+                oc = opp.stage[target_opp_slot]
+                if oc.base_level <= card.base_level:
+                    oc.state = "REVERSE"
+                    self.log(f"💥 【{card.name}】發動等級相殺！將對手的【{oc.name}】一併【倒置】！")
+        self.update_ui()
+
+    def _run_universal_timing(self, p: PlayerState, opp: PlayerState, card: CardInstance, timing: str, slot_idx: int = None, target_opp_slot: int = None):
+        if not card or not getattr(card, "parsed_abilities", None):
+            return
+        for ab in card.parsed_abilities:
+            if ab.get("category") == "AUTO" and ab.get("timing") == timing:
+                self._execute_universal_ability(p, opp, card, ab, slot_idx=slot_idx, target_opp_slot=target_opp_slot)
+
     def send_stage_to_wr(self, p: PlayerState, slot_idx: int, is_overwritten: bool = False):
         card = p.stage[slot_idx]
         if not card:
@@ -7323,6 +7830,25 @@ class WSBofuriGameFrame(tk.Frame):
                     p.stage[slot_idx] = card
                     self.log(f"♻️ {p.name} 支付 (1) 能量與 1 張手牌發動再登場，【{card.name}】橫置回到場上！")
                     self.update_ui()
+        else:
+            opp_wr = self.ai if p == self.player else self.player
+            self._run_universal_timing(p, opp_wr, card, "ON_STAGE_TO_WR", slot_idx=slot_idx)
+            # 萬用手牌安可 (hand_encore)
+            if not is_overwritten and p.stage[slot_idx] is None and any(ab.get("effect") == "hand_encore" for ab in getattr(card, "parsed_abilities", [])):
+                char_h = [c for c in p.hand if c.type == "CHAR"]
+                if char_h:
+                    do_he = True if p.is_ai else self.ask_yes_no_center(
+                        f"♻️ 手牌安可：【{card.name}】",
+                        f"是否將手牌 1 張角色放到休息室，使【{card.name}】以【橫置】狀態回到原位？"
+                    )
+                    if do_he:
+                        self.select_hand_discard(p, filter_fn=lambda x: x.type == "CHAR", prompt=f"{card.name} 手牌安可：請選擇捨棄 1 張角色")
+                        if card in p.waiting_room:
+                            p.waiting_room.remove(card)
+                        card.state = "REST"
+                        p.stage[slot_idx] = card
+                        self.log(f"♻️ {p.name} 發動手牌安可，【{card.name}】橫置回到場上！")
+                        self.update_ui()
 
         # WS 共通規則「3 能量安可（アンコール ［(3)］）」：當角色從舞台進休息室（非壓卡覆蓋）且尚未藉由其他安可回場時，若擁有 3 點以上能量，可支付 (3) 能量將該角色橫置放回原位！
         if not is_overwritten and p.stage[slot_idx] is None and len(p.stock) >= 3 and not self.game_over:
@@ -9120,6 +9646,10 @@ class WSBofuriGameFrame(tk.Frame):
                     healed = p.clock.pop()
                     p.waiting_room.append(healed)
                     self.log(f"💖 【{card.name}】登場回復 1 點傷害（移除：{healed.name}）！")
+        else:
+            # 萬用資料驅動 ON_PLAY 自動結算（支援所有從貓罐子匯入的新系列角色！）
+            opp = self.ai if p == self.player else self.player
+            self._run_universal_timing(p, opp, card, "ON_PLAY", slot_idx=slot_idx)
 
         self.update_ui()
         return True
@@ -9517,6 +10047,58 @@ class WSBofuriGameFrame(tk.Frame):
             card.clock_kick_on_reverse = True
             self.log("🎸 【喜多郁代】發動【起】能力：本回合攻擊力 +1000，並獲得『擊倒戰鬥對手時可將其放到時計區』！")
             self.update_ui()
+        else:
+            # 萬用資料驅動【起】能力結算（集中 Brainstorm / 橫置加攻）
+            act_abs = [ab for ab in getattr(card, "parsed_abilities", []) if ab.get("category") == "ACT"]
+            if not act_abs:
+                self.show_info_center("無起動能力", f"【{card.name}】沒有可於主要階段發動的【起】能力。")
+                return
+            ab = act_abs[0]
+            cost = ab.get("cost", {})
+            if not self._can_pay_universal_cost(self.player, cost, card):
+                self.show_info_center("無法支付代價", f"發動【{card.name}】的【起】能力代價不足（或此卡非正置狀態）！")
+                return
+            if not self._pay_universal_cost(self.player, cost, card, slot_idx, title=card.name):
+                return
+            self.trigger_act_used_bonus(self.player)
+            if ab.get("effect") == "brainstorm":
+                flip_n = ab.get("flip_count", 4)
+                cx_hits, _ = self.flip_brainstorm_cards(self.player, flip_n, f"【{card.name}】集中翻牌 ({flip_n} 張)")
+                if cx_hits > 0:
+                    rew = ab.get("reward", "search")
+                    if rew == "draw":
+                        self.draw_cards(self.player, cx_hits)
+                        self.log(f"✨ 【{card.name}】集中命中 {cx_hits} 張名場面，抽 {cx_hits} 張牌！")
+                    elif rew == "salvage":
+                        for h_i in range(cx_hits):
+                            cands = [c for c in self.player.waiting_room if c.type == "CHAR"]
+                            if cands:
+                                pk = self.choose_card_dialog(f"集中回收 ({h_i+1}/{cx_hits})：選擇休息室角色回手", cands, allow_cancel=True)
+                                if pk and pk in self.player.waiting_room:
+                                    self.player.waiting_room.remove(pk)
+                                    self.player.hand.append(pk)
+                    else:
+                        for h_i in range(cx_hits):
+                            cands = [c for c in self.player.deck if c.type == "CHAR"]
+                            if cands:
+                                pk = self.choose_card_dialog(f"集中檢索 ({h_i+1}/{cx_hits})：選擇牌組角色加手", cands, allow_cancel=True)
+                                if pk and pk in self.player.deck:
+                                    self.player.deck.remove(pk)
+                                    self.player.hand.append(pk)
+                        random.shuffle(self.player.deck)
+            elif ab.get("effect") == "act_buff":
+                pwr = ab.get("power", 1000)
+                if ab.get("target") == "ally":
+                    slots = [i for i in range(5) if self.player.stage[i] is not None]
+                    if slots:
+                        ts = self.select_stage_slot_dialog(self.player, slots, f"{card.name}：選擇 1 張角色攻擊力 +{pwr}")
+                        if self.player.stage[ts]:
+                            self.player.stage[ts].temp_power += pwr
+                            self.log(f"⚔️ 【{card.name}】使【{self.player.stage[ts].name}】本回合攻擊力 +{pwr}！")
+                else:
+                    card.temp_power += pwr
+                    self.log(f"⚔️ 【{card.name}】本回合攻擊力 +{pwr}！")
+            self.update_ui()
 
     # ------------------------------------------
     # 戰鬥引擎
@@ -9751,6 +10333,16 @@ class WSBofuriGameFrame(tk.Frame):
                     return
 
         # BFR/S78-089《大摯友 梅普露＆莎莉》被正打時的不倒置效果統一於防守方反擊步驟 (_handle_local_counter_step) 執行，確保單人與連線模式皆不會被狀態同步覆蓋
+
+        # 萬用資料驅動 ON_ATTACK 效果結算（針對非既有硬編碼特例的新系列卡片）
+        HARDCODED_ATK_IDS = {
+            "GA10/S131-019", "GA17/S131-010", "GA10/S131-002",
+            "BFR/S78-058", "BFR/S78-069", "BTR/W107-076", "BFR/S78-082"
+        }
+        if attacker.id not in HARDCODED_ATK_IDS:
+            self._run_universal_timing(atk_p, def_p, attacker, "ON_ATTACK", slot_idx=slot_idx)
+            if self.game_over:
+                return
 
         trig_times = 1
         if attacker.id == "GA10/S131-T09" and len(atk_p.stock) >= 1:
@@ -10089,6 +10681,37 @@ class WSBofuriGameFrame(tk.Frame):
                     f"⚡ {def_p.name} 發動反擊【獨有系列】，【{def_p.stage[t_slot].name}】攻擊力 +2500！"
                 )
                 self.update_ui()
+
+        # 萬用資料驅動『助太刀 (BACKUP)』支援（任何從貓罐子匯入的新系列助太刀角色皆可發動）
+        if not backup_blocked:
+            uni_backups = []
+            for c in def_p.hand:
+                if c.id in {"BTR/W107-T06", "GA02/S131-009", "BFR/S78-075"}:
+                    continue
+                for ab in getattr(c, "parsed_abilities", []):
+                    if ab.get("category") == "BACKUP":
+                        req_lv = ab.get("level", 1)
+                        st_cost = ab.get("cost", {}).get("stock", c.cost)
+                        if len(def_p.level_zone) >= req_lv and len(def_p.stock) >= st_cost:
+                            uni_backups.append((c, ab, st_cost))
+            if uni_backups:
+                b_card, b_ab, b_stock = uni_backups[0]
+                b_pwr = b_ab.get("power", 1500)
+                atk_pwr = self.get_effective_power(atk_p, attacker, slot_idx)
+                def_pwr = self.get_effective_power(def_p, defender, slot_idx)
+                do_ub = (def_pwr <= atk_pwr < (def_pwr + b_pwr)) if def_p.is_ai else self.ask_yes_no_center(
+                    f"🛡️ 反擊步驟：助太刀【{b_card.name}】",
+                    f"對手【{attacker.name}】(攻:{atk_pwr}) 正面攻擊我方【{defender.name}】(攻:{def_pwr})！\n"
+                    f"是否支付 ({b_stock}) 能量並捨棄手牌【{b_card.name}】，使【{defender.name}】本回合攻擊力 +{b_pwr}？"
+                )
+                if do_ub:
+                    self.pay_stock(def_p, b_stock)
+                    if b_card in def_p.hand:
+                        def_p.hand.remove(b_card)
+                        def_p.waiting_room.append(b_card)
+                    defender.temp_power += b_pwr
+                    self.log(f"🛡️ {def_p.name} 發動助太刀【{b_card.name}】，【{defender.name}】攻擊力 +{b_pwr}！")
+                    self.update_ui()
 
     def _finish_attack_after_trigger(
         self, atk_p, def_p, slot_idx, atk_type, on_complete, original_attacker=None
@@ -10452,6 +11075,18 @@ class WSBofuriGameFrame(tk.Frame):
                                 victor_p.deck.insert(0, top1)
                             else:
                                 victor_p.waiting_room.append(top1)
+
+        # 萬用資料驅動 ON_REVERSED (被倒置相殺) 與 ON_REVERSE_OPP (擊倒對手時連動/踢鐘/回手)
+        HARDCODED_REV_IDS = {
+            "BFR/S78-073", "BFR/S78-060", "GA13/S131-077",
+            "BFR/S78-081", "GA02/S131-003", "GA12/S131-013", "GA17/S131-017"
+        }
+        if target_c and target_c.id not in HARDCODED_REV_IDS and victor_p:
+            self._run_universal_timing(p, victor_p, target_c, "ON_REVERSED", slot_idx=slot_idx, target_opp_slot=victor_slot)
+        if victor_p and victor_slot is not None and victor_p.stage[victor_slot]:
+            v_card = victor_p.stage[victor_slot]
+            if v_card.id not in HARDCODED_REV_IDS:
+                self._run_universal_timing(victor_p, p, v_card, "ON_REVERSE_OPP", slot_idx=victor_slot, target_opp_slot=slot_idx)
 
     # ------------------------------------------
     # AI 慢速步進狀態機
@@ -13038,7 +13673,7 @@ class MainApp:
 
     def __init__(self, root):
         self.root = root
-        self.root.title("Weiß Schwarz 卡牌對戰模擬系統 — 防盾 BFR/S78・GA文庫 S131・孤獨搖滾 BTR/W107")
+        self.root.title("Weiß Schwarz 卡牌對戰模擬器")
         self.root.geometry("1600x950")
         self.root.configure(bg="#0d111a")
 
@@ -13252,8 +13887,11 @@ class MainApp:
         return total == 50 and cx_cnt <= 8 and max_base <= 4
 
     def get_deck_display_name(self, scode: str) -> str:
+        user_names = self.settings.get("user_deck_names") or {}
+        if scode in user_names:
+            return user_names[scode]
         if scode == "CUSTOM":
-            return "我的自訂卡組"
+            return "我的自訂卡組 1"
         return SERIES_LABELS.get(scode, scode)
 
     def _load_decks_book(self) -> dict:
@@ -13265,9 +13903,9 @@ class MainApp:
                 with open(self.decks_book_file, "r", encoding="utf-8") as f:
                     raw = json.load(f)
                 if isinstance(raw, dict):
-                    if "_active_series" in raw and (raw["_active_series"] in SERIES_DB or raw["_active_series"] == "CUSTOM"):
+                    if "_active_series" in raw:
                         self.active_series = raw["_active_series"]
-                    if "_ai_series" in raw and (raw["_ai_series"] in SERIES_DB or raw["_ai_series"] == "CUSTOM"):
+                    if "_ai_series" in raw:
                         self.ai_series = raw["_ai_series"]
                     for k, v in raw.items():
                         if not k.startswith("_") and isinstance(v, dict):
@@ -13309,7 +13947,7 @@ class MainApp:
         self._persist_decks_book()
 
     def set_active_series(self, scode: str):
-        if scode in SERIES_DB or scode == "CUSTOM":
+        if scode in SERIES_DB or scode in self.decks_book or scode == "CUSTOM":
             self.active_series = scode
             self.current_deck_recipe = self.get_series_deck(scode)
             self._cached_floating_deck_key = None
@@ -13317,7 +13955,7 @@ class MainApp:
             self._persist_decks_book()
 
     def set_ai_series(self, scode: str):
-        if scode in SERIES_DB or scode == "CUSTOM":
+        if scode in SERIES_DB or scode in self.decks_book or scode == "CUSTOM":
             self.ai_series = scode
             self._persist_decks_book()
 
@@ -13327,6 +13965,347 @@ class MainApp:
             self.current_frame.destroy()
             self.current_frame = None
 
+    def open_bottleneko_importer_modal(self, refresh_callback=None):
+        ff = self.get_font_family()
+        win = tk.Toplevel(self.root)
+        win.title("🌐 貓罐子 (BottleNeko) 全系列免組牌抓取 ＆ 20張分批匯入中心")
+        win.geometry("920x680")
+        win.configure(bg="#131926")
+        win.transient(self.root)
+        win.grab_set()
+
+        tk.Label(
+            win,
+            text="🌐 貓罐子 (BottleNeko) 全系列免組牌抓取 ／ 每次 20 張分批匯入中心",
+            bg="#131926",
+            fg="#ffd166",
+            font=(ff, 15, "bold"),
+        ).pack(pady=(12, 4))
+
+        tk.Label(
+            win,
+            text="不用自己先去貓罐子組牌！直接從下方搜尋貓罐子全系列清單（或貼上系列網址如 https://bottleneko.app/ws/series/172），\n即可選擇【一次抓完整個系列】或【每次穩定抓 20 張】，自動解析中文效果與高低版本卡圖！",
+            bg="#131926",
+            fg="#8ecae6",
+            font=(ff, 10),
+            justify=tk.LEFT,
+        ).pack(padx=20, pady=(0, 6), anchor="w")
+
+        # 區塊 A：貓罐子全系列目錄搜尋與點選
+        cat_frame = tk.Frame(win, bg="#1b2234", padx=12, pady=8, bd=1, relief=tk.SOLID)
+        cat_frame.pack(fill=tk.X, padx=20, pady=4)
+
+        top_cat_row = tk.Frame(cat_frame, bg="#1b2234")
+        top_cat_row.pack(fill=tk.X)
+
+        tk.Label(
+            top_cat_row,
+            text="步驟 1：從貓罐子載入全系列清單（或直接在下方輸入系列網址／編號）：",
+            bg="#1b2234",
+            fg="#ffd166",
+            font=(ff, 10, "bold"),
+        ).pack(side=tk.LEFT)
+
+        catalog_data = []
+        filtered_catalog = []
+
+        mid_cat_row = tk.Frame(cat_frame, bg="#1b2234")
+        mid_cat_row.pack(fill=tk.X, pady=(6, 2))
+
+        tk.Label(mid_cat_row, text="🔍 篩選系列名稱/代號：", bg="#1b2234", fg="white", font=(ff, 10)).pack(side=tk.LEFT)
+        var_filter = tk.StringVar()
+        ent_filter = tk.Entry(mid_cat_row, textvariable=var_filter, width=22, bg="#0d111a", fg="#06d6a0", insertbackground="white", font=(ff, 10))
+        ent_filter.pack(side=tk.LEFT, padx=6)
+
+        list_frame = tk.Frame(cat_frame, bg="#0d111a")
+        list_frame.pack(fill=tk.X, pady=4)
+        scrollbar_cat = tk.Scrollbar(list_frame, orient=tk.VERTICAL)
+        lst_series = tk.Listbox(
+            list_frame,
+            height=6,
+            bg="#0d111a",
+            fg="#ffffff",
+            selectbackground="#9b5de5",
+            selectforeground="#ffffff",
+            font=(ff, 10),
+            yscrollcommand=scrollbar_cat.set,
+            exportselection=False,
+        )
+        scrollbar_cat.config(command=lst_series.yview)
+        lst_series.pack(side=tk.LEFT, fill=tk.X, expand=True)
+        scrollbar_cat.pack(side=tk.RIGHT, fill=tk.Y)
+
+        # 區塊 B：目標網址／系列編號 與 分批進度控制
+        ctrl_frame = tk.Frame(win, bg="#1b2234", padx=12, pady=8, bd=1, relief=tk.SOLID)
+        ctrl_frame.pack(fill=tk.X, padx=20, pady=4)
+
+        row_url = tk.Frame(ctrl_frame, bg="#1b2234")
+        row_url.pack(fill=tk.X, pady=2)
+        tk.Label(row_url, text="步驟 2：目標系列網址 / 系列 ID / 牌組網址：", bg="#1b2234", fg="white", font=(ff, 10, "bold")).pack(side=tk.LEFT)
+        var_target = tk.StringVar(value="https://bottleneko.app/ws/series/172")
+        ent_target = tk.Entry(row_url, textvariable=var_target, width=48, bg="#0d111a", fg="#06d6a0", insertbackground="white", font=("Consolas", 11))
+        ent_target.pack(side=tk.LEFT, padx=8, fill=tk.X, expand=True)
+
+        row_batch = tk.Frame(ctrl_frame, bg="#1b2234")
+        row_batch.pack(fill=tk.X, pady=(6, 2))
+        tk.Label(row_batch, text="分批起始位置 (Offset)：", bg="#1b2234", fg="#8ecae6", font=(ff, 10)).pack(side=tk.LEFT)
+        var_offset = tk.IntVar(value=0)
+        spn_offset = tk.Spinbox(row_batch, from_=0, to=2000, increment=20, textvariable=var_offset, width=7, bg="#0d111a", fg="#ffd166", font=("Consolas", 11, "bold"))
+        spn_offset.pack(side=tk.LEFT, padx=6)
+
+        var_inc_high = tk.BooleanVar(value=True)
+        tk.Checkbutton(
+            row_batch,
+            text="同時收錄高版本異畫卡 (SP / SSP / OFR / SR)",
+            variable=var_inc_high,
+            bg="#1b2234",
+            fg="#ffd166",
+            selectcolor="#0d111a",
+            activebackground="#1b2234",
+            activeforeground="#ffd166",
+            font=(ff, 10, "bold"),
+        ).pack(side=tk.LEFT, padx=14)
+
+        lbl_batch_prog = tk.Label(row_batch, text="目前進度：尚未開始", bg="#1b2234", fg="#06d6a0", font=(ff, 10, "bold"))
+        lbl_batch_prog.pack(side=tk.RIGHT, padx=6)
+
+        # 區塊 C：執行紀錄 Log
+        log_box = tk.Text(win, height=9, bg="#0b0e14", fg="#e0e1dd", font=("Consolas", 10))
+        log_box.pack(fill=tk.BOTH, expand=True, padx=20, pady=6)
+        log_box.insert(
+            "1.0",
+            "💡 使用指南：\n"
+            "  • 方式 A（最推薦）：點擊上方【🔄 連線載入貓罐子全系列清單】，點選任一你想玩的系列，接著按【📦 分批抓 20 張】或【🚀 一次抓完整個系列】！\n"
+            "  • 方式 B：直接貼上貓罐子系列網址（如 https://bottleneko.app/ws/series/172）或牌組網址（如 https://bottleneko.app/ws/deck/wMI7n）。\n",
+        )
+
+        def _append_log(msg):
+            log_box.insert(tk.END, msg + "\n")
+            log_box.see(tk.END)
+            win.update_idletasks()
+
+        def _refresh_listbox(*_):
+            kw = var_filter.get().strip().lower()
+            lst_series.delete(0, tk.END)
+            filtered_catalog.clear()
+            for item in catalog_data:
+                disp = item["display"]
+                if not kw or kw in disp.lower() or kw in item["jp_name"].lower():
+                    filtered_catalog.append(item)
+                    lst_series.insert(tk.END, disp)
+
+        var_filter.trace_add("write", _refresh_listbox)
+
+        def _on_select_series( evt=None):
+            sel = lst_series.curselection()
+            if not sel:
+                return
+            idx = sel[0]
+            if 0 <= idx < len(filtered_catalog):
+                s_item = filtered_catalog[idx]
+                var_target.set(f"https://bottleneko.app/ws/series/{s_item['id']}")
+                var_offset.set(0)
+                lbl_batch_prog.config(text=f"已選擇：{s_item['name']} (準備從第 1 張開始)")
+
+        lst_series.bind("<<ListboxSelect>>", _on_select_series)
+
+        def _fetch_catalog():
+            _append_log("🌐 正在連線至 https://api.bottleneko.app/series 取得全部 WS 系列清單...")
+            try:
+                cats = BottleNekoImporter.fetch_all_series_catalog()
+                catalog_data.clear()
+                catalog_data.extend(cats)
+                _refresh_listbox()
+                _append_log(f"✅ 成功載入 {len(cats)} 個 WS 系列！請在上方列表點選或輸入關鍵字篩選。")
+            except Exception as e:
+                _append_log(f"❌ 載入系列清單失敗：{e}")
+
+        tk.Button(
+            top_cat_row,
+            text="🔄 連線載入貓罐子全系列清單 (170+系列)",
+            bg="#06d6a0",
+            fg="#000000",
+            font=(ff, 10, "bold"),
+            padx=12,
+            pady=2,
+            cursor="hand2",
+            command=_fetch_catalog,
+        ).pack(side=tk.RIGHT)
+
+        def _run_series_batch(limit_n: int):
+            raw_val = var_target.get().strip()
+            if not raw_val:
+                return
+            cur_off = int(var_offset.get() or 0)
+            try:
+                if "/ws/deck/" in raw_val or raw_val.startswith("{") or raw_val.startswith("["):
+                    res = BottleNekoImporter.import_from_url_or_json(raw_val, sets_dir="sets", log_callback=_append_log)
+                    self.img_mgr.load_local_images(only_missing=True)
+                    self.img_mgr.start_background_download()
+                    lbl_batch_prog.config(text=f"已完成牌組匯入 ({res['card_count']} 種)")
+                else:
+                    res = BottleNekoImporter.import_series_by_id(
+                        raw_val,
+                        sets_dir="sets",
+                        batch_offset=cur_off if limit_n > 0 else 0,
+                        batch_limit=limit_n,
+                        include_high_rarity=bool(var_inc_high.get()),
+                        log_callback=_append_log,
+                    )
+                    self.img_mgr.load_local_images(only_missing=True)
+                    self.img_mgr.start_background_download()
+                    if limit_n > 0:
+                        next_off = res["next_offset"]
+                        tot_av = res["total_available"]
+                        if next_off >= tot_av:
+                            var_offset.set(0)
+                            lbl_batch_prog.config(text=f"🎉 全系列 {tot_av}/{tot_av} 張已全數抓取完畢！")
+                            _append_log(f"🎉 恭喜！【{res['deck_name']}】全部 {tot_av} 張卡片已全數匯入完成！")
+                        else:
+                            var_offset.set(next_off)
+                            lbl_batch_prog.config(text=f"進度：{next_off} / {tot_av} 張（再按一次抓下 20 張）")
+                    else:
+                        lbl_batch_prog.config(text=f"🎉 全系列共 {res['total_in_file']} 張一次匯入完成！")
+                if refresh_callback:
+                    refresh_callback()
+            except Exception as e:
+                _append_log(f"❌ 匯入失敗：{e}")
+
+        btn_row = tk.Frame(win, bg="#131926")
+        btn_row.pack(fill=tk.X, padx=20, pady=8)
+
+        tk.Button(
+            btn_row,
+            text="📦 分批抓取 20 張 (自動推進 +20)",
+            bg="#ffd166",
+            fg="#000000",
+            font=(ff, 11, "bold"),
+            padx=16,
+            pady=6,
+            cursor="hand2",
+            command=lambda: _run_series_batch(20),
+        ).pack(side=tk.LEFT, padx=5)
+
+        tk.Button(
+            btn_row,
+            text="🚀 一次抓完整個系列 (全部卡片)",
+            bg="#06d6a0",
+            fg="#000000",
+            font=(ff, 11, "bold"),
+            padx=16,
+            pady=6,
+            cursor="hand2",
+            command=lambda: _run_series_batch(0),
+        ).pack(side=tk.LEFT, padx=5)
+
+        tk.Button(
+            btn_row,
+            text="🛠️ 萬用效果編譯＆除錯器",
+            bg="#118ab2",
+            fg="#ffffff",
+            font=(ff, 11, "bold"),
+            padx=14,
+            pady=6,
+            cursor="hand2",
+            command=self.open_effect_debugger_modal,
+        ).pack(side=tk.LEFT, padx=5)
+
+        tk.Button(
+            btn_row,
+            text="關閉視窗",
+            bg="#3a3f58",
+            fg="white",
+            font=(ff, 11, "bold"),
+            padx=14,
+            pady=6,
+            command=win.destroy,
+        ).pack(side=tk.RIGHT, padx=5)
+
+    def open_effect_debugger_modal(self):
+        ff = self.get_font_family()
+        win = tk.Toplevel(self.root)
+        win.title("🛠️ 萬用卡片效果編譯與 AST 除錯器 (Universal Effect Compiler & Debugger)")
+        win.geometry("860x620")
+        win.configure(bg="#131926")
+        win.transient(self.root)
+
+        tk.Label(
+            win,
+            text="🛠️ 萬用中文效果解析器 (ChineseEffectParser) 即時測試＆除錯工具",
+            bg="#131926",
+            fg="#ffd166",
+            font=(ff, 14, "bold"),
+        ).pack(pady=(12, 4))
+
+        tk.Label(
+            win,
+            text="選擇任一張現有卡片，或直接貼上任何 WS 繁體中文效果文，即可檢視系統自動編譯出的 AST 結構（無須手動寫死 if/elif）：",
+            bg="#131926",
+            fg="#8ecae6",
+            font=(ff, 10),
+        ).pack(padx=18, pady=(0, 6), anchor="w")
+
+        top_sel = tk.Frame(win, bg="#1b2234", padx=10, pady=8)
+        top_sel.pack(fill=tk.X, padx=18, pady=4)
+
+        tk.Label(top_sel, text="快速載入現有卡片測試：", bg="#1b2234", fg="white", font=(ff, 10, "bold")).pack(side=tk.LEFT)
+        sample_cids = sorted(list(CARD_DB.keys()))
+        var_cid = tk.StringVar(value=sample_cids[0] if sample_cids else "")
+        opt = tk.OptionMenu(top_sel, var_cid, *(sample_cids[:80] if sample_cids else [""]))
+        opt.config(bg="#2b3348", fg="#ffd166", font=(ff, 10))
+        opt.pack(side=tk.LEFT, padx=8)
+
+        panes = tk.Frame(win, bg="#131926")
+        panes.pack(fill=tk.BOTH, expand=True, padx=18, pady=6)
+
+        left_f = tk.Frame(panes, bg="#1b2234", padx=8, pady=8)
+        left_f.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=(0, 6))
+        tk.Label(left_f, text="📄 卡片中文效果原文（可自由修改測試）：", bg="#1b2234", fg="#ffd166", font=(ff, 10, "bold")).pack(anchor="w")
+        txt_raw = tk.Text(left_f, bg="#0d111a", fg="white", insertbackground="white", font=(ff, 11), wrap=tk.WORD)
+        txt_raw.pack(fill=tk.BOTH, expand=True, pady=4)
+
+        right_f = tk.Frame(panes, bg="#1b2234", padx=8, pady=8)
+        right_f.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=(6, 0))
+        tk.Label(right_f, text="⚙️ 編譯後的可執行 AST (parsed_abilities JSON)：", bg="#1b2234", fg="#06d6a0", font=(ff, 10, "bold")).pack(anchor="w")
+        txt_ast = tk.Text(right_f, bg="#0b0e14", fg="#06d6a0", font=("Consolas", 10), wrap=tk.WORD)
+        txt_ast.pack(fill=tk.BOTH, expand=True, pady=4)
+
+        def _compile_now(*_):
+            raw_text = txt_raw.get("1.0", tk.END).strip()
+            parsed = ChineseEffectParser.parse_card_effects(raw_text, "CHAR")
+            txt_ast.delete("1.0", tk.END)
+            txt_ast.insert("1.0", json.dumps(parsed, ensure_ascii=False, indent=2))
+
+        def _load_selected_card(*_):
+            cid = var_cid.get()
+            cinfo = CARD_DB.get(cid, {})
+            txt_raw.delete("1.0", tk.END)
+            txt_raw.insert("1.0", cinfo.get("text", cinfo.get("effect", "")))
+            _compile_now()
+
+        tk.Button(
+            top_sel,
+            text="載入此卡效果",
+            bg="#06d6a0",
+            fg="#000000",
+            font=(ff, 10, "bold"),
+            padx=10,
+            command=_load_selected_card,
+        ).pack(side=tk.LEFT, padx=4)
+
+        tk.Button(
+            top_sel,
+            text="⚡ 立即重新編譯 AST",
+            bg="#ffd166",
+            fg="#000000",
+            font=(ff, 10, "bold"),
+            padx=12,
+            command=_compile_now,
+        ).pack(side=tk.RIGHT, padx=4)
+
+        if sample_cids:
+            _load_selected_card()
+
     def show_main_menu(self):
         self.clear_current_frame()
         ff = self.get_font_family()
@@ -13335,7 +14314,7 @@ class MainApp:
         self.current_frame = menu
 
         self.sound_mgr.play_bgm("bgm_menu")
-        # 1. 全畫面《大師決鬥》風格背景圖（自動從玩家目前使用的出戰卡組隨機抽取 6 張卡片懸浮於背景）
+        # 1. 全畫面背景圖（自動從玩家目前使用的出戰卡組隨機抽取 6 張卡片懸浮於背景）
         bg_img = self.img_mgr.get_wallpaper_visual(
             self.settings.get("theme", "OCEAN"),
             self.settings.get("custom_bg_path", ""),
@@ -13348,14 +14327,23 @@ class MainApp:
         bg_lbl.image = bg_img
         bg_lbl.place(relx=0, rely=0, relwidth=1.0, relheight=1.0)
 
-        # 2. 頂部《Master Duel》風格玩家個人資訊橫條（頭像＋暱稱＋出戰卡組＋AI 速度設定摘要）
-        top_hud = tk.Frame(menu, bg="#131926", bd=2, relief=tk.RIDGE, padx=22, pady=8)
-        top_hud.place(relx=0.5, rely=0.06, anchor="center", width=1160)
+        # 2. 頂部玩家個人資訊橫條
+        top_hud = tk.Frame(
+            menu,
+            bg="#131926",
+            bd=2,
+            relief=tk.RIDGE,
+            padx=24,
+            pady=10,
+            highlightbackground="#2b3856",
+            highlightthickness=1,
+        )
+        top_hud.place(relx=0.5, rely=0.065, anchor="center", width=1120)
 
         cur_av_id = self.settings.get("avatar", "MAPLE")
         av_img = self.img_mgr.get_avatar_visual(
             cur_av_id,
-            size=62,
+            size=64,
             border_color="#06d6a0",
             custom_path=self.settings.get("custom_avatar_path", ""),
             is_active_turn=True,
@@ -13364,86 +14352,85 @@ class MainApp:
         )
         lbl_av = tk.Label(top_hud, image=av_img, bg="#131926", cursor="hand2")
         lbl_av.image = av_img
-        lbl_av.pack(side=tk.LEFT, padx=(4, 14))
+        lbl_av.pack(side=tk.LEFT, padx=(4, 16))
         lbl_av.bind("<Button-1>", lambda e: self.open_settings())
 
         p_info_col = tk.Frame(top_hud, bg="#131926")
         p_info_col.pack(side=tk.LEFT)
         tk.Label(
             p_info_col,
-            text=f"DUELIST：{self.settings.get('player_name', '玩家1')}",
+            text=f"玩家：{self.settings.get('player_name', '玩家1')}",
             bg="#131926",
             fg="#ffd166",
-            font=(ff, 15, "bold"),
+            font=(ff, 16, "bold"),
             anchor="w",
         ).pack(fill=tk.X)
         tk.Label(
             p_info_col,
-            text=f"目前出戰卡組：我的卡組（{self.get_deck_display_name(self.active_series)}）",
+            text=f"目前出戰卡組：{self.get_deck_display_name(self.active_series)}",
             bg="#131926",
             fg="#06d6a0",
-            font=(ff, 11, "bold"),
+            font=(ff, 12, "bold"),
             anchor="w",
-        ).pack(fill=tk.X)
+        ).pack(fill=tk.X, pady=(2, 0))
 
         right_status_col = tk.Frame(top_hud, bg="#131926")
         right_status_col.pack(side=tk.RIGHT, padx=6)
         tk.Label(
             right_status_col,
             text=(
-                f"AI 翻牌間隔：{self.settings.get('ai_flip_interval_sec', 2.0):.1f} 秒 ｜ "
-                f"判定停留：{self.settings.get('ai_flip_end_pause_sec', 3.5):.1f} 秒"
+                f"已收錄系列：{len(SERIES_DB)} 個 ｜ 總卡池：{len(CARD_DB)} 張 ｜ "
+                f"AI 翻牌：{self.settings.get('ai_flip_interval_sec', 2.0):.1f} 秒"
             ),
             bg="#1c2538",
             fg="#8ecae6",
             font=(ff, 10, "bold"),
-            padx=12,
-            pady=4,
+            padx=14,
+            pady=6,
             relief=tk.SOLID,
             bd=1,
-        ).pack(side=tk.RIGHT, padx=8)
+        ).pack(side=tk.RIGHT, padx=6)
 
-        # 3. 中央《Master Duel》雙欄主大廳面板（左側：我的卡組王牌卡立牌展示；右側：四大主選單指令按鈕）
+        # 3. 中央雙欄主大廳面板（移除多餘英文與舊三套宣傳字樣，乾淨高質感設計）
         center_hub = tk.Frame(
-            menu, bg="#151b29", bd=3, relief=tk.RIDGE, padx=42, pady=30
+            menu,
+            bg="#151b29",
+            bd=3,
+            relief=tk.RIDGE,
+            padx=46,
+            pady=32,
+            highlightbackground="#ffd166",
+            highlightthickness=1,
         )
-        center_hub.place(relx=0.5, rely=0.53, anchor="center")
+        center_hub.place(relx=0.5, rely=0.535, anchor="center")
 
         tk.Label(
             center_hub,
-            text="◆ WEISS SCHWARZ : MASTER DUEL SIMULATOR ◆",
+            text="◆ WEISS SCHWARZ 卡牌對戰模擬器 ◆",
             bg="#151b29",
             fg="#ffd166",
             font=(ff, 22, "bold"),
-        ).pack(pady=(0, 4))
-
-        tk.Label(
-            center_hub,
-            text="防盾 BFR/S78（梅普露）・ GA文庫 S131（小真晝＆伊蕾娜）・ 孤獨搖滾 BTR/W107（喜多郁代）",
-            bg="#151b29",
-            fg="#8ecae6",
-            font=(ff, 12, "bold"),
         ).pack(pady=(0, 18))
 
         hub_Mid = tk.Frame(center_hub, bg="#151b29")
         hub_Mid.pack(fill=tk.X, pady=4)
 
-        # 左欄：目前出戰卡組王牌卡展示框
+        # 左欄：目前出戰卡組王牌卡展示框（僅能從目前出戰卡組的 50 張牌裡面挑選王牌）
         showcase_box = tk.Frame(
-            hub_Mid, bg="#1b2336", bd=2, relief=tk.GROOVE, padx=22, pady=16
+            hub_Mid, bg="#1b2336", bd=2, relief=tk.GROOVE, padx=24, pady=18
         )
-        showcase_box.pack(side=tk.LEFT, padx=(0, 28), fill=tk.Y)
+        showcase_box.pack(side=tk.LEFT, padx=(0, 32), fill=tk.Y)
 
         tk.Label(
             showcase_box,
             text="★ 出戰卡組王牌 ★",
             bg="#1b2336",
             fg="#ffd166",
-            font=(ff, 12, "bold"),
+            font=(ff, 13, "bold"),
         ).pack(pady=(0, 8))
 
         ace_cid = self.get_series_ace_card_id(self.active_series)
-        ace_img = self.img_mgr.get_card_visual(ace_cid, 156, 218, is_selected=True)
+        ace_img = self.img_mgr.get_card_visual(ace_cid, 162, 226, is_selected=True)
         lbl_ace = tk.Label(
             showcase_box, image=ace_img, bg="#10141f", bd=2, relief=tk.SOLID, cursor="hand2"
         )
@@ -13454,36 +14441,38 @@ class MainApp:
         ace_name = CARD_DB.get(ace_cid, {}).get("name", ace_cid)
         tk.Label(
             showcase_box,
-            text=f"{ace_name}\n({self.get_deck_display_name(self.active_series)})",
+            text=f"{ace_name}\n【{self.get_deck_display_name(self.active_series)}】",
             bg="#1b2336",
             fg="#ffffff",
             font=(ff, 10, "bold"),
             justify=tk.CENTER,
-        ).pack(pady=(4, 4))
+            wraplength=190,
+        ).pack(pady=(6, 6))
 
         tk.Button(
             showcase_box,
-            text="★ 點此更換出戰王牌卡",
+            text="★ 從卡組挑選代表王牌",
             bg="#2b3348",
             fg="#ffd166",
             activebackground="#ffd166",
             activeforeground="#000000",
-            font=(ff, 9, "bold"),
-            padx=10,
-            pady=3,
+            font=(ff, 10, "bold"),
+            padx=12,
+            pady=4,
             cursor="hand2",
             command=lambda: self.open_ace_card_picker_modal(menu),
         ).pack(pady=(2, 0))
 
-        # 右欄：四大主功能按鈕（無亂碼 Emoji，採用乾淨高對比《大師決鬥》切角橫幅風格）
+        # 右欄：五大中文主選單按鈕（移除括號英文與多餘字樣）
         nav_col = tk.Frame(hub_Mid, bg="#151b29")
         nav_col.pack(side=tk.LEFT, fill=tk.Y)
 
         menu_buttons = [
-            ("▶  單 人 對 戰  (DUEL VS AI)", "選擇 AI 對手系列卡組進行單人決鬥", "#06d6a0", "#000000", self.open_ai_deck_select),
-            ("◆  雙 人 連 線  (ONLINE / LAN DUEL)", "建立房間或跨網連線與真人對手決鬥", "#f4a261", "#000000", self.open_lan_lobby),
-            ("■  設 定 我 的 卡 組  (DECK EDITOR)", "快速套用三大預設套牌或搜尋卡片自由混編", "#118ab2", "#ffffff", self.open_deck_builder),
-            ("★  遊 戲 設 定  (GAME SETTINGS)", "調整 AI 翻牌秒數・更換玩家頭像・上傳背景與字體", "#ffd166", "#000000", self.open_settings),
+            ("▶  單 人 對 戰", "選擇預設套牌或你自組的卡組作為 AI 對手進行決鬥", "#06d6a0", "#000000", self.open_ai_deck_select),
+            ("◆  雙 人 連 線", "建立房間或跨網連線與真人玩家進行決鬥", "#f4a261", "#000000", self.open_lan_lobby),
+            ("■  設 定 我 的 卡 組", "自由組建並保存多套卡組・切換系列卡池與高低版本", "#118ab2", "#ffffff", self.open_deck_builder),
+            ("🌐  貓罐子系列 ＆ 牌組匯入", "免組牌直接抓取貓罐子系列卡池・每次 20 張分批匯入", "#9b5de5", "#ffffff", lambda: self.open_bottleneko_importer_modal(refresh_callback=self.show_main_menu)),
+            ("★  遊 戲 設 定", "調整音樂與個別音效音量・更換卡套・玩家頭像與背景", "#ffd166", "#000000", self.open_settings),
         ]
 
         for main_txt, sub_txt, b_bg, b_fg, cmd_fn in menu_buttons:
@@ -13497,7 +14486,7 @@ class MainApp:
                 activebackground="#ffffff",
                 activeforeground="#000000",
                 font=(ff, 12, "bold"),
-                width=42,
+                width=40,
                 pady=7,
                 bd=0,
                 cursor="hand2",
@@ -13510,7 +14499,7 @@ class MainApp:
 
         self.lbl_webp_status = tk.Label(
             bottom_bar,
-            text="卡圖快取資料夾：./ws_card_images/ （已啟動 WS 官網自動背景抓圖，名場面自動橫置）",
+            text="卡圖資料夾：./ws_card_images/ （支援背景自動下載高清卡圖）",
             bg="#1b2234",
             fg="#adb5bd",
             font=(ff, 10),
@@ -13523,7 +14512,7 @@ class MainApp:
 
         tk.Button(
             bottom_bar,
-            text="↻ 重新掃描載入卡圖",
+            text="↻ 重新掃描卡圖",
             bg="#2b3348",
             fg="#ffd166",
             font=(ff, 10, "bold"),
@@ -13535,13 +14524,13 @@ class MainApp:
 
     def open_settings(self):
         self.clear_current_frame()
-        self.img_mgr.load_local_images()
+        self.img_mgr.load_local_images(only_missing=True)
         sf = SettingsFrame(self.root, self)
         sf.pack(fill=tk.BOTH, expand=True)
         self.current_frame = sf
 
     def open_ace_card_picker_modal(self, parent_frame):
-        """於主選單直接彈出『選擇我的出戰王牌卡』視窗，列出目前出戰卡組內的所有卡片供玩家自由指定"""
+        """於主選單彈出『從目前出戰卡組挑選王牌代表卡』視窗，只列出該卡組內已入編的卡片"""
         modal = tk.Frame(parent_frame, bg="#151b29", bd=3, relief=tk.RIDGE, padx=22, pady=18)
         modal.place(relx=0.5, rely=0.5, anchor="center", width=860, height=560)
         modal.lift()
@@ -13551,7 +14540,7 @@ class MainApp:
         top_r.pack(fill=tk.X, pady=(0, 8))
         tk.Label(
             top_r,
-            text=f"★ 選擇【{self.get_deck_display_name(self.active_series)}】的出戰王牌代表卡 ★",
+            text=f"★ 從【{self.get_deck_display_name(self.active_series)}】挑選代表王牌卡 ★",
             bg="#151b29",
             fg="#ffd166",
             font=(ff, 15, "bold"),
@@ -13569,7 +14558,7 @@ class MainApp:
 
         tk.Label(
             modal,
-            text="點擊下方任意一張卡片即可將其設為你的『出戰王牌』並展示於主選單大廳（也可在『設定我的卡組』中點擊 ☆王牌 設定）：",
+            text="點擊下方卡組內的任一張卡片，即可將其設為這副卡組的『出戰王牌』並展示於主選單：",
             bg="#151b29",
             fg="#8ecae6",
             font=(ff, 10, "bold"),
@@ -13587,8 +14576,7 @@ class MainApp:
         recipe = self.get_series_deck(self.active_series)
         deck_cids = [cid for cid, cnt in recipe.items() if cnt > 0 and cid in CARD_DB]
         if not deck_cids:
-            deck_cids = list(CARD_DB.keys())
-        # 依等級高到低排序，方便挑選王牌
+            deck_cids = list(CARD_DB.keys())[:20]
         deck_cids.sort(key=lambda k: (-CARD_DB[k].get("level", 0), -CARD_DB[k].get("power", 0)))
         cur_ace = self.get_series_ace_card_id(self.active_series)
 
@@ -13629,7 +14617,7 @@ class MainApp:
             b.pack()
 
     def open_ai_deck_select(self):
-        """點擊單人遊戲後，以《大師決鬥》角色頭像徽章列表選擇 AI 對手卡組（徹底消除 Windows Emoji 吃字破圖問題）"""
+        """單人決鬥出戰與 AI 對手選擇畫面：移除胡亂編排的匯入系列自動套牌，固定顯示內建三套預設套牌＋玩家自己組建保存的多套卡組！"""
         self.clear_current_frame()
         ff = self.get_font_family()
         sel_frame = tk.Frame(self.root, bg="#0d111a")
@@ -13648,44 +14636,164 @@ class MainApp:
         bg_lbl.image = bg_img
         bg_lbl.place(relx=0, rely=0, relwidth=1.0, relheight=1.0)
 
-        box = tk.Frame(sel_frame, bg="#151b29", bd=3, relief=tk.RIDGE, padx=46, pady=28)
-        box.place(relx=0.5, rely=0.5, anchor="center")
+        box = tk.Frame(
+            sel_frame,
+            bg="#151b29",
+            bd=3,
+            relief=tk.RIDGE,
+            padx=42,
+            pady=26,
+            highlightbackground="#ffd166",
+            highlightthickness=1,
+        )
+        box.place(relx=0.5, rely=0.5, anchor="center", width=780)
 
         tk.Label(
             box,
-            text="◆ 單人決鬥 — 請選擇 AI 對手與代表卡組 ◆",
+            text="◆ 單人對戰 — 選擇我方出戰卡組與 AI 對手 ◆",
             bg="#151b29",
             fg="#ffd166",
-            font=(ff, 20, "bold"),
-        ).pack(pady=(0, 6))
+            font=(ff, 19, "bold"),
+        ).pack(pady=(0, 12))
 
+        # 建立可用卡組清單（僅包含內建三套真實構築套牌 ＋ 玩家已保存的 50 張自訂卡組）
+        deck_options = [
+            ("預設套牌 1：防盾系列 (BFR/S78)", "BFR/S78"),
+            ("預設套牌 2：GA文庫 8箭地旅 (GA/S131)", "GA/S131"),
+            ("預設套牌 3：孤獨搖滾！ (BTR/W107)", "BTR/W107"),
+        ]
+        existing_keys = {k for _, k in deck_options}
+        user_names = self.settings.get("user_deck_names") or {}
+        for k, rec in self.decks_book.items():
+            if k.startswith("_") or k in existing_keys:
+                continue
+            if self._is_valid_recipe(rec):
+                disp = user_names.get(k) or self.get_deck_display_name(k)
+                deck_options.append((f"自訂卡組：{disp}", k))
+                existing_keys.add(k)
+
+        # 上方：可直接切換「我方出戰卡組」與「指定自訂卡組給 AI 對手使用」
+        custom_duel_bar = tk.Frame(box, bg="#1c2436", padx=16, pady=12, relief=tk.SOLID, bd=1)
+        custom_duel_bar.pack(fill=tk.X, pady=(0, 14))
+
+        row_my = tk.Frame(custom_duel_bar, bg="#1c2436")
+        row_my.pack(fill=tk.X, pady=3)
         tk.Label(
-            box,
-            text=f"我方出戰卡組：我的卡組（{self.get_deck_display_name(self.active_series)}） ｜ 玩家：{self.settings.get('player_name', '玩家1')}",
+            row_my,
+            text="⚔️ 我方出戰卡組：",
             bg="#1c2436",
             fg="#06d6a0",
-            font=(ff, 12, "bold"),
-            padx=18,
-            pady=7,
-            relief=tk.SOLID,
-            bd=1,
-        ).pack(fill=tk.X, pady=(0, 14))
+            font=(ff, 11, "bold"),
+            width=15,
+            anchor="w",
+        ).pack(side=tk.LEFT)
+
+        my_deck_var = tk.StringVar()
+        opt_labels = [lbl for lbl, _ in deck_options]
+        my_idx = 0
+        for idx_d, (_, k) in enumerate(deck_options):
+            if k == self.active_series:
+                my_idx = idx_d
+                break
+        if opt_labels:
+            my_deck_var.set(opt_labels[my_idx])
+
+        cmb_my = ttk.Combobox(
+            row_my,
+            textvariable=my_deck_var,
+            values=opt_labels,
+            state="readonly",
+            width=36,
+            font=(ff, 11, "bold"),
+        )
+        cmb_my.pack(side=tk.LEFT, padx=6)
+
+        def _on_change_my_deck(event=None):
+            sel_l = my_deck_var.get()
+            for l, k in deck_options:
+                if l == sel_l:
+                    self.set_active_series(k)
+                    break
+
+        cmb_my.bind("<<ComboboxSelected>>", _on_change_my_deck)
+
+        row_ai_custom = tk.Frame(custom_duel_bar, bg="#1c2436")
+        row_ai_custom.pack(fill=tk.X, pady=(6, 3))
+        tk.Label(
+            row_ai_custom,
+            text="🤖 指定 AI 使用卡組：",
+            bg="#1c2436",
+            fg="#ffd166",
+            font=(ff, 11, "bold"),
+            width=15,
+            anchor="w",
+        ).pack(side=tk.LEFT)
+
+        ai_deck_var = tk.StringVar()
+        ai_idx = 0
+        for idx_d, (_, k) in enumerate(deck_options):
+            if k == self.ai_series:
+                ai_idx = idx_d
+                break
+        if opt_labels:
+            ai_deck_var.set(opt_labels[ai_idx])
+
+        cmb_ai = ttk.Combobox(
+            row_ai_custom,
+            textvariable=ai_deck_var,
+            values=opt_labels,
+            state="readonly",
+            width=36,
+            font=(ff, 11, "bold"),
+        )
+        cmb_ai.pack(side=tk.LEFT, padx=6)
+
+        def _start_with_selected_ai_dropdown():
+            _on_change_my_deck()
+            sel_ai_l = ai_deck_var.get()
+            chosen_ai_k = "BFR/S78"
+            for l, k in deck_options:
+                if l == sel_ai_l:
+                    chosen_ai_k = k
+                    break
+            self._launch_single_with_ai(chosen_ai_k)
+
+        tk.Button(
+            row_ai_custom,
+            text="▶ 與此卡組開戰",
+            bg="#9b5de5",
+            fg="#ffffff",
+            font=(ff, 10, "bold"),
+            padx=12,
+            pady=3,
+            cursor="hand2",
+            command=_start_with_selected_ai_dropdown,
+        ).pack(side=tk.LEFT, padx=6)
+
+        # 下方：快速點選三大預設 AI 對手、隨機對手或鏡像對決（固定 5 個按鈕，絕不向下無限延伸！）
+        tk.Label(
+            box,
+            text="或直接點選下方代表對手立即開戰：",
+            bg="#151b29",
+            fg="#8ecae6",
+            font=(ff, 10, "bold"),
+        ).pack(anchor="w", pady=(0, 6))
 
         ai_choices = [
-            ("MAPLE", "【防盾系列 BFR/S78】梅普露＆莎莉＆蜜伊（大楓樹重裝防禦開機）", "BFR/S78", "#c92a3e", "#ffffff"),
-            ("MAHIRU", "【GA文庫 8箭地旅 GA/S131】小真晝＆伊蕾娜＆琉（記憶連鎖與雙重判定）", "GA/S131", "#e09f3e", "#000000"),
-            ("KITA", "【孤獨搖滾！ 8電源 BTR/W107】喜多郁代＆後藤一里（團結Band 8電源連動）", "BTR/W107", "#e56b8f", "#000000"),
-            ("ELAINA", "【隨機抽選對手】由系統隨機指派三大系列 AI 對手", "RANDOM", "#06d6a0", "#000000"),
-            ("SALLY", "【鏡像對決模式】讓 AI 使用與「我的卡組」完全相同的配比對戰", self.active_series, "#118ab2", "#ffffff"),
+            ("MAPLE", "【防盾系列 BFR/S78】梅普露＆莎莉＆蜜伊", "BFR/S78", "#c92a3e", "#ffffff"),
+            ("MAHIRU", "【GA文庫 8箭地旅 GA/S131】小真晝＆伊蕾娜＆琉", "GA/S131", "#e09f3e", "#000000"),
+            ("KITA", "【孤獨搖滾！ 8電源 BTR/W107】喜多郁代＆後藤一里", "BTR/W107", "#e56b8f", "#000000"),
+            ("ELAINA", "【隨機抽選對手】從三大預設套牌與自訂卡組隨機抽選 AI", "RANDOM", "#06d6a0", "#000000"),
+            ("SALLY", "【鏡像對決模式】讓 AI 使用與我方出戰卡組相同的配比", "MIRROR", "#118ab2", "#ffffff"),
         ]
 
         for av_key, label_txt, scode_val, bg_col, fg_col in ai_choices:
-            row_f = tk.Frame(box, bg="#252c42", bd=2, relief=tk.RAISED, padx=6, pady=4)
-            row_f.pack(fill=tk.X, pady=5)
+            row_f = tk.Frame(box, bg="#252c42", bd=2, relief=tk.RAISED, padx=6, pady=3)
+            row_f.pack(fill=tk.X, pady=4)
 
             av_im = self.img_mgr.get_avatar_visual(
                 av_key,
-                size=50,
+                size=46,
                 border_color="#ffd166",
                 preset_crops=self.settings.get("preset_avatar_crops"),
             )
@@ -13701,11 +14809,14 @@ class MainApp:
                 activebackground="#ffffff",
                 activeforeground="#000000",
                 font=(ff, 12, "bold"),
-                width=52,
-                pady=8,
+                width=48,
+                pady=6,
                 bd=0,
                 cursor="hand2",
-                command=lambda s=scode_val: self._launch_single_with_ai(s),
+                command=lambda s=scode_val: (
+                    _on_change_my_deck(),
+                    self._launch_single_with_ai(self.active_series if s == "MIRROR" else s),
+                ),
             ).pack(side=tk.LEFT, fill=tk.X, expand=True)
 
         tk.Button(
@@ -13718,11 +14829,14 @@ class MainApp:
             pady=6,
             cursor="hand2",
             command=self.show_main_menu,
-        ).pack(pady=(14, 0))
+        ).pack(pady=(12, 0))
 
     def _launch_single_with_ai(self, chosen_ai_code: str):
         if chosen_ai_code == "RANDOM":
             pool = [k for k in ["BFR/S78", "GA/S131", "BTR/W107"] if k in SERIES_DB]
+            for k, rec in self.decks_book.items():
+                if not k.startswith("_") and k not in pool and self._is_valid_recipe(rec):
+                    pool.append(k)
             chosen_ai_code = random.choice(pool) if pool else "BFR/S78"
         self.set_ai_series(chosen_ai_code)
         self.start_single_player()
@@ -13759,7 +14873,7 @@ class MainApp:
 
     def open_deck_builder(self):
         self.clear_current_frame()
-        self.img_mgr.load_local_images()
+        self.img_mgr.load_local_images(only_missing=True)
         builder = DeckBuilderFrame(self.root, self)
         builder.pack(fill=tk.BOTH, expand=True)
         self.current_frame = builder

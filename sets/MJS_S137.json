@@ -1,0 +1,37 @@
+{
+  "series_code": "MJS/S137",
+  "series_name": "MJS/S137",
+  "series_title": "魔法少女ノ魔女裁判 (MJS)",
+  "default_deck_recipe": {},
+  "cards": {
+    "MJS/S137-P01S": {
+      "id": "MJS/S137-P01S",
+      "base_id": "MJS/S137-P01S",
+      "series": "MJS/S137",
+      "name": "“魔女裁判”桜羽エマ",
+      "jp_name": "“魔女裁判”桜羽エマ",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 1,
+      "cost": 0,
+      "power": 3500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "魔法"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】 このカードが手札から舞台に置かれた時、あなたは0か1か2か3を宣言し、相手は自分の山札の上から1枚を公開する。そのカードがあなたの宣言したレベルのカードなら、そのターン中、このカードのパワーを＋5000。そうでないなら、あなたのアンコールステップの始めに、このカードを控え室に置く。（CXのレベルは0として扱う。公開したカードは元に戻す）",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/MJS_S137_P01S.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/MJS_S137_P01S.png",
+        "https://img.bottleneko.app/MJS_S137_P01S.png"
+      ],
+      "parsed_abilities": []
+    }
+  }
+}
