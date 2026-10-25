@@ -3,9 +3,9 @@
   "avatar": "CARD_CROP",
   "custom_avatar_path": "",
   "avatar_crop": {
-    "cid": "BFR/S78-P02",
+    "cid": "RZ/S116-004",
     "cx": 0.5,
-    "cy": 0.268,
+    "cy": 0.24,
     "zoom": 1.85
   },
   "preset_avatar_crops": {
@@ -58,7 +58,7 @@
     "CUSTOM": "BFR/S78-082SP"
   },
   "ai_flip_interval_sec": 2.0,
-  "ai_flip_end_pause_sec": 3.0,
+  "ai_flip_end_pause_sec": 2.0,
   "theme": "BOCCHI_NEON",
   "custom_bg_path": "",
   "bg_dim_percent": 25,

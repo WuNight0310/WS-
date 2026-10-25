@@ -1,5 +1,8 @@
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
 build/
 dist/
 *.spec
+artifacts/
+node_modules/
