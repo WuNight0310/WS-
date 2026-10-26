@@ -13,7 +13,7 @@ icon.filename = %(source.dir)s/maple_icon.png
 presplash.filename = %(source.dir)s/maple_icon.png
 presplash.color = #0d111a
 
-orientation = landscape
+orientation = all
 fullscreen = 1
 
 android.permissions = INTERNET,ACCESS_NETWORK_STATE,ACCESS_WIFI_STATE

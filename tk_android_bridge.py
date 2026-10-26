@@ -1294,10 +1294,11 @@ class Tk(Frame):
         super().__init__(None, **kw)
         Tk._active_instance = self
         self._title = "Weiß Schwarz"
-        self._w = 1600
-        self._h = 950
-        self._reqw = 1600
-        self._reqh = 950
+        self._portrait_mode = (os.environ.get("WS_PORTRAIT") == "1")
+        self._w = 1000 if self._portrait_mode else 1600
+        self._h = 1340 if self._portrait_mode else 950
+        self._reqw = self._w
+        self._reqh = self._h
         self._x = 0
         self._y = 0
         self._rootx = 0
@@ -1321,8 +1322,22 @@ class Tk(Frame):
             self._title = str(text)
         return self._title
 
+    def set_orientation_mode(self, portrait: bool, manual: bool = False):
+        if manual:
+            self._manual_orientation = bool(portrait)
+        elif getattr(self, "_manual_orientation", None) is not None:
+            portrait = self._manual_orientation
+        portrait = bool(portrait)
+        if getattr(self, "_portrait_mode", False) != portrait:
+            self._portrait_mode = portrait
+            self._w = 1000 if portrait else 1600
+            self._h = 1340 if portrait else 950
+            self._reqw = self._w
+            self._reqh = self._h
+            self._dirty = True
+
     def geometry(self, geom_str=None):
-        if geom_str:
+        if geom_str and not getattr(self, "_portrait_mode", False):
             try:
                 size_part = geom_str.split("+")[0]
                 w_s, h_s = size_part.lower().split("x")
@@ -1332,7 +1347,7 @@ class Tk(Frame):
                 self._reqh = self._h
             except Exception:
                 pass
-        return f"{self._w}x{self._h}"
+        return f"{self._w}x{self._h}" 
 
     def iconbitmap(self, default=None):
         pass
@@ -1401,8 +1416,12 @@ class Tk(Frame):
     def update_idletasks(self):
         self._dirty = False
         _compute_req_size(self)
-        self._w = 1600
-        self._h = 950
+        if getattr(self, "_portrait_mode", False):
+            self._w = 1000
+            self._h = 1340
+        else:
+            self._w = 1600
+            self._h = 950
         self._x = 0
         self._y = 0
         self._rootx = 0
@@ -1554,24 +1573,50 @@ def _compute_req_size(w: Widget):
     pack_kids = [c for c in w._children if c._exists and c._geom_mgr == "pack"]
     grid_kids = [c for c in w._children if c._exists and c._geom_mgr == "grid"]
 
+    is_portrait = getattr(w._root, "_portrait_mode", False)
     if pack_kids and w._pack_propagate:
-        # Compute required bounding box for packed children (reverse walk for cavity accumulation)
-        acc_w, acc_h = 0, 0
-        for c in reversed(pack_kids):
-            g = c._geom_opts
-            cpx1, cpx2 = _parse_pad(g.get("padx", 0))
-            cpy1, cpy2 = _parse_pad(g.get("pady", 0))
-            cw = c._reqw + cpx1 + cpx2 + int(g.get("ipadx", 0)) * 2
-            ch = c._reqh + cpy1 + cpy2 + int(g.get("ipady", 0)) * 2
-            side = g.get("side", TOP)
-            if side in (TOP, BOTTOM):
-                acc_h += ch
-                acc_w = max(acc_w, cw)
-            else:
-                acc_w += cw
-                acc_h = max(acc_h, ch)
-        req_w = acc_w + pad_w
-        req_h = acc_h + pad_h
+        # Check special Portrait 2-tier board row (left_zones + center_stage + right_zones)
+        if (
+            is_portrait
+            and len(pack_kids) == 3
+            and all(c._geom_opts.get("side", TOP) == LEFT for c in pack_kids)
+            and sum(c._reqw for c in pack_kids) > 960
+        ):
+            c0, c1, c2 = pack_kids
+            row_zones_w = c0._reqw + c2._reqw + 24
+            row_zones_h = max(c0._reqh, c2._reqh) + 6
+            stage_w = c1._reqw + 16
+            stage_h = c1._reqh + 6
+            req_w = max(row_zones_w, stage_w) + pad_w
+            req_h = row_zones_h + stage_h + pad_h
+        # Check special Portrait hand_outer (p_hud LEFT, br_hud RIGHT, hand_canvas LEFT expand)
+        elif (
+            is_portrait
+            and len(pack_kids) == 3
+            and isinstance(pack_kids[2], Canvas)
+            and pack_kids[0]._geom_opts.get("side") == LEFT
+            and pack_kids[1]._geom_opts.get("side") == RIGHT
+        ):
+            c_hud, c_br, c_canv = pack_kids
+            req_w = 980
+            req_h = c_canv._reqh + max(c_hud._reqh, c_br._reqh) + 24 + pad_h
+        else:
+            acc_w, acc_h = 0, 0
+            for c in reversed(pack_kids):
+                g = c._geom_opts
+                cpx1, cpx2 = _parse_pad(g.get("padx", 0))
+                cpy1, cpy2 = _parse_pad(g.get("pady", 0))
+                cw = c._reqw + cpx1 + cpx2 + int(g.get("ipadx", 0)) * 2
+                ch = c._reqh + cpy1 + cpy2 + int(g.get("ipady", 0)) * 2
+                side = g.get("side", TOP)
+                if side in (TOP, BOTTOM):
+                    acc_h += ch
+                    acc_w = max(acc_w, cw)
+                else:
+                    acc_w += cw
+                    acc_h = max(acc_h, ch)
+            req_w = acc_w + pad_w
+            req_h = acc_h + pad_h
     elif grid_kids and w._grid_propagate:
         col_w = {}
         row_h = {}
@@ -1646,8 +1691,98 @@ def _layout_children(w: Widget):
     cav_w = max(0, w._w - (bd * 2 + px1 + px2))
     cav_h = max(0, w._h - (bd * 2 + py1 + py2 + title_h))
 
-    # 1. Pack Children (with lookahead for expand=True)
+    # 1. Pack Children (with lookahead for expand=True and Portrait auto-stacking)
+    is_portrait = getattr(w._root, "_portrait_mode", False)
     pack_kids = [c for c in w._children if c._exists and c._geom_mgr == "pack"]
+
+    # Special Portrait layout A: 3-column battle board row (left_zones, center_stage, right_zones)
+    if (
+        is_portrait
+        and len(pack_kids) == 3
+        and all(c._geom_opts.get("side", TOP) == LEFT for c in pack_kids)
+        and sum(c._reqw for c in pack_kids) > 960
+    ):
+        c0, c1, c2 = pack_kids
+        zones_h = max(c0._reqh, c2._reqh)
+        stage_h = c1._reqh
+        # Determine if this is AI mat (#211620) or Player mat (#141e2b):
+        # AI mat puts back-zones on top and stage on bottom (facing center);
+        # Player mat puts stage on top (facing center) and back-zones on bottom!
+        is_ai_row = str(w._opts.get("bg", "")).lower() in ("#211620", "#291926")
+        if is_ai_row:
+            zy = cav_y + 2
+            sy = zy + zones_h + 6
+        else:
+            sy = cav_y + 2
+            zy = sy + stage_h + 6
+
+        # Center the two zone groups [c0, c2]
+        tot_zw = c0._reqw + c2._reqw + 24
+        zx0 = cav_x + max(0, (cav_w - tot_zw) // 2)
+        c0._x, c0._y, c0._w, c0._h = zx0, zy, c0._reqw, zones_h
+        c0._rootx, c0._rooty = w._rootx + c0._x, w._rooty + c0._y
+        _layout_children(c0)
+
+        c2._x, c2._y, c2._w, c2._h = zx0 + c0._reqw + 24, zy, c2._reqw, zones_h
+        c2._rootx, c2._rooty = w._rootx + c2._x, w._rooty + c2._y
+        _layout_children(c2)
+
+        # Center the stage group [c1]
+        sx0 = cav_x + max(0, (cav_w - c1._reqw) // 2)
+        c1._x, c1._y, c1._w, c1._h = sx0, sy, c1._reqw, stage_h
+        c1._rootx, c1._rooty = w._rootx + c1._x, w._rooty + c1._y
+        _layout_children(c1)
+        pack_kids = []
+
+    # Special Portrait layout B: hand_outer (p_hud + br_hud on top row, hand_canvas full width at bottom)
+    elif (
+        is_portrait
+        and len(pack_kids) == 3
+        and isinstance(pack_kids[2], Canvas)
+        and pack_kids[0]._geom_opts.get("side") == LEFT
+        and pack_kids[1]._geom_opts.get("side") == RIGHT
+    ):
+        c_hud, c_br, c_canv = pack_kids
+        top_h = max(c_hud._reqh, c_br._reqh)
+        ty = cav_y + 4
+        c_hud._x, c_hud._y, c_hud._w, c_hud._h = cav_x + 8, ty, c_hud._reqw, top_h
+        c_hud._rootx, c_hud._rooty = w._rootx + c_hud._x, w._rooty + c_hud._y
+        _layout_children(c_hud)
+
+        c_br._x, c_br._y, c_br._w, c_br._h = max(cav_x + c_hud._reqw + 16, cav_x + cav_w - c_br._reqw - 8), ty, c_br._reqw, top_h
+        c_br._rootx, c_br._rooty = w._rootx + c_br._x, w._rooty + c_br._y
+        _layout_children(c_br)
+
+        cy = ty + top_h + 4
+        canv_h = max(195, cav_h - (top_h + 10))
+        c_canv._x, c_canv._y, c_canv._w, c_canv._h = cav_x, cy, cav_w, canv_h
+        c_canv._rootx, c_canv._rooty = w._rootx + c_canv._x, w._rooty + c_canv._y
+        _layout_children(c_canv)
+        pack_kids = []
+
+    # Special Portrait layout C: top_hud_bar (Label LEFT, ai_hand_canvas LEFT expand, ai_hud RIGHT)
+    elif (
+        is_portrait
+        and len(pack_kids) == 3
+        and isinstance(pack_kids[0], Label)
+        and isinstance(pack_kids[1], Canvas)
+        and pack_kids[2]._geom_opts.get("side") == RIGHT
+    ):
+        c_lbl, c_fan, c_aihud = pack_kids
+        # Hide long tip label on narrow portrait top bar so AI hand fan + AI HUD fit side by side
+        c_lbl._x, c_lbl._y, c_lbl._w, c_lbl._h = 0, 0, 1, 1
+        c_lbl._rootx, c_lbl._rooty = w._rootx, w._rooty
+        hud_w = c_aihud._reqw
+        fan_w = max(320, cav_w - hud_w - 16)
+        c_fan._x, c_fan._y, c_fan._w, c_fan._h = cav_x + 4, cav_y + 4, fan_w, max(70, cav_h - 8)
+        c_fan._rootx, c_fan._rooty = w._rootx + c_fan._x, w._rooty + c_fan._y
+        _layout_children(c_fan)
+
+        c_aihud._x, c_aihud._y, c_aihud._w, c_aihud._h = cav_x + cav_w - hud_w - 4, cav_y + 4, hud_w, c_aihud._reqh
+        c_aihud._rootx, c_aihud._rooty = w._rootx + c_aihud._x, w._rooty + c_aihud._y
+        _layout_children(c_aihud)
+        pack_kids = []
+
     for idx, c in enumerate(pack_kids):
         g = c._geom_opts
         side = g.get("side", TOP)
@@ -1841,6 +1976,9 @@ def _layout_children(w: Widget):
         else:
             py = base_y
 
+        if is_portrait and pw > w._w - 16 and w is w._root or (is_portrait and pw > w._w - 16 and "relwidth" not in g):
+            pw = w._w - 16
+            px = (w._w - pw) // 2
         c._x = px
         c._y = py
         c._w = max(1, pw)
@@ -2160,9 +2298,10 @@ def _draw_widget_tree(surface: Image.Image, draw: ImageDraw.ImageDraw, w: Widget
 
 def render_root_to_pil(root: Tk) -> Image.Image:
     root.update_idletasks()
-    surface = Image.new("RGB", (1600, 950), color=_parse_color(root.cget("bg"), "#0d111a"))
+    rw, rh = int(root._w), int(root._h)
+    surface = Image.new("RGB", (rw, rh), color=_parse_color(root.cget("bg"), "#0d111a"))
     draw = ImageDraw.Draw(surface)
-    _draw_widget_tree(surface, draw, root, (0, 0, 1600, 950))
+    _draw_widget_tree(surface, draw, root, (0, 0, rw, rh))
 
     # Draw active Combobox dropdown overlay if open
     if root._active_dropdown is not None:
@@ -2210,6 +2349,13 @@ def render_root_to_pil(root: Tk) -> Image.Image:
     else:
         root._entry_helper_rects = []
 
+    # Draw 1-tap Portrait/Landscape toggle badge at top-left corner (x=4..96, y=2..26)
+    pil_f_tog = get_pil_font(("Microsoft JhengHei", 9, "bold"))
+    is_p = getattr(root, "_portrait_mode", False)
+    tog_txt = "↻ 切換橫屏" if is_p else "↻ 切換豎屏"
+    draw.rectangle([4, 2, 92, 24], fill="#252c42", outline="#ffd166", width=1)
+    draw.text((10, 4), sanitize_cjk_text(tog_txt), fill="#ffd166", font=pil_f_tog)
+
     root._last_frame_pil = surface
     return surface
 
@@ -2256,6 +2402,13 @@ def _find_scrollable_ancestor(w: Widget):
 
 def dispatch_pointer_down(root: Tk, rx: int, ry: int, double_click: bool = False):
     rx, ry = int(rx), int(ry)
+    # Check 1-tap Portrait/Landscape toggle badge at top-left corner (4..92, 2..24)
+    if 4 <= rx <= 92 and 2 <= ry <= 24:
+        root.set_orientation_mode(not getattr(root, "_portrait_mode", False), manual=True)
+        cb_recalc = getattr(root, "_on_manual_orient_change", None)
+        if callable(cb_recalc):
+            cb_recalc()
+        return
 
     # 0. Check if clicking inside the floating Entry helper bar
     for act_k, fw, (x1, y1, x2, y2) in list(getattr(root, "_entry_helper_rects", []) or []):
@@ -2505,6 +2658,7 @@ def run_kivy_android_host(main_app_cls):
             self._touch_scrolled = False
             self._kb = None
             self.tk_root._request_android_kb_fn = lambda fw: Clock.schedule_once(lambda dt: self._open_kb(fw), 0)
+            self.tk_root._on_manual_orient_change = lambda: Clock.schedule_once(lambda dt: self._update_rects(), 0)
 
             with self.canvas:
                 Color(0.05, 0.07, 0.10, 1.0)
@@ -2518,9 +2672,14 @@ def run_kivy_android_host(main_app_cls):
             self.bg_rect.pos = self.pos
             self.bg_rect.size = self.size
             ww, wh = max(1, self.width), max(1, self.height)
-            scale = min(ww / 1600.0, wh / 950.0)
-            vw = int(1600 * scale)
-            vh = int(950 * scale)
+            is_port = wh > ww
+            self.tk_root.set_orientation_mode(is_port, manual=False)
+            use_port = getattr(self.tk_root, "_portrait_mode", is_port)
+            tw = 1000.0 if use_port else 1600.0
+            th = 1340.0 if use_port else 950.0
+            scale = min(ww / tw, wh / th)
+            vw = int(tw * scale)
+            vh = int(th * scale)
             vx = int(self.x + (ww - vw) // 2)
             vy = int(self.y + (wh - vh) // 2)
             self._viewport = (vx, vy, vw, vh)
@@ -2531,11 +2690,13 @@ def run_kivy_android_host(main_app_cls):
             vx, vy, vw, vh = self._viewport
             if vw <= 0 or vh <= 0:
                 return (0, 0)
-            rx = int((sx - vx) * 1600.0 / vw)
+            tw = float(self.tk_root._w)
+            th = float(self.tk_root._h)
+            rx = int((sx - vx) * tw / vw)
             # Kivy y=0 is bottom, Tk y=0 is top
-            ry = int((vh - (sy - vy)) * 950.0 / vh)
-            rx = max(0, min(1599, rx))
-            ry = max(0, min(949, ry))
+            ry = int((vh - (sy - vy)) * th / vh)
+            rx = max(0, min(int(tw) - 1, rx))
+            ry = max(0, min(int(th) - 1, ry))
             return (rx, ry)
 
         def on_touch_down(self, touch):
@@ -2620,17 +2781,22 @@ def run_kivy_android_host(main_app_cls):
             self.tk_root._dirty = True
             return True
 
-        def push_frame_bytes(self, raw_bytes: bytes):
+        def push_frame_bytes(self, raw_bytes: bytes, size_wh=(1600, 950)):
             with self._frame_lock:
-                self._latest_bytes = raw_bytes
+                self._latest_bytes = (raw_bytes, size_wh)
 
         def sync_texture(self, dt):
-            raw = None
+            item = None
             with self._frame_lock:
                 if self._latest_bytes is not None:
-                    raw = self._latest_bytes
+                    item = self._latest_bytes
                     self._latest_bytes = None
-            if raw is not None:
+            if item is not None:
+                raw, (fw, fh) = item
+                if tuple(self.tex.size) != (fw, fh):
+                    self.tex = Texture.create(size=(fw, fh), colorfmt="rgb")
+                    self.tex.flip_vertical()
+                    self.fg_rect.texture = self.tex
                 self.tex.blit_buffer(raw, colorfmt="rgb", bufferfmt="ubyte")
                 self.canvas.ask_update()
 
@@ -2657,13 +2823,13 @@ def run_kivy_android_host(main_app_cls):
                 now = time.monotonic()
                 if was_dirty or (now - last_render_t[0] >= 0.08):
                     img = render_root_to_pil(self.tk_root)
-                    self.surface_widget.push_frame_bytes(img.tobytes())
+                    self.surface_widget.push_frame_bytes(img.tobytes(), img.size)
                     last_render_t[0] = now
 
             self.tk_root._process_pending_events = _hooked_process
             app = main_app_cls(self.tk_root)
             img = render_root_to_pil(self.tk_root)
-            self.surface_widget.push_frame_bytes(img.tobytes())
+            self.surface_widget.push_frame_bytes(img.tobytes(), img.size)
             self.tk_root.mainloop()
 
     WSMasterDuelAndroidApp().run()

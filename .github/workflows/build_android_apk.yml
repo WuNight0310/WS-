@@ -17,44 +17,69 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Remove Legacy Web Wrapper If Present
-        run: |
-          rm -rf android_apk_builder ws_master_duel_web_mobile.html
+      - name: Set up Java 17 (Required by Android Gradle Plugin 8.x)
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
 
-      - name: Install Buildozer & System Dependencies
+      - name: Clean Non-ASCII Desktop Helper Files & Bundle CJK Font
         run: |
+          rm -rf android_apk_builder ws_master_duel_web_mobile.html artifacts
+          rm -f *.bat win32_ico_builder.py ws_card_images/*.txt
+          python -c '
+          import os
+          for fn in os.listdir("."):
+              if not fn.isascii() and (fn.endswith(".py") or fn.endswith(".bat")):
+                  os.remove(fn)
+                  print("Removed desktop-only non-ASCII file:", fn)
+          '
           sudo apt-get update
           sudo apt-get install -y \
-            git zip unzip openjdk-17-jdk autoconf libtool pkg-config \
+            git zip unzip autoconf libtool pkg-config \
             zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake \
             libffi-dev libssl-dev automake libltdl-dev libjpeg-dev libpng-dev \
-            libfreetype6-dev fonts-noto-cjk
+            libfreetype6-dev fonts-droid-fallback
+          if [ -f "/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf" ]; then
+            cp "/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf" ./ws_font.ttf
+          fi
           python -m pip install --upgrade pip "setuptools<70" "wheel" "cython==0.29.36" "buildozer==1.5.0" virtualenv
 
-      - name: Bundle Traditional Chinese Font Fallback
-        run: |
-          if [ -f "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc" ]; then
-            cp "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc" ./ws_font.ttc
-          fi
-
-      - name: Cache Buildozer Android SDK/NDK & Python 3.11 Distribution
-        uses: actions/cache@v4
+      - name: Restore Buildozer Cache (SDK/NDK & Compiled Python 3.11)
+        uses: actions/cache/restore@v4
         with:
           path: |
             ~/.buildozer
-            .buildozer
-          key: ws-pure-py311-p4a-v4-${{ hashFiles('buildozer.spec') }}
+            .buildozer/android/platform
+          key: ws-pure-py311-p4a-v5-${{ runner.os }}
           restore-keys: |
+            ws-pure-py311-p4a-v5-
             ws-pure-py311-p4a-v4-
 
       - name: Compile Pure Python APK (main.py + engine.py + tk_android_bridge.py)
         run: |
+          echo "Using JAVA_HOME=$JAVA_HOME"
+          java -version
           set +o pipefail
-          yes | buildozer android debug
+          yes | buildozer android debug 2>&1 | tee buildozer.log
           set -o pipefail
+          if ! ls bin/*.apk >/dev/null 2>&1; then
+            echo "=== LAST 120 LINES OF BUILDOZER LOG ==="
+            tail -n 120 buildozer.log
+            exit 1
+          fi
           mkdir -p dist_apk
           cp bin/*.apk dist_apk/WS_MasterDuel_PurePython.apk
           ls -lh dist_apk/
+
+      - name: Always Save Buildozer Cache (Even If Interrupted)
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ~/.buildozer
+            .buildozer/android/platform
+          key: ws-pure-py311-p4a-v5-${{ runner.os }}-${{ github.run_id }}
 
       - name: Upload Android APK Artifact
         uses: actions/upload-artifact@v4
