@@ -13,7 +13,7 @@ icon.filename = %(source.dir)s/maple_icon.png
 presplash.filename = %(source.dir)s/maple_icon.png
 presplash.color = #0d111a
 
-orientation = all
+orientation = landscape
 fullscreen = 1
 
 android.permissions = INTERNET,ACCESS_NETWORK_STATE,ACCESS_WIFI_STATE
@@ -26,5 +26,5 @@ android.allow_backup = True
 p4a.branch = v2024.01.21
 
 [buildozer]
-log_level = 1
+log_level = 2
 warn_on_root = 0

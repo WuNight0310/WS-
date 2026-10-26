@@ -2668,15 +2668,25 @@ def run_kivy_android_host(main_app_cls):
 
             self.bind(pos=self._update_rects, size=self._update_rects)
 
+        def _is_rotated_90(self):
+            ww, wh = max(1, self.width), max(1, self.height)
+            use_port = bool(getattr(self.tk_root, "_portrait_mode", False))
+            return use_port and (ww > wh)
+
         def _update_rects(self, *args):
             self.bg_rect.pos = self.pos
             self.bg_rect.size = self.size
             ww, wh = max(1, self.width), max(1, self.height)
             is_port = wh > ww
             self.tk_root.set_orientation_mode(is_port, manual=False)
-            use_port = getattr(self.tk_root, "_portrait_mode", is_port)
-            tw = 1000.0 if use_port else 1600.0
-            th = 1340.0 if use_port else 950.0
+            use_port = bool(getattr(self.tk_root, "_portrait_mode", is_port))
+            if use_port and ww > wh:
+                # Portrait 1000x1340 rotated 90 deg CCW into 1340x1000 landscape window
+                tw, th = 1340.0, 1000.0
+            elif use_port:
+                tw, th = 1000.0, 1340.0
+            else:
+                tw, th = 1600.0, 950.0
             scale = min(ww / tw, wh / th)
             vw = int(tw * scale)
             vh = int(th * scale)
@@ -2690,6 +2700,12 @@ def run_kivy_android_host(main_app_cls):
             vx, vy, vw, vh = self._viewport
             if vw <= 0 or vh <= 0:
                 return (0, 0)
+            if self._is_rotated_90():
+                rot_x = int((sx - vx) * 1340.0 / vw)
+                rot_y = int((vh - (sy - vy)) * 1000.0 / vh)
+                rx = max(0, min(999, 1000 - 1 - rot_y))
+                ry = max(0, min(1339, rot_x))
+                return (rx, ry)
             tw = float(self.tk_root._w)
             th = float(self.tk_root._h)
             rx = int((sx - vx) * tw / vw)
@@ -2823,12 +2839,16 @@ def run_kivy_android_host(main_app_cls):
                 now = time.monotonic()
                 if was_dirty or (now - last_render_t[0] >= 0.08):
                     img = render_root_to_pil(self.tk_root)
+                    if self.surface_widget._is_rotated_90():
+                        img = img.transpose(Image.Transpose.ROTATE_90)
                     self.surface_widget.push_frame_bytes(img.tobytes(), img.size)
                     last_render_t[0] = now
 
             self.tk_root._process_pending_events = _hooked_process
             app = main_app_cls(self.tk_root)
             img = render_root_to_pil(self.tk_root)
+            if self.surface_widget._is_rotated_90():
+                img = img.transpose(Image.Transpose.ROTATE_90)
             self.surface_widget.push_frame_bytes(img.tobytes(), img.size)
             self.tk_root.mainloop()
 

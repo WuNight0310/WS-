@@ -51,8 +51,9 @@ jobs:
           path: |
             ~/.buildozer
             .buildozer/android/platform
-          key: ws-pure-py311-p4a-v5-${{ runner.os }}
+          key: ws-pure-py311-p4a-v6-${{ runner.os }}
           restore-keys: |
+            ws-pure-py311-p4a-v6-
             ws-pure-py311-p4a-v5-
             ws-pure-py311-p4a-v4-
 
@@ -61,11 +62,17 @@ jobs:
           echo "Using JAVA_HOME=$JAVA_HOME"
           java -version
           set +o pipefail
-          yes | buildozer android debug 2>&1 | tee buildozer.log
+          yes | buildozer android debug > buildozer.log 2>&1 &
+          BPID=$!
+          while kill -0 $BPID 2>/dev/null; do
+            grep -E "^# |\[INFO\]|BUILD SUCCESSFUL|FAILURE" buildozer.log | tail -n 3 || true
+            sleep 15
+          done
+          wait $BPID
           set -o pipefail
           if ! ls bin/*.apk >/dev/null 2>&1; then
-            echo "=== LAST 120 LINES OF BUILDOZER LOG ==="
-            tail -n 120 buildozer.log
+            echo "=== LAST 200 LINES OF BUILDOZER LOG ==="
+            tail -n 200 buildozer.log
             exit 1
           fi
           mkdir -p dist_apk
@@ -79,7 +86,7 @@ jobs:
           path: |
             ~/.buildozer
             .buildozer/android/platform
-          key: ws-pure-py311-p4a-v5-${{ runner.os }}-${{ github.run_id }}
+          key: ws-pure-py311-p4a-v6-${{ runner.os }}-${{ github.run_id }}
 
       - name: Upload Android APK Artifact
         uses: actions/upload-artifact@v4
