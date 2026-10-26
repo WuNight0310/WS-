@@ -23,23 +23,55 @@ jobs:
           distribution: 'temurin'
           java-version: 17
 
-      - name: Initialize Capacitor Android Project, Lock Landscape & Inject Maple APK Icon
+      - name: Bundle Card Images, Lock Immersive Landscape & Inject Maple APK Icon
         working-directory: ./android_apk_builder
         run: |
+          # 1. Copy local ws_card_images into www/ws_card_images so the APK has 100% built-in offline images
+          mkdir -p www/ws_card_images
+          if [ -d "../ws_card_images" ]; then
+            cp -r ../ws_card_images/* www/ws_card_images/ || true
+          fi
           npm install
           npx cap add android
-          # 1. Force Landscape orientation in AndroidManifest.xml
+          # 2. Force Landscape orientation in AndroidManifest.xml
           sed -i 's/android:name=".MainActivity"/android:name=".MainActivity" android:screenOrientation="sensorLandscape"/' android/app/src/main/AndroidManifest.xml
-          # 2. Inject user's Maple icon (maple_icon.png) into all Android mipmap directories so the APK has the Maple icon!
+          # 3. Enable Android Immersive Sticky Fullscreen (hide status bar & bottom navigation bar) in MainActivity.java
           python3 -m pip install pillow
           python3 - << 'PY'
-          import os, shutil
+          import os, glob, shutil
           from PIL import Image
+
+          for ma_path in glob.glob("android/app/src/main/java/**/MainActivity.java", recursive=True):
+              with open(ma_path, "r", encoding="utf-8") as f:
+                  code = f.read()
+              if "SYSTEM_UI_FLAG_IMMERSIVE_STICKY" not in code:
+                  immersive_hook = '''
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            getWindow().getDecorView().setSystemUiVisibility(
+                android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | android.view.View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
+                | android.view.View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+            );
+        }
+    }
+}'''
+                  idx = code.rfind("}")
+                  if idx != -1:
+                      code = code[:idx] + immersive_hook
+                      with open(ma_path, "w", encoding="utf-8") as f:
+                          f.write(code)
+                      print("Patched MainActivity.java for Immersive Sticky Fullscreen!")
+
           src_icon = "../maple_icon.png" if os.path.exists("../maple_icon.png") else ("../maple_angel_icon.png" if os.path.exists("../maple_angel_icon.png") else "")
           res_dir = "android/app/src/main/res"
           if src_icon and os.path.exists(res_dir):
               im = Image.open(src_icon).convert("RGBA")
-              # Remove adaptive vector XML folder so Android uses our transparent circular PNG icons directly
               anydpi = os.path.join(res_dir, "mipmap-anydpi-v26")
               if os.path.exists(anydpi):
                   shutil.rmtree(anydpi)
