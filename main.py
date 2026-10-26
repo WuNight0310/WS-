@@ -7,11 +7,22 @@ import socket
 import sys
 import threading
 import time
-import tkinter as tk
-from tkinter import filedialog, messagebox, scrolledtext, ttk
 import urllib.request
 import xml.etree.ElementTree as ET
-from PIL import Image, ImageDraw, ImageFont, ImageTk
+from PIL import Image, ImageDraw, ImageFont
+
+_IS_ANDROID = ("ANDROID_ARGUMENT" in os.environ) or ("ANDROID_PRIVATE" in os.environ) or (os.environ.get("WS_USE_ANDROID_BRIDGE") == "1")
+if not _IS_ANDROID:
+    try:
+        import tkinter as tk
+        from tkinter import filedialog, messagebox, scrolledtext, ttk
+        from PIL import ImageTk
+    except Exception:
+        _IS_ANDROID = True
+
+if _IS_ANDROID:
+    import tk_android_bridge as tk
+    from tk_android_bridge import filedialog, messagebox, scrolledtext, ttk, ImageTk
 
 if getattr(sys, "frozen", False):
     BASE_DIR = os.path.dirname(os.path.abspath(sys.executable))
@@ -893,12 +904,21 @@ class SoundManager:
         os.makedirs(self.audio_dir, exist_ok=True)
         self.current_bgm_key = None
         self._mci = None
+        self._kivy_SoundLoader = None
+        self._kivy_bgm_obj = None
+        self._kivy_sfx_cache = {}
         if os.name == "nt":
             try:
                 import ctypes
                 self._mci = ctypes.windll.winmm.mciSendStringW
             except Exception:
                 self._mci = None
+        elif _IS_ANDROID:
+            try:
+                from kivy.core.audio import SoundLoader
+                self._kivy_SoundLoader = SoundLoader
+            except Exception:
+                self._kivy_SoundLoader = None
         self.default_files = {}
         for k, _, fname in self.TRACK_KEYS:
             self.default_files[k] = os.path.join(self.audio_dir, fname)
@@ -1147,6 +1167,18 @@ class SoundManager:
             self._mci_cmd(f'open "{path}" type mpegvideo alias ws_bgm')
             self._mci_cmd(f"setaudio ws_bgm volume to {mci_vol}")
             self._mci_cmd("play ws_bgm repeat")
+        elif self._kivy_SoundLoader is not None:
+            try:
+                if self._kivy_bgm_obj is not None:
+                    self._kivy_bgm_obj.stop()
+                snd = self._kivy_SoundLoader.load(path)
+                if snd:
+                    snd.loop = True
+                    snd.volume = max(0.0, min(1.0, mci_vol / 1000.0))
+                    snd.play()
+                    self._kivy_bgm_obj = snd
+            except Exception:
+                pass
 
     def update_bgm_volume(self):
         if not self.app.settings.get("bgm_enabled", True):
@@ -1160,11 +1192,22 @@ class SoundManager:
             return
         if self._mci is not None:
             self._mci_cmd(f"setaudio ws_bgm volume to {mci_vol}")
+        elif self._kivy_bgm_obj is not None:
+            try:
+                self._kivy_bgm_obj.volume = max(0.0, min(1.0, mci_vol / 1000.0))
+            except Exception:
+                pass
 
     def stop_bgm(self):
         self.current_bgm_key = None
         if self._mci is not None:
             self._mci_cmd("close ws_bgm")
+        elif self._kivy_bgm_obj is not None:
+            try:
+                self._kivy_bgm_obj.stop()
+            except Exception:
+                pass
+            self._kivy_bgm_obj = None
 
     def play_sfx(self, sfx_key: str):
         if not self.app.settings.get("sfx_enabled", True):
@@ -1181,6 +1224,18 @@ class SoundManager:
             self._mci_cmd(f'open "{path}" type mpegvideo alias {alias}')
             self._mci_cmd(f"setaudio {alias} volume to {mci_vol}")
             self._mci_cmd(f"play {alias} from 0")
+        elif self._kivy_SoundLoader is not None:
+            try:
+                snd = self._kivy_sfx_cache.get(path)
+                if snd is None:
+                    snd = self._kivy_SoundLoader.load(path)
+                    if snd:
+                        self._kivy_sfx_cache[path] = snd
+                if snd:
+                    snd.volume = max(0.0, min(1.0, mci_vol / 1000.0))
+                    snd.play()
+            except Exception:
+                pass
 
 
 # ==========================================
@@ -1225,7 +1280,19 @@ class ImageManager:
                     f.write(f"{fname} --> {data['name']} ({cid})\n")
 
     def _load_font(self, size):
-        for fname in ["msjhbd.ttc", "msjh.ttc", "simhei.ttf", "arial.ttf"]:
+        for fname in [
+            os.path.join(BASE_DIR, "ws_font.ttf"),
+            os.path.join(BASE_DIR, "ws_font.ttc"),
+            "msjhbd.ttc",
+            "msjh.ttc",
+            "simhei.ttf",
+            "/system/fonts/NotoSansCJK-Bold.ttc",
+            "/system/fonts/NotoSansCJK-Regular.ttc",
+            "/system/fonts/DroidSansFallback.ttf",
+            "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
+            "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+            "arial.ttf",
+        ]:
             try:
                 return ImageFont.truetype(fname, size)
             except Exception:
@@ -15419,9 +15486,12 @@ class MainApp:
 
 
 def launch_game():
-    root = tk.Tk()
-    app = MainApp(root)
-    root.mainloop()
+    if _IS_ANDROID and hasattr(tk, "run_kivy_android_host") and os.environ.get("WS_HEADLESS_TEST") != "1":
+        tk.run_kivy_android_host(MainApp)
+    else:
+        root = tk.Tk()
+        app = MainApp(root)
+        root.mainloop()
 
 
 if __name__ == "__main__":
