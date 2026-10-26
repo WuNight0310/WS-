@@ -23,7 +23,7 @@ jobs:
           distribution: "temurin"
           java-version: "17"
 
-      - name: Clean Non-ASCII Desktop Helper Files & Bundle CJK Font
+      - name: Clean Non-ASCII Desktop Helper Files, Convert WebP to JPG & Bundle Full Font
         run: |
           rm -rf android_apk_builder ws_master_duel_web_mobile.html artifacts
           rm -f *.bat win32_ico_builder.py ws_card_images/*.txt
@@ -39,11 +39,38 @@ jobs:
             git zip unzip autoconf libtool pkg-config \
             zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake \
             libffi-dev libssl-dev automake libltdl-dev libjpeg-dev libpng-dev \
-            libfreetype6-dev fonts-droid-fallback
-          if [ -f "/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf" ]; then
-            cp "/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf" ./ws_font.ttf
+            libfreetype6-dev fonts-wqy-microhei fonts-wqy-zenhei
+
+          # Bundle WQY MicroHei (contains BOTH full ASCII A-Z/0-9 AND Traditional/Simplified Chinese + Japanese!)
+          if [ -f "/usr/share/fonts/truetype/wqy/wqy-microhei.ttc" ]; then
+            cp "/usr/share/fonts/truetype/wqy/wqy-microhei.ttc" ./ws_font.ttf
+          elif [ -f "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc" ]; then
+            cp "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc" ./ws_font.ttf
           fi
-          python -m pip install --upgrade pip "setuptools<70" "wheel" "cython==0.29.36" "buildozer==1.5.0" virtualenv
+
+          python -m pip install --upgrade pip "setuptools<70" "wheel" "cython==0.29.36" "buildozer==1.5.0" virtualenv pillow
+
+          # Convert bundled ws_card_images/*.webp to .jpg so Android p4a Pillow 8.4.0 (libjpeg) loads all card art natively
+          python -c '
+          from PIL import Image, ImageFont
+          import glob, os
+          if os.path.exists("ws_font.ttf"):
+              f = ImageFont.truetype("ws_font.ttf", 20)
+              notdef = list(f.getmask("\ufffd"))
+              print("Font check -> A:", list(f.getmask("A")) != notdef, "0:", list(f.getmask("0")) != notdef, "卡:", list(f.getmask("卡")) != notdef)
+          converted = 0
+          for wp in glob.glob("ws_card_images/*.webp"):
+              jp = wp[:-5] + ".jpg"
+              try:
+                  if not os.path.exists(jp):
+                      im = Image.open(wp).convert("RGB")
+                      im.save(jp, "JPEG", quality=88)
+                  os.remove(wp)
+                  converted += 1
+              except Exception as e:
+                  print("Skip webp:", wp, e)
+          print(f"Converted {converted} .webp card images to .jpg for Android Pillow 8.4.0")
+          '
 
       - name: Restore Buildozer Cache (SDK/NDK & Compiled Python 3.11)
         uses: actions/cache/restore@v4
@@ -64,12 +91,6 @@ jobs:
           SYS_SDK="/usr/local/lib/android/sdk"
           mkdir -p "$SDK_DIR/build-tools" "$SDK_DIR/platforms" "$SDK_DIR/licenses"
 
-          echo "Runner pre-installed build-tools in $SYS_SDK/build-tools:"
-          ls -la "$SYS_SDK/build-tools" 2>/dev/null || true
-          echo "Runner pre-installed platforms in $SYS_SDK/platforms:"
-          ls -la "$SYS_SDK/platforms" 2>/dev/null || true
-
-          # 1. Copy pre-installed platform-tools, android-33, and build-tools 33.x/34.x from GitHub runner SDK
           if [ -d "$SYS_SDK/platform-tools" ] && [ ! -d "$SDK_DIR/platform-tools" ]; then
             cp -r "$SYS_SDK/platform-tools" "$SDK_DIR/"
           fi
@@ -82,10 +103,8 @@ jobs:
             fi
           done
 
-          # 2. Use modern cmdline-tools sdkmanager (Java 17 compatible) to install exact 33.0.2 + android-33
           SYS_SDKMGR=$(find "$SYS_SDK/cmdline-tools" -name "sdkmanager" -type f 2>/dev/null | sort -V | tail -n 1)
           if [ -n "$SYS_SDKMGR" ]; then
-            echo "Installing SDK packages via modern sdkmanager: $SYS_SDKMGR"
             set +o pipefail
             yes | "$SYS_SDKMGR" --sdk_root="$SDK_DIR" "platform-tools" "platforms;android-33" "build-tools;33.0.2" || true
             yes | "$SYS_SDKMGR" --sdk_root="$SDK_DIR" --licenses || true
@@ -95,24 +114,15 @@ jobs:
             cp -rn "$SYS_SDK/licenses/"* "$SDK_DIR/licenses/" 2>/dev/null || true
           fi
 
-          # 3. Remove incompatible 35/36/37 build-tools ONLY if 33.x or 34.x is present
           if ls -d "$SDK_DIR/build-tools/33."* "$SDK_DIR/build-tools/34."* >/dev/null 2>&1; then
             rm -rf "$SDK_DIR/build-tools/35"* "$SDK_DIR/build-tools/36"* "$SDK_DIR/build-tools/37"*
-            # If 33.x is present, also remove 34.x so 33.x is strictly the highest
             if ls -d "$SDK_DIR/build-tools/33."* >/dev/null 2>&1; then
               rm -rf "$SDK_DIR/build-tools/34"*
             fi
           fi
 
-          echo "Final active build-tools in $SDK_DIR/build-tools:"
-          ls -la "$SDK_DIR/build-tools/"
-          echo "Final active platforms in $SDK_DIR/platforms:"
-          ls -la "$SDK_DIR/platforms/"
-
-          # 4. Remove any x86_64 C extension inside charset_normalizer so it uses pure Python on ARM64
           find .buildozer -path "*charset_normalizer*" -name "*.so" -delete 2>/dev/null || true
 
-          # 5. Configure global ~/.gradle/gradle.properties and p4a templates with 4GB Heap (fixes Issue #2984 CompressAssetsWorkAction OOM)
           mkdir -p "$HOME/.gradle"
           cat << 'EOF' > "$HOME/.gradle/gradle.properties"
           org.gradle.jvmargs=-Xmx4096m -XX:MaxMetaspaceSize=1024m -Dfile.encoding=UTF-8
@@ -135,12 +145,10 @@ jobs:
                       txt += "\nandroid.suppressUnsupportedCompileSdk=33,34,35\n"
                   with open(gp, "w", encoding="utf-8") as f:
                       f.write(txt)
-                  print("Patched Gradle heap in:", gp)
-              except Exception as e:
-                  print("Skip gp:", gp, e)
+              except Exception:
+                  pass
           '
 
-          # 6. Clean stale Gradle build cache inside dists/wsmasterduel
           rm -rf .buildozer/android/platform/build-arm64-v8a/dists/wsmasterduel/build
           rm -rf .buildozer/android/platform/build-arm64-v8a/dists/wsmasterduel/.gradle
 
@@ -175,7 +183,6 @@ jobs:
           set -o pipefail
           echo "Buildozer exited with code $BEXIT"
 
-          # If Buildozer failed at the final gradlew step, print the true error AND run direct Gradle repair!
           if ! ls bin/*.apk >/dev/null 2>&1; then
             echo "=== CLEANED BUILDOZER LOG (ANSI + ENV DUMPS STRIPPED) ==="
             python -c '
@@ -199,7 +206,6 @@ jobs:
           sdk_dir = os.path.expanduser("~/.buildozer/android/platform/android-sdk")
           bts = sorted(os.listdir(os.path.join(sdk_dir, "build-tools"))) if os.path.isdir(os.path.join(sdk_dir, "build-tools")) else ["33.0.2"]
           bt_ver = bts[-1] if bts else "33.0.2"
-          print("Using buildToolsVersion:", bt_ver)
 
           bg_path = os.path.join(dist, "build.gradle")
           if os.path.isfile(bg_path):
@@ -210,8 +216,6 @@ jobs:
                   bg = bg.replace("android {", "android {\n    aaptOptions {\n        noCompress \x27tar\x27, \x27mp3\x27, \x27so\x27\n    }")
               with open(bg_path, "w", encoding="utf-8") as f:
                   f.write(bg)
-              print("--- Patched build.gradle ---")
-              print(bg)
 
           gp_path = os.path.join(dist, "gradle.properties")
           with open(gp_path, "w", encoding="utf-8") as f:

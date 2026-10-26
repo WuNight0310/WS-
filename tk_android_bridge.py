@@ -26,6 +26,28 @@ import math
 import threading
 from PIL import Image, ImageDraw, ImageFont
 
+# Pillow < 9.1.0 (e.g. p4a Pillow 8.4.0 on Android) compatibility shims
+if not hasattr(Image, "Resampling"):
+    class _PillowResamplingShim:
+        NEAREST = getattr(Image, "NEAREST", 0)
+        BOX = getattr(Image, "BOX", 4)
+        BILINEAR = getattr(Image, "BILINEAR", 2)
+        HAMMING = getattr(Image, "HAMMING", 5)
+        BICUBIC = getattr(Image, "BICUBIC", 3)
+        LANCZOS = getattr(Image, "LANCZOS", getattr(Image, "ANTIALIAS", 1))
+    Image.Resampling = _PillowResamplingShim
+
+if not hasattr(Image, "Transpose"):
+    class _PillowTransposeShim:
+        FLIP_LEFT_RIGHT = getattr(Image, "FLIP_LEFT_RIGHT", 0)
+        FLIP_TOP_BOTTOM = getattr(Image, "FLIP_TOP_BOTTOM", 1)
+        ROTATE_90 = getattr(Image, "ROTATE_90", 2)
+        ROTATE_180 = getattr(Image, "ROTATE_180", 3)
+        ROTATE_270 = getattr(Image, "ROTATE_270", 4)
+        TRANSPOSE = getattr(Image, "TRANSPOSE", 5)
+        TRANSVERSE = getattr(Image, "TRANSVERSE", 6)
+    Image.Transpose = _PillowTransposeShim
+
 # ==========================================
 # Tkinter Constants
 # ==========================================
@@ -95,6 +117,8 @@ _CJK_FONT_PATHS = [
     # Linux / VM CJK fonts
     "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
     "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+    "/usr/share/fonts/truetype/wqy/wqy-microhei.ttc",
+    "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc",
     "/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf",
     # Windows fonts
     "C:/Windows/Fonts/msjhbd.ttc",
@@ -133,14 +157,27 @@ def get_pil_font(font_spec):
     if key in _FONT_CACHE:
         return _FONT_CACHE[key]
 
+    fallback_f = None
     for p in _CJK_FONT_PATHS:
         if os.path.exists(p):
             try:
                 f = ImageFont.truetype(p, px_size)
-                _FONT_CACHE[key] = f
-                return f
+                if fallback_f is None:
+                    fallback_f = f
+                # Verify font has BOTH ASCII ("A", "0") AND CJK ("卡") glyphs (rejects DroidSansFallbackFull.ttf)
+                notdef = list(f.getmask("\ufffd"))
+                if (
+                    list(f.getmask("A")) != notdef
+                    and list(f.getmask("0")) != notdef
+                    and list(f.getmask("卡")) != notdef
+                ):
+                    _FONT_CACHE[key] = f
+                    return f
             except Exception:
                 pass
+    if fallback_f is not None:
+        _FONT_CACHE[key] = fallback_f
+        return fallback_f
     f = ImageFont.load_default()
     _FONT_CACHE[key] = f
     return f
@@ -161,25 +198,39 @@ _EMOJI_MAP = {
     "👑": "★",
     "🔥": "◆",
     "⚡": "★",
-    "🔄": "↻",
+    "🔄": "▶",
+    "↻": "▶",
+    "↺": "◀",
     "⏰": "●",
+    "⏱": "●",
+    "⏳": "…",
     "💡": "●",
     "👁️": "●",
     "👁": "●",
     "🔙": "◀",
     "➕": "+",
-    "✏️": "✎",
-    "✏": "✎",
-    "🗑️": "✖",
-    "🗑": "✖",
+    "✏️": "※",
+    "✏": "※",
+    "✎": "※",
+    "🗑️": "×",
+    "🗑": "×",
+    "✖": "×",
+    "❌": "×",
+    "✔": "✓",
+    "✅": "✓",
+    "☑": "■",
+    "☐": "□",
+    "➔": "→",
+    "⏩": "▶▶",
+    "⚙": "◆",
+    "⌨": "■",
     "💾": "■",
-    "🧹": "↺",
+    "🧹": "◀",
     "🤖": "◆",
     "🎯": "◎",
-    "⏳": "…",
     "🎉": "★",
     "🏆": "★",
-    "💀": "✖",
+    "💀": "×",
 }
 
 

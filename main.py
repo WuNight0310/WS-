@@ -11,6 +11,28 @@ import urllib.request
 import xml.etree.ElementTree as ET
 from PIL import Image, ImageDraw, ImageFont
 
+# Pillow < 9.1.0 (e.g. p4a Pillow 8.4.0 on Android) compatibility shims
+if not hasattr(Image, "Resampling"):
+    class _PillowResamplingShim:
+        NEAREST = getattr(Image, "NEAREST", 0)
+        BOX = getattr(Image, "BOX", 4)
+        BILINEAR = getattr(Image, "BILINEAR", 2)
+        HAMMING = getattr(Image, "HAMMING", 5)
+        BICUBIC = getattr(Image, "BICUBIC", 3)
+        LANCZOS = getattr(Image, "LANCZOS", getattr(Image, "ANTIALIAS", 1))
+    Image.Resampling = _PillowResamplingShim
+
+if not hasattr(Image, "Transpose"):
+    class _PillowTransposeShim:
+        FLIP_LEFT_RIGHT = getattr(Image, "FLIP_LEFT_RIGHT", 0)
+        FLIP_TOP_BOTTOM = getattr(Image, "FLIP_TOP_BOTTOM", 1)
+        ROTATE_90 = getattr(Image, "ROTATE_90", 2)
+        ROTATE_180 = getattr(Image, "ROTATE_180", 3)
+        ROTATE_270 = getattr(Image, "ROTATE_270", 4)
+        TRANSPOSE = getattr(Image, "TRANSPOSE", 5)
+        TRANSVERSE = getattr(Image, "TRANSVERSE", 6)
+    Image.Transpose = _PillowTransposeShim
+
 _IS_ANDROID = ("ANDROID_ARGUMENT" in os.environ) or ("ANDROID_PRIVATE" in os.environ) or (os.environ.get("WS_USE_ANDROID_BRIDGE") == "1")
 if not _IS_ANDROID:
     try:
@@ -1280,6 +1302,7 @@ class ImageManager:
                     f.write(f"{fname} --> {data['name']} ({cid})\n")
 
     def _load_font(self, size):
+        fallback_f = None
         for fname in [
             os.path.join(BASE_DIR, "ws_font.ttf"),
             os.path.join(BASE_DIR, "ws_font.ttc"),
@@ -1288,16 +1311,27 @@ class ImageManager:
             "simhei.ttf",
             "/system/fonts/NotoSansCJK-Bold.ttc",
             "/system/fonts/NotoSansCJK-Regular.ttc",
-            "/system/fonts/DroidSansFallback.ttf",
             "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
             "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+            "/usr/share/fonts/truetype/wqy/wqy-microhei.ttc",
+            "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc",
+            "/system/fonts/DroidSansFallback.ttf",
             "arial.ttf",
         ]:
             try:
-                return ImageFont.truetype(fname, size)
+                f = ImageFont.truetype(fname, size)
+                if fallback_f is None:
+                    fallback_f = f
+                notdef = list(f.getmask("\ufffd"))
+                if (
+                    list(f.getmask("A")) != notdef
+                    and list(f.getmask("0")) != notdef
+                    and list(f.getmask("卡")) != notdef
+                ):
+                    return f
             except Exception:
                 pass
-        return ImageFont.load_default()
+        return fallback_f if fallback_f is not None else ImageFont.load_default()
 
     def get_base_filename(self, cid: str) -> str:
         return cid.replace("/", "_").replace("-", "_")
@@ -1502,15 +1536,22 @@ class ImageManager:
             cid, data = item
             base_name = self.get_base_filename(cid)
             webp_path = os.path.join(self.local_webp_dir, f"{base_name}.webp")
-            if os.path.exists(webp_path) and os.path.getsize(webp_path) > 100:
+            jpg_path = os.path.join(self.local_webp_dir, f"{base_name}.jpg")
+            if (os.path.exists(webp_path) and os.path.getsize(webp_path) > 100) or (os.path.exists(jpg_path) and os.path.getsize(jpg_path) > 100):
                 return None
             lower_id = base_name.lower()
             prefix_part = cid.split("/")[0].lower() if "/" in cid else "ga"
-            candidate_urls = [
-                f"https://img.bottleneko.app/w_900,f_webp&q_80/{base_name}.png",
-                f"https://img.bottleneko.app/{base_name}.png",
-                f"https://img.bottleneko.app/w_360,f_webp&q_80/{base_name}.png",
-            ]
+            if _IS_ANDROID:
+                candidate_urls = [
+                    f"https://img.bottleneko.app/{base_name}.png",
+                    f"https://img.bottleneko.app/w_900,f_webp&q_80/{base_name}.png",
+                ]
+            else:
+                candidate_urls = [
+                    f"https://img.bottleneko.app/w_900,f_webp&q_80/{base_name}.png",
+                    f"https://img.bottleneko.app/{base_name}.png",
+                    f"https://img.bottleneko.app/w_360,f_webp&q_80/{base_name}.png",
+                ]
             for u in list(data.get("parallel_urls", [])) + [data.get("url", "")]:
                 if u and u not in candidate_urls:
                     candidate_urls.append(u)
@@ -1551,7 +1592,10 @@ class ImageManager:
                                 raw_bytes = content
                     if raw_bytes:
                         img = Image.open(io.BytesIO(raw_bytes)).convert("RGB")
-                        img.save(webp_path, "WEBP", quality=92)
+                        try:
+                            img.save(webp_path, "WEBP", quality=92)
+                        except Exception:
+                            img.save(jpg_path, "JPEG", quality=88)
                         img = self._normalize_card_orientation(cid, img)
                         return (cid, img)
                 except Exception:
@@ -1600,7 +1644,10 @@ class ImageManager:
                                         raw_b = c_b
                             if raw_b:
                                 s_im = Image.open(io.BytesIO(raw_b)).convert("RGB")
-                                s_im.save(s_path, "WEBP", quality=92)
+                                try:
+                                    s_im.save(s_path, "WEBP", quality=92)
+                                except Exception:
+                                    s_im.save(s_path[:-5] + ".jpg", "JPEG", quality=88)
                                 self.sleeve_pil_cache[s_key] = s_im
                                 sleeve_updated = True
                                 break
@@ -14221,15 +14268,16 @@ class MainApp:
         _add_cid(self.get_series_ace_card_id(self.active_series))
         for cid in self.get_menu_floating_deck_cids():
             _add_cid(cid)
-        for cid in self.get_series_deck(self.active_series):
-            _add_cid(cid)
-        for scode in ("BFR/S78", "GA/S131", "BTR/W107", self.ai_series):
-            for cid in self.get_series_deck(scode):
+        if not _IS_ANDROID:
+            for cid in self.get_series_deck(self.active_series):
                 _add_cid(cid)
-        # 同時預載每個系列的第一頁 (前 24 張) 卡圖，確保點開『設定我的卡組』與切換系列時 0 秒瞬間顯示！
-        for scode, s_cards in SERIES_DB.items():
-            for cid in list(s_cards.keys())[:24]:
-                _add_cid(cid)
+            for scode in ("BFR/S78", "GA/S131", "BTR/W107", self.ai_series):
+                for cid in self.get_series_deck(scode):
+                    _add_cid(cid)
+            # 同時預載每個系列的第一頁 (前 24 張) 卡圖，確保點開『設定我的卡組』與切換系列時 0 秒瞬間顯示！
+            for scode, s_cards in SERIES_DB.items():
+                for cid in list(s_cards.keys())[:24]:
+                    _add_cid(cid)
 
         # 建立分步執行任務佇列
         tasks = []
@@ -14261,56 +14309,59 @@ class MainApp:
             bar_fill.place(relx=0, rely=0, relwidth=max(0.04, (idx_s + 1) / total_steps), relheight=1.0)
             self.root.update_idletasks()
 
-            if t_type == "CARDS":
-                for c in payload:
-                    self.img_mgr._get_or_load_pil(c)
-                    self.img_mgr.get_card_visual(c, 84, 118)
-                    self.img_mgr.get_card_visual(c, 122, 170)
-            elif t_type == "SLEEVES_AND_AVATARS":
-                self.img_mgr.get_sleeve_pil("WS_DEFAULT")
-                self.img_mgr.get_sleeve_pil("AMIAMI_21593")
-                cur_av_id = self.settings.get("avatar", "MAPLE")
-                self.img_mgr.get_avatar_visual(
-                    cur_av_id,
-                    size=64,
-                    border_color="#06d6a0",
-                    custom_path=self.settings.get("custom_avatar_path", ""),
-                    is_active_turn=True,
-                    crop_cfg=self.settings.get("avatar_crop") if cur_av_id == "CARD_CROP" else None,
-                    preset_crops=self.settings.get("preset_avatar_crops"),
-                )
-                for av_k in ("MAPLE", "MAHIRU", "KITA", "ELAINA", "SALLY"):
+            try:
+                if t_type == "CARDS":
+                    for c in payload:
+                        self.img_mgr._get_or_load_pil(c)
+                        self.img_mgr.get_card_visual(c, 84, 118)
+                        self.img_mgr.get_card_visual(c, 122, 170)
+                elif t_type == "SLEEVES_AND_AVATARS":
+                    self.img_mgr.get_sleeve_pil("WS_DEFAULT")
+                    self.img_mgr.get_sleeve_pil("AMIAMI_21593")
+                    cur_av_id = self.settings.get("avatar", "MAPLE")
                     self.img_mgr.get_avatar_visual(
-                        av_k,
-                        size=46,
-                        border_color="#ffd166",
+                        cur_av_id,
+                        size=64,
+                        border_color="#06d6a0",
+                        custom_path=self.settings.get("custom_avatar_path", ""),
+                        is_active_turn=True,
+                        crop_cfg=self.settings.get("avatar_crop") if cur_av_id == "CARD_CROP" else None,
                         preset_crops=self.settings.get("preset_avatar_crops"),
                     )
-                # 預載『遊戲設定』頁面全部 9 顆預設頭像按鈕 (size=54) 與卡套預覽圖，點進遊戲設定 0 延遲！
-                for av_k in self.img_mgr.AVATAR_PRESET_DEFAULTS:
-                    self.img_mgr.get_avatar_visual(
-                        av_k,
-                        size=54,
-                        border_color="#ffd166",
-                        preset_crops=self.settings.get("preset_avatar_crops"),
+                    if not _IS_ANDROID:
+                        for av_k in ("MAPLE", "MAHIRU", "KITA", "ELAINA", "SALLY"):
+                            self.img_mgr.get_avatar_visual(
+                                av_k,
+                                size=46,
+                                border_color="#ffd166",
+                                preset_crops=self.settings.get("preset_avatar_crops"),
+                            )
+                        for av_k in self.img_mgr.AVATAR_PRESET_DEFAULTS:
+                            self.img_mgr.get_avatar_visual(
+                                av_k,
+                                size=54,
+                                border_color="#ffd166",
+                                preset_crops=self.settings.get("preset_avatar_crops"),
+                            )
+                    self.img_mgr.get_sleeve_preview_visual(
+                        self.settings.get("sleeve_style", "WS_DEFAULT"),
+                        self.settings.get("custom_sleeve_path", ""),
+                        width=48,
+                        height=68,
                     )
-                self.img_mgr.get_sleeve_preview_visual(
-                    self.settings.get("sleeve_style", "WS_DEFAULT"),
-                    self.settings.get("custom_sleeve_path", ""),
-                    width=48,
-                    height=68,
-                )
-            elif t_type == "WALLPAPER":
-                self.img_mgr.get_wallpaper_visual(
-                    self.settings.get("theme", "OCEAN"),
-                    self.settings.get("custom_bg_path", ""),
-                    int(self.settings.get("bg_dim_percent", 65)),
-                    1600,
-                    950,
-                    floating_cids=self.get_menu_floating_deck_cids(),
-                )
-
-            self.root.after(12, lambda: _run_step(idx_s + 1))
+                elif t_type == "WALLPAPER":
+                    self.img_mgr.get_wallpaper_visual(
+                        self.settings.get("theme", "OCEAN"),
+                        self.settings.get("custom_bg_path", ""),
+                        int(self.settings.get("bg_dim_percent", 65)),
+                        1600,
+                        950,
+                        floating_cids=self.get_menu_floating_deck_cids(),
+                    )
+            except Exception as e:
+                print("Preload step warning:", e)
+            finally:
+                self.root.after(12, lambda: _run_step(idx_s + 1))
 
         self.root.after(20, lambda: _run_step(0))
 
