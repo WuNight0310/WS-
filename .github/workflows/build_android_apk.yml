@@ -37,13 +37,16 @@ jobs:
           path: |
             ~/.buildozer
             .buildozer
-          key: ws-pure-python-p4a-v2-${{ hashFiles('buildozer.spec') }}
+          key: ws-pure-python-p4a-v3-${{ hashFiles('buildozer.spec') }}
           restore-keys: |
+            ws-pure-python-p4a-v3-
             ws-pure-python-p4a-v2-
 
       - name: Compile Pure Python APK (main.py + engine.py + tk_android_bridge.py)
         run: |
+          set +o pipefail
           yes | buildozer android debug
+          set -o pipefail
           mkdir -p dist_apk
           cp bin/*.apk dist_apk/WS_MasterDuel_PurePython.apk
           ls -lh dist_apk/
