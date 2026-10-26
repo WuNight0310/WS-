@@ -51,39 +51,40 @@ jobs:
           path: |
             ~/.buildozer
             .buildozer/android/platform
-          key: ws-pure-py311-p4a-v7-${{ runner.os }}
+          key: ws-pure-py311-p4a-v8-${{ runner.os }}
           restore-keys: |
+            ws-pure-py311-p4a-v8-
             ws-pure-py311-p4a-v7-
             ws-pure-py311-p4a-v6-
-            ws-pure-py311-p4a-v5-
 
-      - name: Lock Android SDK Build-Tools to 33.0.2 (Prevent Broken 37.0.0)
+      - name: Provision Android SDK 33 & Build-Tools 33.0.2 (Remove 37.0.0)
         run: |
           SDK_DIR="$HOME/.buildozer/android/platform/android-sdk"
-          if [ -d "$SDK_DIR" ]; then
-            echo "Found cached Android SDK at $SDK_DIR, locking build-tools to 33.0.2..."
-            rm -rf "$SDK_DIR/build-tools/34"* "$SDK_DIR/build-tools/35"* "$SDK_DIR/build-tools/36"* "$SDK_DIR/build-tools/37"*
-            # sdkmanager in tools/bin requires Java 8 to run
-            JAVA8_DIR="${JAVA_HOME_8_X64:-/usr/lib/jvm/temurin-8-jdk-amd64}"
-            if [ -x "$SDK_DIR/tools/bin/sdkmanager" ]; then
-              set +o pipefail
-              JAVA_HOME="$JAVA8_DIR" PATH="$JAVA8_DIR/bin:$PATH" yes | "$SDK_DIR/tools/bin/sdkmanager" "platform-tools" "platforms;android-33" "build-tools;33.0.2" || true
-              JAVA_HOME="$JAVA8_DIR" PATH="$JAVA8_DIR/bin:$PATH" yes | "$SDK_DIR/tools/bin/sdkmanager" --licenses || true
-              set -o pipefail
-            fi
-            ls -la "$SDK_DIR/build-tools/" || true
-            if [ -d "$SDK_DIR/build-tools/33.0.2" ]; then
-              python -c '
-          with open("buildozer.spec", "r") as f:
-              s = f.read()
-          if "android.skip_update" not in s:
-              s = s.replace("android.accept_sdk_license = True", "android.accept_sdk_license = True\nandroid.skip_update = True")
-          with open("buildozer.spec", "w") as f:
-              f.write(s)
-          print("Enabled android.skip_update = True in buildozer.spec")
-          '
-            fi
+          mkdir -p "$SDK_DIR/build-tools" "$SDK_DIR/platforms" "$SDK_DIR/licenses"
+          # Delete any incompatible 34/35/36/37 build-tools downloaded previously
+          rm -rf "$SDK_DIR/build-tools/34"* "$SDK_DIR/build-tools/35"* "$SDK_DIR/build-tools/36"* "$SDK_DIR/build-tools/37"*
+
+          # Use GitHub runner's modern cmdline-tools sdkmanager (Java 17 compatible!) to install exact 33.0.2 + android-33
+          SYS_SDK="/usr/local/lib/android/sdk"
+          SYS_SDKMGR=$(find "$SYS_SDK" -name "sdkmanager" 2>/dev/null | head -n 1)
+          if [ -n "$SYS_SDKMGR" ]; then
+            echo "Using system sdkmanager: $SYS_SDKMGR"
+            set +o pipefail
+            yes | "$SYS_SDKMGR" --sdk_root="$SDK_DIR" "platform-tools" "platforms;android-33" "build-tools;33.0.2" || true
+            yes | "$SYS_SDKMGR" --sdk_root="$SDK_DIR" --licenses || true
+            set -o pipefail
           fi
+
+          # Also copy licenses from system SDK if present
+          if [ -d "$SYS_SDK/licenses" ]; then
+            cp -rn "$SYS_SDK/licenses/"* "$SDK_DIR/licenses/" 2>/dev/null || true
+          fi
+
+          # Ensure aidl and aapt exist in build-tools/33.0.2
+          echo "Installed build-tools in $SDK_DIR/build-tools:"
+          ls -la "$SDK_DIR/build-tools/"
+
+          # Fix any cached build.gradle that had 37.0.0 written into it
           find .buildozer -name "build.gradle" -exec sed -i 's/37\.0\.0/33.0.2/g' {} + 2>/dev/null || true
 
       - name: Compile Pure Python APK (main.py + engine.py + tk_android_bridge.py)
@@ -96,7 +97,7 @@ jobs:
           BPID=$!
           while kill -0 $BPID 2>/dev/null; do
             grep -E "^# |\[INFO\]|BUILD SUCCESSFUL|FAILURE" buildozer.log | tail -n 3 || true
-            sleep 15
+            sleep 10
           done
           wait $BPID
           BEXIT=$?
@@ -104,35 +105,9 @@ jobs:
           set -o pipefail
           echo "Buildozer exited with code $BEXIT"
 
-          # If first run downloaded 37.0.0 because SDK was not cached yet, replace 37.0.0 with 33.0.2 and re-run apk packaging!
-          SDK_DIR="$HOME/.buildozer/android/platform/android-sdk"
-          if ! ls bin/*.apk >/dev/null 2>&1 && [ -d "$SDK_DIR/build-tools/37.0.0" ]; then
-            echo "Replacing newly downloaded build-tools 37.0.0 with 33.0.2 and retrying APK packaging..."
-            rm -rf "$SDK_DIR/build-tools/34"* "$SDK_DIR/build-tools/35"* "$SDK_DIR/build-tools/36"* "$SDK_DIR/build-tools/37"*
-            JAVA8_DIR="${JAVA_HOME_8_X64:-/usr/lib/jvm/temurin-8-jdk-amd64}"
-            set +o pipefail
-            JAVA_HOME="$JAVA8_DIR" PATH="$JAVA8_DIR/bin:$PATH" yes | "$SDK_DIR/tools/bin/sdkmanager" "platform-tools" "platforms;android-33" "build-tools;33.0.2" || true
-            JAVA_HOME="$JAVA8_DIR" PATH="$JAVA8_DIR/bin:$PATH" yes | "$SDK_DIR/tools/bin/sdkmanager" --licenses || true
-            set -o pipefail
-            find .buildozer -name "build.gradle" -exec sed -i 's/37\.0\.0/33.0.2/g' {} + 2>/dev/null || true
-            python -c '
-          with open("buildozer.spec", "r") as f:
-              s = f.read()
-          if "android.skip_update" not in s:
-              s = s.replace("android.accept_sdk_license = True", "android.accept_sdk_license = True\nandroid.skip_update = True")
-          with open("buildozer.spec", "w") as f:
-              f.write(s)
-          '
-            set +e
-            set +o pipefail
-            yes | buildozer android debug >> buildozer.log 2>&1
-            set -e
-            set -o pipefail
-          fi
-
           if ! ls bin/*.apk >/dev/null 2>&1; then
-            echo "=== LAST 200 LINES OF BUILDOZER LOG ==="
-            tail -n 200 buildozer.log
+            echo "=== ACTUAL ERROR LOG (EXCLUDING # ENVIRONMENT DUMP) ==="
+            grep -v "^#     " buildozer.log | tail -n 180
             exit 1
           fi
           mkdir -p dist_apk
@@ -146,7 +121,7 @@ jobs:
           path: |
             ~/.buildozer
             .buildozer/android/platform
-          key: ws-pure-py311-p4a-v7-${{ runner.os }}-${{ github.run_id }}
+          key: ws-pure-py311-p4a-v8-${{ runner.os }}-${{ github.run_id }}
 
       - name: Upload Android APK Artifact
         uses: actions/upload-artifact@v4
