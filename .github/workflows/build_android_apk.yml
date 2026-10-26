@@ -51,52 +51,122 @@ jobs:
           path: |
             ~/.buildozer
             .buildozer/android/platform
-          key: ws-pure-py311-p4a-v8-${{ runner.os }}
+          key: ws-pure-py311-p4a-v9-${{ runner.os }}
           restore-keys: |
+            ws-pure-py311-p4a-v9-
             ws-pure-py311-p4a-v8-
             ws-pure-py311-p4a-v7-
             ws-pure-py311-p4a-v6-
 
-      - name: Provision Android SDK 33 & Build-Tools 33.0.2 (Remove 37.0.0)
+      - name: Provision Android SDK 33, Build-Tools 33.0.2 & Gradle 4GB Heap
         run: |
           SDK_DIR="$HOME/.buildozer/android/platform/android-sdk"
-          mkdir -p "$SDK_DIR/build-tools" "$SDK_DIR/platforms" "$SDK_DIR/licenses"
-          # Delete any incompatible 34/35/36/37 build-tools downloaded previously
-          rm -rf "$SDK_DIR/build-tools/34"* "$SDK_DIR/build-tools/35"* "$SDK_DIR/build-tools/36"* "$SDK_DIR/build-tools/37"*
-
-          # Use GitHub runner's modern cmdline-tools sdkmanager (Java 17 compatible!) to install exact 33.0.2 + android-33
           SYS_SDK="/usr/local/lib/android/sdk"
-          SYS_SDKMGR=$(find "$SYS_SDK" -name "sdkmanager" 2>/dev/null | head -n 1)
+          mkdir -p "$SDK_DIR/build-tools" "$SDK_DIR/platforms" "$SDK_DIR/licenses"
+
+          echo "Runner pre-installed build-tools in $SYS_SDK/build-tools:"
+          ls -la "$SYS_SDK/build-tools" 2>/dev/null || true
+          echo "Runner pre-installed platforms in $SYS_SDK/platforms:"
+          ls -la "$SYS_SDK/platforms" 2>/dev/null || true
+
+          # 1. Copy pre-installed platform-tools, android-33, and build-tools 33.x/34.x from GitHub runner SDK
+          if [ -d "$SYS_SDK/platform-tools" ] && [ ! -d "$SDK_DIR/platform-tools" ]; then
+            cp -r "$SYS_SDK/platform-tools" "$SDK_DIR/"
+          fi
+          if [ -d "$SYS_SDK/platforms/android-33" ] && [ ! -d "$SDK_DIR/platforms/android-33" ]; then
+            cp -r "$SYS_SDK/platforms/android-33" "$SDK_DIR/platforms/"
+          fi
+          for bt in "$SYS_SDK/build-tools/33."* "$SYS_SDK/build-tools/34."*; do
+            if [ -d "$bt" ]; then
+              cp -rn "$bt" "$SDK_DIR/build-tools/" || true
+            fi
+          done
+
+          # 2. Use modern cmdline-tools sdkmanager (Java 17 compatible) to install exact 33.0.2 + android-33
+          SYS_SDKMGR=$(find "$SYS_SDK/cmdline-tools" -name "sdkmanager" -type f 2>/dev/null | sort -V | tail -n 1)
           if [ -n "$SYS_SDKMGR" ]; then
-            echo "Using system sdkmanager: $SYS_SDKMGR"
+            echo "Installing SDK packages via modern sdkmanager: $SYS_SDKMGR"
             set +o pipefail
             yes | "$SYS_SDKMGR" --sdk_root="$SDK_DIR" "platform-tools" "platforms;android-33" "build-tools;33.0.2" || true
             yes | "$SYS_SDKMGR" --sdk_root="$SDK_DIR" --licenses || true
             set -o pipefail
           fi
-
-          # Also copy licenses from system SDK if present
           if [ -d "$SYS_SDK/licenses" ]; then
             cp -rn "$SYS_SDK/licenses/"* "$SDK_DIR/licenses/" 2>/dev/null || true
           fi
 
-          # Ensure aidl and aapt exist in build-tools/33.0.2
-          echo "Installed build-tools in $SDK_DIR/build-tools:"
-          ls -la "$SDK_DIR/build-tools/"
+          # 3. Remove incompatible 35/36/37 build-tools ONLY if 33.x or 34.x is present
+          if ls -d "$SDK_DIR/build-tools/33."* "$SDK_DIR/build-tools/34."* >/dev/null 2>&1; then
+            rm -rf "$SDK_DIR/build-tools/35"* "$SDK_DIR/build-tools/36"* "$SDK_DIR/build-tools/37"*
+            # If 33.x is present, also remove 34.x so 33.x is strictly the highest
+            if ls -d "$SDK_DIR/build-tools/33."* >/dev/null 2>&1; then
+              rm -rf "$SDK_DIR/build-tools/34"*
+            fi
+          fi
 
-          # Fix any cached build.gradle that had 37.0.0 written into it
-          find .buildozer -name "build.gradle" -exec sed -i 's/37\.0\.0/33.0.2/g' {} + 2>/dev/null || true
+          echo "Final active build-tools in $SDK_DIR/build-tools:"
+          ls -la "$SDK_DIR/build-tools/"
+          echo "Final active platforms in $SDK_DIR/platforms:"
+          ls -la "$SDK_DIR/platforms/"
+
+          # 4. Remove any x86_64 C extension inside charset_normalizer so it uses pure Python on ARM64
+          find .buildozer -path "*charset_normalizer*" -name "*.so" -delete 2>/dev/null || true
+
+          # 5. Configure global ~/.gradle/gradle.properties and p4a templates with 4GB Heap (fixes Issue #2984 CompressAssetsWorkAction OOM)
+          mkdir -p "$HOME/.gradle"
+          cat << 'EOF' > "$HOME/.gradle/gradle.properties"
+          org.gradle.jvmargs=-Xmx4096m -XX:MaxMetaspaceSize=1024m -Dfile.encoding=UTF-8
+          android.useAndroidX=true
+          android.enableJetifier=true
+          android.suppressUnsupportedCompileSdk=33,34,35
+          EOF
+
+          python -c '
+          import glob, re
+          for gp in glob.glob(".buildozer/**/gradle*properties", recursive=True):
+              try:
+                  with open(gp, "r", encoding="utf-8") as f:
+                      txt = f.read()
+                  if "Xmx" in txt:
+                      txt = re.sub(r"-Xmx[0-9]+[mMgG]", "-Xmx4096m", txt)
+                  else:
+                      txt += "\norg.gradle.jvmargs=-Xmx4096m -XX:MaxMetaspaceSize=1024m -Dfile.encoding=UTF-8\n"
+                  if "suppressUnsupportedCompileSdk" not in txt:
+                      txt += "\nandroid.suppressUnsupportedCompileSdk=33,34,35\n"
+                  with open(gp, "w", encoding="utf-8") as f:
+                      f.write(txt)
+                  print("Patched Gradle heap in:", gp)
+              except Exception as e:
+                  print("Skip gp:", gp, e)
+          '
+
+          # 6. Clean stale Gradle build cache inside dists/wsmasterduel
+          rm -rf .buildozer/android/platform/build-arm64-v8a/dists/wsmasterduel/build
+          rm -rf .buildozer/android/platform/build-arm64-v8a/dists/wsmasterduel/.gradle
 
       - name: Compile Pure Python APK (main.py + engine.py + tk_android_bridge.py)
         run: |
           echo "Using JAVA_HOME=$JAVA_HOME"
           java -version
+          export GRADLE_OPTS="-Dorg.gradle.jvmargs='-Xmx4096m -XX:MaxMetaspaceSize=1024m -Dfile.encoding=UTF-8'"
+
           set +e
           set +o pipefail
           yes | buildozer android debug > buildozer.log 2>&1 &
           BPID=$!
           while kill -0 $BPID 2>/dev/null; do
-            grep -E "^# |\[INFO\]|BUILD SUCCESSFUL|FAILURE" buildozer.log | tail -n 3 || true
+            python -c '
+          import re
+          try:
+              with open("buildozer.log", "r", errors="replace") as f:
+                  lines = f.readlines()[-60:]
+              clean = [re.sub(r"\x1b\[[0-9;]*[a-zA-Z]", "", ln).strip() for ln in lines]
+              interesting = [ln for ln in clean if any(k in ln for k in ("# ", "[INFO]", "Task :", "BUILD ", "FAILURE"))]
+              if interesting:
+                  print(interesting[-1])
+          except Exception:
+              pass
+          '
             sleep 10
           done
           wait $BPID
@@ -105,11 +175,63 @@ jobs:
           set -o pipefail
           echo "Buildozer exited with code $BEXIT"
 
+          # If Buildozer failed at the final gradlew step, print the true error AND run direct Gradle repair!
           if ! ls bin/*.apk >/dev/null 2>&1; then
-            echo "=== ACTUAL ERROR LOG (EXCLUDING # ENVIRONMENT DUMP) ==="
-            grep -v "^#     " buildozer.log | tail -n 180
+            echo "=== CLEANED BUILDOZER LOG (ANSI + ENV DUMPS STRIPPED) ==="
+            python -c '
+          import re
+          with open("buildozer.log", "r", errors="replace") as f:
+              raw = f.read()
+          clean = re.sub(r"\x1b\[[0-9;]*[a-zA-Z]", "", raw)
+          filtered = [
+              ln for ln in clean.splitlines()
+              if not re.match(r"^\s*(export\s+[A-Za-z_][A-Za-z0-9_]*=|#\s+[A-Za-z_][A-Za-z0-9_]*\s*=)", ln)
+          ]
+          print("\n".join(filtered[-140:]))
+          '
+
+            DIST_DIR=".buildozer/android/platform/build-arm64-v8a/dists/wsmasterduel"
+            if [ -d "$DIST_DIR" ]; then
+              echo "=== RUNNING DIRECT GRADLE REPAIR & PACKAGING IN $DIST_DIR ==="
+              python -c '
+          import os, re
+          dist = ".buildozer/android/platform/build-arm64-v8a/dists/wsmasterduel"
+          sdk_dir = os.path.expanduser("~/.buildozer/android/platform/android-sdk")
+          bts = sorted(os.listdir(os.path.join(sdk_dir, "build-tools"))) if os.path.isdir(os.path.join(sdk_dir, "build-tools")) else ["33.0.2"]
+          bt_ver = bts[-1] if bts else "33.0.2"
+          print("Using buildToolsVersion:", bt_ver)
+
+          bg_path = os.path.join(dist, "build.gradle")
+          if os.path.isfile(bg_path):
+              with open(bg_path, "r", encoding="utf-8") as f:
+                  bg = f.read()
+              bg = re.sub(r"buildToolsVersion\s+[\x27\"][^\x27\"]+[\x27\"]", f"buildToolsVersion \x27{bt_ver}\x27", bg)
+              if "noCompress" not in bg:
+                  bg = bg.replace("android {", "android {\n    aaptOptions {\n        noCompress \x27tar\x27, \x27mp3\x27, \x27so\x27\n    }")
+              with open(bg_path, "w", encoding="utf-8") as f:
+                  f.write(bg)
+              print("--- Patched build.gradle ---")
+              print(bg)
+
+          gp_path = os.path.join(dist, "gradle.properties")
+          with open(gp_path, "w", encoding="utf-8") as f:
+              f.write("org.gradle.jvmargs=-Xmx4096m -XX:MaxMetaspaceSize=1024m -Dfile.encoding=UTF-8\n")
+              f.write("android.useAndroidX=true\n")
+              f.write("android.enableJetifier=true\n")
+              f.write("android.suppressUnsupportedCompileSdk=33,34,35\n")
+          '
+              chmod +x "$DIST_DIR/gradlew"
+              (cd "$DIST_DIR" && ./gradlew assembleDebug --stacktrace --no-daemon)
+              mkdir -p bin
+              cp "$DIST_DIR"/build/outputs/apk/debug/*.apk bin/
+            fi
+          fi
+
+          if ! ls bin/*.apk >/dev/null 2>&1; then
+            echo "ERROR: APK still not generated after direct Gradle build."
             exit 1
           fi
+
           mkdir -p dist_apk
           cp bin/*.apk dist_apk/WS_MasterDuel_PurePython.apk
           ls -lh dist_apk/
@@ -121,7 +243,7 @@ jobs:
           path: |
             ~/.buildozer
             .buildozer/android/platform
-          key: ws-pure-py311-p4a-v8-${{ runner.os }}-${{ github.run_id }}
+          key: ws-pure-py311-p4a-v9-${{ runner.os }}-${{ github.run_id }}
 
       - name: Upload Android APK Artifact
         uses: actions/upload-artifact@v4
