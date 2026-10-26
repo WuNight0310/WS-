@@ -12,6 +12,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
       - name: Remove Legacy Web Wrapper If Present
         run: |
           rm -rf android_apk_builder ws_master_duel_web_mobile.html
@@ -20,10 +25,11 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config \
+            git zip unzip openjdk-17-jdk autoconf libtool pkg-config \
             zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake \
-            libffi-dev libssl-dev automake libltdl-dev fonts-noto-cjk
-          pip3 install --upgrade pip "cython<3.0" buildozer virtualenv
+            libffi-dev libssl-dev automake libltdl-dev libjpeg-dev libpng-dev \
+            libfreetype6-dev fonts-noto-cjk
+          python -m pip install --upgrade pip "setuptools<70" "wheel" "cython==0.29.36" "buildozer==1.5.0" virtualenv
 
       - name: Bundle Traditional Chinese Font Fallback
         run: |
@@ -31,16 +37,15 @@ jobs:
             cp "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc" ./ws_font.ttc
           fi
 
-      - name: Cache Buildozer Android SDK/NDK & Python Distribution
+      - name: Cache Buildozer Android SDK/NDK & Python 3.11 Distribution
         uses: actions/cache@v4
         with:
           path: |
             ~/.buildozer
             .buildozer
-          key: ws-pure-python-p4a-v3-${{ hashFiles('buildozer.spec') }}
+          key: ws-pure-py311-p4a-v4-${{ hashFiles('buildozer.spec') }}
           restore-keys: |
-            ws-pure-python-p4a-v3-
-            ws-pure-python-p4a-v2-
+            ws-pure-py311-p4a-v4-
 
       - name: Compile Pure Python APK (main.py + engine.py + tk_android_bridge.py)
         run: |
