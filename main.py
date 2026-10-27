@@ -7,6 +7,7 @@ import socket
 import sys
 import threading
 import time
+import ssl
 import urllib.request
 import xml.etree.ElementTree as ET
 from PIL import Image, ImageDraw, ImageFont
@@ -100,6 +101,7 @@ try:
     from engine import (
     ChineseEffectParser,
     BottleNekoImporter,
+    build_universal_ws_image_urls,
         CARD_DB,
         DEFAULT_DECK_RECIPE,
         SERIES_DB,
@@ -1126,18 +1128,33 @@ class SoundManager:
         custom_map = self.app.settings.get("custom_audio_paths") or {}
         if key in custom_map and custom_map[key]:
             raw_p = str(custom_map[key]).strip()
-            if os.path.exists(raw_p):
+            if os.path.exists(raw_p) and os.path.getsize(raw_p) > 200:
                 return os.path.abspath(raw_p)
             rel_p = os.path.join(BASE_DIR, raw_p)
-            if os.path.exists(rel_p):
+            if os.path.exists(rel_p) and os.path.getsize(rel_p) > 200:
                 return os.path.abspath(rel_p)
-            in_audio_p = os.path.join(self.audio_dir, os.path.basename(raw_p))
-            if os.path.exists(in_audio_p):
-                return os.path.abspath(in_audio_p)
-        # 優先自動偵測 ./ws_audio/<key>.mp3（若玩家直接放入同名 .mp3 即自動採用）
+            base_fn = re.split(r"[\\/]", raw_p)[-1]
+            stem_fn = os.path.splitext(base_fn)[0]
+            # 在 Android 上若 CI 已將 .mp3 轉出高音質 .wav，優先檢查 .wav 與 .mp3
+            exts = (".wav", ".mp3") if _IS_ANDROID else (".mp3", ".wav")
+            for cand_fn in [base_fn] + [f"{stem_fn}{e}" for e in exts]:
+                in_audio_p = os.path.join(self.audio_dir, cand_fn)
+                if os.path.exists(in_audio_p) and os.path.getsize(in_audio_p) > 200:
+                    return os.path.abspath(in_audio_p)
+        # 自動偵測 ./ws_audio/<key>.mp3 與 .wav
         mp3_candidate = os.path.join(self.audio_dir, f"{key}.mp3")
-        if os.path.exists(mp3_candidate) and os.path.getsize(mp3_candidate) > 100:
-            return os.path.abspath(mp3_candidate)
+        wav_candidate = os.path.join(self.audio_dir, f"{key}.wav")
+        if _IS_ANDROID:
+            # Android 優先使用經 ffmpeg 轉出的無損相容 .wav，或直接載入 .mp3
+            if os.path.exists(wav_candidate) and os.path.getsize(wav_candidate) > 15000:
+                return os.path.abspath(wav_candidate)
+            if os.path.exists(mp3_candidate) and os.path.getsize(mp3_candidate) > 200:
+                return os.path.abspath(mp3_candidate)
+        else:
+            if os.path.exists(mp3_candidate) and os.path.getsize(mp3_candidate) > 200:
+                return os.path.abspath(mp3_candidate)
+            if os.path.exists(wav_candidate) and os.path.getsize(wav_candidate) > 200:
+                return os.path.abspath(wav_candidate)
         return self.default_files.get(key, "")
 
     def get_bgm_mci_volume(self, bgm_key: str = None) -> int:
@@ -1196,7 +1213,7 @@ class SoundManager:
                 snd = self._kivy_SoundLoader.load(path)
                 if snd:
                     snd.loop = True
-                    snd.volume = max(0.0, min(1.0, mci_vol / 1000.0))
+                    snd.volume = max(0.05, min(1.0, mci_vol / 100.0))
                     snd.play()
                     self._kivy_bgm_obj = snd
             except Exception:
@@ -1216,7 +1233,7 @@ class SoundManager:
             self._mci_cmd(f"setaudio ws_bgm volume to {mci_vol}")
         elif self._kivy_bgm_obj is not None:
             try:
-                self._kivy_bgm_obj.volume = max(0.0, min(1.0, mci_vol / 1000.0))
+                self._kivy_bgm_obj.volume = max(0.05, min(1.0, mci_vol / 100.0))
             except Exception:
                 pass
 
@@ -1362,10 +1379,10 @@ class ImageManager:
             pass
 
     def _get_or_load_pil(self, cid: str) -> Image.Image:
-        if cid in self.pil_cache:
+        if cid in self.pil_cache and cid not in getattr(self, "_stylized_only_cids", set()):
             return self.pil_cache[cid]
         base_name = self.get_base_filename(cid)
-        for ext in (".webp", ".png", ".jpg"):
+        for ext in (".webp", ".png", ".jpg", ".gif"):
             for fn in (f"{base_name}{ext}", f"{base_name.lower()}{ext}"):
                 full_p = os.path.join(self.local_webp_dir, fn)
                 if os.path.exists(full_p) and os.path.getsize(full_p) > 100:
@@ -1373,18 +1390,28 @@ class ImageManager:
                         img = Image.open(full_p).convert("RGB")
                         img = self._normalize_card_orientation(cid, img)
                         self.pil_cache[cid] = img
+                        if hasattr(self, "_stylized_only_cids"):
+                            self._stylized_only_cids.discard(cid)
                         return img
                     except Exception:
                         pass
         c_data = CARD_DB.get(cid, {})
-        if c_data.get("is_high_rarity"):
-            b_id = c_data.get("base_id", cid)
-            if b_id != cid:
-                b_img = self._get_or_load_pil(b_id)
-                if b_img:
-                    self.pil_cache[cid] = b_img
-                    return b_img
+        # 當此卡片尚未有本地卡圖時，立即排入高優先背景佇列即時抓取真實卡圖
+        self._queue_on_demand_card_download(cid)
+        if cid in self.pil_cache:
+            return self.pil_cache[cid]
+        if not hasattr(self, "_stylized_only_cids"):
+            self._stylized_only_cids = set()
+        self._stylized_only_cids.add(cid)
         return self._create_single_stylized_card(cid, c_data)
+
+    def _queue_on_demand_card_download(self, cid: str):
+        if not hasattr(self, "_ondemand_attempted"):
+            self._ondemand_attempted = set()
+        if cid in self._ondemand_attempted or cid not in CARD_DB:
+            return
+        self._ondemand_attempted.add(cid)
+        self.start_background_download(priority_cids=[cid])
 
     def _create_single_stylized_card(self, cid: str, data: dict) -> Image.Image:
         color_theme = {
@@ -1528,42 +1555,45 @@ class ImageManager:
                     )
                 self.pil_cache[cid] = img
 
-    def start_background_download(self):
-        if getattr(self, "_bg_downloading", False):
-            return
-        self._bg_downloading = True
+    def start_background_download(self, priority_cids: list = None):
+        if priority_cids is None:
+            if getattr(self, "_bg_downloading", False):
+                return
+            self._bg_downloading = True
+
         def fetch_one_card(item):
             cid, data = item
             base_name = self.get_base_filename(cid)
             webp_path = os.path.join(self.local_webp_dir, f"{base_name}.webp")
             jpg_path = os.path.join(self.local_webp_dir, f"{base_name}.jpg")
-            if (os.path.exists(webp_path) and os.path.getsize(webp_path) > 100) or (os.path.exists(jpg_path) and os.path.getsize(jpg_path) > 100):
-                return None
-            lower_id = base_name.lower()
-            prefix_part = cid.split("/")[0].lower() if "/" in cid else "ga"
-            if _IS_ANDROID:
-                candidate_urls = [
-                    f"https://img.bottleneko.app/{base_name}.png",
-                    f"https://img.bottleneko.app/w_900,f_webp&q_80/{base_name}.png",
-                ]
-            else:
-                candidate_urls = [
-                    f"https://img.bottleneko.app/w_900,f_webp&q_80/{base_name}.png",
-                    f"https://img.bottleneko.app/{base_name}.png",
-                    f"https://img.bottleneko.app/w_360,f_webp&q_80/{base_name}.png",
-                ]
+            png_path = os.path.join(self.local_webp_dir, f"{base_name}.png")
+            for p_chk in (webp_path, jpg_path, png_path):
+                if os.path.exists(p_chk) and os.path.getsize(p_chk) > 200:
+                    return None
+
+            raw_urls = build_universal_ws_image_urls(cid, data) if "build_universal_ws_image_urls" in globals() else []
             for u in list(data.get("parallel_urls", [])) + [data.get("url", "")]:
-                if u and u not in candidate_urls:
-                    candidate_urls.append(u)
-            if "/S131-" in cid and not data.get("is_high_rarity"):
-                candidate_urls.extend([
-                    f"https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/{lower_id}.png",
-                    f"https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/{prefix_part}_s131/{lower_id}.png",
-                ])
-            elif "/W107-" in cid:
-                candidate_urls.extend([
-                    f"https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/{lower_id}.png",
-                ])
+                if u and u not in raw_urls:
+                    raw_urls.append(u)
+
+            candidate_urls = []
+            for u in raw_urls:
+                if not u:
+                    continue
+                if _IS_ANDROID and "f_webp" in u:
+                    u_jpg = u.replace("f_webp", "f_jpeg")
+                    if u_jpg not in candidate_urls:
+                        candidate_urls.append(u_jpg)
+                else:
+                    if u not in candidate_urls:
+                        candidate_urls.append(u)
+
+            ssl_ctx = ssl._create_unverified_context()
+            accept_hdr = (
+                "image/png,image/jpeg,image/gif,*/*;q=0.8"
+                if _IS_ANDROID
+                else "image/avif,image/webp,image/apng,image/png,image/jpeg,image/*,*/*;q=0.8"
+            )
             for u in candidate_urls:
                 if not u:
                     continue
@@ -1573,29 +1603,27 @@ class ImageManager:
                             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                             "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
                         ),
-                        "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+                        "Accept": accept_hdr,
                     }
                     if "bottleneko.app" in u:
                         req_headers["Referer"] = "https://bottleneko.app/"
                     else:
                         req_headers["Referer"] = "https://ws-tcg.com/cardlist/"
                     raw_bytes = None
-                    if requests is not None:
-                        r = requests.get(u, headers=req_headers, timeout=8)
-                        if r.status_code == 200 and len(r.content) > 1000:
-                            raw_bytes = r.content
-                    else:
-                        req = urllib.request.Request(u, headers=req_headers)
-                        with urllib.request.urlopen(req, timeout=8) as resp:
-                            content = resp.read()
-                            if len(content) > 1000:
-                                raw_bytes = content
+                    req = urllib.request.Request(u, headers=req_headers)
+                    with urllib.request.urlopen(req, timeout=6, context=ssl_ctx) as resp:
+                        content = resp.read()
+                        if len(content) > 600:
+                            raw_bytes = content
                     if raw_bytes:
                         img = Image.open(io.BytesIO(raw_bytes)).convert("RGB")
-                        try:
-                            img.save(webp_path, "WEBP", quality=92)
-                        except Exception:
-                            img.save(jpg_path, "JPEG", quality=88)
+                        if _IS_ANDROID:
+                            img.save(jpg_path, "JPEG", quality=90)
+                        else:
+                            try:
+                                img.save(webp_path, "WEBP", quality=92)
+                            except Exception:
+                                img.save(jpg_path, "JPEG", quality=90)
                         img = self._normalize_card_orientation(cid, img)
                         return (cid, img)
                 except Exception:
@@ -1659,19 +1687,26 @@ class ImageManager:
                 self.ai_fan_cache.clear()
                 self.root.after(60, self._notify_all)
 
-            items = list(CARD_DB.items())
+            if priority_cids is not None:
+                items = [(c, CARD_DB[c]) for c in priority_cids if c in CARD_DB]
+            else:
+                items = list(CARD_DB.items())
             updated_count = 0
-            with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
+            notify_step = 4 if priority_cids is not None else 20
+            with concurrent.futures.ThreadPoolExecutor(max_workers=6 if priority_cids else 8) as pool:
                 for res in pool.map(fetch_one_card, items):
                     if res is not None:
                         cid, img = res
                         self.pil_cache[cid] = img
+                        if hasattr(self, "_stylized_only_cids"):
+                            self._stylized_only_cids.discard(cid)
                         updated_count += 1
-                        if updated_count % 24 == 0:
+                        if updated_count % notify_step == 0:
                             self.tk_cache.clear()
                             self.hand_dock_cache.clear()
-                            self.root.after(80, self._notify_all)
-            self._bg_downloading = False
+                            self.root.after(60, self._notify_all)
+            if priority_cids is None:
+                self._bg_downloading = False
             if updated_count > 0:
                 self.tk_cache.clear()
                 self.hand_dock_cache.clear()
@@ -1840,55 +1875,51 @@ class ImageManager:
         draw.text((cx - 32, cy + 2), "Schwarz", fill="#adb5bd", font=self.font_sub)
         return img
 
-    def _build_amiami_fallback_pil(self) -> Image.Image:
-        """特典角色卡套備援圖 (優先等待背景下載真實 CARD-00021593.jpg)"""
-        base_card = self._get_or_load_pil("BFR/S78-082SP") or self._get_or_load_pil("BTR/W107-069")
-        w, h = 240, 336
-        if base_card:
-            img = base_card.resize((w, h), Image.Resampling.LANCZOS).copy()
-        else:
-            img = self._build_default_ws_sleeve_pil()
-        draw = ImageDraw.Draw(img)
-        draw.rectangle([0, 0, w - 1, h - 1], outline="#ffd166", width=6)
-        draw.rectangle([6, 6, w - 7, h - 7], outline="#ffffff", width=2)
-        return img
-
     def get_sleeve_pil(self, sleeve_style: str = None, custom_path: str = None) -> Image.Image:
         style = sleeve_style if sleeve_style is not None else getattr(self, "active_sleeve_style", "WS_DEFAULT")
         c_path = custom_path if custom_path is not None else (getattr(self, "custom_sleeve_path", "") if sleeve_style is None else "")
         if style == "LAN_PEER_CUSTOM" and "LAN_PEER_CUSTOM" in self.sleeve_pil_cache:
             return self.sleeve_pil_cache["LAN_PEER_CUSTOM"]
-        if style == "CUSTOM" and c_path and os.path.exists(c_path):
-            ckey = f"CUSTOM::{c_path}"
-            if ckey in self.sleeve_pil_cache:
-                return self.sleeve_pil_cache[ckey]
-            try:
-                im = Image.open(c_path).convert("RGB")
-                self.sleeve_pil_cache[ckey] = im
-                return im
-            except Exception:
-                pass
-        if style == "AMIAMI_21593":
-            p = os.path.join(self.local_webp_dir, "sleeve_amiami_21593.webp")
-            if os.path.exists(p) and os.path.getsize(p) > 500:
-                if "AMIAMI_21593" not in self.sleeve_pil_cache:
+        if style == "CUSTOM" and c_path:
+            # 同時支援完整路徑、相對路徑與 ws_card_images 內同名檔案 (.webp/.jpg/.png)
+            cand_paths = [c_path, os.path.join(BASE_DIR, c_path)]
+            base_fn = re.split(r"[\\/]", str(c_path))[-1]
+            stem_fn = os.path.splitext(base_fn)[0]
+            for ext in ("", ".webp", ".jpg", ".png"):
+                cand_paths.append(os.path.join(self.local_webp_dir, f"{stem_fn}{ext}" if ext else base_fn))
+            for cp in cand_paths:
+                if cp and os.path.exists(cp) and os.path.isfile(cp):
+                    ckey = f"CUSTOM::{cp}"
+                    if ckey in self.sleeve_pil_cache:
+                        return self.sleeve_pil_cache[ckey]
                     try:
-                        self.sleeve_pil_cache["AMIAMI_21593"] = Image.open(p).convert("RGB")
+                        im = Image.open(cp).convert("RGB")
+                        self.sleeve_pil_cache[ckey] = im
+                        return im
                     except Exception:
                         pass
-                if "AMIAMI_21593" in self.sleeve_pil_cache:
-                    return self.sleeve_pil_cache["AMIAMI_21593"]
-            return self._build_amiami_fallback_pil()
+        if style == "AMIAMI_21593":
+            for fn in ("sleeve_amiami_21593.webp", "sleeve_amiami_21593.jpg", "sleeve_amiami_21593.png"):
+                p = os.path.join(self.local_webp_dir, fn)
+                if os.path.exists(p) and os.path.getsize(p) > 500:
+                    if "AMIAMI_21593" not in self.sleeve_pil_cache:
+                        try:
+                            self.sleeve_pil_cache["AMIAMI_21593"] = Image.open(p).convert("RGB")
+                        except Exception:
+                            pass
+                    if "AMIAMI_21593" in self.sleeve_pil_cache:
+                        return self.sleeve_pil_cache["AMIAMI_21593"]
 
-        p_def = os.path.join(self.local_webp_dir, "sleeve_ws_default.webp")
-        if os.path.exists(p_def) and os.path.getsize(p_def) > 500:
-            if "WS_DEFAULT" not in self.sleeve_pil_cache:
-                try:
-                    self.sleeve_pil_cache["WS_DEFAULT"] = Image.open(p_def).convert("RGB")
-                except Exception:
-                    pass
-            if "WS_DEFAULT" in self.sleeve_pil_cache:
-                return self.sleeve_pil_cache["WS_DEFAULT"]
+        for fn in ("sleeve_ws_default.webp", "sleeve_ws_default.jpg", "sleeve_ws_default.png"):
+            p_def = os.path.join(self.local_webp_dir, fn)
+            if os.path.exists(p_def) and os.path.getsize(p_def) > 500:
+                if "WS_DEFAULT" not in self.sleeve_pil_cache:
+                    try:
+                        self.sleeve_pil_cache["WS_DEFAULT"] = Image.open(p_def).convert("RGB")
+                    except Exception:
+                        pass
+                if "WS_DEFAULT" in self.sleeve_pil_cache:
+                    return self.sleeve_pil_cache["WS_DEFAULT"]
         if "WS_FALLBACK" not in self.sleeve_pil_cache:
             self.sleeve_pil_cache["WS_FALLBACK"] = self._build_default_ws_sleeve_pil()
         return self.sleeve_pil_cache["WS_FALLBACK"]
@@ -2464,6 +2495,18 @@ class LANLobbyFrame(tk.Frame):
         )
         self.btn_join.pack(side=tk.LEFT, padx=10)
 
+        self.btn_cancel_net = tk.Button(
+            btn_row,
+            text="↺ 取消等待 / 重新設定",
+            bg="#e63946",
+            fg="#ffffff",
+            font=("Microsoft JhengHei", 11, "bold"),
+            padx=14,
+            pady=8,
+            command=self.on_cancel_net,
+        )
+        self.btn_cancel_net.pack(side=tk.LEFT, padx=8)
+
         self.lbl_status = tk.Label(
             box,
             text="尚未啟動連線。請先輸入你的對戰名稱，再選擇建立房間或輸入對方位址加入。",
@@ -2587,6 +2630,14 @@ class LANLobbyFrame(tk.Frame):
             )
         slabel = self.app.get_deck_display_name(scode)
         self.lbl_status.config(text=f"✔ 已選擇【{slabel}】作為連線出戰卡組！", fg="#06d6a0")
+
+    def on_cancel_net(self):
+        if self.net_node:
+            self.net_node.close()
+            self.net_node = None
+        self.btn_host.config(state=tk.NORMAL)
+        self.btn_join.config(state=tk.NORMAL)
+        self.lbl_status.config(text="已取消目前連線狀態，可重新修改位址或建立房間。", fg="#8ecae6")
 
     def on_back(self):
         self._save_battle_name()
@@ -8410,7 +8461,10 @@ class WSBofuriGameFrame(tk.Frame):
     # 對戰流程控制（支援單人 VS AI 與雙人真人連線同步）
     # ------------------------------------------
     def start_game(self):
-        if self.is_lan and self.net_node and self.net_node.connected:
+        if self.is_lan:
+            if not self.net_node or not self.net_node.connected:
+                self.log("⚠️ 連線對手已中斷或尚未完成握手驗證，請返回連線大廳重新連線。")
+                return
             self.log("🌐 正在與連線對手同步玩家名稱、王牌與卡組資料...")
             self.net_node.send({
                 "type": "HELLO_SYNC",
@@ -9074,10 +9128,16 @@ class WSBofuriGameFrame(tk.Frame):
             st["ghost"] = ghost
 
         if st["dragging"] and st.get("ghost"):
+            now_t = time.monotonic()
             rel_x = event.x_root - self.winfo_rootx() - 40
             rel_y = event.y_root - self.winfo_rooty() - 55
-            st["ghost"].place(x=rel_x, y=rel_y)
-            st["ghost"].lift()
+            if st.get("last_pos") != (rel_x, rel_y) and (now_t - st.get("last_move_t", 0.0) >= 0.014):
+                st["last_pos"] = (rel_x, rel_y)
+                st["last_move_t"] = now_t
+                st["ghost"].place(x=rel_x, y=rel_y)
+                if not st.get("lifted_once"):
+                    st["ghost"].lift()
+                    st["lifted_once"] = True
 
     def _find_drop_target(self, x_root: int, y_root: int):
         def is_inside(widget):
@@ -13183,12 +13243,14 @@ class SettingsFrame(tk.Frame):
         self._refresh_audio_selection_ui()
 
     def _refresh_bg_preview(self):
+        w = max(1000, self.app.root.winfo_width() or 1600)
+        h = max(700, self.app.root.winfo_height() or 950)
         bg_img = self.img_mgr.get_wallpaper_visual(
             self.working.get("theme", "OCEAN"),
             self.working.get("custom_bg_path", ""),
             int(self.working.get("bg_dim_percent", 65)),
-            1600,
-            950,
+            w,
+            h,
             floating_cids=self.app.get_menu_floating_deck_cids(),
         )
         self.bg_label.config(image=bg_img)
@@ -14182,6 +14244,7 @@ class MainApp:
         self.current_deck_recipe = self.get_series_deck(self.active_series)
 
         self.img_mgr = ImageManager(self.root)
+        self.img_mgr.app = self
         self.img_mgr.set_sleeve_config(
             self.settings.get("sleeve_style", "WS_DEFAULT"),
             self.settings.get("custom_sleeve_path", ""),
@@ -14487,6 +14550,11 @@ class MainApp:
         ace_map = dict(self.settings.get("ace_card_by_series") or {})
         ace_map[target_s] = cid
         self.settings["ace_card_by_series"] = ace_map
+        if hasattr(self, "img_mgr"):
+            self.img_mgr.sleeve_pil_cache.clear()
+            self.img_mgr.deck_stack_cache.clear()
+            self.img_mgr.stock_stack_cache.clear()
+            self.img_mgr.ai_fan_cache.clear()
         self.save_user_settings(self.settings)
 
     def get_series_ace_card_id(self, scode: str) -> str:
@@ -14614,6 +14682,10 @@ class MainApp:
             self.current_deck_recipe = self.get_series_deck(scode)
             self._cached_floating_deck_key = None
             self.img_mgr.bg_cache.clear()
+            self.img_mgr.sleeve_pil_cache.clear()
+            self.img_mgr.deck_stack_cache.clear()
+            self.img_mgr.stock_stack_cache.clear()
+            self.img_mgr.ai_fan_cache.clear()
             self._persist_decks_book()
 
     def set_ai_series(self, scode: str):
@@ -14802,8 +14874,9 @@ class MainApp:
             try:
                 if "/ws/deck/" in raw_val or raw_val.startswith("{") or raw_val.startswith("["):
                     res = BottleNekoImporter.import_from_url_or_json(raw_val, sets_dir="sets", log_callback=_append_log)
-                    self.img_mgr.start_background_download()
-                    lbl_batch_prog.config(text=f"已完成牌組匯入 ({res['card_count']} 種)")
+                    s_cids = list((SERIES_DB.get(res.get("series_code"), {}) or {}).keys())
+                    self.img_mgr.start_background_download(priority_cids=s_cids or None)
+                    lbl_batch_prog.config(text=f"已完成牌組匯入 ({res['card_count']} 種，正在背景高速下載卡圖)")
                 else:
                     res = BottleNekoImporter.import_series_by_id(
                         raw_val,
@@ -14813,7 +14886,8 @@ class MainApp:
                         include_high_rarity=bool(var_inc_high.get()),
                         log_callback=_append_log,
                     )
-                    self.img_mgr.start_background_download()
+                    s_cids = list((SERIES_DB.get(res.get("series_code"), {}) or {}).keys())
+                    self.img_mgr.start_background_download(priority_cids=s_cids or None)
                     if limit_n > 0:
                         next_off = res["next_offset"]
                         tot_av = res["total_available"]
@@ -14966,6 +15040,31 @@ class MainApp:
         if sample_cids:
             _load_selected_card()
 
+    def _bind_adaptive_wallpaper(self, bg_lbl, with_floating_cards: bool = True):
+        last_sz = [0, 0]
+
+        def _on_cfg(ev):
+            w = int(getattr(ev, "width", 0) or bg_lbl.winfo_width() or 0)
+            h = int(getattr(ev, "height", 0) or bg_lbl.winfo_height() or 0)
+            if w < 300 or h < 300:
+                return
+            if abs(w - last_sz[0]) < 16 and abs(h - last_sz[1]) < 16:
+                return
+            last_sz[0], last_sz[1] = w, h
+            fcids = self.get_menu_floating_deck_cids() if with_floating_cards else None
+            new_im = self.img_mgr.get_wallpaper_visual(
+                self.settings.get("theme", "OCEAN"),
+                self.settings.get("custom_bg_path", ""),
+                int(self.settings.get("bg_dim_percent", 65)),
+                w,
+                h,
+                floating_cids=fcids,
+            )
+            bg_lbl.config(image=new_im)
+            bg_lbl.image = new_im
+
+        bg_lbl.bind("<Configure>", _on_cfg)
+
     def show_main_menu(self):
         self.clear_current_frame()
         ff = self.get_font_family()
@@ -14974,18 +15073,21 @@ class MainApp:
         self.current_frame = menu
 
         self.sound_mgr.play_bgm("bgm_menu")
-        # 1. 全畫面背景圖（自動從玩家目前使用的出戰卡組隨機抽取 6 張卡片懸浮於背景）
+        # 1. 全畫面自適應背景圖（支援全螢幕與手機超寬螢幕無黑邊動態延展）
+        init_w = max(1000, self.root.winfo_width() or 1600)
+        init_h = max(700, self.root.winfo_height() or 950)
         bg_img = self.img_mgr.get_wallpaper_visual(
             self.settings.get("theme", "OCEAN"),
             self.settings.get("custom_bg_path", ""),
             int(self.settings.get("bg_dim_percent", 65)),
-            1600,
-            950,
+            init_w,
+            init_h,
             floating_cids=self.get_menu_floating_deck_cids(),
         )
-        bg_lbl = tk.Label(menu, image=bg_img, bg="#0d111a")
+        bg_lbl = tk.Label(menu, image=bg_img, bg="#0d111a", bd=0, highlightthickness=0)
         bg_lbl.image = bg_img
         bg_lbl.place(relx=0, rely=0, relwidth=1.0, relheight=1.0)
+        self._bind_adaptive_wallpaper(bg_lbl, with_floating_cards=True)
 
         # 2. 頂部玩家個人資訊橫條
         top_hud = tk.Frame(
@@ -15283,17 +15385,20 @@ class MainApp:
         sel_frame.pack(fill=tk.BOTH, expand=True)
         self.current_frame = sel_frame
 
+        init_w = max(1000, self.root.winfo_width() or 1600)
+        init_h = max(700, self.root.winfo_height() or 950)
         bg_img = self.img_mgr.get_wallpaper_visual(
             self.settings.get("theme", "OCEAN"),
             self.settings.get("custom_bg_path", ""),
             int(self.settings.get("bg_dim_percent", 65)),
-            1600,
-            950,
+            init_w,
+            init_h,
             floating_cids=self.get_menu_floating_deck_cids(),
         )
-        bg_lbl = tk.Label(sel_frame, image=bg_img, bg="#0d111a")
+        bg_lbl = tk.Label(sel_frame, image=bg_img, bg="#0d111a", bd=0, highlightthickness=0)
         bg_lbl.image = bg_img
         bg_lbl.place(relx=0, rely=0, relwidth=1.0, relheight=1.0)
+        self._bind_adaptive_wallpaper(bg_lbl, with_floating_cards=True)
 
         box = tk.Frame(
             sel_frame,

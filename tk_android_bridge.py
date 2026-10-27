@@ -657,14 +657,26 @@ class Widget:
         self._pack_propagate = bool(flag)
 
     def place(self, **kw):
+        was_placed = (self._geom_mgr == "place" and self._mapped)
         self._geom_mgr = "place"
         if not hasattr(self, "_place_opts"):
             self._place_opts = {}
         self._place_opts.update(kw)
         self._geom_opts = dict(self._place_opts)
         self._mapped = True
-        if hasattr(self._root, "_dirty"):
-            self._root._dirty = True
+        root = self._root
+        if hasattr(root, "_dirty"):
+            txt_val = str(self._opts.get("text") or "")
+            if was_placed and txt_val.startswith("拖移：") and "x" in kw and "y" in kw and self.master is not None:
+                self._x = int(float(kw["x"]))
+                self._y = int(float(kw["y"]))
+                self._rootx = self.master._rootx + self._x
+                self._rooty = self.master._rooty + self._y
+                root._ghost_widget = self
+                root._ghost_only_dirty = True
+            else:
+                root._dirty = True
+                root._bg_without_ghost_pil = None
 
     def place_forget(self):
         if self._geom_mgr == "place":
@@ -1346,8 +1358,10 @@ class Tk(Frame):
         Tk._active_instance = self
         self._title = "Weiß Schwarz"
         self._portrait_mode = (os.environ.get("WS_PORTRAIT") == "1")
-        self._w = 1000 if self._portrait_mode else 1600
-        self._h = 1340 if self._portrait_mode else 950
+        self._target_w = 1000 if self._portrait_mode else 1600
+        self._target_h = 1340 if self._portrait_mode else 950
+        self._w = self._target_w
+        self._h = self._target_h
         self._reqw = self._w
         self._reqh = self._h
         self._x = 0
@@ -1356,6 +1370,10 @@ class Tk(Frame):
         self._rooty = 0
         self._mapped = True
         self._dirty = True
+        self._ghost_only_dirty = False
+        self._ghost_widget = None
+        self._bg_without_ghost_pil = None
+        self._pending_move_xy = None
         self._running = True
         self._timers = {}
         self._next_timer_id = 1
@@ -1373,19 +1391,26 @@ class Tk(Frame):
             self._title = str(text)
         return self._title
 
+    def set_adaptive_surface_size(self, target_w: int, target_h: int, portrait: bool = False):
+        target_w = max(800, int(target_w))
+        target_h = max(600, int(target_h))
+        if (self._target_w, self._target_h, self._portrait_mode) != (target_w, target_h, bool(portrait)):
+            self._portrait_mode = bool(portrait)
+            self._target_w = target_w
+            self._target_h = target_h
+            self._w = target_w
+            self._h = target_h
+            self._reqw = target_w
+            self._reqh = target_h
+            self._bg_without_ghost_pil = None
+            self._dirty = True
+
     def set_orientation_mode(self, portrait: bool, manual: bool = False):
-        if manual:
-            self._manual_orientation = bool(portrait)
-        elif getattr(self, "_manual_orientation", None) is not None:
-            portrait = self._manual_orientation
         portrait = bool(portrait)
         if getattr(self, "_portrait_mode", False) != portrait:
-            self._portrait_mode = portrait
-            self._w = 1000 if portrait else 1600
-            self._h = 1340 if portrait else 950
-            self._reqw = self._w
-            self._reqh = self._h
-            self._dirty = True
+            tw = 1000 if portrait else max(1600, self._target_w)
+            th = 1340 if portrait else 950
+            self.set_adaptive_surface_size(tw, th, portrait=portrait)
 
     def geometry(self, geom_str=None):
         if geom_str and not getattr(self, "_portrait_mode", False):
@@ -1434,6 +1459,12 @@ class Tk(Frame):
             self._event_queue.append(fn)
             self._event_cond.notify_all()
 
+    def post_move_event(self, rx: int, ry: int):
+        """Coalesces high-frequency touch move samples so dragging stays at 60 FPS with zero backlog."""
+        with self._event_cond:
+            self._pending_move_xy = (int(rx), int(ry))
+            self._event_cond.notify_all()
+
     def _process_pending_events(self):
         # 1. Process queued UI touch/mouse events
         while True:
@@ -1443,7 +1474,19 @@ class Tk(Frame):
                 ev_fn = self._event_queue.pop(0)
             try:
                 ev_fn()
-            except Exception as e:
+            except Exception:
+                pass
+
+        # 1b. Process coalesced pointer move event (at most once per frame!)
+        move_xy = None
+        with self._event_cond:
+            if self._pending_move_xy is not None:
+                move_xy = self._pending_move_xy
+                self._pending_move_xy = None
+        if move_xy is not None:
+            try:
+                dispatch_pointer_move(self, move_xy[0], move_xy[1], is_dragging=True)
+            except Exception:
                 pass
 
         # 2. Process due after() timers
@@ -1457,7 +1500,7 @@ class Tk(Frame):
         for tid, fn, args in due_list:
             try:
                 fn(*args)
-            except Exception as e:
+            except Exception:
                 pass
 
         # 3. Recompute layout if dirty
@@ -1466,13 +1509,10 @@ class Tk(Frame):
 
     def update_idletasks(self):
         self._dirty = False
+        self._bg_without_ghost_pil = None
         _compute_req_size(self)
-        if getattr(self, "_portrait_mode", False):
-            self._w = 1000
-            self._h = 1340
-        else:
-            self._w = 1600
-            self._h = 950
+        self._w = int(getattr(self, "_target_w", 1600))
+        self._h = int(getattr(self, "_target_h", 950))
         self._x = 0
         self._y = 0
         self._rootx = 0
@@ -1493,7 +1533,7 @@ class Tk(Frame):
             # Wait briefly for next timer or input event
             with self._event_cond:
                 if not self._event_queue:
-                    self._event_cond.wait(timeout=0.012)
+                    self._event_cond.wait(timeout=0.004)
 
     def mainloop(self):
         self.update_idletasks()
@@ -1501,7 +1541,7 @@ class Tk(Frame):
             self._process_pending_events()
             with self._event_cond:
                 if not self._event_queue:
-                    self._event_cond.wait(timeout=0.015)
+                    self._event_cond.wait(timeout=0.004)
 
 
 # ==========================================
@@ -2234,9 +2274,26 @@ def _draw_widget_tree(surface: Image.Image, draw: ImageDraw.ImageDraw, w: Widget
                     if cy1 <= ty + li * lh <= cy2 - 8:
                         draw.text((tx, ty + li * lh), ln, fill=fg, font=pil_f)
             else:
-                ix = wx1 + (w._w - iw) // 2
-                iy = wy1 + (w._h - ih) // 2
-                _paste_photo_image(surface, img, ix, iy, my_clip)
+                if (
+                    isinstance(w, Label)
+                    and not txt
+                    and w._w >= 850
+                    and w._h >= 550
+                    and (iw != w._w or ih != w._h)
+                    and getattr(img, "_pil", None) is not None
+                ):
+                    cached_stretch = getattr(img, "_stretched_photo", None)
+                    if cached_stretch is None or cached_stretch[0] != (w._w, w._h):
+                        s_pil = img._pil.resize((w._w, w._h), Image.Resampling.BILINEAR)
+                        s_photo = PhotoImage(s_pil)
+                        img._stretched_photo = ((w._w, w._h), s_photo)
+                    else:
+                        s_photo = cached_stretch[1]
+                    _paste_photo_image(surface, s_photo, wx1, wy1, my_clip)
+                else:
+                    ix = wx1 + (w._w - iw) // 2
+                    iy = wy1 + (w._h - ih) // 2
+                    _paste_photo_image(surface, img, ix, iy, my_clip)
         elif txt:
             tw, th, lines = measure_text_block(txt, font_spec, wrap)
             dx, dy = _anchor_offset(anc, inner_w, inner_h, tw, th)
@@ -2348,11 +2405,43 @@ def _draw_widget_tree(surface: Image.Image, draw: ImageDraw.ImageDraw, w: Widget
 
 
 def render_root_to_pil(root: Tk) -> Image.Image:
-    root.update_idletasks()
+    gw = getattr(root, "_ghost_widget", None)
+    if (
+        getattr(root, "_ghost_only_dirty", False)
+        and not root._dirty
+        and root._bg_without_ghost_pil is not None
+        and gw is not None
+        and gw._exists
+        and gw.winfo_ismapped()
+    ):
+        root._ghost_only_dirty = False
+        surface = root._bg_without_ghost_pil.copy()
+        draw = ImageDraw.Draw(surface)
+        _draw_widget_tree(surface, draw, gw, (0, 0, int(root._w), int(root._h)))
+        root._last_frame_pil = surface
+        return surface
+
+    if root._dirty:
+        root.update_idletasks()
+    root._ghost_only_dirty = False
     rw, rh = int(root._w), int(root._h)
     surface = Image.new("RGB", (rw, rh), color=_parse_color(root.cget("bg"), "#0d111a"))
     draw = ImageDraw.Draw(surface)
+
+    # Temporarily hide ghost while capturing clean base board so drag frames take ~1.5ms
+    gw_was_mapped = False
+    if gw is not None and gw._exists and gw._mapped:
+        gw_was_mapped = True
+        gw._mapped = False
+
     _draw_widget_tree(surface, draw, root, (0, 0, rw, rh))
+
+    if gw_was_mapped:
+        root._bg_without_ghost_pil = surface.copy()
+        gw._mapped = True
+        _draw_widget_tree(surface, draw, gw, (0, 0, rw, rh))
+    else:
+        root._bg_without_ghost_pil = surface
 
     # Draw active Combobox dropdown overlay if open
     if root._active_dropdown is not None:
@@ -2378,34 +2467,29 @@ def render_root_to_pil(root: Tk) -> Image.Image:
     fw = getattr(root, "_focused_widget", None)
     if fw is not None and isinstance(fw, (Entry, Spinbox)) and fw._exists and fw.winfo_ismapped():
         pil_f = get_pil_font(("Microsoft JhengHei", 10, "bold"))
-        bx1 = max(8, min(1600 - 420, fw._rootx))
+        bx1 = max(8, min(rw - 540, fw._rootx))
         by1 = fw._rooty + fw._h + 4
-        if by1 + 36 > 945:
+        if by1 + 36 > rh - 5:
             by1 = max(4, fw._rooty - 40)
         btns = [
-            ("PASTE", "■ 貼上剪貼簿", "#06d6a0", "#000000", 110),
-            ("BACK", "◀ 退格", "#2b3348", "#ffffff", 74),
-            ("CLEAR", "↺ 清空", "#e63946", "#ffffff", 74),
-            ("KB", "⌨ 鍵盤輸入", "#ffd166", "#000000", 98),
-            ("CLOSE", "✖", "#3a3f58", "#ffffff", 38),
+            ("PASTE", "■ 貼上剪貼簿", "#06d6a0", "#000000", 106),
+            ("COLON", "：冒號", "#4cc9f0", "#000000", 64),
+            ("TCP", "tcp://", "#9b5de5", "#ffffff", 60),
+            ("BACK", "◀ 退格", "#2b3348", "#ffffff", 70),
+            ("CLEAR", "↺ 清空", "#e63946", "#ffffff", 70),
+            ("KB", "⌨ 鍵盤", "#ffd166", "#000000", 78),
+            ("CLOSE", "✖", "#3a3f58", "#ffffff", 36),
         ]
         root._entry_helper_rects = []
         cx = bx1
         for act_k, b_txt, b_bg, b_fg, bw in btns:
             rbox = (cx, by1, cx + bw, by1 + 32)
             draw.rectangle(rbox, fill=b_bg, outline="#ffffff", width=1)
-            draw.text((cx + 8, by1 + 6), sanitize_cjk_text(b_txt), fill=b_fg, font=pil_f)
+            draw.text((cx + 6, by1 + 6), sanitize_cjk_text(b_txt), fill=b_fg, font=pil_f)
             root._entry_helper_rects.append((act_k, fw, rbox))
             cx += bw + 4
     else:
         root._entry_helper_rects = []
-
-    # Draw 1-tap Portrait/Landscape toggle badge at top-left corner (x=4..96, y=2..26)
-    pil_f_tog = get_pil_font(("Microsoft JhengHei", 9, "bold"))
-    is_p = getattr(root, "_portrait_mode", False)
-    tog_txt = "↻ 切換橫屏" if is_p else "↻ 切換豎屏"
-    draw.rectangle([4, 2, 92, 24], fill="#252c42", outline="#ffd166", width=1)
-    draw.text((10, 4), sanitize_cjk_text(tog_txt), fill="#ffd166", font=pil_f_tog)
 
     root._last_frame_pil = surface
     return surface
@@ -2453,13 +2537,6 @@ def _find_scrollable_ancestor(w: Widget):
 
 def dispatch_pointer_down(root: Tk, rx: int, ry: int, double_click: bool = False):
     rx, ry = int(rx), int(ry)
-    # Check 1-tap Portrait/Landscape toggle badge at top-left corner (4..92, 2..24)
-    if 4 <= rx <= 92 and 2 <= ry <= 24:
-        root.set_orientation_mode(not getattr(root, "_portrait_mode", False), manual=True)
-        cb_recalc = getattr(root, "_on_manual_orient_change", None)
-        if callable(cb_recalc):
-            cb_recalc()
-        return
 
     # 0. Check if clicking inside the floating Entry helper bar
     for act_k, fw, (x1, y1, x2, y2) in list(getattr(root, "_entry_helper_rects", []) or []):
@@ -2474,6 +2551,13 @@ def dispatch_pointer_down(root: Tk, rx: int, ry: int, double_click: bool = False
                 if clip_txt:
                     fw.delete(0, END)
                     fw.insert(0, clip_txt.strip())
+            elif act_k == "COLON":
+                fw.insert(END, ":")
+            elif act_k == "TCP":
+                cur_s = fw.get()
+                if not cur_s.startswith("tcp://"):
+                    fw.delete(0, END)
+                    fw.insert(0, "tcp://" + cur_s)
             elif act_k == "BACK":
                 cur_s = fw.get()
                 if cur_s:
@@ -2709,7 +2793,6 @@ def run_kivy_android_host(main_app_cls):
             self._touch_scrolled = False
             self._kb = None
             self.tk_root._request_android_kb_fn = lambda fw: Clock.schedule_once(lambda dt: self._open_kb(fw), 0)
-            self.tk_root._on_manual_orient_change = lambda: Clock.schedule_once(lambda dt: self._update_rects(), 0)
 
             with self.canvas:
                 Color(0.05, 0.07, 0.10, 1.0)
@@ -2718,45 +2801,37 @@ def run_kivy_android_host(main_app_cls):
                 self.fg_rect = Rectangle(texture=self.tex, pos=self.pos, size=self.size)
 
             self.bind(pos=self._update_rects, size=self._update_rects)
-
-        def _is_rotated_90(self):
-            ww, wh = max(1, self.width), max(1, self.height)
-            use_port = bool(getattr(self.tk_root, "_portrait_mode", False))
-            return use_port and (ww > wh)
+            try:
+                Window.bind(on_textinput=self._on_window_textinput)
+            except Exception:
+                pass
 
         def _update_rects(self, *args):
             self.bg_rect.pos = self.pos
             self.bg_rect.size = self.size
-            ww, wh = max(1, self.width), max(1, self.height)
+            ww, wh = max(1, float(self.width)), max(1, float(self.height))
             is_port = wh > ww
-            self.tk_root.set_orientation_mode(is_port, manual=False)
-            use_port = bool(getattr(self.tk_root, "_portrait_mode", is_port))
-            if use_port and ww > wh:
-                # Portrait 1000x1340 rotated 90 deg CCW into 1340x1000 landscape window
-                tw, th = 1340.0, 1000.0
-            elif use_port:
-                tw, th = 1000.0, 1340.0
+            if is_port:
+                # 自動豎屏模式：固定邏輯寬度 1000，高度依手機螢幕長寬比自適應延展，100% 滿版無黑邊
+                tw = 1000
+                th = max(1340, min(2240, int(round(1000.0 * wh / ww))))
             else:
-                tw, th = 1600.0, 950.0
-            scale = min(ww / tw, wh / th)
-            vw = int(tw * scale)
-            vh = int(th * scale)
-            vx = int(self.x + (ww - vw) // 2)
-            vy = int(self.y + (wh - vh) // 2)
-            self._viewport = (vx, vy, vw, vh)
-            self.fg_rect.pos = (vx, vy)
-            self.fg_rect.size = (vw, vh)
+                # 自動橫屏模式：固定邏輯高度 950，寬度依手機螢幕長寬比 (如 20:9) 自適應延展，100% 滿版無黑邊
+                if ww / wh >= 1600.0 / 950.0:
+                    th = 950
+                    tw = max(1600, min(2240, int(round(950.0 * ww / wh))))
+                else:
+                    tw = 1600
+                    th = max(950, min(1400, int(round(1600.0 * wh / ww))))
+            self.tk_root.set_adaptive_surface_size(tw, th, portrait=is_port)
+            self._viewport = (int(self.x), int(self.y), int(ww), int(wh))
+            self.fg_rect.pos = self.pos
+            self.fg_rect.size = self.size
 
         def _screen_to_tk(self, sx, sy):
             vx, vy, vw, vh = self._viewport
             if vw <= 0 or vh <= 0:
                 return (0, 0)
-            if self._is_rotated_90():
-                rot_x = int((sx - vx) * 1340.0 / vw)
-                rot_y = int((vh - (sy - vy)) * 1000.0 / vh)
-                rx = max(0, min(999, 1000 - 1 - rot_y))
-                ry = max(0, min(1339, rot_x))
-                return (rx, ry)
             tw = float(self.tk_root._w)
             th = float(self.tk_root._h)
             rx = int((sx - vx) * tw / vw)
@@ -2784,7 +2859,6 @@ def run_kivy_android_host(main_app_cls):
             if self._touch_start_xy is not None:
                 sx, sy = self._touch_start_xy
                 dy = ry - sy
-                dx = rx - sx
                 # Check if user is swiping inside a scrollable Canvas / Text / Listbox
                 hit_w = hit_test_widget(self.tk_root, rx, ry)
                 sc_anc = _find_scrollable_ancestor(hit_w) if hit_w else None
@@ -2797,9 +2871,7 @@ def run_kivy_android_host(main_app_cls):
                             lambda a=sc_anc, s=steps: a.yview_scroll(s, "units")
                         )
                         return True
-            self.tk_root.post_ui_event(
-                lambda r=rx, c=ry: dispatch_pointer_move(self.tk_root, r, c, is_dragging=True)
-            )
+            self.tk_root.post_move_event(rx, ry)
             return True
 
         def on_touch_up(self, touch):
@@ -2829,6 +2901,15 @@ def run_kivy_android_host(main_app_cls):
                     pass
                 self._kb = None
 
+        def _on_window_textinput(self, window, text):
+            """使用 SDL2/Kivy 合成後之 on_textinput 接收字元，徹底解決 Shift 大寫或特殊符號 (如 :) 產生 !;! 亂碼問題"""
+            fw = getattr(self.tk_root, "_focused_widget", None)
+            if fw is None or not isinstance(fw, (Entry, Spinbox)):
+                return
+            if text and text not in ("\r", "\n"):
+                fw.insert(END, text)
+                self.tk_root._dirty = True
+
         def _on_kb_down(self, keyboard, keycode, text, modifiers):
             fw = getattr(self.tk_root, "_focused_widget", None)
             if fw is None or not isinstance(fw, (Entry, Spinbox)):
@@ -2839,14 +2920,15 @@ def run_kivy_android_host(main_app_cls):
                 if cur_s:
                     fw.delete(0, END)
                     fw.insert(0, cur_s[:-1])
-            elif k_name in ("enter", "numpadenter"):
+                self.tk_root._dirty = True
+                return True
+            if k_name in ("enter", "numpadenter", "escape"):
                 fw._fire_event("<Return>", Event(widget=fw))
                 self.tk_root._focused_widget = None
                 self._kb_closed()
-            elif text:
-                fw.insert(END, text)
-            self.tk_root._dirty = True
-            return True
+                self.tk_root._dirty = True
+                return True
+            return False
 
         def push_frame_bytes(self, raw_bytes: bytes, size_wh=(1600, 950)):
             with self._frame_lock:
@@ -2873,33 +2955,37 @@ def run_kivy_android_host(main_app_cls):
                 Window.fullscreen = "auto"
             except Exception:
                 pass
+            # 啟用 Android 硬體重力感應自動翻轉 (SCREEN_ORIENTATION_FULL_SENSOR = 10)
+            try:
+                from jnius import autoclass
+                PythonActivity = autoclass("org.kivy.android.PythonActivity")
+                act = PythonActivity.mActivity
+                if act is not None:
+                    act.setRequestedOrientation(10)
+            except Exception:
+                pass
             self.tk_root = Tk()
             self.surface_widget = WSMasterDuelSurface(self.tk_root)
-            Clock.schedule_interval(self.surface_widget.sync_texture, 1.0 / 30.0)
+            Clock.schedule_interval(self.surface_widget.sync_texture, 1.0 / 60.0)
             threading.Thread(target=self._game_loop_worker, daemon=True).start()
             return self.surface_widget
 
         def _game_loop_worker(self):
-            # Override update_idletasks/ _process_pending_events hook to also render frames
             orig_process = self.tk_root._process_pending_events
             last_render_t = [0.0]
 
             def _hooked_process():
-                was_dirty = self.tk_root._dirty
+                was_dirty = self.tk_root._dirty or getattr(self.tk_root, "_ghost_only_dirty", False)
                 orig_process()
                 now = time.monotonic()
-                if was_dirty or (now - last_render_t[0] >= 0.08):
+                if was_dirty or (now - last_render_t[0] >= 0.033):
                     img = render_root_to_pil(self.tk_root)
-                    if self.surface_widget._is_rotated_90():
-                        img = img.transpose(Image.Transpose.ROTATE_90)
                     self.surface_widget.push_frame_bytes(img.tobytes(), img.size)
                     last_render_t[0] = now
 
             self.tk_root._process_pending_events = _hooked_process
             app = main_app_cls(self.tk_root)
             img = render_root_to_pil(self.tk_root)
-            if self.surface_widget._is_rotated_90():
-                img = img.transpose(Image.Transpose.ROTATE_90)
             self.surface_widget.push_frame_bytes(img.tobytes(), img.size)
             self.tk_root.mainloop()
 

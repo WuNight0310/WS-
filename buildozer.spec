@@ -3,7 +3,7 @@ title = WS Master Duel
 package.name = wsmasterduel
 package.domain = org.ws
 source.dir = .
-source.include_exts = py,png,jpg,webp,json,wav,ico,ttf,ttc
+source.include_exts = py,png,jpg,webp,gif,json,wav,mp3,ogg,ico,ttf,ttc
 source.exclude_dirs = tests,bin,venv,.git,.github,__pycache__,android_apk_builder,artifacts
 version = 2.0.0
 
@@ -13,7 +13,7 @@ icon.filename = %(source.dir)s/maple_icon.png
 presplash.filename = %(source.dir)s/maple_icon.png
 presplash.color = #0d111a
 
-orientation = landscape
+orientation = all
 fullscreen = 1
 
 android.permissions = INTERNET,ACCESS_NETWORK_STATE,ACCESS_WIFI_STATE

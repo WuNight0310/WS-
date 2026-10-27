@@ -5,6 +5,7 @@ import socket
 import sys
 import threading
 import urllib.request
+import uuid
 import xml.etree.ElementTree as ET
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -15,7 +16,7 @@ if BASE_DIR not in sys.path:
 
 
 class WSNetNode:
-    """提供區網與跨外網雙人對戰 Host 與 Client 封包通訊，支援 UPnP 自動開埠與域名隧道連線"""
+    """提供區網與跨外網雙人對戰 Host 與 Client 封包通訊，支援 UPnP 自動開埠、隧道連線與雙向協議握手驗證"""
 
     def __init__(self, on_msg_callback, on_disconnect_callback=None):
         self.on_msg = on_msg_callback
@@ -23,7 +24,9 @@ class WSNetNode:
         self.sock = None
         self.conn = None
         self.is_host = False
+        self._hosting = False
         self.connected = False
+        self.node_id = uuid.uuid4().hex[:12]
         self._send_lock = threading.Lock()
 
     @staticmethod
@@ -60,18 +63,23 @@ class WSNetNode:
 
     @staticmethod
     def parse_host_port(raw_address: str, default_port: int = 15780):
-        """自動解析 'IP:Port'、'tcp://domain:port' 或純 IP/域名"""
-        addr = raw_address.strip()
-        for prefix in ["tcp://", "http://", "https://"]:
+        """自動解析並淨化 'IP:Port'、'tcp://domain:port' 或純 IP/域名（自動修復手機鍵盤誤輸入之 !;! 與全形冒號）"""
+        addr = (raw_address or "").strip()
+        # 修復 Android 鍵盤 Shift+; 舊版誤觸產生的 !;! 或全形冒號
+        addr = addr.replace("!;!", ":").replace("：", ":").replace(" ", "")
+        for prefix in ["tcp://", "http://", "https://", "tcp//", "http//", "https//"]:
             if addr.lower().startswith(prefix):
                 addr = addr[len(prefix):]
         addr = addr.strip("/")
         if ":" in addr:
             host_part, port_part = addr.rsplit(":", 1)
-            try:
-                return host_part.strip(), int(port_part.strip())
-            except ValueError:
-                return addr, int(default_port)
+            port_digits = re.sub(r"\D", "", port_part)
+            if port_digits:
+                try:
+                    return host_part.strip(), int(port_digits)
+                except ValueError:
+                    pass
+            return host_part.strip(), int(default_port)
         return addr, int(default_port)
 
     @staticmethod
@@ -162,55 +170,115 @@ class WSNetNode:
 
     def start_host(self, port=15780):
         self.is_host = True
+        self._hosting = True
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.sock.bind(("0.0.0.0", int(port)))
-        self.sock.listen(1)
+        self.sock.listen(5)
         threading.Thread(target=self._accept_worker, daemon=True).start()
 
     def _accept_worker(self):
-        try:
-            conn, addr = self.sock.accept()
-            conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
-            self.conn = conn
-            self.connected = True
-            if self.on_msg:
-                self.on_msg({"type": "SYS_CONNECTED", "peer": f"{addr[0]}:{addr[1]}"})
-            self._recv_loop(conn)
-        except Exception as e:
-            if self.connected and self.on_msg:
-                self.on_msg({"type": "SYS_ERROR", "error": str(e)})
+        while self._hosting and not self.connected and self.sock:
+            conn = None
+            try:
+                conn, addr = self.sock.accept()
+                conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+                conn.settimeout(5.0)
+                # 驗證是否為真正的 WS 遊戲客戶端握手（過濾 ngrok 探測、Port 掃描器或瀏覽器誤觸）
+                buf = ""
+                handshake_ok = False
+                while "\n" not in buf and len(buf) < 4096:
+                    chunk = conn.recv(1024)
+                    if not chunk:
+                        break
+                    buf += chunk.decode("utf-8", errors="replace")
+                if "\n" in buf:
+                    first_line, rest_buf = buf.split("\n", 1)
+                    hs_msg = json.loads(first_line.strip())
+                    if isinstance(hs_msg, dict) and hs_msg.get("type") == "WS_HANDSHAKE":
+                        ack_raw = json.dumps({
+                            "type": "WS_HANDSHAKE_ACK",
+                            "protocol": "WS_MASTER_DUEL_V2",
+                            "node_id": self.node_id,
+                        }) + "\n"
+                        conn.sendall(ack_raw.encode("utf-8"))
+                        handshake_ok = True
+                if not handshake_ok:
+                    try:
+                        conn.close()
+                    except Exception:
+                        pass
+                    continue
+                conn.settimeout(None)
+                self.conn = conn
+                self.connected = True
+                self._hosting = False
+                if self.on_msg:
+                    self.on_msg({"type": "SYS_CONNECTED", "peer": f"{addr[0]}:{addr[1]}"})
+                self._recv_loop(conn, initial_buf=rest_buf)
+                return
+            except Exception as e:
+                if conn is not None and not self.connected:
+                    try:
+                        conn.close()
+                    except Exception:
+                        pass
+                if not self._hosting:
+                    break
+                continue
 
     def connect_to_host(self, ip_or_host, port=15780):
         self.is_host = False
+        self._hosting = False
         host, parsed_port = self.parse_host_port(ip_or_host, default_port=port)
 
         def worker():
             try:
+                if not host:
+                    raise ValueError("目標位址為空，請輸入有效的 IP 或隧道網址")
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 s.settimeout(8.0)
                 s.connect((host, int(parsed_port)))
-                s.settimeout(None)
                 s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+                # 發送遊戲協議握手封包並等待房主確認
+                hs_raw = json.dumps({
+                    "type": "WS_HANDSHAKE",
+                    "protocol": "WS_MASTER_DUEL_V2",
+                    "node_id": self.node_id,
+                }) + "\n"
+                s.sendall(hs_raw.encode("utf-8"))
+                buf = ""
+                ack_ok = False
+                rest_buf = ""
+                while "\n" not in buf and len(buf) < 4096:
+                    chunk = s.recv(1024)
+                    if not chunk:
+                        break
+                    buf += chunk.decode("utf-8", errors="replace")
+                if "\n" in buf:
+                    first_line, rest_buf = buf.split("\n", 1)
+                    ack_msg = json.loads(first_line.strip())
+                    if isinstance(ack_msg, dict) and ack_msg.get("type") == "WS_HANDSHAKE_ACK":
+                        ack_ok = True
+                if not ack_ok:
+                    s.close()
+                    raise ConnectionError("目標位址已連通，但對方並非等待中的 WS 對戰房間（或房間已滿）")
+                s.settimeout(None)
                 self.conn = s
                 self.connected = True
                 if self.on_msg:
                     self.on_msg({"type": "SYS_CONNECTED", "peer": f"{host}:{parsed_port}"})
-                self._recv_loop(s)
+                self._recv_loop(s, initial_buf=rest_buf)
             except Exception as e:
                 if self.on_msg:
                     self.on_msg({"type": "SYS_ERROR", "error": str(e)})
 
         threading.Thread(target=worker, daemon=True).start()
 
-    def _recv_loop(self, conn):
-        buf = ""
+    def _recv_loop(self, conn, initial_buf: str = ""):
+        buf = initial_buf or ""
         while self.connected:
             try:
-                data = conn.recv(16384)
-                if not data:
-                    break
-                buf += data.decode("utf-8", errors="replace")
                 while "\n" in buf:
                     line, buf = buf.split("\n", 1)
                     line = line.strip()
@@ -221,6 +289,10 @@ class WSNetNode:
                                 self.on_msg(msg)
                         except Exception:
                             pass
+                data = conn.recv(16384)
+                if not data:
+                    break
+                buf += data.decode("utf-8", errors="replace")
             except Exception:
                 break
         self.connected = False
@@ -250,6 +322,7 @@ class WSNetNode:
         return self.send(payload)
 
     def close(self):
+        self._hosting = False
         self.connected = False
         for s in (self.conn, self.sock):
             if s:
@@ -259,16 +332,3 @@ class WSNetNode:
                     pass
         self.conn = None
         self.sock = None
-
-
-def _launch_from_any_file():
-    try:
-        from main import launch_game
-        launch_game()
-        return
-    except ImportError:
-        pass
-
-
-if __name__ == "__main__":
-    _launch_from_any_file()
