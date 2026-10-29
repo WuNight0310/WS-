@@ -5,7 +5,7 @@ package.domain = org.ws
 source.dir = .
 source.include_exts = py,png,jpg,webp,gif,json,wav,mp3,ogg,ico,ttf,ttc
 source.exclude_dirs = tests,bin,venv,.git,.github,__pycache__,android_apk_builder,artifacts
-version = 2.0.0
+version = 2.5.0
 
 requirements = hostpython3==3.11.6,python3==3.11.6,kivy==2.3.0,pillow,urllib3,certifi,idna,charset-normalizer,requests
 
@@ -23,7 +23,7 @@ android.ndk = 25b
 android.accept_sdk_license = True
 android.skip_update = True
 android.archs = arm64-v8a
-android.allow_backup = True
+android.allow_backup = False
 p4a.branch = v2024.01.21
 
 [buildozer]

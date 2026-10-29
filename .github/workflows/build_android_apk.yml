@@ -143,6 +143,8 @@ jobs:
           fi
 
           find .buildozer -path "*charset_normalizer*" -name "*.so" -delete 2>/dev/null || true
+          # Always wipe stale .buildozer/android/app so buildozer never packages old cached .py files
+          rm -rf .buildozer/android/app bin/*.apk
 
           mkdir -p "$HOME/.gradle"
           cat << 'EOF' > "$HOME/.gradle/gradle.properties"
@@ -152,87 +154,122 @@ jobs:
           android.suppressUnsupportedCompileSdk=33,34,35
           EOF
 
-          python -c '
-          import glob, re
-          for gp in glob.glob(".buildozer/**/gradle*properties", recursive=True):
-              try:
-                  with open(gp, "r", encoding="utf-8") as f:
-                      txt = f.read()
-                  if "Xmx" in txt:
-                      txt = re.sub(r"-Xmx[0-9]+[mMgG]", "-Xmx4096m", txt)
-                  else:
-                      txt += "\norg.gradle.jvmargs=-Xmx4096m -XX:MaxMetaspaceSize=1024m -Dfile.encoding=UTF-8\n"
-                  if "suppressUnsupportedCompileSdk" not in txt:
-                      txt += "\nandroid.suppressUnsupportedCompileSdk=33,34,35\n"
-                  with open(gp, "w", encoding="utf-8") as f:
-                      f.write(txt)
-              except Exception:
-                  pass
-          for mf in glob.glob(".buildozer/**/AndroidManifest*.xml", recursive=True):
-              try:
-                  with open(mf, "r", encoding="utf-8") as f:
-                      mtxt = f.read()
-                  mtxt = re.sub(r"android:screenOrientation=\"[^\"]+\"", "android:screenOrientation=\"fullSensor\"", mtxt)
-                  with open(mf, "w", encoding="utf-8") as f:
-                      f.write(mtxt)
-              except Exception:
-                  pass
-          '
-
           rm -rf .buildozer/android/platform/build-arm64-v8a/dists/wsmasterduel/build
           rm -rf .buildozer/android/platform/build-arm64-v8a/dists/wsmasterduel/.gradle
 
-      - name: Compile Pure Python APK (main.py + engine.py + tk_android_bridge.py)
+      - name: Compile Pure Python APK & Force-Inject Latest Code/Assets into private.mp3
         run: |
           echo "Using JAVA_HOME=$JAVA_HOME"
           java -version
           export GRADLE_OPTS="-Dorg.gradle.jvmargs='-Xmx4096m -XX:MaxMetaspaceSize=1024m -Dfile.encoding=UTF-8'"
 
-          set +e
-          set +o pipefail
-          yes | buildozer android debug > buildozer.log 2>&1 &
-          BPID=$!
-          while kill -0 $BPID 2>/dev/null; do
-            python -c '
-          import re
-          try:
-              with open("buildozer.log", "r", errors="replace") as f:
-                  lines = f.readlines()[-60:]
-              clean = [re.sub(r"\x1b\[[0-9;]*[a-zA-Z]", "", ln).strip() for ln in lines]
-              interesting = [ln for ln in clean if any(k in ln for k in ("# ", "[INFO]", "Task :", "BUILD ", "FAILURE"))]
-              if interesting:
-                  print(interesting[-1])
-          except Exception:
-              pass
-          '
-            sleep 10
-          done
-          wait $BPID
-          BEXIT=$?
-          set -e
-          set -o pipefail
-          echo "Buildozer exited with code $BEXIT"
+          DIST_DIR=".buildozer/android/platform/build-arm64-v8a/dists/wsmasterduel"
 
-          if ! ls bin/*.apk >/dev/null 2>&1; then
-            echo "=== CLEANED BUILDOZER LOG (ANSI + ENV DUMPS STRIPPED) ==="
-            python -c '
-          import re
-          with open("buildozer.log", "r", errors="replace") as f:
-              raw = f.read()
-          clean = re.sub(r"\x1b\[[0-9;]*[a-zA-Z]", "", raw)
-          filtered = [
-              ln for ln in clean.splitlines()
-              if not re.match(r"^\s*(export\s+[A-Za-z_][A-Za-z0-9_]*=|#\s+[A-Za-z_][A-Za-z0-9_]*\s*=)", ln)
-          ]
-          print("\n".join(filtered[-140:]))
-          '
+          # Only run full buildozer if the p4a distribution folder does not exist in cache yet
+          if [ ! -d "$DIST_DIR" ] || [ -z "$(find "$DIST_DIR" -name 'private.mp3' 2>/dev/null)" ]; then
+            echo "=== Running initial Buildozer p4a compilation ==="
+            set +e
+            set +o pipefail
+            yes | buildozer android debug > buildozer.log 2>&1 &
+            BPID=$!
+            while kill -0 $BPID 2>/dev/null; do
+              sleep 10
+            done
+            wait $BPID
+            set -e
+            set -o pipefail
+          else
+            echo "=== Cached p4a dist found at $DIST_DIR! Proceeding directly to Force-Inject latest code & assets ==="
+          fi
 
-            DIST_DIR=".buildozer/android/platform/build-arm64-v8a/dists/wsmasterduel"
-            if [ -d "$DIST_DIR" ]; then
-              echo "=== RUNNING DIRECT GRADLE REPAIR & PACKAGING IN $DIST_DIR ==="
-              python -c '
-          import os, re, glob
+          # UNCONDITIONALLY inject the latest main.py, engine.py, network.py, tk_android_bridge.py, sets/, ws_card_images/, ws_audio/
+          # into $DIST_DIR/**/private.mp3 AND bump private_version in strings.xml so Android ALWAYS unpacks the new code on launch!
+          python - << 'PYEOF'
+          import os, re, glob, shutil, tarfile, time, py_compile, subprocess
+
           dist = ".buildozer/android/platform/build-arm64-v8a/dists/wsmasterduel"
+          assert os.path.isdir(dist), f"Dist directory missing: {dist}"
+
+          # 1. Find hostpython3 (if available) to compile .pyc with exact target magic number
+          host_py_list = glob.glob(".buildozer/**/hostpython3/native-build/python3", recursive=True)
+          host_py = host_py_list[0] if host_py_list else "python3"
+          print("Using Python compiler for .pyc:", host_py)
+
+          mp3_files = glob.glob(os.path.join(dist, "**", "private.mp3"), recursive=True)
+          assert mp3_files, f"No private.mp3 found under {dist}!"
+
+          for mp3_path in mp3_files:
+              mp3_abs = os.path.abspath(mp3_path)
+              print("=== Force-syncing latest repo code & assets into:", mp3_path)
+              sync_dir = "/tmp/p4a_private_sync"
+              shutil.rmtree(sync_dir, ignore_errors=True)
+              os.makedirs(sync_dir, exist_ok=True)
+
+              with tarfile.open(mp3_abs, "r:gz") as tf:
+                  tf.extractall(sync_dir)
+
+              # Remove old cached app scripts, bytecode, and asset directories
+              for old_f in ("main.py", "main.pyc", "engine.py", "engine.pyc", "network.py", "network.pyc", "tk_android_bridge.py", "tk_android_bridge.pyc", "ws_font.ttf", "maple_icon.png", "user_settings.json"):
+                  p = os.path.join(sync_dir, old_f)
+                  if os.path.exists(p):
+                      os.remove(p)
+              for old_d in ("sets", "ws_card_images", "ws_audio", "__pycache__"):
+                  shutil.rmtree(os.path.join(sync_dir, old_d), ignore_errors=True)
+
+              # Copy fresh Python files & compile fresh .pyc
+              for py_f in ("main.py", "engine.py", "network.py", "tk_android_bridge.py"):
+                  dst_py = os.path.join(sync_dir, py_f)
+                  shutil.copy2(py_f, dst_py)
+                  subprocess.run([host_py, "-c", f"import py_compile; py_compile.compile(r'{dst_py}', cfile=r'{dst_py}c', doraise=True)"], check=True)
+                  print(f"  Injected & compiled {py_f} ({os.path.getsize(dst_py)} bytes) + {py_f}c ({os.path.getsize(dst_py + 'c')} bytes)")
+
+              # Copy fresh fonts, icons, settings, and asset folders
+              for asset_f in ("ws_font.ttf", "maple_icon.png", "user_settings.json", "custom_deck.json", "custom_decks_book.json"):
+                  if os.path.isfile(asset_f):
+                      shutil.copy2(asset_f, os.path.join(sync_dir, asset_f))
+
+              for asset_d in ("sets", "ws_card_images", "ws_audio"):
+                  if os.path.isdir(asset_d):
+                      dst_d = os.path.join(sync_dir, asset_d)
+                      shutil.copytree(asset_d, dst_d, dirs_exist_ok=True)
+                      print(f"  Injected directory {asset_d}/ ({len(os.listdir(dst_d))} files)")
+
+              # Repack private.mp3
+              os.remove(mp3_abs)
+              subprocess.run(["tar", "-czf", mp3_abs, "-C", sync_dir, "."], check=True)
+              print(f"=== Repacked {mp3_path}: {os.path.getsize(mp3_abs)} bytes ===")
+
+          # 2. Update private_version in strings.xml so Android PythonActivity ALWAYS wipes old phone data/app and extracts the new private.mp3!
+          new_priv_ver = f"v2.5-{int(time.time())}"
+          for sxml in glob.glob(os.path.join(dist, "**", "strings.xml"), recursive=True):
+              with open(sxml, "r", encoding="utf-8") as f:
+                  stxt = f.read()
+              stxt_new = re.sub(
+                  r'(<string name="private_version">)[^<]*(</string>)',
+                  rf'\g<1>{new_priv_ver}\g<2>',
+                  stxt,
+              )
+              with open(sxml, "w", encoding="utf-8") as f:
+                  f.write(stxt_new)
+              print(f"Updated private_version -> {new_priv_ver} in {sxml}")
+
+          # 3. Patch AndroidManifest.xml (fullSensor auto-rotation + allowBackup=false + new versionCode)
+          new_vcode = str(int(time.time()) // 10)
+          for mf in glob.glob(os.path.join(dist, "**", "AndroidManifest*.xml"), recursive=True):
+              try:
+                  with open(mf, "r", encoding="utf-8") as f:
+                      mtxt = f.read()
+                  mtxt = re.sub(r'android:screenOrientation="[^"]+"', 'android:screenOrientation="fullSensor"', mtxt)
+                  mtxt = re.sub(r'android:allowBackup="true"', 'android:allowBackup="false"', mtxt)
+                  mtxt = re.sub(r'android:versionCode="[^"]+"', f'android:versionCode="{new_vcode}"', mtxt)
+                  mtxt = re.sub(r'android:versionName="[^"]+"', 'android:versionName="2.5.0"', mtxt)
+                  with open(mf, "w", encoding="utf-8") as f:
+                      f.write(mtxt)
+                  print("Patched manifest:", mf)
+              except Exception as e:
+                  print("Manifest patch warning:", mf, e)
+
+          # 4. Patch build.gradle and gradle.properties
           sdk_dir = os.path.expanduser("~/.buildozer/android/platform/android-sdk")
           bts = sorted(os.listdir(os.path.join(sdk_dir, "build-tools"))) if os.path.isdir(os.path.join(sdk_dir, "build-tools")) else ["33.0.2"]
           bt_ver = bts[-1] if bts else "33.0.2"
@@ -247,47 +284,41 @@ jobs:
               with open(bg_path, "w", encoding="utf-8") as f:
                   f.write(bg)
 
-          for mf in glob.glob(os.path.join(dist, "**", "AndroidManifest*.xml"), recursive=True):
-              try:
-                  with open(mf, "r", encoding="utf-8") as f:
-                      mtxt = f.read()
-                  mtxt = re.sub(r"android:screenOrientation=\"[^\"]+\"", "android:screenOrientation=\"fullSensor\"", mtxt)
-                  with open(mf, "w", encoding="utf-8") as f:
-                      f.write(mtxt)
-              except Exception:
-                  pass
-
           gp_path = os.path.join(dist, "gradle.properties")
           with open(gp_path, "w", encoding="utf-8") as f:
               f.write("org.gradle.jvmargs=-Xmx4096m -XX:MaxMetaspaceSize=1024m -Dfile.encoding=UTF-8\n")
               f.write("android.useAndroidX=true\n")
               f.write("android.enableJetifier=true\n")
               f.write("android.suppressUnsupportedCompileSdk=33,34,35\n")
-          '
-              chmod +x "$DIST_DIR/gradlew"
-              (cd "$DIST_DIR" && ./gradlew assembleDebug --stacktrace --no-daemon)
-              mkdir -p bin
-              cp "$DIST_DIR"/build/outputs/apk/debug/*.apk bin/
-            fi
-          fi
+          PYEOF
 
-          if ! ls bin/*.apk >/dev/null 2>&1; then
-            echo "ERROR: APK still not generated after direct Gradle build."
-            exit 1
-          fi
-
-          mkdir -p dist_apk
-          cp bin/*.apk dist_apk/WS_MasterDuel_PurePython.apk
+          chmod +x "$DIST_DIR/gradlew"
+          (cd "$DIST_DIR" && ./gradlew clean assembleDebug --stacktrace --no-daemon)
+          mkdir -p bin dist_apk
+          cp "$DIST_DIR"/build/outputs/apk/debug/*.apk bin/
+          cp "$DIST_DIR"/build/outputs/apk/debug/*.apk dist_apk/WS_MasterDuel_PurePython.apk
           ls -lh dist_apk/
 
       - name: Publish Direct .APK to GitHub Releases (No Unzip Required on Mobile!)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: "WS Master Duel Android APK v2.5 (最新版免解壓直接下載)"
+          body: "手機請直接點擊下方 Assets 的 WS_MasterDuel_PurePython.apk 即可免解壓縮直接下載安裝！"
+          files: dist_apk/WS_MasterDuel_PurePython.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+      - name: Fallback CLI Release Upload
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          git tag -f latest
+          git push -f origin latest || true
           gh release create latest dist_apk/WS_MasterDuel_PurePython.apk \
-            --title "WS Master Duel Android APK (Latest)" \
-            --notes "手機直接點擊下方 WS_MasterDuel_PurePython.apk 即可免解壓縮直接下載安裝！" \
-            --clobber || \
+            --title "WS Master Duel Android APK v2.5 (最新版免解壓直接下載)" \
+            --notes "手機直接點擊下方 WS_MasterDuel_PurePython.apk 即可免解壓縮直接下載安裝！" || \
           gh release upload latest dist_apk/WS_MasterDuel_PurePython.apk --clobber || true
 
       - name: Always Save Buildozer Cache (Even If Interrupted)

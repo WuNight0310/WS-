@@ -1090,7 +1090,6 @@ def translate_jp_ws_name_to_zh(name: str) -> str:
 
 
 def translate_jp_ws_text_to_zh(text: str) -> str:
-    """將日文 WS 卡片效果文完整翻譯為標準繁體中文 WS 規則語句，供介面顯示與 ChineseEffectParser 編譯"""
     if not text:
         return ""
     s = str(text)
@@ -1292,7 +1291,6 @@ def translate_jp_ws_text_to_zh(text: str) -> str:
 
 
 def build_universal_ws_image_urls(cid: str, c_info: dict = None) -> list:
-    """為任意 WS 卡號 (包含貓罐子所有新舊系列與異畫卡) 產生多源備援圖片網址清單 (PNG / JPG / GIF)"""
     c_info = c_info or {}
     urls = []
     for k in ("imageUrl", "image", "img", "url", "pic", "cover"):
