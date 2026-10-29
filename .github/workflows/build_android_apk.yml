@@ -5,6 +5,9 @@ on:
     branches: [ "main", "master" ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build-apk:
     runs-on: ubuntu-22.04
@@ -26,13 +29,13 @@ jobs:
       - name: Clean Non-ASCII Desktop Helper Files, Convert WebP/MP3 & Bundle Full Font
         run: |
           rm -rf android_apk_builder ws_master_duel_web_mobile.html artifacts
-          rm -f *.bat win32_ico_builder.py ws_card_images/*.txt
+          rm -f *.bat *.zip win32_ico_builder.py ws_card_images/*.txt
           python -c '
           import os
           for fn in os.listdir("."):
-              if not fn.isascii() and (fn.endswith(".py") or fn.endswith(".bat")):
+              if not fn.isascii() and (fn.endswith(".py") or fn.endswith(".bat") or fn.endswith(".zip")):
                   os.remove(fn)
-                  print("Removed desktop-only non-ASCII file:", fn)
+                  print("Removed desktop-only file:", fn)
           '
           sudo apt-get update
           sudo apt-get install -y \
@@ -48,20 +51,22 @@ jobs:
             cp "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc" ./ws_font.ttf
           fi
 
-          # Convert ws_audio/*.mp3 to high-compatibility 22.05kHz PCM .wav so Android SDL2_mixer plays 100% of custom MP3s
+          # Convert ws_audio/*.mp3 to 22.05kHz PCM .wav for 100% Android SDL2_mixer compatibility, and remove duplicate .mp3 in CI
           if [ -d "ws_audio" ]; then
             for mp3 in ws_audio/*.mp3; do
               if [ -f "$mp3" ]; then
                 wav_out="${mp3%.mp3}.wav"
-                ffmpeg -y -i "$mp3" -ar 22050 -ac 1 "$wav_out" >/dev/null 2>&1 || true
-                echo "Synced $mp3 -> $wav_out for Android SDL2 audio"
+                if ffmpeg -y -i "$mp3" -ar 22050 -ac 1 "$wav_out" >/dev/null 2>&1; then
+                  rm -f "$mp3"
+                  echo "Converted $mp3 -> $wav_out (removed duplicate .mp3 to keep APK compact)"
+                fi
               fi
             done
           fi
 
           python -m pip install --upgrade pip "setuptools<70" "wheel" "cython==0.29.36" "buildozer==1.5.0" virtualenv pillow
 
-          # Convert bundled ws_card_images/*.webp (including sleeve_ws_default.webp and sleeve_amiami_21593.webp) to .jpg
+          # Convert bundled ws_card_images/*.webp to optimized .jpg so APK stays compact (~45MB instead of 300MB+)
           python -c '
           from PIL import Image, ImageFont
           import glob, os
@@ -74,12 +79,18 @@ jobs:
               jp = wp[:-5] + ".jpg"
               try:
                   im = Image.open(wp).convert("RGB")
-                  im.save(jp, "JPEG", quality=90)
+                  bname = os.path.basename(wp).lower()
+                  if "sleeve" in bname:
+                      im.thumbnail((480, 672))
+                      im.save(jp, "JPEG", quality=90, optimize=True)
+                  else:
+                      im.thumbnail((320, 448))
+                      im.save(jp, "JPEG", quality=82, optimize=True)
                   os.remove(wp)
                   converted += 1
               except Exception as e:
                   print("Skip webp:", wp, e)
-          print(f"Converted {converted} .webp card/sleeve images to .jpg for Android Pillow 8.4.0")
+          print(f"Converted & optimized {converted} .webp images to .jpg for Android Pillow 8.4.0")
           '
 
       - name: Restore Buildozer Cache (SDK/NDK & Compiled Python 3.11)
@@ -269,6 +280,16 @@ jobs:
           cp bin/*.apk dist_apk/WS_MasterDuel_PurePython.apk
           ls -lh dist_apk/
 
+      - name: Publish Direct .APK to GitHub Releases (No Unzip Required on Mobile!)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create latest dist_apk/WS_MasterDuel_PurePython.apk \
+            --title "WS Master Duel Android APK (Latest)" \
+            --notes "手機直接點擊下方 WS_MasterDuel_PurePython.apk 即可免解壓縮直接下載安裝！" \
+            --clobber || \
+          gh release upload latest dist_apk/WS_MasterDuel_PurePython.apk --clobber || true
+
       - name: Always Save Buildozer Cache (Even If Interrupted)
         if: always()
         uses: actions/cache/save@v4
@@ -283,4 +304,5 @@ jobs:
         with:
           name: WS_MasterDuel_Android_APK
           path: dist_apk/WS_MasterDuel_PurePython.apk
+          compression-level: 6
           if-no-files-found: error

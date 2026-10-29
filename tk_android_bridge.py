@@ -1460,13 +1460,11 @@ class Tk(Frame):
             self._event_cond.notify_all()
 
     def post_move_event(self, rx: int, ry: int):
-        """Coalesces high-frequency touch move samples so dragging stays at 60 FPS with zero backlog."""
         with self._event_cond:
             self._pending_move_xy = (int(rx), int(ry))
             self._event_cond.notify_all()
 
     def _process_pending_events(self):
-        # 1. Process queued UI touch/mouse events
         while True:
             with self._event_cond:
                 if not self._event_queue:
@@ -1477,7 +1475,6 @@ class Tk(Frame):
             except Exception:
                 pass
 
-        # 1b. Process coalesced pointer move event (at most once per frame!)
         move_xy = None
         with self._event_cond:
             if self._pending_move_xy is not None:
@@ -1489,7 +1486,6 @@ class Tk(Frame):
             except Exception:
                 pass
 
-        # 2. Process due after() timers
         now = time.monotonic()
         due_list = []
         with self._timer_lock:
@@ -1503,7 +1499,6 @@ class Tk(Frame):
             except Exception:
                 pass
 
-        # 3. Recompute layout if dirty
         if self._dirty:
             self.update_idletasks()
 
@@ -2428,7 +2423,6 @@ def render_root_to_pil(root: Tk) -> Image.Image:
     surface = Image.new("RGB", (rw, rh), color=_parse_color(root.cget("bg"), "#0d111a"))
     draw = ImageDraw.Draw(surface)
 
-    # Temporarily hide ghost while capturing clean base board so drag frames take ~1.5ms
     gw_was_mapped = False
     if gw is not None and gw._exists and gw._mapped:
         gw_was_mapped = True
@@ -2443,7 +2437,6 @@ def render_root_to_pil(root: Tk) -> Image.Image:
     else:
         root._bg_without_ghost_pil = surface
 
-    # Draw active Combobox dropdown overlay if open
     if root._active_dropdown is not None:
         cmb, item_rects = root._active_dropdown
         if cmb._exists and cmb.winfo_ismapped():
@@ -2463,7 +2456,6 @@ def render_root_to_pil(root: Tk) -> Image.Image:
                     font=pil_f,
                 )
 
-    # Draw floating touch helper bar when an Entry/Spinbox is focused
     fw = getattr(root, "_focused_widget", None)
     if fw is not None and isinstance(fw, (Entry, Spinbox)) and fw._exists and fw.winfo_ismapped():
         pil_f = get_pil_font(("Microsoft JhengHei", 10, "bold"))
@@ -2812,11 +2804,9 @@ def run_kivy_android_host(main_app_cls):
             ww, wh = max(1, float(self.width)), max(1, float(self.height))
             is_port = wh > ww
             if is_port:
-                # 自動豎屏模式：固定邏輯寬度 1000，高度依手機螢幕長寬比自適應延展，100% 滿版無黑邊
                 tw = 1000
                 th = max(1340, min(2240, int(round(1000.0 * wh / ww))))
             else:
-                # 自動橫屏模式：固定邏輯高度 950，寬度依手機螢幕長寬比 (如 20:9) 自適應延展，100% 滿版無黑邊
                 if ww / wh >= 1600.0 / 950.0:
                     th = 950
                     tw = max(1600, min(2240, int(round(950.0 * ww / wh))))
@@ -2835,7 +2825,6 @@ def run_kivy_android_host(main_app_cls):
             tw = float(self.tk_root._w)
             th = float(self.tk_root._h)
             rx = int((sx - vx) * tw / vw)
-            # Kivy y=0 is bottom, Tk y=0 is top
             ry = int((vh - (sy - vy)) * th / vh)
             rx = max(0, min(int(tw) - 1, rx))
             ry = max(0, min(int(th) - 1, ry))
@@ -2859,7 +2848,6 @@ def run_kivy_android_host(main_app_cls):
             if self._touch_start_xy is not None:
                 sx, sy = self._touch_start_xy
                 dy = ry - sy
-                # Check if user is swiping inside a scrollable Canvas / Text / Listbox
                 hit_w = hit_test_widget(self.tk_root, rx, ry)
                 sc_anc = _find_scrollable_ancestor(hit_w) if hit_w else None
                 if sc_anc is not None and hit_w != getattr(self.tk_root, "_drag_widget", None):
@@ -2902,7 +2890,6 @@ def run_kivy_android_host(main_app_cls):
                 self._kb = None
 
         def _on_window_textinput(self, window, text):
-            """使用 SDL2/Kivy 合成後之 on_textinput 接收字元，徹底解決 Shift 大寫或特殊符號 (如 :) 產生 !;! 亂碼問題"""
             fw = getattr(self.tk_root, "_focused_widget", None)
             if fw is None or not isinstance(fw, (Entry, Spinbox)):
                 return
@@ -2955,7 +2942,6 @@ def run_kivy_android_host(main_app_cls):
                 Window.fullscreen = "auto"
             except Exception:
                 pass
-            # 啟用 Android 硬體重力感應自動翻轉 (SCREEN_ORIENTATION_FULL_SENSOR = 10)
             try:
                 from jnius import autoclass
                 PythonActivity = autoclass("org.kivy.android.PythonActivity")

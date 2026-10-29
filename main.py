@@ -1135,17 +1135,14 @@ class SoundManager:
                 return os.path.abspath(rel_p)
             base_fn = re.split(r"[\\/]", raw_p)[-1]
             stem_fn = os.path.splitext(base_fn)[0]
-            # 在 Android 上若 CI 已將 .mp3 轉出高音質 .wav，優先檢查 .wav 與 .mp3
             exts = (".wav", ".mp3") if _IS_ANDROID else (".mp3", ".wav")
             for cand_fn in [base_fn] + [f"{stem_fn}{e}" for e in exts]:
                 in_audio_p = os.path.join(self.audio_dir, cand_fn)
                 if os.path.exists(in_audio_p) and os.path.getsize(in_audio_p) > 200:
                     return os.path.abspath(in_audio_p)
-        # 自動偵測 ./ws_audio/<key>.mp3 與 .wav
         mp3_candidate = os.path.join(self.audio_dir, f"{key}.mp3")
         wav_candidate = os.path.join(self.audio_dir, f"{key}.wav")
         if _IS_ANDROID:
-            # Android 優先使用經 ffmpeg 轉出的無損相容 .wav，或直接載入 .mp3
             if os.path.exists(wav_candidate) and os.path.getsize(wav_candidate) > 15000:
                 return os.path.abspath(wav_candidate)
             if os.path.exists(mp3_candidate) and os.path.getsize(mp3_candidate) > 200:
@@ -1396,7 +1393,6 @@ class ImageManager:
                     except Exception:
                         pass
         c_data = CARD_DB.get(cid, {})
-        # 當此卡片尚未有本地卡圖時，立即排入高優先背景佇列即時抓取真實卡圖
         self._queue_on_demand_card_download(cid)
         if cid in self.pil_cache:
             return self.pil_cache[cid]
@@ -1881,7 +1877,6 @@ class ImageManager:
         if style == "LAN_PEER_CUSTOM" and "LAN_PEER_CUSTOM" in self.sleeve_pil_cache:
             return self.sleeve_pil_cache["LAN_PEER_CUSTOM"]
         if style == "CUSTOM" and c_path:
-            # 同時支援完整路徑、相對路徑與 ws_card_images 內同名檔案 (.webp/.jpg/.png)
             cand_paths = [c_path, os.path.join(BASE_DIR, c_path)]
             base_fn = re.split(r"[\\/]", str(c_path))[-1]
             stem_fn = os.path.splitext(base_fn)[0]
@@ -14244,7 +14239,6 @@ class MainApp:
         self.current_deck_recipe = self.get_series_deck(self.active_series)
 
         self.img_mgr = ImageManager(self.root)
-        self.img_mgr.app = self
         self.img_mgr.set_sleeve_config(
             self.settings.get("sleeve_style", "WS_DEFAULT"),
             self.settings.get("custom_sleeve_path", ""),
@@ -14550,11 +14544,6 @@ class MainApp:
         ace_map = dict(self.settings.get("ace_card_by_series") or {})
         ace_map[target_s] = cid
         self.settings["ace_card_by_series"] = ace_map
-        if hasattr(self, "img_mgr"):
-            self.img_mgr.sleeve_pil_cache.clear()
-            self.img_mgr.deck_stack_cache.clear()
-            self.img_mgr.stock_stack_cache.clear()
-            self.img_mgr.ai_fan_cache.clear()
         self.save_user_settings(self.settings)
 
     def get_series_ace_card_id(self, scode: str) -> str:
@@ -14682,10 +14671,6 @@ class MainApp:
             self.current_deck_recipe = self.get_series_deck(scode)
             self._cached_floating_deck_key = None
             self.img_mgr.bg_cache.clear()
-            self.img_mgr.sleeve_pil_cache.clear()
-            self.img_mgr.deck_stack_cache.clear()
-            self.img_mgr.stock_stack_cache.clear()
-            self.img_mgr.ai_fan_cache.clear()
             self._persist_decks_book()
 
     def set_ai_series(self, scode: str):

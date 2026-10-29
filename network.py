@@ -65,7 +65,6 @@ class WSNetNode:
     def parse_host_port(raw_address: str, default_port: int = 15780):
         """自動解析並淨化 'IP:Port'、'tcp://domain:port' 或純 IP/域名（自動修復手機鍵盤誤輸入之 !;! 與全形冒號）"""
         addr = (raw_address or "").strip()
-        # 修復 Android 鍵盤 Shift+; 舊版誤觸產生的 !;! 或全形冒號
         addr = addr.replace("!;!", ":").replace("：", ":").replace(" ", "")
         for prefix in ["tcp://", "http://", "https://", "tcp//", "http//", "https//"]:
             if addr.lower().startswith(prefix):
@@ -184,7 +183,6 @@ class WSNetNode:
                 conn, addr = self.sock.accept()
                 conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
                 conn.settimeout(5.0)
-                # 驗證是否為真正的 WS 遊戲客戶端握手（過濾 ngrok 探測、Port 掃描器或瀏覽器誤觸）
                 buf = ""
                 handshake_ok = False
                 while "\n" not in buf and len(buf) < 4096:
@@ -217,7 +215,7 @@ class WSNetNode:
                     self.on_msg({"type": "SYS_CONNECTED", "peer": f"{addr[0]}:{addr[1]}"})
                 self._recv_loop(conn, initial_buf=rest_buf)
                 return
-            except Exception as e:
+            except Exception:
                 if conn is not None and not self.connected:
                     try:
                         conn.close()
@@ -240,7 +238,6 @@ class WSNetNode:
                 s.settimeout(8.0)
                 s.connect((host, int(parsed_port)))
                 s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
-                # 發送遊戲協議握手封包並等待房主確認
                 hs_raw = json.dumps({
                     "type": "WS_HANDSHAKE",
                     "protocol": "WS_MASTER_DUEL_V2",
@@ -262,7 +259,7 @@ class WSNetNode:
                         ack_ok = True
                 if not ack_ok:
                     s.close()
-                    raise ConnectionError("目標位址已連通，但對方並非等待中的 WS 對戰房間（或房間已滿）")
+                    raise ConnectionError("目標位址已連通，但對方並非等待中的 WS 對戰房間")
                 s.settimeout(None)
                 self.conn = s
                 self.connected = True
