@@ -39,7 +39,7 @@ jobs:
           '
           sudo apt-get update
           sudo apt-get install -y \
-            git zip unzip autoconf libtool pkg-config ffmpeg \
+            git zip unzip autoconf libtool pkg-config ffmpeg patch \
             zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake \
             libffi-dev libssl-dev automake libltdl-dev libjpeg-dev libpng-dev \
             libfreetype6-dev fonts-wqy-microhei fonts-wqy-zenhei
@@ -64,7 +64,9 @@ jobs:
             done
           fi
 
-          python -m pip install --upgrade pip "setuptools<70" "wheel" "cython==0.29.36" "buildozer==1.5.0" virtualenv pillow jinja2 sh
+          # Install all buildozer & python-for-android dependencies (including colorama, appdirs, toml, packaging, jinja2, sh)
+          python -m pip install --upgrade pip "setuptools<70" "wheel" "cython==0.29.36" "buildozer==1.5.0" \
+            virtualenv pillow jinja2 "sh<2.0" colorama appdirs toml packaging build
 
           # Convert bundled ws_card_images/*.webp to optimized .jpg so APK stays compact (~45MB instead of 300MB+)
           python -c '
@@ -194,9 +196,10 @@ jobs:
             exit 1
           fi
 
-          # 2. Directly run p4a's build.py inside $DIST_DIR pointing --private at our fresh /tmp/ws_app_payload!
+          # 2. Run p4a's build.py inside $DIST_DIR pointing --private at our fresh /tmp/ws_app_payload
           echo "=== Running p4a build.py to package fresh /tmp/ws_app_payload into $DIST_DIR/src/main/assets ==="
           P4A_DIR="$(pwd)/.buildozer/android/platform/python-for-android"
+          set +e
           (
             cd "$DIST_DIR" && \
             PYTHONPATH="$P4A_DIR:$PYTHONPATH" python3 build.py \
@@ -215,15 +218,109 @@ jobs:
               --icon "$GITHUB_WORKSPACE/maple_icon.png" \
               --enable-androidx
           )
+          BUILD_PY_EXIT=$?
+          set -e
+          echo "build.py exited with code $BUILD_PY_EXIT"
 
-          echo "=== Verifying newly generated assets in $DIST_DIR/src/main/assets ==="
-          ls -lh "$DIST_DIR/src/main/assets/"
-
-          # 3. Patch build.gradle, gradle.properties, AndroidManifest.xml (fullSensor + allowBackup=false), and strings.xml AFTER build.py
+          # 3. Verify & Patch Assets, Manifest, Strings, and Gradle (with zero-dependency fallback if build.py failed)
           python3 - << 'PYEOF'
-          import os, re, glob, time
+          import os, re, glob, time, tarfile, shutil, tempfile, subprocess, hashlib
+          from gzip import GzipFile
 
           dist = ".buildozer/android/platform/build-arm64-v8a/dists/wsmasterduel"
+          assets_dir = os.path.join(dist, "src", "main", "assets")
+          os.makedirs(assets_dir, exist_ok=True)
+
+          build_py_path = os.path.join(dist, "build.py")
+          target_archive = "private.mp3"
+          if os.path.isfile(build_py_path):
+              with open(build_py_path, "r", encoding="utf-8", errors="ignore") as f:
+                  btxt = f.read()
+              if '"private.tar"' in btxt or "'private.tar'" in btxt:
+                  target_archive = "private.tar"
+
+          archive_path = os.path.join(assets_dir, target_archive)
+
+          # Ensure /tmp/ws_app_payload/*.py are compiled to .pyc via hostpython3
+          host_py_list = glob.glob(".buildozer/**/hostpython3/native-build/python3", recursive=True)
+          host_py = host_py_list[0] if host_py_list else "python3"
+          subprocess.run([host_py, "-OO", "-m", "compileall", "-b", "-f", "/tmp/ws_app_payload"], check=True)
+          expected_main_pyc_size = os.path.getsize("/tmp/ws_app_payload/main.pyc")
+
+          need_manual_repack = True
+          if os.path.isfile(archive_path):
+              try:
+                  with tarfile.open(archive_path, "r:gz") as tf:
+                      members = {m.name.lstrip("./"): m.size for m in tf.getmembers()}
+                  if members.get("main.pyc") == expected_main_pyc_size:
+                      print(f"=== Verified {archive_path} built by build.py has latest main.pyc ({expected_main_pyc_size} bytes)! ===")
+                      for k in ("main.pyc", "engine.pyc", "network.pyc", "tk_android_bridge.pyc"):
+                          print(f"  [OK] {k}: {members.get(k)} bytes")
+                      need_manual_repack = False
+              except Exception as e:
+                  print("Archive check warning:", e)
+
+          if need_manual_repack:
+              print(f"=== Repackaging {archive_path} directly via Pure-Python USTAR builder ===")
+              stage_dir = tempfile.mkdtemp(prefix="ws_p4a_stage_")
+              if os.path.isfile(archive_path):
+                  try:
+                      with tarfile.open(archive_path, "r:gz") as tf:
+                          tf.extractall(stage_dir)
+                  except Exception as e:
+                      print("Warning extracting existing archive:", e)
+              for stale in ("main.py", "main.pyc", "engine.py", "engine.pyc", "network.py", "network.pyc", "tk_android_bridge.py", "tk_android_bridge.pyc", "ws_card_images", "ws_audio", "sets"):
+                  sp = os.path.join(stage_dir, stale)
+                  if os.path.isdir(sp):
+                      shutil.rmtree(sp)
+                  elif os.path.exists(sp):
+                      os.remove(sp)
+              for item in os.listdir("/tmp/ws_app_payload"):
+                  s = os.path.join("/tmp/ws_app_payload", item)
+                  d = os.path.join(stage_dir, item)
+                  if os.path.isdir(s):
+                      shutil.copytree(s, d, dirs_exist_ok=True)
+                  elif not item.endswith(".py"):
+                      shutil.copy2(s, d)
+              if not os.path.isfile(os.path.join(stage_dir, "p4a_env_vars.txt")):
+                  with open(os.path.join(stage_dir, "p4a_env_vars.txt"), "w", encoding="utf-8") as f:
+                      f.write("P4A_IS_WINDOWED=False\nKIVY_ORIENTATION=LandscapeLeft\nP4A_NUMERIC_VERSION=1024020500\nP4A_MINSDK=24\n")
+
+              def clean_tinfo(tinfo):
+                  tinfo.uid = tinfo.gid = 0
+                  tinfo.uname = tinfo.gname = ""
+                  tinfo.mtime = 0
+                  return tinfo
+
+              files = []
+              for root_d, _, fnames in os.walk(stage_dir):
+                  for fn in fnames:
+                      if fn.endswith(".py"):
+                          continue
+                      full_p = os.path.join(root_d, fn)
+                      rel_p = os.path.relpath(full_p, stage_dir)
+                      files.append((full_p, rel_p))
+              files.sort()
+              with GzipFile(archive_path, "wb", mtime=0) as gf:
+                  with tarfile.open(None, "w", gf, format=tarfile.USTAR_FORMAT) as tf:
+                      dirs = set()
+                      for full_p, rel_p in files:
+                          dn = os.path.dirname(rel_p)
+                          if dn and dn not in dirs:
+                              cur = ""
+                              for part in dn.replace("\\", "/").split("/"):
+                                  cur = f"{cur}/{part}" if cur else part
+                                  if cur not in dirs:
+                                      dirs.add(cur)
+                                      ti = tarfile.TarInfo(cur)
+                                      ti.type = tarfile.DIRTYPE
+                                      clean_tinfo(ti)
+                                      tf.addfile(ti)
+                          tf.add(full_p, rel_p, filter=clean_tinfo)
+              shutil.rmtree(stage_dir, ignore_errors=True)
+              print(f"=== Built {archive_path}: {os.path.getsize(archive_path)} bytes ===")
+
+          # Patch build.gradle, gradle.properties, AndroidManifest.xml (fullSensor + allowBackup=false), and strings.xml
           sdk_dir = os.path.expanduser("~/.buildozer/android/platform/android-sdk")
           bts = sorted(os.listdir(os.path.join(sdk_dir, "build-tools"))) if os.path.isdir(os.path.join(sdk_dir, "build-tools")) else ["33.0.2"]
           bt_ver = bts[-1] if bts else "33.0.2"
@@ -238,7 +335,7 @@ jobs:
               with open(bg_path, "w", encoding="utf-8") as f:
                   f.write(bg)
 
-          new_priv_ver = f"v2.5-{int(time.time())}"
+          new_priv_ver = hashlib.sha1(f"v2.5-{time.time()}".encode()).hexdigest()
           for sxml in glob.glob(os.path.join(dist, "**", "strings.xml"), recursive=True):
               with open(sxml, "r", encoding="utf-8") as f:
                   stxt = f.read()
@@ -273,6 +370,9 @@ jobs:
               f.write("android.enableJetifier=true\n")
               f.write("android.suppressUnsupportedCompileSdk=33,34,35\n")
           PYEOF
+
+          echo "=== Verifying newly generated assets in $DIST_DIR/src/main/assets ==="
+          ls -lh "$DIST_DIR/src/main/assets/"
 
           # 4. Run Gradle assembleDebug (do NOT run 'clean' before assembleDebug so generated assets stay intact!)
           chmod +x "$DIST_DIR/gradlew"
