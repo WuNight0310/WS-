@@ -64,7 +64,7 @@ jobs:
             done
           fi
 
-          python -m pip install --upgrade pip "setuptools<70" "wheel" "cython==0.29.36" "buildozer==1.5.0" virtualenv pillow
+          python -m pip install --upgrade pip "setuptools<70" "wheel" "cython==0.29.36" "buildozer==1.5.0" virtualenv pillow jinja2 sh
 
           # Convert bundled ws_card_images/*.webp to optimized .jpg so APK stays compact (~45MB instead of 300MB+)
           python -c '
@@ -106,7 +106,7 @@ jobs:
             ws-pure-py311-p4a-v7-
             ws-pure-py311-p4a-v6-
 
-      - name: Provision Android SDK 33, Build-Tools 33.0.2 & Gradle 4GB Heap
+      - name: Provision Android SDK 33, Build-Tools 33.0.2 & Clean Payload Directory
         run: |
           SDK_DIR="$HOME/.buildozer/android/platform/android-sdk"
           SYS_SDK="/usr/local/lib/android/sdk"
@@ -143,8 +143,21 @@ jobs:
           fi
 
           find .buildozer -path "*charset_normalizer*" -name "*.so" -delete 2>/dev/null || true
-          # Always wipe stale .buildozer/android/app so buildozer never packages old cached .py files
           rm -rf .buildozer/android/app bin/*.apk
+
+          # Stage a 100% clean private app payload folder /tmp/ws_app_payload with the latest code & assets
+          rm -rf /tmp/ws_app_payload
+          mkdir -p /tmp/ws_app_payload
+          cp main.py engine.py network.py tk_android_bridge.py maple_icon.png /tmp/ws_app_payload/
+          [ -f ws_font.ttf ] && cp ws_font.ttf /tmp/ws_app_payload/
+          [ -f user_settings.json ] && cp user_settings.json /tmp/ws_app_payload/
+          [ -f custom_deck.json ] && cp custom_deck.json /tmp/ws_app_payload/
+          [ -f custom_decks_book.json ] && cp custom_decks_book.json /tmp/ws_app_payload/
+          [ -d sets ] && cp -r sets /tmp/ws_app_payload/
+          [ -d ws_card_images ] && cp -r ws_card_images /tmp/ws_app_payload/
+          [ -d ws_audio ] && cp -r ws_audio /tmp/ws_app_payload/
+          echo "=== Staged clean app payload in /tmp/ws_app_payload ==="
+          ls -la /tmp/ws_app_payload
 
           mkdir -p "$HOME/.gradle"
           cat << 'EOF' > "$HOME/.gradle/gradle.properties"
@@ -157,7 +170,7 @@ jobs:
           rm -rf .buildozer/android/platform/build-arm64-v8a/dists/wsmasterduel/build
           rm -rf .buildozer/android/platform/build-arm64-v8a/dists/wsmasterduel/.gradle
 
-      - name: Compile Pure Python APK & Force-Inject Latest Code/Assets into private.mp3
+      - name: Repackage Latest App Payload via p4a build.py & Assemble APK
         run: |
           echo "Using JAVA_HOME=$JAVA_HOME"
           java -version
@@ -165,81 +178,66 @@ jobs:
 
           DIST_DIR=".buildozer/android/platform/build-arm64-v8a/dists/wsmasterduel"
 
-          # Only run full buildozer if the p4a distribution folder does not exist in cache yet
-          if [ ! -d "$DIST_DIR" ] || [ -z "$(find "$DIST_DIR" -name 'private.mp3' 2>/dev/null)" ]; then
-            echo "=== Running initial Buildozer p4a compilation ==="
+          # 1. If $DIST_DIR/build.py does not exist yet (cold cache), run buildozer to compile p4a dist
+          if [ ! -f "$DIST_DIR/build.py" ]; then
+            echo "=== Cold cache: running buildozer android debug to create $DIST_DIR ==="
             set +e
             set +o pipefail
-            yes | buildozer android debug > buildozer.log 2>&1 &
-            BPID=$!
-            while kill -0 $BPID 2>/dev/null; do
-              sleep 10
-            done
-            wait $BPID
+            yes | buildozer android debug > buildozer.log 2>&1
             set -e
             set -o pipefail
-          else
-            echo "=== Cached p4a dist found at $DIST_DIR! Proceeding directly to Force-Inject latest code & assets ==="
           fi
 
-          # UNCONDITIONALLY inject the latest main.py, engine.py, network.py, tk_android_bridge.py, sets/, ws_card_images/, ws_audio/
-          # into $DIST_DIR/**/private.mp3 AND bump private_version in strings.xml so Android ALWAYS unpacks the new code on launch!
-          python - << 'PYEOF'
-          import os, re, glob, shutil, tarfile, time, py_compile, subprocess
+          if [ ! -f "$DIST_DIR/build.py" ]; then
+            echo "=== ERROR: $DIST_DIR/build.py still missing! Dumping buildozer.log ==="
+            tail -n 120 buildozer.log || true
+            exit 1
+          fi
+
+          # 2. Directly run p4a's build.py inside $DIST_DIR pointing --private at our fresh /tmp/ws_app_payload!
+          echo "=== Running p4a build.py to package fresh /tmp/ws_app_payload into $DIST_DIR/src/main/assets ==="
+          P4A_DIR="$(pwd)/.buildozer/android/platform/python-for-android"
+          (
+            cd "$DIST_DIR" && \
+            PYTHONPATH="$P4A_DIR:$PYTHONPATH" python3 build.py \
+              --package org.ws.wsmasterduel \
+              --name "WS Master Duel" \
+              --version 2.5.0 \
+              --private /tmp/ws_app_payload \
+              --minsdk 24 \
+              --orientation landscape \
+              --permission INTERNET \
+              --permission ACCESS_NETWORK_STATE \
+              --permission ACCESS_WIFI_STATE \
+              --android-entrypoint org.kivy.android.PythonActivity \
+              --android-apptheme @android:style/Theme.NoTitleBar \
+              --presplash "$GITHUB_WORKSPACE/maple_icon.png" \
+              --icon "$GITHUB_WORKSPACE/maple_icon.png" \
+              --enable-androidx
+          )
+
+          echo "=== Verifying newly generated assets in $DIST_DIR/src/main/assets ==="
+          ls -lh "$DIST_DIR/src/main/assets/"
+
+          # 3. Patch build.gradle, gradle.properties, AndroidManifest.xml (fullSensor + allowBackup=false), and strings.xml AFTER build.py
+          python3 - << 'PYEOF'
+          import os, re, glob, time
 
           dist = ".buildozer/android/platform/build-arm64-v8a/dists/wsmasterduel"
-          assert os.path.isdir(dist), f"Dist directory missing: {dist}"
+          sdk_dir = os.path.expanduser("~/.buildozer/android/platform/android-sdk")
+          bts = sorted(os.listdir(os.path.join(sdk_dir, "build-tools"))) if os.path.isdir(os.path.join(sdk_dir, "build-tools")) else ["33.0.2"]
+          bt_ver = bts[-1] if bts else "33.0.2"
 
-          # 1. Find hostpython3 (if available) to compile .pyc with exact target magic number
-          host_py_list = glob.glob(".buildozer/**/hostpython3/native-build/python3", recursive=True)
-          host_py = host_py_list[0] if host_py_list else "python3"
-          print("Using Python compiler for .pyc:", host_py)
+          bg_path = os.path.join(dist, "build.gradle")
+          if os.path.isfile(bg_path):
+              with open(bg_path, "r", encoding="utf-8") as f:
+                  bg = f.read()
+              bg = re.sub(r"buildToolsVersion\s+[\x27\"][^\x27\"]+[\x27\"]", f"buildToolsVersion \x27{bt_ver}\x27", bg)
+              if "noCompress" not in bg:
+                  bg = bg.replace("android {", "android {\n    aaptOptions {\n        noCompress \x27tar\x27, \x27mp3\x27, \x27wav\x27, \x27so\x27\n    }")
+              with open(bg_path, "w", encoding="utf-8") as f:
+                  f.write(bg)
 
-          mp3_files = glob.glob(os.path.join(dist, "**", "private.mp3"), recursive=True)
-          assert mp3_files, f"No private.mp3 found under {dist}!"
-
-          for mp3_path in mp3_files:
-              mp3_abs = os.path.abspath(mp3_path)
-              print("=== Force-syncing latest repo code & assets into:", mp3_path)
-              sync_dir = "/tmp/p4a_private_sync"
-              shutil.rmtree(sync_dir, ignore_errors=True)
-              os.makedirs(sync_dir, exist_ok=True)
-
-              with tarfile.open(mp3_abs, "r:gz") as tf:
-                  tf.extractall(sync_dir)
-
-              # Remove old cached app scripts, bytecode, and asset directories
-              for old_f in ("main.py", "main.pyc", "engine.py", "engine.pyc", "network.py", "network.pyc", "tk_android_bridge.py", "tk_android_bridge.pyc", "ws_font.ttf", "maple_icon.png", "user_settings.json"):
-                  p = os.path.join(sync_dir, old_f)
-                  if os.path.exists(p):
-                      os.remove(p)
-              for old_d in ("sets", "ws_card_images", "ws_audio", "__pycache__"):
-                  shutil.rmtree(os.path.join(sync_dir, old_d), ignore_errors=True)
-
-              # Copy fresh Python files & compile fresh .pyc
-              for py_f in ("main.py", "engine.py", "network.py", "tk_android_bridge.py"):
-                  dst_py = os.path.join(sync_dir, py_f)
-                  shutil.copy2(py_f, dst_py)
-                  subprocess.run([host_py, "-c", f"import py_compile; py_compile.compile(r'{dst_py}', cfile=r'{dst_py}c', doraise=True)"], check=True)
-                  print(f"  Injected & compiled {py_f} ({os.path.getsize(dst_py)} bytes) + {py_f}c ({os.path.getsize(dst_py + 'c')} bytes)")
-
-              # Copy fresh fonts, icons, settings, and asset folders
-              for asset_f in ("ws_font.ttf", "maple_icon.png", "user_settings.json", "custom_deck.json", "custom_decks_book.json"):
-                  if os.path.isfile(asset_f):
-                      shutil.copy2(asset_f, os.path.join(sync_dir, asset_f))
-
-              for asset_d in ("sets", "ws_card_images", "ws_audio"):
-                  if os.path.isdir(asset_d):
-                      dst_d = os.path.join(sync_dir, asset_d)
-                      shutil.copytree(asset_d, dst_d, dirs_exist_ok=True)
-                      print(f"  Injected directory {asset_d}/ ({len(os.listdir(dst_d))} files)")
-
-              # Repack private.mp3
-              os.remove(mp3_abs)
-              subprocess.run(["tar", "-czf", mp3_abs, "-C", sync_dir, "."], check=True)
-              print(f"=== Repacked {mp3_path}: {os.path.getsize(mp3_abs)} bytes ===")
-
-          # 2. Update private_version in strings.xml so Android PythonActivity ALWAYS wipes old phone data/app and extracts the new private.mp3!
           new_priv_ver = f"v2.5-{int(time.time())}"
           for sxml in glob.glob(os.path.join(dist, "**", "strings.xml"), recursive=True):
               with open(sxml, "r", encoding="utf-8") as f:
@@ -253,7 +251,6 @@ jobs:
                   f.write(stxt_new)
               print(f"Updated private_version -> {new_priv_ver} in {sxml}")
 
-          # 3. Patch AndroidManifest.xml (fullSensor auto-rotation + allowBackup=false + new versionCode)
           new_vcode = str(int(time.time()) // 10)
           for mf in glob.glob(os.path.join(dist, "**", "AndroidManifest*.xml"), recursive=True):
               try:
@@ -269,21 +266,6 @@ jobs:
               except Exception as e:
                   print("Manifest patch warning:", mf, e)
 
-          # 4. Patch build.gradle and gradle.properties
-          sdk_dir = os.path.expanduser("~/.buildozer/android/platform/android-sdk")
-          bts = sorted(os.listdir(os.path.join(sdk_dir, "build-tools"))) if os.path.isdir(os.path.join(sdk_dir, "build-tools")) else ["33.0.2"]
-          bt_ver = bts[-1] if bts else "33.0.2"
-
-          bg_path = os.path.join(dist, "build.gradle")
-          if os.path.isfile(bg_path):
-              with open(bg_path, "r", encoding="utf-8") as f:
-                  bg = f.read()
-              bg = re.sub(r"buildToolsVersion\s+[\x27\"][^\x27\"]+[\x27\"]", f"buildToolsVersion \x27{bt_ver}\x27", bg)
-              if "noCompress" not in bg:
-                  bg = bg.replace("android {", "android {\n    aaptOptions {\n        noCompress \x27tar\x27, \x27mp3\x27, \x27wav\x27, \x27so\x27\n    }")
-              with open(bg_path, "w", encoding="utf-8") as f:
-                  f.write(bg)
-
           gp_path = os.path.join(dist, "gradle.properties")
           with open(gp_path, "w", encoding="utf-8") as f:
               f.write("org.gradle.jvmargs=-Xmx4096m -XX:MaxMetaspaceSize=1024m -Dfile.encoding=UTF-8\n")
@@ -292,8 +274,9 @@ jobs:
               f.write("android.suppressUnsupportedCompileSdk=33,34,35\n")
           PYEOF
 
+          # 4. Run Gradle assembleDebug (do NOT run 'clean' before assembleDebug so generated assets stay intact!)
           chmod +x "$DIST_DIR/gradlew"
-          (cd "$DIST_DIR" && ./gradlew clean assembleDebug --stacktrace --no-daemon)
+          (cd "$DIST_DIR" && ./gradlew assembleDebug --stacktrace --no-daemon)
           mkdir -p bin dist_apk
           cp "$DIST_DIR"/build/outputs/apk/debug/*.apk bin/
           cp "$DIST_DIR"/build/outputs/apk/debug/*.apk dist_apk/WS_MasterDuel_PurePython.apk
