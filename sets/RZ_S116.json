@@ -186,50 +186,6 @@
         }
       ]
     },
-    "RZ/S116-002EX": {
-      "id": "RZ/S116-002EX",
-      "base_id": "RZ/S116-002",
-      "series": "RZ/S116",
-      "name": "\"強欲的魔女\" 艾姬多娜",
-      "jp_name": "“強欲の魔女” エキドナ",
-      "type": "CHAR",
-      "color": "黃",
-      "level": 3,
-      "cost": 2,
-      "power": 8500,
-      "soul": 2,
-      "trigger": "SOUL",
-      "traits": [
-        "魔法魔女"
-      ],
-      "default_count": 0,
-      "rarity": "SEC+",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】你或對手的休息室的CX在2張以下的話，你的手牌的此卡等級-1。\n【永】其他的你的《魔法》或《武器》的角色存在3張以上的話，此卡的攻擊力+2000，此卡獲得以下能力。『【自】［(1) 手牌的《魔法》或《武器》的角色1張放到休息室］此卡被正打時，你可以支付代價。支付代價的話，在那個回合中，此卡的攻擊力+4000。』\n【自】此卡從手牌被放置到舞台時或因「魔女們的茶會」的【自】的效果被放到舞台上時，你可以將自己的傷害區上方1張，放到休息室。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_002EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_002EX.png",
-        "https://img.bottleneko.app/RZ_S116_002EX.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "CONT",
-          "effect": "early_play_wr_cx_2_or_less",
-          "level_mod": -1,
-          "raw": "【永】你或對手的休息室的CX在2張以下的話，你的手牌的此卡等級-1。"
-        },
-        {
-          "category": "CONT",
-          "effect": "other_char_count_buff",
-          "min_count": 3,
-          "power": 4000,
-          "my_turn_only": false,
-          "raw": "【永】其他的你的《魔法》或《武器》的角色存在3張以上的話，此卡的攻擊力+2000，此卡獲得以下能力。『【自】［(1) 手牌的《魔法》或《武器》的角色1張放到休息室］此卡被正打時，你可以支付代價。支付代價的話，在那個回合中，此卡的攻擊力+4000。』"
-        }
-      ]
-    },
     "RZ/S116-002S": {
       "id": "RZ/S116-002S",
       "base_id": "RZ/S116-002",
@@ -256,6 +212,50 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_002S.png",
         "https://img.bottleneko.app/RZ_S116_002S.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "CONT",
+          "effect": "early_play_wr_cx_2_or_less",
+          "level_mod": -1,
+          "raw": "【永】你或對手的休息室的CX在2張以下的話，你的手牌的此卡等級-1。"
+        },
+        {
+          "category": "CONT",
+          "effect": "other_char_count_buff",
+          "min_count": 3,
+          "power": 4000,
+          "my_turn_only": false,
+          "raw": "【永】其他的你的《魔法》或《武器》的角色存在3張以上的話，此卡的攻擊力+2000，此卡獲得以下能力。『【自】［(1) 手牌的《魔法》或《武器》的角色1張放到休息室］此卡被正打時，你可以支付代價。支付代價的話，在那個回合中，此卡的攻擊力+4000。』"
+        }
+      ]
+    },
+    "RZ/S116-002EX": {
+      "id": "RZ/S116-002EX",
+      "base_id": "RZ/S116-002",
+      "series": "RZ/S116",
+      "name": "\"強欲的魔女\" 艾姬多娜",
+      "jp_name": "“強欲の魔女” エキドナ",
+      "type": "CHAR",
+      "color": "黃",
+      "level": 3,
+      "cost": 2,
+      "power": 8500,
+      "soul": 2,
+      "trigger": "SOUL",
+      "traits": [
+        "魔法魔女"
+      ],
+      "default_count": 0,
+      "rarity": "SEC+",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】你或對手的休息室的CX在2張以下的話，你的手牌的此卡等級-1。\n【永】其他的你的《魔法》或《武器》的角色存在3張以上的話，此卡的攻擊力+2000，此卡獲得以下能力。『【自】［(1) 手牌的《魔法》或《武器》的角色1張放到休息室］此卡被正打時，你可以支付代價。支付代價的話，在那個回合中，此卡的攻擊力+4000。』\n【自】此卡從手牌被放置到舞台時或因「魔女們的茶會」的【自】的效果被放到舞台上時，你可以將自己的傷害區上方1張，放到休息室。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_002EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_002EX.png",
+        "https://img.bottleneko.app/RZ_S116_002EX.png"
       ],
       "parsed_abilities": [
         {
@@ -1709,37 +1709,6 @@
       ],
       "parsed_abilities": []
     },
-    "RZ/S116-023EX": {
-      "id": "RZ/S116-023EX",
-      "base_id": "RZ/S116-023",
-      "series": "RZ/S116",
-      "name": "無論何時，茶會都會繼續",
-      "jp_name": "茶会は続く、何時までも",
-      "type": "CX",
-      "color": "黃",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "CHOICE",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "RRR+",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [
-        "CX_ALL_1000_1SOUL"
-      ],
-      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (箭頭：當你判定出此卡時，你可以選擇自己休息室的判定標誌有⚜的角色1張，回到手牌或放到能量區)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_023EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_023EX.png",
-        "https://img.bottleneko.app/RZ_S116_023EX.png"
-      ],
-      "parsed_abilities": []
-    },
     "RZ/S116-023R": {
       "id": "RZ/S116-023R",
       "base_id": "RZ/S116-023",
@@ -1768,6 +1737,37 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_023R.png",
         "https://img.bottleneko.app/RZ_S116_023R.png"
+      ],
+      "parsed_abilities": []
+    },
+    "RZ/S116-023EX": {
+      "id": "RZ/S116-023EX",
+      "base_id": "RZ/S116-023",
+      "series": "RZ/S116",
+      "name": "無論何時，茶會都會繼續",
+      "jp_name": "茶会は続く、何時までも",
+      "type": "CX",
+      "color": "黃",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "CHOICE",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "RRR+",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [
+        "CX_ALL_1000_1SOUL"
+      ],
+      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (箭頭：當你判定出此卡時，你可以選擇自己休息室的判定標誌有⚜的角色1張，回到手牌或放到能量區)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_023EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_023EX.png",
+        "https://img.bottleneko.app/RZ_S116_023EX.png"
       ],
       "parsed_abilities": []
     },
@@ -2047,35 +2047,6 @@
       ],
       "parsed_abilities": []
     },
-    "RZ/S116-027EX": {
-      "id": "RZ/S116-027EX",
-      "base_id": "RZ/S116-027",
-      "series": "RZ/S116",
-      "name": "引導出的答案 愛蜜莉雅",
-      "jp_name": "導き出した答え エミリア",
-      "type": "CHAR",
-      "color": "綠",
-      "level": 3,
-      "cost": 2,
-      "power": 10500,
-      "soul": 2,
-      "trigger": "NONE",
-      "traits": [
-        "魔法精靈"
-      ],
-      "default_count": 0,
-      "rarity": "SEC+",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】記憶 你的回憶區有「溫暖的愛情 愛蜜莉雅&福爾圖娜」和「阻擋在前的\"試煉\"」的話，你的手牌的此卡等級-1。\n【自】【CX連動】當「月光下，踏著隨性的舞步」被放置到你的CX區時，你的手牌在6張以下的話，到下次的對手回合結束前，此卡獲得以下3個能力。『【永】在此卡的戰鬥中，對手不能從手牌使用『助太刀』。』『【永】此卡不會【倒置】。』『【自】［(1) 手牌的綠色的卡片1張放到休息室］此卡攻擊時，你可以支付代價。支付代價的話，給對手4點傷害。』(會發生傷害取消)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_027EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_027EX.png",
-        "https://img.bottleneko.app/RZ_S116_027EX.png"
-      ],
-      "parsed_abilities": []
-    },
     "RZ/S116-027S": {
       "id": "RZ/S116-027S",
       "base_id": "RZ/S116-027",
@@ -2102,6 +2073,35 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_027S.png",
         "https://img.bottleneko.app/RZ_S116_027S.png"
+      ],
+      "parsed_abilities": []
+    },
+    "RZ/S116-027EX": {
+      "id": "RZ/S116-027EX",
+      "base_id": "RZ/S116-027",
+      "series": "RZ/S116",
+      "name": "引導出的答案 愛蜜莉雅",
+      "jp_name": "導き出した答え エミリア",
+      "type": "CHAR",
+      "color": "綠",
+      "level": 3,
+      "cost": 2,
+      "power": 10500,
+      "soul": 2,
+      "trigger": "NONE",
+      "traits": [
+        "魔法精靈"
+      ],
+      "default_count": 0,
+      "rarity": "SEC+",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】記憶 你的回憶區有「溫暖的愛情 愛蜜莉雅&福爾圖娜」和「阻擋在前的\"試煉\"」的話，你的手牌的此卡等級-1。\n【自】【CX連動】當「月光下，踏著隨性的舞步」被放置到你的CX區時，你的手牌在6張以下的話，到下次的對手回合結束前，此卡獲得以下3個能力。『【永】在此卡的戰鬥中，對手不能從手牌使用『助太刀』。』『【永】此卡不會【倒置】。』『【自】［(1) 手牌的綠色的卡片1張放到休息室］此卡攻擊時，你可以支付代價。支付代價的話，給對手4點傷害。』(會發生傷害取消)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_027EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_027EX.png",
+        "https://img.bottleneko.app/RZ_S116_027EX.png"
       ],
       "parsed_abilities": []
     },
@@ -3643,37 +3643,6 @@
       ],
       "parsed_abilities": []
     },
-    "RZ/S116-045EX": {
-      "id": "RZ/S116-045EX",
-      "base_id": "RZ/S116-045",
-      "series": "RZ/S116",
-      "name": "月光下，踏著隨性的舞步",
-      "jp_name": "月下、出鱈目なステップ",
-      "type": "CX",
-      "color": "綠",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "SOUL",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "RRR+",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [
-        "CX_ALL_1000_1SOUL"
-      ],
-      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (金磚：當你判定出此卡時，你將此卡返回手牌，你可以將自己的牌組上方1張，放到能量區)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_045EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_045EX.png",
-        "https://img.bottleneko.app/RZ_S116_045EX.png"
-      ],
-      "parsed_abilities": []
-    },
     "RZ/S116-045R": {
       "id": "RZ/S116-045R",
       "base_id": "RZ/S116-045",
@@ -3702,6 +3671,37 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_045R.png",
         "https://img.bottleneko.app/RZ_S116_045R.png"
+      ],
+      "parsed_abilities": []
+    },
+    "RZ/S116-045EX": {
+      "id": "RZ/S116-045EX",
+      "base_id": "RZ/S116-045",
+      "series": "RZ/S116",
+      "name": "月光下，踏著隨性的舞步",
+      "jp_name": "月下、出鱈目なステップ",
+      "type": "CX",
+      "color": "綠",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "SOUL",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "RRR+",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [
+        "CX_ALL_1000_1SOUL"
+      ],
+      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (金磚：當你判定出此卡時，你將此卡返回手牌，你可以將自己的牌組上方1張，放到能量區)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_045EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_045EX.png",
+        "https://img.bottleneko.app/RZ_S116_045EX.png"
       ],
       "parsed_abilities": []
     },
@@ -5798,64 +5798,6 @@
       ],
       "parsed_abilities": []
     },
-    "RZ/S116-071Sa": {
-      "id": "RZ/S116-071Sa",
-      "base_id": "RZ/S116-071a",
-      "series": "RZ/S116",
-      "name": "睿智之書",
-      "jp_name": "叡智の書",
-      "type": "EVENT",
-      "color": "紅",
-      "level": 1,
-      "cost": 1,
-      "power": 0,
-      "soul": 0,
-      "trigger": "NONE",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "SR",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "你看自己的牌組上方最多2張，以原順序放回牌組上方，你看對手的牌組上方最多2張，以原順序放回牌組上方，選擇自己休息室的角色最多1張，回到手牌。\n 將此卡放到回憶區。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_071SA.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_071SA.png",
-        "https://img.bottleneko.app/RZ_S116_071SA.png"
-      ],
-      "parsed_abilities": []
-    },
-    "RZ/S116-071Sb": {
-      "id": "RZ/S116-071Sb",
-      "base_id": "RZ/S116-071a",
-      "series": "RZ/S116",
-      "name": "睿智之書",
-      "jp_name": "叡智の書",
-      "type": "EVENT",
-      "color": "紅",
-      "level": 1,
-      "cost": 1,
-      "power": 0,
-      "soul": 0,
-      "trigger": "NONE",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "SR",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "你看自己的牌組上方最多2張，以原順序放回牌組上方，你看對手的牌組上方最多2張，以原順序放回牌組上方，選擇自己休息室的角色最多1張，回到手牌。\n 將此卡放到回憶區。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_071SB.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_071SB.png",
-        "https://img.bottleneko.app/RZ_S116_071SB.png"
-      ],
-      "parsed_abilities": []
-    },
     "RZ/S116-071a": {
       "id": "RZ/S116-071a",
       "base_id": "RZ/S116-071a",
@@ -5911,6 +5853,64 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_071B.png",
         "https://img.bottleneko.app/RZ_S116_071B.png"
+      ],
+      "parsed_abilities": []
+    },
+    "RZ/S116-071Sa": {
+      "id": "RZ/S116-071Sa",
+      "base_id": "RZ/S116-071a",
+      "series": "RZ/S116",
+      "name": "睿智之書",
+      "jp_name": "叡智の書",
+      "type": "EVENT",
+      "color": "紅",
+      "level": 1,
+      "cost": 1,
+      "power": 0,
+      "soul": 0,
+      "trigger": "NONE",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "SR",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "你看自己的牌組上方最多2張，以原順序放回牌組上方，你看對手的牌組上方最多2張，以原順序放回牌組上方，選擇自己休息室的角色最多1張，回到手牌。\n 將此卡放到回憶區。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_071SA.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_071SA.png",
+        "https://img.bottleneko.app/RZ_S116_071SA.png"
+      ],
+      "parsed_abilities": []
+    },
+    "RZ/S116-071Sb": {
+      "id": "RZ/S116-071Sb",
+      "base_id": "RZ/S116-071a",
+      "series": "RZ/S116",
+      "name": "睿智之書",
+      "jp_name": "叡智の書",
+      "type": "EVENT",
+      "color": "紅",
+      "level": 1,
+      "cost": 1,
+      "power": 0,
+      "soul": 0,
+      "trigger": "NONE",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "SR",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "你看自己的牌組上方最多2張，以原順序放回牌組上方，你看對手的牌組上方最多2張，以原順序放回牌組上方，選擇自己休息室的角色最多1張，回到手牌。\n 將此卡放到回憶區。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_071SB.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_071SB.png",
+        "https://img.bottleneko.app/RZ_S116_071SB.png"
       ],
       "parsed_abilities": []
     },
@@ -6210,58 +6210,6 @@
         }
       ]
     },
-    "RZ/S116-076EX": {
-      "id": "RZ/S116-076EX",
-      "base_id": "RZ/S116-076",
-      "series": "RZ/S116",
-      "name": "無可取代的存在 雷姆",
-      "jp_name": "かけがえのない存在 レム",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 0,
-      "cost": 0,
-      "power": 1500,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "魔法女僕"
-      ],
-      "default_count": 0,
-      "rarity": "SEC+",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】你的角色全部都是《魔法》或《武器》的話，此卡的攻擊力+1500，此卡獲得以下能力。『【自】此卡的戰鬥對手【倒置】時，你選擇自己休息室的《魔法》或《武器》的角色1張，回到手牌，你選擇自己的手牌1張，放到休息室。』\n【自】在此卡的戰鬥中，你所受到的傷害沒有被取消時，在那個回合中，此卡的攻擊力+1500。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_076EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_076EX.png",
-        "https://img.bottleneko.app/RZ_S116_076EX.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "AUTO",
-          "timing": "OTHER",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "buff_self",
-              "power": 1500
-            }
-          ],
-          "raw": "【自】在此卡的戰鬥中，你所受到的傷害沒有被取消時，在那個回合中，此卡的攻擊力+1500。"
-        }
-      ]
-    },
     "RZ/S116-076S": {
       "id": "RZ/S116-076S",
       "base_id": "RZ/S116-076",
@@ -6288,6 +6236,58 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_076S.png",
         "https://img.bottleneko.app/RZ_S116_076S.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "AUTO",
+          "timing": "OTHER",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "buff_self",
+              "power": 1500
+            }
+          ],
+          "raw": "【自】在此卡的戰鬥中，你所受到的傷害沒有被取消時，在那個回合中，此卡的攻擊力+1500。"
+        }
+      ]
+    },
+    "RZ/S116-076EX": {
+      "id": "RZ/S116-076EX",
+      "base_id": "RZ/S116-076",
+      "series": "RZ/S116",
+      "name": "無可取代的存在 雷姆",
+      "jp_name": "かけがえのない存在 レム",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 0,
+      "cost": 0,
+      "power": 1500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "魔法女僕"
+      ],
+      "default_count": 0,
+      "rarity": "SEC+",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】你的角色全部都是《魔法》或《武器》的話，此卡的攻擊力+1500，此卡獲得以下能力。『【自】此卡的戰鬥對手【倒置】時，你選擇自己休息室的《魔法》或《武器》的角色1張，回到手牌，你選擇自己的手牌1張，放到休息室。』\n【自】在此卡的戰鬥中，你所受到的傷害沒有被取消時，在那個回合中，此卡的攻擊力+1500。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_076EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_076EX.png",
+        "https://img.bottleneko.app/RZ_S116_076EX.png"
       ],
       "parsed_abilities": [
         {
@@ -8346,6 +8346,37 @@
       ],
       "parsed_abilities": []
     },
+    "RZ/S116-098R": {
+      "id": "RZ/S116-098R",
+      "base_id": "RZ/S116-098",
+      "series": "RZ/S116",
+      "name": "成為助力的那句話",
+      "jp_name": "背中を押す言葉",
+      "type": "CX",
+      "color": "藍",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "GATE",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "RRR",
+      "is_high_rarity": true,
+      "high_rarity_id": "RZ/S116-098EX",
+      "effects": [
+        "CX_ALL_1000_1SOUL"
+      ],
+      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (城門：當你判定出此卡時，你可以選擇自己休息室的1張CX，回到手牌)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_098R.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_098R.png",
+        "https://img.bottleneko.app/RZ_S116_098R.png"
+      ],
+      "parsed_abilities": []
+    },
     "RZ/S116-098A": {
       "id": "RZ/S116-098A",
       "base_id": "RZ/S116-098",
@@ -8405,37 +8436,6 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_098EX.png",
         "https://img.bottleneko.app/RZ_S116_098EX.png"
-      ],
-      "parsed_abilities": []
-    },
-    "RZ/S116-098R": {
-      "id": "RZ/S116-098R",
-      "base_id": "RZ/S116-098",
-      "series": "RZ/S116",
-      "name": "成為助力的那句話",
-      "jp_name": "背中を押す言葉",
-      "type": "CX",
-      "color": "藍",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "GATE",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "RRR",
-      "is_high_rarity": true,
-      "high_rarity_id": "RZ/S116-098EX",
-      "effects": [
-        "CX_ALL_1000_1SOUL"
-      ],
-      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (城門：當你判定出此卡時，你可以選擇自己休息室的1張CX，回到手牌)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_098R.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_098R.png",
-        "https://img.bottleneko.app/RZ_S116_098R.png"
       ],
       "parsed_abilities": []
     },
@@ -8964,35 +8964,6 @@
       ],
       "parsed_abilities": []
     },
-    "RZ/S116-P09EX": {
-      "id": "RZ/S116-P09EX",
-      "base_id": "RZ/S116-P09S",
-      "series": "RZ/S116",
-      "name": "睡衣派對 雷姆",
-      "jp_name": "パジャマパーティー レム",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 3,
-      "cost": 2,
-      "power": 10000,
-      "soul": 2,
-      "trigger": "SOUL",
-      "traits": [
-        "魔法女僕"
-      ],
-      "default_count": 0,
-      "rarity": "PR+",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】此卡從手牌被放置到舞台時，以下的2個效果之中你選擇1個執行。『你可以將自己休息室的卡片全部，返回牌組。返回牌組的話，將那個牌組洗牌。』『對手將自己的能量全部，返回牌組，將那個牌組洗牌，從自己的牌組上方將相同張數放到能量區。』\n【自】［手牌1張放到休息室］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，對手將自己的牌組上方8張，放到休息室。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_P09EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_P09EX.png",
-        "https://img.bottleneko.app/RZ_S116_P09EX.png"
-      ],
-      "parsed_abilities": []
-    },
     "RZ/S116-P09S": {
       "id": "RZ/S116-P09S",
       "base_id": "RZ/S116-P09S",
@@ -9019,6 +8990,35 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_P09S.png",
         "https://img.bottleneko.app/RZ_S116_P09S.png"
+      ],
+      "parsed_abilities": []
+    },
+    "RZ/S116-P09EX": {
+      "id": "RZ/S116-P09EX",
+      "base_id": "RZ/S116-P09S",
+      "series": "RZ/S116",
+      "name": "睡衣派對 雷姆",
+      "jp_name": "パジャマパーティー レム",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 3,
+      "cost": 2,
+      "power": 10000,
+      "soul": 2,
+      "trigger": "SOUL",
+      "traits": [
+        "魔法女僕"
+      ],
+      "default_count": 0,
+      "rarity": "PR+",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】此卡從手牌被放置到舞台時，以下的2個效果之中你選擇1個執行。『你可以將自己休息室的卡片全部，返回牌組。返回牌組的話，將那個牌組洗牌。』『對手將自己的能量全部，返回牌組，將那個牌組洗牌，從自己的牌組上方將相同張數放到能量區。』\n【自】［手牌1張放到休息室］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，對手將自己的牌組上方8張，放到休息室。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_P09EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S116_P09EX.png",
+        "https://img.bottleneko.app/RZ_S116_P09EX.png"
       ],
       "parsed_abilities": []
     },
@@ -16230,8 +16230,8 @@
         }
       ]
     },
-    "RZ/S132-078EX": {
-      "id": "RZ/S132-078EX",
+    "RZ/S132-078S": {
+      "id": "RZ/S132-078S",
       "base_id": "RZ/S132-078",
       "series": "RZ/S116",
       "name": "只想著你 雷姆",
@@ -16247,15 +16247,15 @@
         "魔法女僕"
       ],
       "default_count": 0,
-      "rarity": "SEC",
+      "rarity": "SR",
       "is_high_rarity": true,
-      "high_rarity_id": null,
+      "high_rarity_id": "RZ/S132-078EX",
       "effects": [],
       "text": "【自】 在你的CX階段開始時，你選擇自己的角色1張，在那個回合中，攻擊力+1000。\n【自】【CX連動】 當「一直等待的少女」被放置到你的CX區時，其他的你的紅色或《魔法》或《武器》的角色存在2張以上的話，你選擇其他的自己的角色1張，在那個回合中，給予以下能力。『【自】［手牌1張放到休息室］ 此卡的戰鬥對手【倒置】時，你可以支付代價。支付代價的話，你選擇自己休息室的紅色或《魔法》或《武器》的角色最多2張，回到手牌。』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_078EX.png",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_078S.png",
       "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_078EX.png",
-        "https://img.bottleneko.app/RZ_S132_078EX.png"
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_078S.png",
+        "https://img.bottleneko.app/RZ_S132_078S.png"
       ],
       "parsed_abilities": [
         {
@@ -16305,8 +16305,8 @@
         }
       ]
     },
-    "RZ/S132-078S": {
-      "id": "RZ/S132-078S",
+    "RZ/S132-078EX": {
+      "id": "RZ/S132-078EX",
       "base_id": "RZ/S132-078",
       "series": "RZ/S116",
       "name": "只想著你 雷姆",
@@ -16322,15 +16322,15 @@
         "魔法女僕"
       ],
       "default_count": 0,
-      "rarity": "SR",
+      "rarity": "SEC",
       "is_high_rarity": true,
-      "high_rarity_id": "RZ/S132-078EX",
+      "high_rarity_id": null,
       "effects": [],
       "text": "【自】 在你的CX階段開始時，你選擇自己的角色1張，在那個回合中，攻擊力+1000。\n【自】【CX連動】 當「一直等待的少女」被放置到你的CX區時，其他的你的紅色或《魔法》或《武器》的角色存在2張以上的話，你選擇其他的自己的角色1張，在那個回合中，給予以下能力。『【自】［手牌1張放到休息室］ 此卡的戰鬥對手【倒置】時，你可以支付代價。支付代價的話，你選擇自己休息室的紅色或《魔法》或《武器》的角色最多2張，回到手牌。』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_078S.png",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_078EX.png",
       "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_078S.png",
-        "https://img.bottleneko.app/RZ_S132_078S.png"
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_078EX.png",
+        "https://img.bottleneko.app/RZ_S132_078EX.png"
       ],
       "parsed_abilities": [
         {
@@ -16592,44 +16592,6 @@
         }
       ]
     },
-    "RZ/S132-080EX": {
-      "id": "RZ/S132-080EX",
-      "base_id": "RZ/S132-080",
-      "series": "RZ/S116",
-      "name": "只想著你 愛蜜莉雅",
-      "jp_name": "あなただけを想う エミリア",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 3,
-      "cost": 2,
-      "power": 8500,
-      "soul": 2,
-      "trigger": "NONE",
-      "traits": [
-        "魔法精靈"
-      ],
-      "default_count": 0,
-      "rarity": "SEC",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】 你的休息室的判定標誌是【城門】的CX有3張以上的話，你的手牌的此卡等級-1。\n【永】 其他的你的角色存在3張以上的話，此卡的攻擊力+2500，此卡獲得『【自】安可［(2)］』。\n【自】【CX連動】 當「抓住我的手」被放置到你的CX區時，此卡存在於前列的話，你將自己的傷害區下方最多1張，放到休息室，選擇對手的休息室的卡片最多2張，返回牌組，對手將那個牌組洗牌，你選擇對手的角色1張，到下次的對手回合結束前，給予以下能力。『【永】 此卡不能移動到其他格子。』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_080EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_080EX.png",
-        "https://img.bottleneko.app/RZ_S132_080EX.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "CONT",
-          "effect": "other_char_count_buff",
-          "min_count": 3,
-          "power": 2500,
-          "my_turn_only": false,
-          "raw": "【永】 其他的你的角色存在3張以上的話，此卡的攻擊力+2500，此卡獲得『【自】安可［(2)］』。"
-        }
-      ]
-    },
     "RZ/S132-080S": {
       "id": "RZ/S132-080S",
       "base_id": "RZ/S132-080",
@@ -16656,6 +16618,44 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_080S.png",
         "https://img.bottleneko.app/RZ_S132_080S.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "CONT",
+          "effect": "other_char_count_buff",
+          "min_count": 3,
+          "power": 2500,
+          "my_turn_only": false,
+          "raw": "【永】 其他的你的角色存在3張以上的話，此卡的攻擊力+2500，此卡獲得『【自】安可［(2)］』。"
+        }
+      ]
+    },
+    "RZ/S132-080EX": {
+      "id": "RZ/S132-080EX",
+      "base_id": "RZ/S132-080",
+      "series": "RZ/S116",
+      "name": "只想著你 愛蜜莉雅",
+      "jp_name": "あなただけを想う エミリア",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 3,
+      "cost": 2,
+      "power": 8500,
+      "soul": 2,
+      "trigger": "NONE",
+      "traits": [
+        "魔法精靈"
+      ],
+      "default_count": 0,
+      "rarity": "SEC",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】 你的休息室的判定標誌是【城門】的CX有3張以上的話，你的手牌的此卡等級-1。\n【永】 其他的你的角色存在3張以上的話，此卡的攻擊力+2500，此卡獲得『【自】安可［(2)］』。\n【自】【CX連動】 當「抓住我的手」被放置到你的CX區時，此卡存在於前列的話，你將自己的傷害區下方最多1張，放到休息室，選擇對手的休息室的卡片最多2張，返回牌組，對手將那個牌組洗牌，你選擇對手的角色1張，到下次的對手回合結束前，給予以下能力。『【永】 此卡不能移動到其他格子。』",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_080EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_080EX.png",
+        "https://img.bottleneko.app/RZ_S132_080EX.png"
       ],
       "parsed_abilities": [
         {
@@ -17923,37 +17923,6 @@
       ],
       "parsed_abilities": []
     },
-    "RZ/S132-097A": {
-      "id": "RZ/S132-097A",
-      "base_id": "RZ/S132-097",
-      "series": "RZ/S116",
-      "name": "一直等待的少女",
-      "jp_name": "待ち続ける少女",
-      "type": "CX",
-      "color": "藍",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "GATE",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "AGR",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [
-        "CX_ALL_1000_1SOUL"
-      ],
-      "text": "【永】 你的角色全部，攻擊力+1000，魂傷+1。\n (城門：當你判定出此卡時，你可以選擇自己休息室的1張CX，回到手牌)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_097A.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_097A.png",
-        "https://img.bottleneko.app/RZ_S132_097A.png"
-      ],
-      "parsed_abilities": []
-    },
     "RZ/S132-097R": {
       "id": "RZ/S132-097R",
       "base_id": "RZ/S132-097",
@@ -17982,6 +17951,37 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_097R.png",
         "https://img.bottleneko.app/RZ_S132_097R.png"
+      ],
+      "parsed_abilities": []
+    },
+    "RZ/S132-097A": {
+      "id": "RZ/S132-097A",
+      "base_id": "RZ/S132-097",
+      "series": "RZ/S116",
+      "name": "一直等待的少女",
+      "jp_name": "待ち続ける少女",
+      "type": "CX",
+      "color": "藍",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "GATE",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "AGR",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [
+        "CX_ALL_1000_1SOUL"
+      ],
+      "text": "【永】 你的角色全部，攻擊力+1000，魂傷+1。\n (城門：當你判定出此卡時，你可以選擇自己休息室的1張CX，回到手牌)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_097A.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_097A.png",
+        "https://img.bottleneko.app/RZ_S132_097A.png"
       ],
       "parsed_abilities": []
     },
@@ -18016,37 +18016,6 @@
       ],
       "parsed_abilities": []
     },
-    "RZ/S132-098A": {
-      "id": "RZ/S132-098A",
-      "base_id": "RZ/S132-098",
-      "series": "RZ/S116",
-      "name": "抓住我的手",
-      "jp_name": "私の手を取って",
-      "type": "CX",
-      "color": "藍",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "GATE",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "AGR",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [
-        "CX_ALL_1000_1SOUL"
-      ],
-      "text": "【永】 你的角色全部，攻擊力+1000，魂傷+1。\n (城門：當你判定出此卡時，你可以選擇自己休息室的1張CX，回到手牌)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_098A.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_098A.png",
-        "https://img.bottleneko.app/RZ_S132_098A.png"
-      ],
-      "parsed_abilities": []
-    },
     "RZ/S132-098R": {
       "id": "RZ/S132-098R",
       "base_id": "RZ/S132-098",
@@ -18075,6 +18044,37 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_098R.png",
         "https://img.bottleneko.app/RZ_S132_098R.png"
+      ],
+      "parsed_abilities": []
+    },
+    "RZ/S132-098A": {
+      "id": "RZ/S132-098A",
+      "base_id": "RZ/S132-098",
+      "series": "RZ/S116",
+      "name": "抓住我的手",
+      "jp_name": "私の手を取って",
+      "type": "CX",
+      "color": "藍",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "GATE",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "AGR",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [
+        "CX_ALL_1000_1SOUL"
+      ],
+      "text": "【永】 你的角色全部，攻擊力+1000，魂傷+1。\n (城門：當你判定出此卡時，你可以選擇自己休息室的1張CX，回到手牌)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_098A.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_098A.png",
+        "https://img.bottleneko.app/RZ_S132_098A.png"
       ],
       "parsed_abilities": []
     },
@@ -19512,35 +19512,6 @@
       ],
       "parsed_abilities": []
     },
-    "RZ/S132-P01EX": {
-      "id": "RZ/S132-P01EX",
-      "base_id": "RZ/S132-P01",
-      "series": "RZ/S116",
-      "name": "最悪の災厄に、何度でも立ち向かえ スバル＆エミリア",
-      "jp_name": "最悪の災厄に、何度でも立ち向かえ スバル＆エミリア",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 2,
-      "cost": 1,
-      "power": 4000,
-      "soul": 1,
-      "trigger": "SOUL",
-      "traits": [
-        "魔法"
-      ],
-      "default_count": 0,
-      "rarity": "PR+",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【起】［このカードを控え室に置く］ あなたは相手のキャラを1枚選び、手札に戻す。\n【起】［このカードを【レスト】する］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋3000。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_P01EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_P01EX.png",
-        "https://img.bottleneko.app/RZ_S132_P01EX.png"
-      ],
-      "parsed_abilities": []
-    },
     "RZ/S132-P01S": {
       "id": "RZ/S132-P01S",
       "base_id": "RZ/S132-P01",
@@ -19567,6 +19538,35 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_P01S.png",
         "https://img.bottleneko.app/RZ_S132_P01S.png"
+      ],
+      "parsed_abilities": []
+    },
+    "RZ/S132-P01EX": {
+      "id": "RZ/S132-P01EX",
+      "base_id": "RZ/S132-P01",
+      "series": "RZ/S116",
+      "name": "最悪の災厄に、何度でも立ち向かえ スバル＆エミリア",
+      "jp_name": "最悪の災厄に、何度でも立ち向かえ スバル＆エミリア",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 2,
+      "cost": 1,
+      "power": 4000,
+      "soul": 1,
+      "trigger": "SOUL",
+      "traits": [
+        "魔法"
+      ],
+      "default_count": 0,
+      "rarity": "PR+",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【起】［このカードを控え室に置く］ あなたは相手のキャラを1枚選び、手札に戻す。\n【起】［このカードを【レスト】する］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋3000。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_P01EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S132_P01EX.png",
+        "https://img.bottleneko.app/RZ_S132_P01EX.png"
       ],
       "parsed_abilities": []
     },
@@ -25122,523 +25122,6 @@
         }
       ]
     },
-    "RZ/S46-P01": {
-      "id": "RZ/S46-P01",
-      "base_id": "RZ/S46-P01",
-      "series": "RZ/S116",
-      "name": "害羞的表情 愛蜜莉雅",
-      "jp_name": "気恥ずかしそうな表情 エミリア",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 0,
-      "cost": 0,
-      "power": 4000,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "魔法精靈"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】此卡從手牌被放置到舞台時，你將自己的牌組上方2張，放到休息室。那些卡片中有名場面的話，將此卡【橫置】。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P01.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P01.png",
-        "https://img.bottleneko.app/RZ_S46_P01.png"
-      ],
-      "parsed_abilities": []
-    },
-    "RZ/S46-P02": {
-      "id": "RZ/S46-P02",
-      "base_id": "RZ/S46-P02",
-      "series": "RZ/S116",
-      "name": "羅茲親書庫的司書 碧翠絲",
-      "jp_name": "ロズっち書庫の司書 ベアトリス",
-      "type": "CHAR",
-      "color": "紅",
-      "level": 3,
-      "cost": 2,
-      "power": 10000,
-      "soul": 2,
-      "trigger": "SOUL",
-      "traits": [
-        "魔法書"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】此卡從手牌被放置到舞台時，你將自己的牌組上方1張公開。那張卡片是《魔法》或《武器》的角色的話，你可以給對手1點傷害。(會發生傷害取消。公開過的卡片放回原位)\n【自】此卡從手牌被放置到舞台時，你選擇自己的《魔法》或《武器》的角色1張，在那個回合中，攻擊力+1500。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P02.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P02.png",
-        "https://img.bottleneko.app/RZ_S46_P02.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "AUTO",
-          "timing": "ON_PLAY",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "buff_self",
-              "power": 1500
-            }
-          ],
-          "raw": "【自】此卡從手牌被放置到舞台時，你選擇自己的《魔法》或《武器》的角色1張，在那個回合中，攻擊力+1500。"
-        }
-      ]
-    },
-    "RZ/S46-P03": {
-      "id": "RZ/S46-P03",
-      "base_id": "RZ/S46-P03",
-      "series": "RZ/S116",
-      "name": "想要報恩的心情 愛蜜莉雅",
-      "jp_name": "恩返しの気持ち エミリア",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 1,
-      "cost": 0,
-      "power": 5000,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "魔法精靈"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】此卡從手牌被放置到舞台時，到下次的對手回合結束前，此卡的攻擊力+1500。\n【自】此卡攻擊時，將其他的你的【正置】狀態的角色全部，【橫置】。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P03.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P03.png",
-        "https://img.bottleneko.app/RZ_S46_P03.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "AUTO",
-          "timing": "ON_PLAY",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "buff_self",
-              "power": 1500
-            }
-          ],
-          "raw": "【自】此卡從手牌被放置到舞台時，到下次的對手回合結束前，此卡的攻擊力+1500。"
-        }
-      ]
-    },
-    "RZ/S46-P04": {
-      "id": "RZ/S46-P04",
-      "base_id": "RZ/S46-P04",
-      "series": "RZ/S116",
-      "name": "內心深處的感情 雷姆",
-      "jp_name": "秘めた思い レム",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 2,
-      "cost": 1,
-      "power": 2500,
-      "soul": 1,
-      "trigger": "SOUL",
-      "traits": [
-        "魔法女僕"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】當你使用此卡的『助太刀』時，對手的戰鬥中的角色的等級是3以上的話，你選擇自己戰鬥中的角色1張，在那個回合中，攻擊力+1000。\n【起】【反擊】助太刀2500 等級2［(1) 手牌的此卡放到休息室］(你選擇自己的正在被正打的角色1張，在那個回合中，攻擊力+2500)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P04.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P04.png",
-        "https://img.bottleneko.app/RZ_S46_P04.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "AUTO",
-          "timing": "OTHER",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "buff_self",
-              "power": 1000
-            }
-          ],
-          "raw": "【自】當你使用此卡的『助太刀』時，對手的戰鬥中的角色的等級是3以上的話，你選擇自己戰鬥中的角色1張，在那個回合中，攻擊力+1000。"
-        },
-        {
-          "category": "BACKUP",
-          "power": 2500,
-          "level": 2,
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "raw": "【起】【反擊】助太刀2500 等級2［(1) 手牌的此卡放到休息室］(你選擇自己的正在被正打的角色1張，在那個回合中，攻擊力+2500)"
-        }
-      ]
-    },
-    "RZ/S46-P05": {
-      "id": "RZ/S46-P05",
-      "base_id": "RZ/S46-P05",
-      "series": "RZ/S116",
-      "name": "真的會暴怒的很貴的茶 拉姆",
-      "jp_name": "マジ切れするぐらい高い茶 ラム",
-      "type": "CHAR",
-      "color": "紅",
-      "level": 1,
-      "cost": 0,
-      "power": 5000,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "魔法女僕"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】在你的回合中，你的角色全部都是《魔法》或《武器》的話，此卡的攻擊力+2000。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P05.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P05.png",
-        "https://img.bottleneko.app/RZ_S46_P05.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "CONT",
-          "effect": "my_turn_self_buff",
-          "power": 2000,
-          "raw": "【永】在你的回合中，你的角色全部都是《魔法》或《武器》的話，此卡的攻擊力+2000。"
-        }
-      ]
-    },
-    "RZ/S46-P06": {
-      "id": "RZ/S46-P06",
-      "base_id": "RZ/S46-P06",
-      "series": "RZ/S116",
-      "name": "Happy Birthday！ 雷姆",
-      "jp_name": "Happy Birthday！ レム",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 0,
-      "cost": 0,
-      "power": 2000,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "魔法女僕"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】有其他的你的卡名包含「拉姆」或「雷姆」或「昂」的角色存在的話，此卡的攻擊力+1500。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P06.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P06.png",
-        "https://img.bottleneko.app/RZ_S46_P06.png"
-      ],
-      "parsed_abilities": []
-    },
-    "RZ/S46-P07": {
-      "id": "RZ/S46-P07",
-      "base_id": "RZ/S46-P07",
-      "series": "RZ/S116",
-      "name": "憤怒的一擊 雷姆",
-      "jp_name": "怒りの一撃 レム",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 1,
-      "cost": 1,
-      "power": 6000,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "魔法女僕"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": "RZ/S46-P07S",
-      "effects": [],
-      "text": "【永】其他的你的《魔法》或《武器》的角色每有1張，此卡的攻擊力+500。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P07.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P07.png",
-        "https://img.bottleneko.app/RZ_S46_P07.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "CONT",
-          "effect": "per_other_char_buff",
-          "power": 500,
-          "my_turn_only": false,
-          "raw": "【永】其他的你的《魔法》或《武器》的角色每有1張，此卡的攻擊力+500。"
-        }
-      ]
-    },
-    "RZ/S46-P07S": {
-      "id": "RZ/S46-P07S",
-      "base_id": "RZ/S46-P07",
-      "series": "RZ/S116",
-      "name": "憤怒的一擊 雷姆",
-      "jp_name": "怒りの一撃 レム",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 1,
-      "cost": 1,
-      "power": 6000,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "魔法女僕"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】其他的你的《魔法》或《武器》的角色每有1張，此卡的攻擊力+500。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P07S.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P07S.png",
-        "https://img.bottleneko.app/RZ_S46_P07S.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "CONT",
-          "effect": "per_other_char_buff",
-          "power": 500,
-          "my_turn_only": false,
-          "raw": "【永】其他的你的《魔法》或《武器》的角色每有1張，此卡的攻擊力+500。"
-        }
-      ]
-    },
-    "RZ/S46-P08": {
-      "id": "RZ/S46-P08",
-      "base_id": "RZ/S46-P08",
-      "series": "RZ/S116",
-      "name": "擔心的夜晚 雷姆",
-      "jp_name": "心細い夜 レム",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 2,
-      "cost": 1,
-      "power": 2000,
-      "soul": 1,
-      "trigger": "SOUL",
-      "traits": [
-        "魔法女僕"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】當你使用此卡的『助太刀』時，你將自己的牌組上方1張公開。那張卡片是《魔法》或《武器》的角色的話加到手牌，你選擇自己的手牌1張，放到休息室。(如果不是的話放回原位)\n【起】【反擊】助太刀2500 等級2［(1) 手牌的此卡放到休息室］(你選擇自己的正在被正打的角色1張，在那個回合中，攻擊力+2500)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P08.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P08.png",
-        "https://img.bottleneko.app/RZ_S46_P08.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "BACKUP",
-          "power": 2500,
-          "level": 2,
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "raw": "【起】【反擊】助太刀2500 等級2［(1) 手牌的此卡放到休息室］(你選擇自己的正在被正打的角色1張，在那個回合中，攻擊力+2500)"
-        }
-      ]
-    },
-    "RZ/S46-P09": {
-      "id": "RZ/S46-P09",
-      "base_id": "RZ/S46-P09",
-      "series": "RZ/S116",
-      "name": "異世界盛夏生活♪",
-      "jp_name": "異世界常夏生活♪",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 0,
-      "cost": 0,
-      "power": 2500,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "魔法泳裝"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】此卡從手牌被放置到舞台時，你將自己的牌組上方2張，放到休息室，在那個回合中，此卡的攻擊力+X。X等於那些卡片中的《魔法》或《武器》的角色張數×1000。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P09.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P09.png",
-        "https://img.bottleneko.app/RZ_S46_P09.png"
-      ],
-      "parsed_abilities": []
-    },
-    "RZ/S46-P10": {
-      "id": "RZ/S46-P10",
-      "base_id": "RZ/S46-P10",
-      "series": "RZ/S116",
-      "name": "出門♪ 雷姆",
-      "jp_name": "おでかけ♪ レム",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 3,
-      "cost": 2,
-      "power": 10000,
-      "soul": 2,
-      "trigger": "SOUL",
-      "traits": [
-        "魔法女僕"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": "RZ/S46-P10S",
-      "effects": [],
-      "text": "【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】其他的你的《魔法》或《武器》的角色攻擊時，在那個回合中，此卡的攻擊力+1000。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P10.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P10.png",
-        "https://img.bottleneko.app/RZ_S46_P10.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "AUTO",
-          "timing": "OTHER",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "buff_self",
-              "power": 1000
-            }
-          ],
-          "raw": "【自】其他的你的《魔法》或《武器》的角色攻擊時，在那個回合中，此卡的攻擊力+1000。"
-        }
-      ]
-    },
-    "RZ/S46-P10S": {
-      "id": "RZ/S46-P10S",
-      "base_id": "RZ/S46-P10",
-      "series": "RZ/S116",
-      "name": "出門♪ 雷姆",
-      "jp_name": "おでかけ♪ レム",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 3,
-      "cost": 2,
-      "power": 10000,
-      "soul": 2,
-      "trigger": "SOUL",
-      "traits": [
-        "魔法女僕"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】其他的你的《魔法》或《武器》的角色攻擊時，在那個回合中，此卡的攻擊力+1000。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P10S.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P10S.png",
-        "https://img.bottleneko.app/RZ_S46_P10S.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "AUTO",
-          "timing": "OTHER",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "buff_self",
-              "power": 1000
-            }
-          ],
-          "raw": "【自】其他的你的《魔法》或《武器》的角色攻擊時，在那個回合中，此卡的攻擊力+1000。"
-        }
-      ]
-    },
     "RZ/S46-T01": {
       "id": "RZ/S46-T01",
       "base_id": "RZ/S46-T01",
@@ -28106,6 +27589,523 @@
         "https://img.bottleneko.app/RZ_S46_T43SP.png"
       ],
       "parsed_abilities": []
+    },
+    "RZ/S46-P01": {
+      "id": "RZ/S46-P01",
+      "base_id": "RZ/S46-P01",
+      "series": "RZ/S116",
+      "name": "害羞的表情 愛蜜莉雅",
+      "jp_name": "気恥ずかしそうな表情 エミリア",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 0,
+      "cost": 0,
+      "power": 4000,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "魔法精靈"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】此卡從手牌被放置到舞台時，你將自己的牌組上方2張，放到休息室。那些卡片中有名場面的話，將此卡【橫置】。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P01.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P01.png",
+        "https://img.bottleneko.app/RZ_S46_P01.png"
+      ],
+      "parsed_abilities": []
+    },
+    "RZ/S46-P02": {
+      "id": "RZ/S46-P02",
+      "base_id": "RZ/S46-P02",
+      "series": "RZ/S116",
+      "name": "羅茲親書庫的司書 碧翠絲",
+      "jp_name": "ロズっち書庫の司書 ベアトリス",
+      "type": "CHAR",
+      "color": "紅",
+      "level": 3,
+      "cost": 2,
+      "power": 10000,
+      "soul": 2,
+      "trigger": "SOUL",
+      "traits": [
+        "魔法書"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】此卡從手牌被放置到舞台時，你將自己的牌組上方1張公開。那張卡片是《魔法》或《武器》的角色的話，你可以給對手1點傷害。(會發生傷害取消。公開過的卡片放回原位)\n【自】此卡從手牌被放置到舞台時，你選擇自己的《魔法》或《武器》的角色1張，在那個回合中，攻擊力+1500。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P02.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P02.png",
+        "https://img.bottleneko.app/RZ_S46_P02.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "AUTO",
+          "timing": "ON_PLAY",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "buff_self",
+              "power": 1500
+            }
+          ],
+          "raw": "【自】此卡從手牌被放置到舞台時，你選擇自己的《魔法》或《武器》的角色1張，在那個回合中，攻擊力+1500。"
+        }
+      ]
+    },
+    "RZ/S46-P03": {
+      "id": "RZ/S46-P03",
+      "base_id": "RZ/S46-P03",
+      "series": "RZ/S116",
+      "name": "想要報恩的心情 愛蜜莉雅",
+      "jp_name": "恩返しの気持ち エミリア",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 1,
+      "cost": 0,
+      "power": 5000,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "魔法精靈"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】此卡從手牌被放置到舞台時，到下次的對手回合結束前，此卡的攻擊力+1500。\n【自】此卡攻擊時，將其他的你的【正置】狀態的角色全部，【橫置】。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P03.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P03.png",
+        "https://img.bottleneko.app/RZ_S46_P03.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "AUTO",
+          "timing": "ON_PLAY",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "buff_self",
+              "power": 1500
+            }
+          ],
+          "raw": "【自】此卡從手牌被放置到舞台時，到下次的對手回合結束前，此卡的攻擊力+1500。"
+        }
+      ]
+    },
+    "RZ/S46-P04": {
+      "id": "RZ/S46-P04",
+      "base_id": "RZ/S46-P04",
+      "series": "RZ/S116",
+      "name": "內心深處的感情 雷姆",
+      "jp_name": "秘めた思い レム",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 2,
+      "cost": 1,
+      "power": 2500,
+      "soul": 1,
+      "trigger": "SOUL",
+      "traits": [
+        "魔法女僕"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】當你使用此卡的『助太刀』時，對手的戰鬥中的角色的等級是3以上的話，你選擇自己戰鬥中的角色1張，在那個回合中，攻擊力+1000。\n【起】【反擊】助太刀2500 等級2［(1) 手牌的此卡放到休息室］(你選擇自己的正在被正打的角色1張，在那個回合中，攻擊力+2500)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P04.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P04.png",
+        "https://img.bottleneko.app/RZ_S46_P04.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "AUTO",
+          "timing": "OTHER",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "buff_self",
+              "power": 1000
+            }
+          ],
+          "raw": "【自】當你使用此卡的『助太刀』時，對手的戰鬥中的角色的等級是3以上的話，你選擇自己戰鬥中的角色1張，在那個回合中，攻擊力+1000。"
+        },
+        {
+          "category": "BACKUP",
+          "power": 2500,
+          "level": 2,
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "raw": "【起】【反擊】助太刀2500 等級2［(1) 手牌的此卡放到休息室］(你選擇自己的正在被正打的角色1張，在那個回合中，攻擊力+2500)"
+        }
+      ]
+    },
+    "RZ/S46-P05": {
+      "id": "RZ/S46-P05",
+      "base_id": "RZ/S46-P05",
+      "series": "RZ/S116",
+      "name": "真的會暴怒的很貴的茶 拉姆",
+      "jp_name": "マジ切れするぐらい高い茶 ラム",
+      "type": "CHAR",
+      "color": "紅",
+      "level": 1,
+      "cost": 0,
+      "power": 5000,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "魔法女僕"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】在你的回合中，你的角色全部都是《魔法》或《武器》的話，此卡的攻擊力+2000。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P05.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P05.png",
+        "https://img.bottleneko.app/RZ_S46_P05.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "CONT",
+          "effect": "my_turn_self_buff",
+          "power": 2000,
+          "raw": "【永】在你的回合中，你的角色全部都是《魔法》或《武器》的話，此卡的攻擊力+2000。"
+        }
+      ]
+    },
+    "RZ/S46-P06": {
+      "id": "RZ/S46-P06",
+      "base_id": "RZ/S46-P06",
+      "series": "RZ/S116",
+      "name": "Happy Birthday！ 雷姆",
+      "jp_name": "Happy Birthday！ レム",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 0,
+      "cost": 0,
+      "power": 2000,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "魔法女僕"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】有其他的你的卡名包含「拉姆」或「雷姆」或「昂」的角色存在的話，此卡的攻擊力+1500。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P06.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P06.png",
+        "https://img.bottleneko.app/RZ_S46_P06.png"
+      ],
+      "parsed_abilities": []
+    },
+    "RZ/S46-P07": {
+      "id": "RZ/S46-P07",
+      "base_id": "RZ/S46-P07",
+      "series": "RZ/S116",
+      "name": "憤怒的一擊 雷姆",
+      "jp_name": "怒りの一撃 レム",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 1,
+      "cost": 1,
+      "power": 6000,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "魔法女僕"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": "RZ/S46-P07S",
+      "effects": [],
+      "text": "【永】其他的你的《魔法》或《武器》的角色每有1張，此卡的攻擊力+500。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P07.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P07.png",
+        "https://img.bottleneko.app/RZ_S46_P07.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "CONT",
+          "effect": "per_other_char_buff",
+          "power": 500,
+          "my_turn_only": false,
+          "raw": "【永】其他的你的《魔法》或《武器》的角色每有1張，此卡的攻擊力+500。"
+        }
+      ]
+    },
+    "RZ/S46-P07S": {
+      "id": "RZ/S46-P07S",
+      "base_id": "RZ/S46-P07",
+      "series": "RZ/S116",
+      "name": "憤怒的一擊 雷姆",
+      "jp_name": "怒りの一撃 レム",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 1,
+      "cost": 1,
+      "power": 6000,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "魔法女僕"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】其他的你的《魔法》或《武器》的角色每有1張，此卡的攻擊力+500。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P07S.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P07S.png",
+        "https://img.bottleneko.app/RZ_S46_P07S.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "CONT",
+          "effect": "per_other_char_buff",
+          "power": 500,
+          "my_turn_only": false,
+          "raw": "【永】其他的你的《魔法》或《武器》的角色每有1張，此卡的攻擊力+500。"
+        }
+      ]
+    },
+    "RZ/S46-P08": {
+      "id": "RZ/S46-P08",
+      "base_id": "RZ/S46-P08",
+      "series": "RZ/S116",
+      "name": "擔心的夜晚 雷姆",
+      "jp_name": "心細い夜 レム",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 2,
+      "cost": 1,
+      "power": 2000,
+      "soul": 1,
+      "trigger": "SOUL",
+      "traits": [
+        "魔法女僕"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】當你使用此卡的『助太刀』時，你將自己的牌組上方1張公開。那張卡片是《魔法》或《武器》的角色的話加到手牌，你選擇自己的手牌1張，放到休息室。(如果不是的話放回原位)\n【起】【反擊】助太刀2500 等級2［(1) 手牌的此卡放到休息室］(你選擇自己的正在被正打的角色1張，在那個回合中，攻擊力+2500)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P08.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P08.png",
+        "https://img.bottleneko.app/RZ_S46_P08.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "BACKUP",
+          "power": 2500,
+          "level": 2,
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "raw": "【起】【反擊】助太刀2500 等級2［(1) 手牌的此卡放到休息室］(你選擇自己的正在被正打的角色1張，在那個回合中，攻擊力+2500)"
+        }
+      ]
+    },
+    "RZ/S46-P09": {
+      "id": "RZ/S46-P09",
+      "base_id": "RZ/S46-P09",
+      "series": "RZ/S116",
+      "name": "異世界盛夏生活♪",
+      "jp_name": "異世界常夏生活♪",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 0,
+      "cost": 0,
+      "power": 2500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "魔法泳裝"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】此卡從手牌被放置到舞台時，你將自己的牌組上方2張，放到休息室，在那個回合中，此卡的攻擊力+X。X等於那些卡片中的《魔法》或《武器》的角色張數×1000。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P09.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P09.png",
+        "https://img.bottleneko.app/RZ_S46_P09.png"
+      ],
+      "parsed_abilities": []
+    },
+    "RZ/S46-P10": {
+      "id": "RZ/S46-P10",
+      "base_id": "RZ/S46-P10",
+      "series": "RZ/S116",
+      "name": "出門♪ 雷姆",
+      "jp_name": "おでかけ♪ レム",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 3,
+      "cost": 2,
+      "power": 10000,
+      "soul": 2,
+      "trigger": "SOUL",
+      "traits": [
+        "魔法女僕"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": "RZ/S46-P10S",
+      "effects": [],
+      "text": "【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】其他的你的《魔法》或《武器》的角色攻擊時，在那個回合中，此卡的攻擊力+1000。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P10.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P10.png",
+        "https://img.bottleneko.app/RZ_S46_P10.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "AUTO",
+          "timing": "OTHER",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "buff_self",
+              "power": 1000
+            }
+          ],
+          "raw": "【自】其他的你的《魔法》或《武器》的角色攻擊時，在那個回合中，此卡的攻擊力+1000。"
+        }
+      ]
+    },
+    "RZ/S46-P10S": {
+      "id": "RZ/S46-P10S",
+      "base_id": "RZ/S46-P10",
+      "series": "RZ/S116",
+      "name": "出門♪ 雷姆",
+      "jp_name": "おでかけ♪ レム",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 3,
+      "cost": 2,
+      "power": 10000,
+      "soul": 2,
+      "trigger": "SOUL",
+      "traits": [
+        "魔法女僕"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】其他的你的《魔法》或《武器》的角色攻擊時，在那個回合中，此卡的攻擊力+1000。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P10S.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/RZ_S46_P10S.png",
+        "https://img.bottleneko.app/RZ_S46_P10S.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "AUTO",
+          "timing": "OTHER",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "buff_self",
+              "power": 1000
+            }
+          ],
+          "raw": "【自】其他的你的《魔法》或《武器》的角色攻擊時，在那個回合中，此卡的攻擊力+1000。"
+        }
+      ]
     },
     "RZ/S55-001": {
       "id": "RZ/S55-001",

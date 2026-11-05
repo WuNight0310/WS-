@@ -49,7 +49,7 @@ def _ensure_assets_from_zip():
 _ensure_assets_from_zip()
 
 
-FALLBACK_CARD_DB = {'BFR/S78-076': {'id': 'BFR/S78-076', 'name': '公會長之間的對決', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'STANDBY', 'traits': [], 'default_count': 2, 'effects': ['CX_STANDBY'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_076.png', 'text': '【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你從自己的休息室選擇自己等級+1的等級的角色1張，【橫置】放置到任意的格子。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-076', 'is_high_rarity': False, 'rarity': 'CR', 'high_rarity_id': 'BFR/S78-076R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_076.png', 'https://img.bottleneko.app/BFR_S78_076.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_076.png']}, 'BFR/S78-076R': {'id': 'BFR/S78-076R', 'name': '公會長之間的對決', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'STANDBY', 'traits': [], 'default_count': 0, 'effects': ['CX_STANDBY'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_076R.png', 'text': '【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你從自己的休息室選擇自己等級+1的等級的角色1張，【橫置】放置到任意的格子。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-076', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BFR/S78-076R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_076R.png', 'https://img.bottleneko.app/BFR_S78_076R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_076R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_076r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_076r.gif']}, 'BFR/S78-077': {'id': 'BFR/S78-077', 'name': 'Boss級怪物', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'DOOR', 'traits': [], 'default_count': 2, 'effects': ['CX_ALL_1000_1SOUL'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_077.png', 'text': '【永】你的角色全部，攻擊力+1000，魂傷+1。\n木門：當你判定出此卡時，你可以選擇自己休息室的角色1張，回到手牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-077', 'is_high_rarity': False, 'rarity': 'CR', 'high_rarity_id': 'BFR/S78-077R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_077.png', 'https://img.bottleneko.app/BFR_S78_077.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_077.png']}, 'BFR/S78-077R': {'id': 'BFR/S78-077R', 'name': 'Boss級怪物', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'DOOR', 'traits': [], 'default_count': 0, 'effects': ['CX_ALL_1000_1SOUL'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_077R.png', 'text': '【永】你的角色全部，攻擊力+1000，魂傷+1。\n木門：當你判定出此卡時，你可以選擇自己休息室的角色1張，回到手牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-077', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BFR/S78-077R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_077R.png', 'https://img.bottleneko.app/BFR_S78_077R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_077R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_077r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_077r.gif']}, 'BFR/S78-078': {'id': 'BFR/S78-078', 'name': '炎帝之國的公會長', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'STANDBY', 'traits': [], 'default_count': 2, 'effects': ['CX_STANDBY'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_078.png', 'text': '【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你從自己的休息室選擇自己等級+1的等級的角色1張，【橫置】放置到任意的格子。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-078', 'is_high_rarity': False, 'rarity': 'CR', 'high_rarity_id': 'BFR/S78-078R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_078.png', 'https://img.bottleneko.app/BFR_S78_078.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_078.png']}, 'BFR/S78-078R': {'id': 'BFR/S78-078R', 'name': '炎帝之國的公會長', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'STANDBY', 'traits': [], 'default_count': 0, 'effects': ['CX_STANDBY'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_078R.png', 'text': '【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你從自己的休息室選擇自己等級+1的等級的角色1張，【橫置】放置到任意的格子。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-078', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BFR/S78-078R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_078R.png', 'https://img.bottleneko.app/BFR_S78_078R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_078R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_078r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_078r.gif']}, 'BFR/S78-107': {'id': 'BFR/S78-107', 'name': '展開．左手', 'type': 'CX', 'color': '藍', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'GATE', 'traits': [], 'default_count': 2, 'effects': ['CX_ALL_1000_1SOUL'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_107.png', 'text': '【永】你的角色全部，攻擊力+1000，魂傷+1。\n城門：當你判定出此卡時，你可以選擇自己休息室的1張名場面，回到手牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-107', 'is_high_rarity': False, 'rarity': 'CR', 'high_rarity_id': 'BFR/S78-107R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_107.png', 'https://img.bottleneko.app/BFR_S78_107.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_107.png']}, 'BFR/S78-107R': {'id': 'BFR/S78-107R', 'name': '展開．左手', 'type': 'CX', 'color': '藍', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'GATE', 'traits': [], 'default_count': 0, 'effects': ['CX_ALL_1000_1SOUL'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_107R.png', 'text': '【永】你的角色全部，攻擊力+1000，魂傷+1。\n城門：當你判定出此卡時，你可以選擇自己休息室的1張名場面，回到手牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-107', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BFR/S78-107R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_107R.png', 'https://img.bottleneko.app/BFR_S78_107R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_107R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_107r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_107r.gif']}, 'BFR/S78-075': {'id': 'BFR/S78-075', 'name': '獨有系列', 'type': 'EVENT', 'color': '紅', 'level': 1, 'cost': 1, 'power': 0, 'soul': 0, 'trigger': 'NONE', 'traits': [], 'default_count': 2, 'effects': ['EVENT_COUNTER_2500_MEMORY', 'MEMORY_MAIN_START_RETURN'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_075.png', 'text': '【反擊】你選擇自己的《遊戲》的角色1張，在那個回合中，攻擊力+2500。將此卡放到回憶區。\n【自】記憶 ［手牌的《遊戲》的角色1張放到休息室］ 在你的主要階段開始時，回憶區有此卡存在的話，你可以支付代價。支付代價的話，將此卡返回手牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-075', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': None, 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_075.png', 'https://img.bottleneko.app/BFR_S78_075.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_075.png']}, 'BFR/S78-015': {'id': 'BFR/S78-015', 'name': '雙胞胎的妹妹 結衣', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 3000, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '雙胞胎'], 'default_count': 2, 'effects': ['CONT_CANNOT_SIDE_ATTACK', 'AUTO_ON_PLAY_SWAP_CX'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_015.png', 'text': '【永】此卡不能側打。\n【自】［(1) 手牌1張名場面放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的名場面1張，回到手牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-015', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': None, 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_015.png', 'https://img.bottleneko.app/BFR_S78_015.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_015.png']}, 'BFR/S78-001': {'id': 'BFR/S78-001', 'name': '戰鬥的工匠 伊茲', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 1500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '鍛造'], 'default_count': 3, 'effects': ['AUTO_ON_PLAY_CLOCK_SEARCH_LV1', 'AUTO_OTHER_REVERSE_BUFF_1000'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_001.png', 'text': '【自】［(1) 你的牌組上方1張放到傷害區］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇等級1以下的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。\n【自】其他的你的角色的戰鬥對手【倒置】時，在那個回合中，此卡的攻擊力+1000。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-001', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-001SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_001.png', 'https://img.bottleneko.app/BFR_S78_001.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_001.png']}, 'BFR/S78-001SP': {'id': 'BFR/S78-001SP', 'name': '戰鬥的工匠 伊茲', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 1500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '鍛造'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_CLOCK_SEARCH_LV1', 'AUTO_OTHER_REVERSE_BUFF_1000'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_001SP.png', 'text': '【自】［(1) 你的牌組上方1張放到傷害區］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇等級1以下的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。\n【自】其他的你的角色的戰鬥對手【倒置】時，在那個回合中，此卡的攻擊力+1000。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-001', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'BFR/S78-001SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_001SP.png', 'https://img.bottleneko.app/BFR_S78_001SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_001SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_001sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_001sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_001S.png', 'https://img.bottleneko.app/BFR_S78_001S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_001S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_001s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_001s.gif']}, 'BFR/S78-031': {'id': 'BFR/S78-031', 'name': '多彩多樣 莎莉', 'type': 'CHAR', 'color': '綠', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '水'], 'default_count': 3, 'effects': ['CONT_IGNORE_CX_COLOR', 'AUTO_ON_CX_LOOT', 'ACT_CONCENTRATE_SINGLE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_031.png', 'text': '【永】你的名場面可以無需滿足顏色條件從手牌使用。\n【自】［手牌1張放到休息室］ 當你的名場面被放置到名場面區時，你可以支付代價。支付代價的話，你抽1張牌。\n【起】集中 ［(1) 將此卡【橫置】］ 你從自己的牌組上方翻4張，放到休息室。那些卡片中每有1張名場面，你從自己的牌組選擇《遊戲》的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-031', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-031SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_031.png', 'https://img.bottleneko.app/BFR_S78_031.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_031.png']}, 'BFR/S78-031SP': {'id': 'BFR/S78-031SP', 'name': '多彩多樣 莎莉', 'type': 'CHAR', 'color': '綠', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '水'], 'default_count': 0, 'effects': ['CONT_IGNORE_CX_COLOR', 'AUTO_ON_CX_LOOT', 'ACT_CONCENTRATE_SINGLE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_031SP.png', 'text': '【永】你的名場面可以無需滿足顏色條件從手牌使用。\n【自】［手牌1張放到休息室］ 當你的名場面被放置到名場面區時，你可以支付代價。支付代價的話，你抽1張牌。\n【起】集中 ［(1) 將此卡【橫置】］ 你從自己的牌組上方翻4張，放到休息室。那些卡片中每有1張名場面，你從自己的牌組選擇《遊戲》的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-031', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'BFR/S78-031SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_031SP.png', 'https://img.bottleneko.app/BFR_S78_031SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_031SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_031sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_031sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_031S.png', 'https://img.bottleneko.app/BFR_S78_031S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_031S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_031s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_031s.gif']}, 'BFR/S78-062': {'id': 'BFR/S78-062', 'name': '咬咬 梅普露', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2000, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '盾'], 'default_count': 3, 'effects': ['AUTO_STAGE_TO_WR_LOOK4_STEPWISE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_062.png', 'text': '【自】［手牌1張放到休息室］ 此卡從舞台被放到休息室時，你可以支付代價。支付代價的話，你從自己的牌組上方看最多4張，選擇等級1以上的卡片最多1張給對手確認，加到手牌，剩下的卡片放到休息室。名場面的等級視為0。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-062', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-062S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_062.png', 'https://img.bottleneko.app/BFR_S78_062.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_062.png']}, 'BFR/S78-062S': {'id': 'BFR/S78-062S', 'name': '咬咬 梅普露', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2000, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '盾'], 'default_count': 0, 'effects': ['AUTO_STAGE_TO_WR_LOOK4_STEPWISE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_062S.png', 'text': '【自】［手牌1張放到休息室］ 此卡從舞台被放到休息室時，你可以支付代價。支付代價的話，你從自己的牌組上方看最多4張，選擇等級1以上的卡片最多1張給對手確認，加到手牌，剩下的卡片放到休息室。名場面的等級視為0。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-062', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'BFR/S78-062S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_062S.png', 'https://img.bottleneko.app/BFR_S78_062S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_062S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_062s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_062s.gif']}, 'BFR/S78-061': {'id': 'BFR/S78-061', 'name': '作戰變更 米瑟莉', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 1500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '炎'], 'default_count': 2, 'effects': ['ACT_MARKER_OR_STOCK'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_061.png', 'text': '【起】［將此卡【橫置】］ 此卡下方沒有標記的話，你將自己的牌組上方1張公開。那張卡片的等級是1以上的話作為標記以裏側表示放到此卡下方。名場面的等級視為0。如果不是的話放回原位。\n【起】［將此卡【橫置】］ 你將此卡下方的標記1張放到能量區。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-061', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': None, 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_061.png', 'https://img.bottleneko.app/BFR_S78_061.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_061.png']}, 'BFR/S78-060': {'id': 'BFR/S78-060', 'name': '焰火飛馳 蜜伊', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '炎'], 'default_count': 3, 'effects': ['AUTO_ON_PLAY_DEBUFF_AND_SEARCH'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_060.png', 'text': '【自】此卡從手牌被放置到舞台時，你選擇對手前列的角色1張，在那個回合中，攻擊力-1000。\n【自】［(1) 手牌1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇《遊戲》的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-060', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-060S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_060.png', 'https://img.bottleneko.app/BFR_S78_060.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_060.png']}, 'BFR/S78-060S': {'id': 'BFR/S78-060S', 'name': '焰火飛馳 蜜伊', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '炎'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_DEBUFF_AND_SEARCH'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_060S.png', 'text': '【自】此卡從手牌被放置到舞台時，你選擇對手前列的角色1張，在那個回合中，攻擊力-1000。\n【自】［(1) 手牌1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇《遊戲》的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-060', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'BFR/S78-060S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_060S.png', 'https://img.bottleneko.app/BFR_S78_060S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_060S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_060s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_060s.gif']}, 'BFR/S78-083': {'id': 'BFR/S78-083', 'name': '情報戰 莎莉', 'type': 'CHAR', 'color': '藍', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '水'], 'default_count': 2, 'effects': ['AUTO_ON_PLAY_SCRY2_AND_GUESS_DRAW'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_083.png', 'text': '【自】此卡從手牌被放置到舞台時，你看自己的牌組上方最多2張，以任意順序放回牌組上方。\n【自】此卡從手牌被放置到舞台時，對手宣言0或1或2或3。你將自己的牌組上方1張，放到休息室，那張卡片是對手宣言的等級的卡片的話，你抽最多X張牌。X等於對手宣言的數字+1。名場面的等級視為0。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-083', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': None, 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_083.png', 'https://img.bottleneko.app/BFR_S78_083.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_083.png']}, 'BFR/S78-073': {'id': 'BFR/S78-073', 'name': '不屈的守護者 梅普露', 'type': 'CHAR', 'color': '紅', 'level': 1, 'cost': 1, 'power': 5500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '盾'], 'default_count': 3, 'effects': ['CONT_OTHER_2GAME_BUFF_2000', 'AUTO_HAND_ENCORE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_073.png', 'text': '【永】其他的你的《遊戲》的角色存在2張以上的話，此卡的攻擊力+2000。\n【自】安可 ［手牌的角色1張放到休息室］', 'series': 'BFR/S78', 'base_id': 'BFR/S78-073', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': None, 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_073.png', 'https://img.bottleneko.app/BFR_S78_073.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_073.png']}, 'BFR/S78-057': {'id': 'BFR/S78-057', 'name': '移動要塞 梅普露', 'type': 'CHAR', 'color': '紅', 'level': 1, 'cost': 0, 'power': 4500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '盾'], 'default_count': 4, 'effects': ['AUTO_ON_PLAY_BUFF_1500', 'CX_COMBO_ATK_START_STAND_SALVAGE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_057.png', 'text': '【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+1500。\n【自】【CX連動】 ［手牌的「移動要塞 梅普露」1張放到休息室，你的名場面區的「公會長之間的對決」1張放到休息室］ 在你的攻擊階段開始時，此卡存在於前列的話，你可以支付代價。支付代價的話，你選擇其他的自己的《遊戲》的角色最多1張，【正置】，選擇自己休息室的《遊戲》的角色最多1張，回到手牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-057', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-057SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_057.png', 'https://img.bottleneko.app/BFR_S78_057.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_057.png']}, 'BFR/S78-057SP': {'id': 'BFR/S78-057SP', 'name': '移動要塞 梅普露', 'type': 'CHAR', 'color': '紅', 'level': 1, 'cost': 0, 'power': 4500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '盾'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_BUFF_1500', 'CX_COMBO_ATK_START_STAND_SALVAGE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_057SP.png', 'text': '【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+1500。\n【自】【CX連動】 ［手牌的「移動要塞 梅普露」1張放到休息室，你的名場面區的「公會長之間的對決」1張放到休息室］ 在你的攻擊階段開始時，此卡存在於前列的話，你可以支付代價。支付代價的話，你選擇其他的自己的《遊戲》的角色最多1張，【正置】，選擇自己休息室的《遊戲》的角色最多1張，回到手牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-057', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'BFR/S78-057SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_057SP.png', 'https://img.bottleneko.app/BFR_S78_057SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_057SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_057sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_057sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_057S.png', 'https://img.bottleneko.app/BFR_S78_057S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_057S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_057s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_057s.gif']}, 'BFR/S78-102': {'id': 'BFR/S78-102', 'name': '通往勝利的方程式 梅普露', 'type': 'CHAR', 'color': '藍', 'level': 1, 'cost': 1, 'power': 3000, 'soul': 1, 'trigger': 'SOUL', 'traits': ['遊戲', '盾'], 'default_count': 2, 'effects': ['CONT_LEVEL_ASSIST', 'AUTO_ON_ACT_BUFF_1000'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_102.png', 'text': '【永】應援 此卡前面的你的《遊戲》的角色全部，攻擊力+X。X等於那張角色的等級×500。\n【自】此能力每1回合最多發動1次。當你使用【起】的時候，你選擇自己的角色1張，在那個回合中，攻擊力+1000。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-102', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': None, 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_102.png', 'https://img.bottleneko.app/BFR_S78_102.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_102.png']}, 'BFR/S78-087': {'id': 'BFR/S78-087', 'name': '盾與盾 梅普露＆莎莉', 'type': 'CHAR', 'color': '藍', 'level': 1, 'cost': 0, 'power': 4500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '盾'], 'default_count': 2, 'effects': ['AUTO_ON_PLAY_FORCE_OPP_SWAP'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_087.png', 'text': '【自】［手牌1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇對手的等級1以上的角色1張，對手選擇自己休息室的等級X以下的角色1張，交換位置。X等於你選擇的角色的等級-1。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-087', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': None, 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_087.png', 'https://img.bottleneko.app/BFR_S78_087.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_087.png']}, 'BFR/S78-072': {'id': 'BFR/S78-072', 'name': '火炎牢 蜜伊', 'type': 'CHAR', 'color': '紅', 'level': 1, 'cost': 0, 'power': 4500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '炎'], 'default_count': 2, 'effects': ['AUTO_ON_PLAY_SCALING_BUFF_AND_LOCK'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_072.png', 'text': '【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+X。X等於你的《遊戲》的角色張數×500。\n【自】此卡從手牌被放置到舞台時，你選擇對手的角色1張，在那個回合中，給予以下能力。『【永】此卡不能回到手牌，不能放到回憶區。』', 'series': 'BFR/S78', 'base_id': 'BFR/S78-072', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': None, 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_072.png', 'https://img.bottleneko.app/BFR_S78_072.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_072.png']}, 'BFR/S78-058': {'id': 'BFR/S78-058', 'name': '聖女米瑟莉', 'type': 'CHAR', 'color': '紅', 'level': 2, 'cost': 2, 'power': 7000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '炎'], 'default_count': 1, 'effects': ['CONT_ALL_GAME_BUFF_3000', 'AUTO_DIRECT_ATK_STOCK_CHARGE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_058.png', 'text': '【永】你的角色全部都是《遊戲》的話，此卡的攻擊力+3000。\n【自】此卡直接攻擊時，你可以選擇自己休息室的《遊戲》的角色1張，放到能量區。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-058', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-058SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_058.png', 'https://img.bottleneko.app/BFR_S78_058.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_058.png']}, 'BFR/S78-058SP': {'id': 'BFR/S78-058SP', 'name': '聖女米瑟莉', 'type': 'CHAR', 'color': '紅', 'level': 2, 'cost': 2, 'power': 7000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '炎'], 'default_count': 0, 'effects': ['CONT_ALL_GAME_BUFF_3000', 'AUTO_DIRECT_ATK_STOCK_CHARGE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_058SP.png', 'text': '【永】你的角色全部都是《遊戲》的話，此卡的攻擊力+3000。\n【自】此卡直接攻擊時，你可以選擇自己休息室的《遊戲》的角色1張，放到能量區。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-058', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'BFR/S78-058SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_058SP.png', 'https://img.bottleneko.app/BFR_S78_058SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_058SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_058sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_058sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_058S.png', 'https://img.bottleneko.app/BFR_S78_058S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_058S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_058s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_058s.gif']}, 'BFR/S78-069': {'id': 'BFR/S78-069', 'name': '被託付的生命 蜜伊', 'type': 'CHAR', 'color': '紅', 'level': 2, 'cost': 1, 'power': 5000, 'soul': 1, 'trigger': 'SOUL', 'traits': ['遊戲', '炎'], 'default_count': 1, 'effects': ['AUTO_FRONT_ATK_LOWER_LEVEL', 'AUTO_REVERSE_BOMB_LV2'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_069.png', 'text': '【自】［(1)］ 此卡正打時，你可以支付代價。支付代價的話，你選擇對手的角色1張，在那個回合中，等級-1。\n【自】此卡【倒置】時，此卡的戰鬥對手是等級2以下的話，你可以將那張角色【倒置】。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-069', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': None, 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_069.png', 'https://img.bottleneko.app/BFR_S78_069.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_069.png']}, 'BFR/S78-089': {'id': 'BFR/S78-089', 'name': '大摯友 梅普露＆莎莉', 'type': 'CHAR', 'color': '藍', 'level': 2, 'cost': 2, 'power': 7000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '盾'], 'default_count': 1, 'effects': ['CONT_OPP_BACKROW_BUFF_1500', 'AUTO_DEFEND_IMMUNE_REVERSE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_089.png', 'text': '【永】對手的後列的角色每有1張，此卡的攻擊力+1500。\n【自】［(1) 手牌的《遊戲》的角色1張放到休息室］ 此卡被正打時，你可以支付代價。支付代價的話，在那個回合中，此卡不會【倒置】。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-089', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-089S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_089.png', 'https://img.bottleneko.app/BFR_S78_089.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_089.png']}, 'BFR/S78-089S': {'id': 'BFR/S78-089S', 'name': '大摯友 梅普露＆莎莉', 'type': 'CHAR', 'color': '藍', 'level': 2, 'cost': 2, 'power': 7000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '盾'], 'default_count': 0, 'effects': ['CONT_OPP_BACKROW_BUFF_1500', 'AUTO_DEFEND_IMMUNE_REVERSE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_089S.png', 'text': '【永】對手的後列的角色每有1張，此卡的攻擊力+1500。\n【自】［(1) 手牌的《遊戲》的角色1張放到休息室］ 此卡被正打時，你可以支付代價。支付代價的話，在那個回合中，此卡不會【倒置】。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-089', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'BFR/S78-089S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_089S.png', 'https://img.bottleneko.app/BFR_S78_089S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_089S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_089s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_089s.gif']}, 'BFR/S78-063': {'id': 'BFR/S78-063', 'name': '暴虐 梅普露', 'type': 'CHAR', 'color': '紅', 'level': 3, 'cost': 2, 'power': 9500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '盾'], 'default_count': 2, 'effects': ['AUTO_ON_PLAY_3000_AND_SALVAGE_CX', 'CX_COMBO_REVERSE_BURN_1_2_3'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063.png', 'text': '【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+3000。\n【自】［(1)］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的名場面1張，回到手牌。\n【自】【CX連動】 ［(6) 手牌2張放到休息室，你的名場面區的「Boss級怪物」1張放到休息室］ 此卡的戰鬥對手【倒置】時，你可以支付代價。支付代價的話，給對手1點傷害，給對手2點傷害，給對手3點傷害。會發生傷害取消。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-063', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-063S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_063.png', 'https://img.bottleneko.app/BFR_S78_063.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063.png']}, 'BFR/S78-063S': {'id': 'BFR/S78-063S', 'name': '暴虐 梅普露', 'type': 'CHAR', 'color': '紅', 'level': 3, 'cost': 2, 'power': 9500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '盾'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_3000_AND_SALVAGE_CX', 'CX_COMBO_REVERSE_BURN_1_2_3'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_063S.png', 'text': '【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+3000。\n【自】［(1)］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的名場面1張，回到手牌。\n【自】【CX連動】 ［(6) 手牌2張放到休息室，你的名場面區的「Boss級怪物」1張放到休息室］ 此卡的戰鬥對手【倒置】時，你可以支付代價。支付代價的話，給對手1點傷害，給對手2點傷害，給對手3點傷害。會發生傷害取消。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-063', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'BFR/S78-063S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_063S.png', 'https://img.bottleneko.app/BFR_S78_063S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_063S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_063SEC.png', 'https://img.bottleneko.app/BFR_S78_063SEC.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_063SEC.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063sec.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063sec.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_063SP.png', 'https://img.bottleneko.app/BFR_S78_063SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_063SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063sp.gif']}, 'BFR/S78-064': {'id': 'BFR/S78-064', 'name': '炎帝 蜜伊', 'type': 'CHAR', 'color': '紅', 'level': 3, 'cost': 2, 'power': 10000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '炎'], 'default_count': 2, 'effects': ['AUTO_ON_PLAY_HEAL', 'CX_COMBO_STANDBY_STAND'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_064.png', 'text': '【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】【CX連動】 ［手牌的《遊戲》的角色3張放到休息室］ 此卡因為「炎帝之國的公會長」的效果被放到舞台時，你可以支付代價。支付代價的話，將此卡【正置】。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-064', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-064S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_064.png', 'https://img.bottleneko.app/BFR_S78_064.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_064.png']}, 'BFR/S78-064S': {'id': 'BFR/S78-064S', 'name': '炎帝 蜜伊', 'type': 'CHAR', 'color': '紅', 'level': 3, 'cost': 2, 'power': 10000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '炎'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_HEAL', 'CX_COMBO_STANDBY_STAND'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_064S.png', 'text': '【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】【CX連動】 ［手牌的《遊戲》的角色3張放到休息室］ 此卡因為「炎帝之國的公會長」的效果被放到舞台時，你可以支付代價。支付代價的話，將此卡【正置】。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-064', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'BFR/S78-064S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_064S.png', 'https://img.bottleneko.app/BFR_S78_064S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_064S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_064s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_064s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_064SP.png', 'https://img.bottleneko.app/BFR_S78_064SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_064SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_064sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_064sp.gif']}, 'BFR/S78-081': {'id': 'BFR/S78-081', 'name': '天才少年 奏', 'type': 'CHAR', 'color': '藍', 'level': 3, 'cost': 2, 'power': 9000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '武器'], 'default_count': 1, 'effects': ['CONT_EARLY_PLAY_4GAME', 'AUTO_ON_PLAY_HEAL', 'AUTO_ON_PLAY_OTHER_GAME_2000'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_081.png', 'text': '【永】你的《遊戲》的角色存在4張以上的話，你的手牌的此卡等級-1。\n【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】此卡從手牌被放置到舞台時，有其他的你的《遊戲》的角色存在的話，在那個回合中，此卡的攻擊力+2000。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-081', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-081SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_081.png', 'https://img.bottleneko.app/BFR_S78_081.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_081.png']}, 'BFR/S78-081SP': {'id': 'BFR/S78-081SP', 'name': '天才少年 奏', 'type': 'CHAR', 'color': '藍', 'level': 3, 'cost': 2, 'power': 9000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '武器'], 'default_count': 0, 'effects': ['CONT_EARLY_PLAY_4GAME', 'AUTO_ON_PLAY_HEAL', 'AUTO_ON_PLAY_OTHER_GAME_2000'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_081SP.png', 'text': '【永】你的《遊戲》的角色存在4張以上的話，你的手牌的此卡等級-1。\n【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】此卡從手牌被放置到舞台時，有其他的你的《遊戲》的角色存在的話，在那個回合中，此卡的攻擊力+2000。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-081', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'BFR/S78-081SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_081SP.png', 'https://img.bottleneko.app/BFR_S78_081SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_081SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_081sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_081sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_081S.png', 'https://img.bottleneko.app/BFR_S78_081S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_081S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_081s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_081s.gif']}, 'BFR/S78-082': {'id': 'BFR/S78-082', 'name': '機械神 梅普露', 'type': 'CHAR', 'color': '藍', 'level': 3, 'cost': 2, 'power': 10000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '盾'], 'default_count': 1, 'effects': ['AUTO_ON_PLAY_RESHUFFLE_OPP_STOCK', 'CX_COMBO_ATK_BOTTOM_MILL4_BURN'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_082.png', 'text': '【自】［(1)］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，對手將自己的能量區全部，放到休息室，從自己的牌組上方將相同張數放到能量區。\n【自】【CX連動】 此卡攻擊時，名場面區有「展開．左手」的話，你將對手的牌組下方4張，放到休息室，給對手X點傷害。X等於那些卡片中的名場面張數。會發生傷害取消。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-082', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-082SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_082.png', 'https://img.bottleneko.app/BFR_S78_082.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_082.png']}, 'BFR/S78-082SP': {'id': 'BFR/S78-082SP', 'name': '機械神 梅普露', 'type': 'CHAR', 'color': '藍', 'level': 3, 'cost': 2, 'power': 10000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '盾'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_RESHUFFLE_OPP_STOCK', 'CX_COMBO_ATK_BOTTOM_MILL4_BURN'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_082SP.png', 'text': '【自】［(1)］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，對手將自己的能量區全部，放到休息室，從自己的牌組上方將相同張數放到能量區。\n【自】【CX連動】 此卡攻擊時，名場面區有「展開．左手」的話，你將對手的牌組下方4張，放到休息室，給對手X點傷害。X等於那些卡片中的名場面張數。會發生傷害取消。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-082', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'BFR/S78-082SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_082SP.png', 'https://img.bottleneko.app/BFR_S78_082SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_082SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_082sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_082sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_082S.png', 'https://img.bottleneko.app/BFR_S78_082S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_082S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_082s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_082s.gif']}, 'GA10/S131-030': {'id': 'GA10/S131-030', 'series': 'GA/S131', 'name': '時隔五年的【能力值】更新', 'jp_name': '五年振りの【ステイタス】更新', 'type': 'CX', 'color': '黃', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'CHOICE', 'traits': [], 'default_count': 4, 'effects': ['CX_ALL_1000_1SOUL', 'CX_TRIGGER_CHOICE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_030.png', 'text': '【永】你的角色全部，攻擊力+1000，魂傷+1。\n箭頭：當你判定出此卡時，你可以選擇自己休息室的判定標誌有魂傷的角色1張，回到手牌或放到能量區。', 'base_id': 'GA10/S131-030', 'is_high_rarity': False, 'rarity': 'CR', 'high_rarity_id': 'GA10/S131-030R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_030.png', 'https://img.bottleneko.app/GA10_S131_030.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_030.png']}, 'GA10/S131-030R': {'id': 'GA10/S131-030R', 'series': 'GA/S131', 'name': '時隔五年的【能力值】更新', 'jp_name': '五年振りの【ステイタス】更新', 'type': 'CX', 'color': '黃', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'CHOICE', 'traits': [], 'default_count': 0, 'effects': ['CX_ALL_1000_1SOUL', 'CX_TRIGGER_CHOICE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_030R.png', 'text': '【永】你的角色全部，攻擊力+1000，魂傷+1。\n箭頭：當你判定出此卡時，你可以選擇自己休息室的判定標誌有魂傷的角色1張，回到手牌或放到能量區。', 'base_id': 'GA10/S131-030', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'GA10/S131-030R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_030R.png', 'https://img.bottleneko.app/GA10_S131_030R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_030R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_030r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_030r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_030r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_030r.gif']}, 'GA17/S131-033': {'id': 'GA17/S131-033', 'series': 'GA/S131', 'name': '灰之魔女', 'jp_name': '灰の魔女', 'type': 'CX', 'color': '黃', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'CHOICE', 'traits': [], 'default_count': 4, 'effects': ['CX_ALL_1000_1SOUL', 'CX_TRIGGER_CHOICE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_033.png', 'text': '【永】你的角色全部，攻擊力+1000，魂傷+1。\n箭頭：當你判定出此卡時，你可以選擇自己休息室的判定標誌有魂傷的角色1張，回到手牌或放到能量區。', 'base_id': 'GA17/S131-033', 'is_high_rarity': False, 'rarity': 'CR', 'high_rarity_id': 'GA17/S131-033R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_033.png', 'https://img.bottleneko.app/GA17_S131_033.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_033.png']}, 'GA17/S131-033R': {'id': 'GA17/S131-033R', 'series': 'GA/S131', 'name': '灰之魔女', 'jp_name': '灰の魔女', 'type': 'CX', 'color': '黃', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'CHOICE', 'traits': [], 'default_count': 0, 'effects': ['CX_ALL_1000_1SOUL', 'CX_TRIGGER_CHOICE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_033R.png', 'text': '【永】你的角色全部，攻擊力+1000，魂傷+1。\n箭頭：當你判定出此卡時，你可以選擇自己休息室的判定標誌有魂傷的角色1張，回到手牌或放到能量區。', 'base_id': 'GA17/S131-033', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'GA17/S131-033R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_033R.png', 'https://img.bottleneko.app/GA17_S131_033R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_033R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_033r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_033r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_033r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_033r.gif']}, 'GA05/S131-007': {'id': 'GA05/S131-007', 'series': 'GA/S131', 'name': '〈迪亞馬特〉的使用者 莉姿夏爾蒂·亞提司瑪特', 'jp_name': '《ティアマト》の使い手 リーズシャルテ・アティスマータ', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 1500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '王族', '機龍'], 'default_count': 2, 'effects': ['AUTO_ON_PLAY_LOCK_MOVE', 'AUTO_ON_PLAY_SWAP_CX'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga05_s131_007.png', 'text': '【自】此卡從手牌被放置到舞台時，你選擇對手的角色1張，到下次的對手回合結束前，給予以下能力。『【永】此卡不能移動到其他格子。』\n【自】［(1) 手牌的CX1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的CX1張，回到手牌。', 'base_id': 'GA05/S131-007', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA05/S131-007SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA05_S131_007.png', 'https://img.bottleneko.app/GA05_S131_007.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga05_s131_007.png']}, 'GA05/S131-007SP': {'id': 'GA05/S131-007SP', 'series': 'GA/S131', 'name': '〈迪亞馬特〉的使用者 莉姿夏爾蒂·亞提司瑪特', 'jp_name': '《ティアマト》の使い手 リーズシャルテ・アティスマータ', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 1500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '王族', '機龍'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_LOCK_MOVE', 'AUTO_ON_PLAY_SWAP_CX'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA05_S131_007SP.png', 'text': '【自】此卡從手牌被放置到舞台時，你選擇對手的角色1張，到下次的對手回合結束前，給予以下能力。『【永】此卡不能移動到其他格子。』\n【自】［(1) 手牌的CX1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的CX1張，回到手牌。', 'base_id': 'GA05/S131-007', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'GA05/S131-007SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA05_S131_007SP.png', 'https://img.bottleneko.app/GA05_S131_007SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA05_S131_007SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga05_s131_007sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga05_s131/ga05_s131_007sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga05_s131_007sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga05_s131_007sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA05_S131_007S.png', 'https://img.bottleneko.app/GA05_S131_007S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA05_S131_007S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga05_s131_007s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga05_s131/ga05_s131_007s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga05_s131_007s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga05_s131_007s.gif']}, 'GA08/S131-038': {'id': 'GA08/S131-038', 'series': 'GA/S131', 'name': '魔族農業大臣 別西卜', 'jp_name': '魔族の農相 ベルゼブブ', 'type': 'CHAR', 'color': '綠', 'level': 0, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '魔族', '農家'], 'default_count': 2, 'effects': ['AUTO_ON_PLAY_DOKITEMA'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga08_s131_038.png', 'text': '【自】［手牌1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你將自己的牌組上方1張公開，選擇自己休息室的等級X以下的角色1張，回到手牌。X等於被公開的卡片等級。CX視為等級0。公開過的卡片放回原位。', 'base_id': 'GA08/S131-038', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA08/S131-038SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA08_S131_038.png', 'https://img.bottleneko.app/GA08_S131_038.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga08_s131_038.png']}, 'GA08/S131-038SP': {'id': 'GA08/S131-038SP', 'series': 'GA/S131', 'name': '魔族農業大臣 別西卜', 'jp_name': '魔族の農相 ベルゼブブ', 'type': 'CHAR', 'color': '綠', 'level': 0, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '魔族', '農家'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_DOKITEMA'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA08_S131_038SP.png', 'text': '【自】［手牌1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你將自己的牌組上方1張公開，選擇自己休息室的等級X以下的角色1張，回到手牌。X等於被公開的卡片等級。CX視為等級0。公開過的卡片放回原位。', 'base_id': 'GA08/S131-038', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'GA08/S131-038SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA08_S131_038SP.png', 'https://img.bottleneko.app/GA08_S131_038SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA08_S131_038SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga08_s131_038sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga08_s131/ga08_s131_038sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga08_s131_038sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga08_s131_038sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA08_S131_038S.png', 'https://img.bottleneko.app/GA08_S131_038S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA08_S131_038S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga08_s131_038s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga08_s131/ga08_s131_038s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga08_s131_038s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga08_s131_038s.gif']}, 'GA10/S131-012': {'id': 'GA10/S131-012', 'series': 'GA/S131', 'name': '奇怪的妖精 琉', 'jp_name': '変り種のエルフ リュー', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '冒險者', '妖精'], 'default_count': 3, 'effects': ['CONT_CHOICE_CX_GIVES_WIND', 'ACT_CONCENTRATE_5_SALVAGE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_012.png', 'text': '【永】你的CX區有判定標誌是箭頭的CX的話，給予你的所有的領域的黃色的CX風的判定標誌。\n【起】集中 ［(1) 將此卡【橫置】］ 你從自己的牌組上方翻出5張，放到休息室。那些卡片中每有1張判定標誌是箭頭的CX，你選擇自己休息室的角色最多1張，回到手牌。', 'base_id': 'GA10/S131-012', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA10/S131-012GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_012.png', 'https://img.bottleneko.app/GA10_S131_012.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_012.png']}, 'GA10/S131-012GA': {'id': 'GA10/S131-012GA', 'series': 'GA/S131', 'name': '奇怪的妖精 琉', 'jp_name': '変り種のエルフ リュー', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '冒險者', '妖精'], 'default_count': 0, 'effects': ['CONT_CHOICE_CX_GIVES_WIND', 'ACT_CONCENTRATE_5_SALVAGE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_012GA.png', 'text': '【永】你的CX區有判定標誌是箭頭的CX的話，給予你的所有的領域的黃色的CX風的判定標誌。\n【起】集中 ［(1) 將此卡【橫置】］ 你從自己的牌組上方翻出5張，放到休息室。那些卡片中每有1張判定標誌是箭頭的CX，你選擇自己休息室的角色最多1張，回到手牌。', 'base_id': 'GA10/S131-012', 'is_high_rarity': True, 'rarity': 'GA', 'high_rarity_id': 'GA10/S131-012GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_012GA.png', 'https://img.bottleneko.app/GA10_S131_012GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_012GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_012ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_012ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_012ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_012ga.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_012S.png', 'https://img.bottleneko.app/GA10_S131_012S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_012S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_012s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_012s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_012s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_012s.gif']}, 'GA10/S131-T09': {'id': 'GA10/S131-T09', 'series': 'GA/S131', 'name': '女神之鐘 赫斯緹雅', 'jp_name': '女神のカンパネラ ヘスティア', 'type': 'CHAR', 'color': '藍', 'level': 0, 'cost': 0, 'power': 1500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '眷族', '神'], 'default_count': 3, 'effects': ['CONT_HAND5_BUFF_2000', 'AUTO_ATK_TWIN_DRIVE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09.png', 'text': '【永】在你的回合中，你的手牌有5張以上的話，此卡的攻擊力+2000。\n【自】［(1)］ 此卡攻擊時，你可以支付代價。支付代價的話，在那次攻擊中，你在判定階段執行2次判定。', 'base_id': 'GA10/S131-T09', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA10/S131-T09TDP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_T09.png', 'https://img.bottleneko.app/GA10_S131_T09.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09.png']}, 'GA10/S131-T09TDP': {'id': 'GA10/S131-T09TDP', 'series': 'GA/S131', 'name': '女神之鐘 赫斯緹雅', 'jp_name': '女神のカンパネラ ヘスティア', 'type': 'CHAR', 'color': '藍', 'level': 0, 'cost': 0, 'power': 1500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '眷族', '神'], 'default_count': 0, 'effects': ['CONT_HAND5_BUFF_2000', 'AUTO_ATK_TWIN_DRIVE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_T09TDP.png', 'text': '【永】在你的回合中，你的手牌有5張以上的話，此卡的攻擊力+2000。\n【自】［(1)］ 此卡攻擊時，你可以支付代價。支付代價的話，在那次攻擊中，你在判定階段執行2次判定。', 'base_id': 'GA10/S131-T09', 'is_high_rarity': True, 'rarity': 'TDP', 'high_rarity_id': 'GA10/S131-T09TDP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_T09TDP.png', 'https://img.bottleneko.app/GA10_S131_T09TDP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_T09TDP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09tdp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_t09tdp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_t09tdp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09tdp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_T09SP.png', 'https://img.bottleneko.app/GA10_S131_T09SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_T09SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_t09sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_t09sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_T09R.png', 'https://img.bottleneko.app/GA10_S131_T09R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_T09R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_t09r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_t09r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_T09S.png', 'https://img.bottleneko.app/GA10_S131_T09S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_T09S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_t09s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_t09s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09s.gif']}, 'GA12/S131-013': {'id': 'GA12/S131-013', 'series': 'GA/S131', 'name': '朋友的話是當然的 月之森真白', 'jp_name': '友達ならトーゼン 月ノ森真白', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '學生'], 'default_count': 4, 'effects': ['CONT_GAIN_CHOICE_TRIGGER', 'AUTO_ON_PLAY_BUFF_3000'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga12_s131_013.png', 'text': '【永】你的CX區有判定標誌是箭頭的CX的話，所有的領域的此卡獲得箭頭的判定標誌。\n【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+3000。', 'base_id': 'GA12/S131-013', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA12/S131-013GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA12_S131_013.png', 'https://img.bottleneko.app/GA12_S131_013.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga12_s131_013.png']}, 'GA12/S131-013GA': {'id': 'GA12/S131-013GA', 'series': 'GA/S131', 'name': '朋友的話是當然的 月之森真白', 'jp_name': '友達ならトーゼン 月ノ森真白', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '學生'], 'default_count': 0, 'effects': ['CONT_GAIN_CHOICE_TRIGGER', 'AUTO_ON_PLAY_BUFF_3000'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA12_S131_013GA.png', 'text': '【永】你的CX區有判定標誌是箭頭的CX的話，所有的領域的此卡獲得箭頭的判定標誌。\n【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+3000。', 'base_id': 'GA12/S131-013', 'is_high_rarity': True, 'rarity': 'GA', 'high_rarity_id': 'GA12/S131-013GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA12_S131_013GA.png', 'https://img.bottleneko.app/GA12_S131_013GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA12_S131_013GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga12_s131_013ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga12_s131/ga12_s131_013ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga12_s131_013ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga12_s131_013ga.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA12_S131_013S.png', 'https://img.bottleneko.app/GA12_S131_013S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA12_S131_013S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga12_s131_013s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga12_s131/ga12_s131_013s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga12_s131_013s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga12_s131_013s.gif']}, 'GA13/S131-077': {'id': 'GA13/S131-077', 'series': 'GA/S131', 'name': '我的女神 草壁由佳', 'jp_name': 'ぼくの女神 草壁ゆか', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2000, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '農業'], 'default_count': 4, 'effects': ['AUTO_STAGE_TO_WR_CLOCK_LOOK2_GA'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga13_s131_077.png', 'text': '【自】［(1) 你的牌組上方1張放到傷害區］ 此卡從舞台被放到休息室時，你可以支付代價。支付代價的話，你從自己的牌組上方看最多2張，選擇《GA文庫》的角色最多2張給對手確認，加到手牌，剩下的卡片放到休息室。', 'base_id': 'GA13/S131-077', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA13/S131-077GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA13_S131_077.png', 'https://img.bottleneko.app/GA13_S131_077.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga13_s131_077.png']}, 'GA13/S131-077GA': {'id': 'GA13/S131-077GA', 'series': 'GA/S131', 'name': '我的女神 草壁由佳', 'jp_name': 'ぼくの女神 草壁ゆか', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2000, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '農業'], 'default_count': 0, 'effects': ['AUTO_STAGE_TO_WR_CLOCK_LOOK2_GA'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA13_S131_077GA.png', 'text': '【自】［(1) 你的牌組上方1張放到傷害區］ 此卡從舞台被放到休息室時，你可以支付代價。支付代價的話，你從自己的牌組上方看最多2張，選擇《GA文庫》的角色最多2張給對手確認，加到手牌，剩下的卡片放到休息室。', 'base_id': 'GA13/S131-077', 'is_high_rarity': True, 'rarity': 'GA', 'high_rarity_id': 'GA13/S131-077GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA13_S131_077GA.png', 'https://img.bottleneko.app/GA13_S131_077GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA13_S131_077GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga13_s131_077ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga13_s131/ga13_s131_077ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga13_s131_077ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga13_s131_077ga.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA13_S131_077S.png', 'https://img.bottleneko.app/GA13_S131_077S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA13_S131_077S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga13_s131_077s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga13_s131/ga13_s131_077s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga13_s131_077s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga13_s131_077s.gif']}, 'GA10/S131-002': {'id': 'GA10/S131-002', 'series': 'GA/S131', 'name': '跨越復仇 琉', 'jp_name': '復讐を越えて リュー', 'type': 'CHAR', 'color': '黃', 'level': 1, 'cost': 0, 'power': 2500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '冒險者', '妖精'], 'default_count': 4, 'effects': ['AUTO_ON_PLAY_OPP_COUNT_BUFF_1000', 'CX_COMBO_RYU_ATK_SCRY2_SALVAGE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_002.png', 'text': '【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+X。X等於對手的角色張數×1000。\n【自】【CX連動】此卡攻擊時，CX區有「時隔五年的【能力值】更新」的話，你看自己牌組上方最多2張，選擇卡片最多2張，以任意順序放到牌組上方，剩下的卡片放到休息室，將自己的牌組上方1張公開，選擇自己休息室的等級X以下的角色1張，回到手牌。X等於被公開的卡片等級。CX視為等級0。公開過的卡片放回原位。', 'base_id': 'GA10/S131-002', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA10/S131-002SSP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_002.png', 'https://img.bottleneko.app/GA10_S131_002.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_002.png']}, 'GA10/S131-002SSP': {'id': 'GA10/S131-002SSP', 'series': 'GA/S131', 'name': '跨越復仇 琉', 'jp_name': '復讐を越えて リュー', 'type': 'CHAR', 'color': '黃', 'level': 1, 'cost': 0, 'power': 2500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '冒險者', '妖精'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_OPP_COUNT_BUFF_1000', 'CX_COMBO_RYU_ATK_SCRY2_SALVAGE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_002SSP.png', 'text': '【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+X。X等於對手的角色張數×1000。\n【自】【CX連動】此卡攻擊時，CX區有「時隔五年的【能力值】更新」的話，你看自己牌組上方最多2張，選擇卡片最多2張，以任意順序放到牌組上方，剩下的卡片放到休息室，將自己的牌組上方1張公開，選擇自己休息室的等級X以下的角色1張，回到手牌。X等於被公開的卡片等級。CX視為等級0。公開過的卡片放回原位。', 'base_id': 'GA10/S131-002', 'is_high_rarity': True, 'rarity': 'SSP', 'high_rarity_id': 'GA10/S131-002SSP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_002SSP.png', 'https://img.bottleneko.app/GA10_S131_002SSP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_002SSP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_002ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_002ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_002ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_002ssp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_002S.png', 'https://img.bottleneko.app/GA10_S131_002S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_002S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_002s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_002s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_002s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_002s.gif']}, 'GA17/S131-014': {'id': 'GA17/S131-014', 'series': 'GA/S131', 'name': '我的旅路 伊蕾娜', 'jp_name': '私の旅路 イレイナ', 'type': 'CHAR', 'color': '黃', 'level': 1, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '魔法'], 'default_count': 1, 'effects': ['AUTO_MEMORY_DEF_DIRECT_MINUS_SOUL', 'ACT_MILL_ELAINA_BUFF_2000'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_014.png', 'text': '【自】回合1次 記憶 對手的角色直接攻擊時，你的回憶區有卡名包含「伊蕾娜」的角色，沒有其他的你的「我的旅路 伊蕾娜」存在的話，你選擇攻擊中的角色最多1張，在那個回合中，魂傷-1。\n【起】［將此卡【橫置】］ 你從自己的牌組選擇「第二章 伊蕾娜」或「第三章 伊蕾娜」最多1張，放到休息室，將那個牌組洗牌，你選擇自己的《GA文庫》的角色1張，在那個回合中，攻擊力+2000。', 'base_id': 'GA17/S131-014', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA17/S131-014GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_014.png', 'https://img.bottleneko.app/GA17_S131_014.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_014.png']}, 'GA17/S131-014GA': {'id': 'GA17/S131-014GA', 'series': 'GA/S131', 'name': '我的旅路 伊蕾娜', 'jp_name': '私の旅路 イレイナ', 'type': 'CHAR', 'color': '黃', 'level': 1, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '魔法'], 'default_count': 0, 'effects': ['AUTO_MEMORY_DEF_DIRECT_MINUS_SOUL', 'ACT_MILL_ELAINA_BUFF_2000'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_014GA.png', 'text': '【自】回合1次 記憶 對手的角色直接攻擊時，你的回憶區有卡名包含「伊蕾娜」的角色，沒有其他的你的「我的旅路 伊蕾娜」存在的話，你選擇攻擊中的角色最多1張，在那個回合中，魂傷-1。\n【起】［將此卡【橫置】］ 你從自己的牌組選擇「第二章 伊蕾娜」或「第三章 伊蕾娜」最多1張，放到休息室，將那個牌組洗牌，你選擇自己的《GA文庫》的角色1張，在那個回合中，攻擊力+2000。', 'base_id': 'GA17/S131-014', 'is_high_rarity': True, 'rarity': 'GA', 'high_rarity_id': 'GA17/S131-014GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_014GA.png', 'https://img.bottleneko.app/GA17_S131_014GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_014GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_014ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_014ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_014ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_014ga.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_014S.png', 'https://img.bottleneko.app/GA17_S131_014S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_014S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_014s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_014s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_014s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_014s.gif']}, 'GA17/S131-015': {'id': 'GA17/S131-015', 'series': 'GA/S131', 'name': '第一章 伊蕾娜', 'jp_name': '第一章 イレイナ', 'type': 'CHAR', 'color': '黃', 'level': 1, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '魔法'], 'default_count': 3, 'effects': ['CONT_YOUR_TURN_6000', 'AUTO_REVERSE_CHAIN_CH2_ELAINA'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_015.png', 'text': '【永】在你的回合中，此卡的攻擊力+6000。\n【自】［(1) 將此卡放到休息室］ 此卡的戰鬥對手【倒置】時，其他的你的《GA文庫》的角色存在2張以上的話，你可以支付代價。支付代價的話，你選擇自己休息室的「第二章 伊蕾娜」1張，放到回憶區。放到回憶區的話，你看自己的牌組上方最多3張，以任意順序放到牌組上方，在下次的你的抽牌階段開始時，你可以選擇自己的回憶區的「第二章 伊蕾娜」1張，放到舞台上任意的格子。', 'base_id': 'GA17/S131-015', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA17/S131-015S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_015.png', 'https://img.bottleneko.app/GA17_S131_015.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_015.png']}, 'GA17/S131-015S': {'id': 'GA17/S131-015S', 'series': 'GA/S131', 'name': '第一章 伊蕾娜', 'jp_name': '第一章 イレイナ', 'type': 'CHAR', 'color': '黃', 'level': 1, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '魔法'], 'default_count': 0, 'effects': ['CONT_YOUR_TURN_6000', 'AUTO_REVERSE_CHAIN_CH2_ELAINA'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_015S.png', 'text': '【永】在你的回合中，此卡的攻擊力+6000。\n【自】［(1) 將此卡放到休息室］ 此卡的戰鬥對手【倒置】時，其他的你的《GA文庫》的角色存在2張以上的話，你可以支付代價。支付代價的話，你選擇自己休息室的「第二章 伊蕾娜」1張，放到回憶區。放到回憶區的話，你看自己的牌組上方最多3張，以任意順序放到牌組上方，在下次的你的抽牌階段開始時，你可以選擇自己的回憶區的「第二章 伊蕾娜」1張，放到舞台上任意的格子。', 'base_id': 'GA17/S131-015', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'GA17/S131-015S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_015S.png', 'https://img.bottleneko.app/GA17_S131_015S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_015S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_015s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_015s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_015s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_015s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_015GA.png', 'https://img.bottleneko.app/GA17_S131_015GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_015GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_015ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_015ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_015ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_015ga.gif']}, 'GA02/S131-009': {'id': 'GA02/S131-009', 'series': 'GA/S131', 'name': '告別膽小的自己 椎名真晝', 'jp_name': '臆病だった自分にさよならを 椎名真昼', 'type': 'CHAR', 'color': '黃', 'level': 2, 'cost': 1, 'power': 2500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '天使'], 'default_count': 1, 'effects': ['COUNTER_BACKUP_2500_LV2', 'AUTO_ON_BACKUP_REFRESH_WR'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_009.png', 'text': '【自】［(2)］ 當你使用此卡的『助太刀』時，你可以支付代價。支付代價的話，你將自己休息室的卡片全部，返回牌組，將那個牌組洗牌。\n【起】【反擊】 助太刀2500 等級2 ［(1) 手牌的此卡放到休息室］ 你選擇自己的正在被正打的角色1張，在那個回合中，攻擊力+2500。', 'base_id': 'GA02/S131-009', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA02/S131-009SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA02_S131_009.png', 'https://img.bottleneko.app/GA02_S131_009.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_009.png']}, 'GA02/S131-009SP': {'id': 'GA02/S131-009SP', 'series': 'GA/S131', 'name': '告別膽小的自己 椎名真晝', 'jp_name': '臆病だった自分にさよならを 椎名真昼', 'type': 'CHAR', 'color': '黃', 'level': 2, 'cost': 1, 'power': 2500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '天使'], 'default_count': 0, 'effects': ['COUNTER_BACKUP_2500_LV2', 'AUTO_ON_BACKUP_REFRESH_WR'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA02_S131_009SP.png', 'text': '【自】［(2)］ 當你使用此卡的『助太刀』時，你可以支付代價。支付代價的話，你將自己休息室的卡片全部，返回牌組，將那個牌組洗牌。\n【起】【反擊】 助太刀2500 等級2 ［(1) 手牌的此卡放到休息室］ 你選擇自己的正在被正打的角色1張，在那個回合中，攻擊力+2500。', 'base_id': 'GA02/S131-009', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'GA02/S131-009SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA02_S131_009SP.png', 'https://img.bottleneko.app/GA02_S131_009SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA02_S131_009SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_009sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga02_s131/ga02_s131_009sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga02_s131_009sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_009sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA02_S131_009S.png', 'https://img.bottleneko.app/GA02_S131_009S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA02_S131_009S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_009s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga02_s131/ga02_s131_009s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga02_s131_009s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_009s.gif']}, 'GA10/S131-019': {'id': 'GA10/S131-019', 'series': 'GA/S131', 'name': '炸薯球 艾絲', 'jp_name': 'ジャガ丸くん アイズ', 'type': 'CHAR', 'color': '黃', 'level': 2, 'cost': 1, 'power': 7000, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '冒險者', '眷族'], 'default_count': 1, 'effects': ['AUTO_ON_PLAY_OPP_REVERSE_COMPRESS', 'AUTO_DIRECT_ATK_YELLOW_STOCK'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_019.png', 'text': '【自】［(1) 手牌1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，對手選擇自己休息室的CX1張，除那張卡片以外的休息室的卡片全部，回到牌組，將那個牌組洗牌。\n【自】此卡直接攻擊時，你可以選擇自己休息室的黃色的卡片1張，放到能量區。', 'base_id': 'GA10/S131-019', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA10/S131-019S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_019.png', 'https://img.bottleneko.app/GA10_S131_019.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_019.png']}, 'GA10/S131-019S': {'id': 'GA10/S131-019S', 'series': 'GA/S131', 'name': '炸薯球 艾絲', 'jp_name': 'ジャガ丸くん アイズ', 'type': 'CHAR', 'color': '黃', 'level': 2, 'cost': 1, 'power': 7000, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '冒險者', '眷族'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_OPP_REVERSE_COMPRESS', 'AUTO_DIRECT_ATK_YELLOW_STOCK'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_019S.png', 'text': '【自】［(1) 手牌1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，對手選擇自己休息室的CX1張，除那張卡片以外的休息室的卡片全部，回到牌組，將那個牌組洗牌。\n【自】此卡直接攻擊時，你可以選擇自己休息室的黃色的卡片1張，放到能量區。', 'base_id': 'GA10/S131-019', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'GA10/S131-019S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_019S.png', 'https://img.bottleneko.app/GA10_S131_019S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_019S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_019s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_019s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_019s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_019s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_019GA.png', 'https://img.bottleneko.app/GA10_S131_019GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_019GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_019ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_019ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_019ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_019ga.gif']}, 'GA10/S131-029': {'id': 'GA10/S131-029', 'series': 'GA/S131', 'name': '蕾菲亞&艾絲', 'jp_name': 'レフィーヤ＆アイズ', 'type': 'CHAR', 'color': '黃', 'level': 2, 'cost': 1, 'power': 5500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '冒險者', '眷族'], 'default_count': 1, 'effects': ['AUTO_ON_PLAY_GRANT_ANTI_EARLY_PLAY_BOMB'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_029.png', 'text': '【自】此卡從手牌被放置到舞台時，你選擇自己的角色最多2張，在那個回合中，給予以下能力。『【自】此卡【倒置】時，此卡的戰鬥對手的等級比對手玩家等級還要高的話，你可以將那張角色放到能量區。放到能量區的話，你將對手的能量區下方1張，放到休息室。』', 'base_id': 'GA10/S131-029', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA10/S131-029GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_029.png', 'https://img.bottleneko.app/GA10_S131_029.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_029.png']}, 'GA10/S131-029GA': {'id': 'GA10/S131-029GA', 'series': 'GA/S131', 'name': '蕾菲亞&艾絲', 'jp_name': 'レフィーヤ＆アイズ', 'type': 'CHAR', 'color': '黃', 'level': 2, 'cost': 1, 'power': 5500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '冒險者', '眷族'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_GRANT_ANTI_EARLY_PLAY_BOMB'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_029GA.png', 'text': '【自】此卡從手牌被放置到舞台時，你選擇自己的角色最多2張，在那個回合中，給予以下能力。『【自】此卡【倒置】時，此卡的戰鬥對手的等級比對手玩家等級還要高的話，你可以將那張角色放到能量區。放到能量區的話，你將對手的能量區下方1張，放到休息室。』', 'base_id': 'GA10/S131-029', 'is_high_rarity': True, 'rarity': 'GA', 'high_rarity_id': 'GA10/S131-029GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_029GA.png', 'https://img.bottleneko.app/GA10_S131_029GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_029GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_029ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_029ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_029ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_029ga.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_029S.png', 'https://img.bottleneko.app/GA10_S131_029S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_029S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_029s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_029s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_029s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_029s.gif']}, 'GA17/S131-017': {'id': 'GA17/S131-017', 'series': 'GA/S131', 'name': '第二章 伊蕾娜', 'jp_name': '第二章 イレイナ', 'type': 'CHAR', 'color': '黃', 'level': 2, 'cost': 1, 'power': 1500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '魔法'], 'default_count': 4, 'effects': ['CONT_YOUR_TURN_11000', 'AUTO_REVERSE_CHAIN_CH3_ELAINA'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_017.png', 'text': '【永】在你的回合中，此卡的攻擊力+11000。\n【自】［(1) 將此卡放到休息室］ 此卡的戰鬥對手【倒置】時，有其他的你的《GA文庫》的角色存在的話，你可以支付代價。支付代價的話，你選擇自己休息室的「第三章 伊蕾娜」1張，放到回憶區。放到回憶區的話，你看自己的牌組上方1張，放到牌組上方或下方或休息室，在下次的你的抽牌階段開始時，你可以選擇自己的回憶區的「第三章 伊蕾娜」1張，放到舞台上任意的格子。', 'base_id': 'GA17/S131-017', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA17/S131-017S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_017.png', 'https://img.bottleneko.app/GA17_S131_017.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_017.png']}, 'GA17/S131-017S': {'id': 'GA17/S131-017S', 'series': 'GA/S131', 'name': '第二章 伊蕾娜', 'jp_name': '第二章 イレイナ', 'type': 'CHAR', 'color': '黃', 'level': 2, 'cost': 1, 'power': 1500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '魔法'], 'default_count': 0, 'effects': ['CONT_YOUR_TURN_11000', 'AUTO_REVERSE_CHAIN_CH3_ELAINA'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_017S.png', 'text': '【永】在你的回合中，此卡的攻擊力+11000。\n【自】［(1) 將此卡放到休息室］ 此卡的戰鬥對手【倒置】時，有其他的你的《GA文庫》的角色存在的話，你可以支付代價。支付代價的話，你選擇自己休息室的「第三章 伊蕾娜」1張，放到回憶區。放到回憶區的話，你看自己的牌組上方1張，放到牌組上方或下方或休息室，在下次的你的抽牌階段開始時，你可以選擇自己的回憶區的「第三章 伊蕾娜」1張，放到舞台上任意的格子。', 'base_id': 'GA17/S131-017', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'GA17/S131-017S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_017S.png', 'https://img.bottleneko.app/GA17_S131_017S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_017S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_017s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_017s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_017s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_017s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_017GA.png', 'https://img.bottleneko.app/GA17_S131_017GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_017GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_017ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_017ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_017ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_017ga.gif']}, 'GA01/S131-115': {'id': 'GA01/S131-115', 'series': 'GA/S131', 'name': '《五帝》櫛川鳩子', 'jp_name': '《五帝》櫛川鳩子', 'type': 'CHAR', 'color': '藍', 'level': 3, 'cost': 2, 'power': 10500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '文藝部'], 'default_count': 1, 'effects': ['CONT_IGNORE_SELF_COLOR', 'AUTO_ON_PLAY_SAC_STAGE_SALVAGE_CX'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga01_s131_115.png', 'text': '【永】此卡可以無需滿足顏色條件從手牌使用。\n【自】［其他的你的舞台的角色1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的CX1張，回到手牌。', 'base_id': 'GA01/S131-115', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA01/S131-115GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA01_S131_115.png', 'https://img.bottleneko.app/GA01_S131_115.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga01_s131_115.png']}, 'GA01/S131-115GA': {'id': 'GA01/S131-115GA', 'series': 'GA/S131', 'name': '《五帝》櫛川鳩子', 'jp_name': '《五帝》櫛川鳩子', 'type': 'CHAR', 'color': '藍', 'level': 3, 'cost': 2, 'power': 10500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '文藝部'], 'default_count': 0, 'effects': ['CONT_IGNORE_SELF_COLOR', 'AUTO_ON_PLAY_SAC_STAGE_SALVAGE_CX'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA01_S131_115GA.png', 'text': '【永】此卡可以無需滿足顏色條件從手牌使用。\n【自】［其他的你的舞台的角色1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的CX1張，回到手牌。', 'base_id': 'GA01/S131-115', 'is_high_rarity': True, 'rarity': 'GA', 'high_rarity_id': 'GA01/S131-115GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA01_S131_115GA.png', 'https://img.bottleneko.app/GA01_S131_115GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA01_S131_115GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga01_s131_115ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga01_s131/ga01_s131_115ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga01_s131_115ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga01_s131_115ga.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA01_S131_115S.png', 'https://img.bottleneko.app/GA01_S131_115S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA01_S131_115S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga01_s131_115s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga01_s131/ga01_s131_115s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga01_s131_115s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga01_s131_115s.gif']}, 'GA02/S131-003': {'id': 'GA02/S131-003', 'series': 'GA/S131', 'name': '隔壁的天使 椎名真晝', 'jp_name': 'お隣の天使様 椎名真昼', 'type': 'CHAR', 'color': '黃', 'level': 3, 'cost': 2, 'power': 9000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '天使'], 'default_count': 2, 'effects': ['CONT_EARLY_PLAY_4GA', 'AUTO_ON_PLAY_BUFF_1500', 'AUTO_ON_PLAY_DISCARD_HEAL_AND_SALVAGE_GA'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_003.png', 'text': '【永】你的《GA文庫》的角色存在4張以上的話，你的手牌的此卡等級-1。\n【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+1500。\n【自】［手牌1張放到休息室］ 此卡從手牌被放置到舞台時，有其他的你的《GA文庫》的角色存在的話，你可以支付代價。支付代價的話，你將自己的傷害區上方最多1張，放到休息室，選擇自己休息室的《GA文庫》的角色1張，回到手牌。', 'base_id': 'GA02/S131-003', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA02/S131-003SSP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA02_S131_003.png', 'https://img.bottleneko.app/GA02_S131_003.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_003.png']}, 'GA02/S131-003SSP': {'id': 'GA02/S131-003SSP', 'series': 'GA/S131', 'name': '隔壁的天使 椎名真晝', 'jp_name': 'お隣の天使様 椎名真昼', 'type': 'CHAR', 'color': '黃', 'level': 3, 'cost': 2, 'power': 9000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '天使'], 'default_count': 0, 'effects': ['CONT_EARLY_PLAY_4GA', 'AUTO_ON_PLAY_BUFF_1500', 'AUTO_ON_PLAY_DISCARD_HEAL_AND_SALVAGE_GA'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA02_S131_003SSP.png', 'text': '【永】你的《GA文庫》的角色存在4張以上的話，你的手牌的此卡等級-1。\n【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+1500。\n【自】［手牌1張放到休息室］ 此卡從手牌被放置到舞台時，有其他的你的《GA文庫》的角色存在的話，你可以支付代價。支付代價的話，你將自己的傷害區上方最多1張，放到休息室，選擇自己休息室的《GA文庫》的角色1張，回到手牌。', 'base_id': 'GA02/S131-003', 'is_high_rarity': True, 'rarity': 'SSP', 'high_rarity_id': 'GA02/S131-003SSP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA02_S131_003SSP.png', 'https://img.bottleneko.app/GA02_S131_003SSP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA02_S131_003SSP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_003ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga02_s131/ga02_s131_003ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga02_s131_003ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_003ssp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA02_S131_003SP.png', 'https://img.bottleneko.app/GA02_S131_003SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA02_S131_003SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_003sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga02_s131/ga02_s131_003sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga02_s131_003sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_003sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA02_S131_003S.png', 'https://img.bottleneko.app/GA02_S131_003S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA02_S131_003S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_003s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga02_s131/ga02_s131_003s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga02_s131_003s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_003s.gif']}, 'GA04/S131-100': {'id': 'GA04/S131-100', 'series': 'GA/S131', 'name': '新的黎明 女神官', 'jp_name': '新しい夜明け 女神官', 'type': 'CHAR', 'color': '藍', 'level': 3, 'cost': 2, 'power': 8500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '冒險者', '神官'], 'default_count': 2, 'effects': ['CONT_EARLY_PLAY_WR_CX_2OR6', 'CONT_YOUR_TURN_1000', 'AUTO_ON_PLAY_CHOOSE_HEAL_OR_RESHUFFLE_OPP_STOCK'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga04_s131_100.png', 'text': '【永】你的休息室的CX在2張以下或6張以上的話，你的手牌的此卡等級-1。\n【永】在你的回合中，此卡的攻擊力+1000。\n【自】此卡從手牌被放置到舞台時，以下的2個效果之中你選擇1個執行。『你可以將自己的傷害區上方1張，放到休息室。』『對手將自己的能量全部，返回牌組，將那個牌組洗牌，從自己的牌組上方將相同張數放到能量區，在那個回合中，此卡的攻擊力+2000。』', 'base_id': 'GA04/S131-100', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA04/S131-100SSP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA04_S131_100.png', 'https://img.bottleneko.app/GA04_S131_100.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga04_s131_100.png']}, 'GA04/S131-100SSP': {'id': 'GA04/S131-100SSP', 'series': 'GA/S131', 'name': '新的黎明 女神官', 'jp_name': '新しい夜明け 女神官', 'type': 'CHAR', 'color': '藍', 'level': 3, 'cost': 2, 'power': 8500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '冒險者', '神官'], 'default_count': 0, 'effects': ['CONT_EARLY_PLAY_WR_CX_2OR6', 'CONT_YOUR_TURN_1000', 'AUTO_ON_PLAY_CHOOSE_HEAL_OR_RESHUFFLE_OPP_STOCK'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA04_S131_100SSP.png', 'text': '【永】你的休息室的CX在2張以下或6張以上的話，你的手牌的此卡等級-1。\n【永】在你的回合中，此卡的攻擊力+1000。\n【自】此卡從手牌被放置到舞台時，以下的2個效果之中你選擇1個執行。『你可以將自己的傷害區上方1張，放到休息室。』『對手將自己的能量全部，返回牌組，將那個牌組洗牌，從自己的牌組上方將相同張數放到能量區，在那個回合中，此卡的攻擊力+2000。』', 'base_id': 'GA04/S131-100', 'is_high_rarity': True, 'rarity': 'SSP', 'high_rarity_id': 'GA04/S131-100SSP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA04_S131_100SSP.png', 'https://img.bottleneko.app/GA04_S131_100SSP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA04_S131_100SSP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga04_s131_100ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga04_s131/ga04_s131_100ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga04_s131_100ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga04_s131_100ssp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA04_S131_100SP.png', 'https://img.bottleneko.app/GA04_S131_100SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA04_S131_100SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga04_s131_100sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga04_s131/ga04_s131_100sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga04_s131_100sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga04_s131_100sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA04_S131_100S.png', 'https://img.bottleneko.app/GA04_S131_100S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA04_S131_100S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga04_s131_100s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga04_s131/ga04_s131_100s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga04_s131_100s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga04_s131_100s.gif']}, 'GA17/S131-010': {'id': 'GA17/S131-010', 'series': 'GA/S131', 'name': '第三章 伊蕾娜', 'jp_name': '第三章 イレイナ', 'type': 'CHAR', 'color': '黃', 'level': 3, 'cost': 2, 'power': 10000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '魔法'], 'default_count': 4, 'effects': ['AUTO_ATK_BURN1_ON_ENTER_TURN', 'AUTO_SEND_TO_MEMORY_ON_REV_OR_END', 'CX_COMBO_MEMORY_ASH_WITCH_DEPLOY_BURN2'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_010.png', 'text': '【自】此卡從手牌或回憶區被放到舞台的回合中，此卡攻擊時，你可以給對手1點傷害。會發生傷害取消。\n【自】此卡【倒置】時或回合結束時，將此卡放到回憶區。\n【自】【CX連動】記憶 ［(2) 手牌1張放到休息室］ 此卡在回憶區，你的等級在3以上的話，當「灰之魔女」被放置到你的CX區時，你可以支付代價。支付代價的話，你將此卡放到舞台的前列的格子，給對手2點傷害。會發生傷害取消。', 'base_id': 'GA17/S131-010', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA17/S131-010SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_010.png', 'https://img.bottleneko.app/GA17_S131_010.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_010.png']}, 'GA17/S131-010SP': {'id': 'GA17/S131-010SP', 'series': 'GA/S131', 'name': '第三章 伊蕾娜', 'jp_name': '第三章 イレイナ', 'type': 'CHAR', 'color': '黃', 'level': 3, 'cost': 2, 'power': 10000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '魔法'], 'default_count': 0, 'effects': ['AUTO_ATK_BURN1_ON_ENTER_TURN', 'AUTO_SEND_TO_MEMORY_ON_REV_OR_END', 'CX_COMBO_MEMORY_ASH_WITCH_DEPLOY_BURN2'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_010SP.png', 'text': '【自】此卡從手牌或回憶區被放到舞台的回合中，此卡攻擊時，你可以給對手1點傷害。會發生傷害取消。\n【自】此卡【倒置】時或回合結束時，將此卡放到回憶區。\n【自】【CX連動】記憶 ［(2) 手牌1張放到休息室］ 此卡在回憶區，你的等級在3以上的話，當「灰之魔女」被放置到你的CX區時，你可以支付代價。支付代價的話，你將此卡放到舞台的前列的格子，給對手2點傷害。會發生傷害取消。', 'base_id': 'GA17/S131-010', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'GA17/S131-010SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_010SP.png', 'https://img.bottleneko.app/GA17_S131_010SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_010SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_010sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_010sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_010sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_010sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_010S.png', 'https://img.bottleneko.app/GA17_S131_010S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_010S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_010s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_010s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_010s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_010s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_010GA.png', 'https://img.bottleneko.app/GA17_S131_010GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_010GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_010ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_010ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_010ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_010ga.gif']}, 'BTR/W107-098': {'id': 'BTR/W107-098', 'series': 'BTR/W107', 'name': '成長與信賴的8小節', 'jp_name': '成長と信頼の8小節', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'STANDBY', 'traits': [], 'default_count': 4, 'effects': ['CX_STANDBY'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_098.png', 'text': '【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你可以從自己的休息室選擇自己等級+1以下的等級的角色1張，【橫置】放到舞台上任意的格子。', 'base_id': 'BTR/W107-098', 'is_high_rarity': False, 'rarity': 'CR', 'high_rarity_id': 'BTR/W107-098OFR', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_098.png', 'https://img.bottleneko.app/BTR_W107_098.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_098.png']}, 'BTR/W107-098OFR': {'id': 'BTR/W107-098OFR', 'series': 'BTR/W107', 'name': '成長與信賴的8小節', 'jp_name': '成長と信頼の8小節', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'STANDBY', 'traits': [], 'default_count': 0, 'effects': ['CX_STANDBY'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_098OFR.png', 'text': '【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你可以從自己的休息室選擇自己等級+1以下的等級的角色1張，【橫置】放到舞台上任意的格子。', 'base_id': 'BTR/W107-098', 'is_high_rarity': True, 'rarity': 'OFR', 'high_rarity_id': 'BTR/W107-098OFR', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_098OFR.png', 'https://img.bottleneko.app/BTR_W107_098OFR.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_098OFR.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_098ofr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_098ofr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_098ofr.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_098R.png', 'https://img.bottleneko.app/BTR_W107_098R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_098R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_098r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_098r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_098r.gif']}, 'BTR/W107-100': {'id': 'BTR/W107-100', 'series': 'BTR/W107', 'name': '逐漸增加的回憶', 'jp_name': '増えていく思い出', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'STANDBY', 'traits': [], 'default_count': 4, 'effects': ['CX_STANDBY'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_100.png', 'text': '【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你可以從自己的休息室選擇自己等級+1以下的等級的角色1張，【橫置】放到舞台上任意的格子。', 'base_id': 'BTR/W107-100', 'is_high_rarity': False, 'rarity': 'CR', 'high_rarity_id': 'BTR/W107-100R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_100.png', 'https://img.bottleneko.app/BTR_W107_100.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_100.png']}, 'BTR/W107-100R': {'id': 'BTR/W107-100R', 'series': 'BTR/W107', 'name': '逐漸增加的回憶', 'jp_name': '増えていく思い出', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'STANDBY', 'traits': [], 'default_count': 0, 'effects': ['CX_STANDBY'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_100R.png', 'text': '【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你可以從自己的休息室選擇自己等級+1以下的等級的角色1張，【橫置】放到舞台上任意的格子。', 'base_id': 'BTR/W107-100', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BTR/W107-100R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_100R.png', 'https://img.bottleneko.app/BTR_W107_100R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_100R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_100r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_100r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_100r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_100RRR.png', 'https://img.bottleneko.app/BTR_W107_100RRR.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_100RRR.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_100rrr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_100rrr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_100rrr.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_100OFR.png', 'https://img.bottleneko.app/BTR_W107_100OFR.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_100OFR.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_100ofr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_100ofr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_100ofr.gif']}, 'BTR/W107-T02': {'id': 'BTR/W107-T02', 'series': 'BTR/W107', 'name': '樂團的領導者 伊地知虹夏', 'jp_name': 'バンドのリーダー 伊地知虹夏', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '可靠'], 'default_count': 2, 'effects': ['AUTO_ON_YELLOW_CX_BUFF_1500', 'ACT_CONCENTRATE_5_DRAW'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t02.png', 'text': '【自】當你的黃色名場面放置到名場面區時，你選擇自己的角色1張，在那回合中，攻擊力+1500。\n【起】集中 ［(1) 此卡【橫置】］ 你從自己的牌組上方翻開5張卡片，放到休息室。那些卡片每有1張名場面，你最多抽1張牌。', 'base_id': 'BTR/W107-T02', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-T02R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T02.png', 'https://img.bottleneko.app/BTR_W107_T02.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t02.png']}, 'BTR/W107-T02R': {'id': 'BTR/W107-T02R', 'series': 'BTR/W107', 'name': '樂團的領導者 伊地知虹夏', 'jp_name': 'バンドのリーダー 伊地知虹夏', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '可靠'], 'default_count': 0, 'effects': ['AUTO_ON_YELLOW_CX_BUFF_1500', 'ACT_CONCENTRATE_5_DRAW'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T02R.png', 'text': '【自】當你的黃色名場面放置到名場面區時，你選擇自己的角色1張，在那回合中，攻擊力+1500。\n【起】集中 ［(1) 此卡【橫置】］ 你從自己的牌組上方翻開5張卡片，放到休息室。那些卡片每有1張名場面，你最多抽1張牌。', 'base_id': 'BTR/W107-T02', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BTR/W107-T02R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T02R.png', 'https://img.bottleneko.app/BTR_W107_T02R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T02R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t02r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t02r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t02r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T02S.png', 'https://img.bottleneko.app/BTR_W107_T02S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T02S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t02s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t02s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t02s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T02SP.png', 'https://img.bottleneko.app/BTR_W107_T02SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T02SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t02sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t02sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t02sp.gif']}, 'BTR/W107-T13': {'id': 'BTR/W107-T13', 'series': 'BTR/W107', 'name': '樂團女子？ 後藤一里', 'jp_name': 'バンドマン？ 後藤ひとり', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂'], 'default_count': 2, 'effects': ['CONT_BUFF_VOCAL_KITA_1000_1SOUL', 'AUTO_BOND_VOCAL_KITA'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t13.png', 'text': '【永】其他的你的「主唱吉他手 喜多郁代」全部，攻擊力+1000，魂傷+1。\n【自】絆／「主唱吉他手 喜多郁代」 ［手牌1張放到休息室］ 此卡從手牌登場到舞台時，你可以支付費用。這樣做的話，你從自己的休息室選擇1張「主唱吉他手 喜多郁代」加到手牌。', 'base_id': 'BTR/W107-T13', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-T13R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T13.png', 'https://img.bottleneko.app/BTR_W107_T13.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t13.png']}, 'BTR/W107-T13R': {'id': 'BTR/W107-T13R', 'series': 'BTR/W107', 'name': '樂團女子？ 後藤一里', 'jp_name': 'バンドマン？ 後藤ひとり', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂'], 'default_count': 0, 'effects': ['CONT_BUFF_VOCAL_KITA_1000_1SOUL', 'AUTO_BOND_VOCAL_KITA'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T13R.png', 'text': '【永】其他的你的「主唱吉他手 喜多郁代」全部，攻擊力+1000，魂傷+1。\n【自】絆／「主唱吉他手 喜多郁代」 ［手牌1張放到休息室］ 此卡從手牌登場到舞台時，你可以支付費用。這樣做的話，你從自己的休息室選擇1張「主唱吉他手 喜多郁代」加到手牌。', 'base_id': 'BTR/W107-T13', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BTR/W107-T13R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T13R.png', 'https://img.bottleneko.app/BTR_W107_T13R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T13R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t13r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t13r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t13r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T13S.png', 'https://img.bottleneko.app/BTR_W107_T13S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T13S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t13s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t13s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t13s.gif']}, 'BTR/W107-T14': {'id': 'BTR/W107-T14', 'series': 'BTR/W107', 'name': '後藤一里', 'jp_name': '後藤ひとり', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2000, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂'], 'default_count': 2, 'effects': ['AUTO_ON_PLAY_LOOK3_EVENT', 'AUTO_ON_PLAY_BOMB_COST0_IF_OPP_LE1'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t14.png', 'text': '【自】此卡從手牌被放置到舞台時，你從自己的牌組上方看最多3張，選擇事件最多1張給對手確認，加到手牌，剩下的卡片放到休息室。加到手牌的話，你選擇自己的手牌1張，放到休息室。\n【自】此卡從手牌被放置到舞台時，對手的前列的角色在1張以下的話，你可以選擇對手的前列的費用0以下的角色1張，放到休息室。', 'base_id': 'BTR/W107-T14', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-T14SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T14.png', 'https://img.bottleneko.app/BTR_W107_T14.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t14.png']}, 'BTR/W107-T14SP': {'id': 'BTR/W107-T14SP', 'series': 'BTR/W107', 'name': '後藤一里', 'jp_name': '後藤ひとり', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2000, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_LOOK3_EVENT', 'AUTO_ON_PLAY_BOMB_COST0_IF_OPP_LE1'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T14SP.png', 'text': '【自】此卡從手牌被放置到舞台時，你從自己的牌組上方看最多3張，選擇事件最多1張給對手確認，加到手牌，剩下的卡片放到休息室。加到手牌的話，你選擇自己的手牌1張，放到休息室。\n【自】此卡從手牌被放置到舞台時，對手的前列的角色在1張以下的話，你可以選擇對手的前列的費用0以下的角色1張，放到休息室。', 'base_id': 'BTR/W107-T14', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'BTR/W107-T14SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T14SP.png', 'https://img.bottleneko.app/BTR_W107_T14SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T14SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t14sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t14sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t14sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T14R.png', 'https://img.bottleneko.app/BTR_W107_T14R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T14R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t14r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t14r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t14r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T14S.png', 'https://img.bottleneko.app/BTR_W107_T14S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T14S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t14s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t14s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t14s.gif']}, 'BTR/W107-T15': {'id': 'BTR/W107-T15', 'series': 'BTR/W107', 'name': '陽角 喜多郁代', 'jp_name': '陽キャ 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '高人氣'], 'default_count': 4, 'effects': ['AUTO_ON_REVERSE_LOOK3_CX'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t15.png', 'text': '【自】當戰鬥中的此卡【倒置】時，你從自己的牌組上方看最多3張，選擇名場面最多1張給對手確認，加到手牌，剩下的卡片放到休息室。加到手牌的話，你選擇自己的手牌1張，放到休息室。', 'base_id': 'BTR/W107-T15', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-T15R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T15.png', 'https://img.bottleneko.app/BTR_W107_T15.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t15.png']}, 'BTR/W107-T15R': {'id': 'BTR/W107-T15R', 'series': 'BTR/W107', 'name': '陽角 喜多郁代', 'jp_name': '陽キャ 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '高人氣'], 'default_count': 0, 'effects': ['AUTO_ON_REVERSE_LOOK3_CX'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T15R.png', 'text': '【自】當戰鬥中的此卡【倒置】時，你從自己的牌組上方看最多3張，選擇名場面最多1張給對手確認，加到手牌，剩下的卡片放到休息室。加到手牌的話，你選擇自己的手牌1張，放到休息室。', 'base_id': 'BTR/W107-T15', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BTR/W107-T15R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T15R.png', 'https://img.bottleneko.app/BTR_W107_T15R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T15R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t15r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t15r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t15r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T15S.png', 'https://img.bottleneko.app/BTR_W107_T15S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T15S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t15s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t15s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t15s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T15SP.png', 'https://img.bottleneko.app/BTR_W107_T15SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T15SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t15sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t15sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t15sp.gif']}, 'BTR/W107-T16': {'id': 'BTR/W107-T16', 'series': 'BTR/W107', 'name': '主唱吉他手 喜多郁代', 'jp_name': 'ギターボーカル 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 1, 'cost': 0, 'power': 5500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '高人氣'], 'default_count': 4, 'effects': [], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t16.png', 'text': '（無特殊效果）', 'base_id': 'BTR/W107-T16', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-T16R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T16.png', 'https://img.bottleneko.app/BTR_W107_T16.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t16.png']}, 'BTR/W107-T16R': {'id': 'BTR/W107-T16R', 'series': 'BTR/W107', 'name': '主唱吉他手 喜多郁代', 'jp_name': 'ギターボーカル 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 1, 'cost': 0, 'power': 5500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '高人氣'], 'default_count': 0, 'effects': [], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T16R.png', 'text': '（無特殊效果）', 'base_id': 'BTR/W107-T16', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BTR/W107-T16R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T16R.png', 'https://img.bottleneko.app/BTR_W107_T16R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T16R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t16r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t16r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t16r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T16S.png', 'https://img.bottleneko.app/BTR_W107_T16S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T16S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t16s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t16s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t16s.gif']}, 'BTR/W107-T17': {'id': 'BTR/W107-T17', 'series': 'BTR/W107', 'name': '高人氣 喜多郁代', 'jp_name': '人気者 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 1, 'cost': 1, 'power': 5500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '高人氣'], 'default_count': 2, 'effects': ['AUTO_OTHER_BATTLE_REVERSE_SELF_2000', 'AUTO_ENCORE_1STOCK_1HAND'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t17.png', 'text': '【自】其他的你的戰鬥中的角色【倒置】時，在那回合中，此卡的攻擊力+2000。\n【自】再登場 ［(1) 手牌的1張卡片放到休息室］ 此卡從舞台放到休息室時，你可以支付費用。這樣做的話，此卡【橫置】放到它本來在的格子上。', 'base_id': 'BTR/W107-T17', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-T17R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T17.png', 'https://img.bottleneko.app/BTR_W107_T17.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t17.png']}, 'BTR/W107-T17R': {'id': 'BTR/W107-T17R', 'series': 'BTR/W107', 'name': '高人氣 喜多郁代', 'jp_name': '人気者 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 1, 'cost': 1, 'power': 5500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '高人氣'], 'default_count': 0, 'effects': ['AUTO_OTHER_BATTLE_REVERSE_SELF_2000', 'AUTO_ENCORE_1STOCK_1HAND'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T17R.png', 'text': '【自】其他的你的戰鬥中的角色【倒置】時，在那回合中，此卡的攻擊力+2000。\n【自】再登場 ［(1) 手牌的1張卡片放到休息室］ 此卡從舞台放到休息室時，你可以支付費用。這樣做的話，此卡【橫置】放到它本來在的格子上。', 'base_id': 'BTR/W107-T17', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BTR/W107-T17R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T17R.png', 'https://img.bottleneko.app/BTR_W107_T17R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T17R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t17r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t17r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t17r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T17S.png', 'https://img.bottleneko.app/BTR_W107_T17S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T17S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t17s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t17s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t17s.gif']}, 'BTR/W107-T18': {'id': 'BTR/W107-T18', 'series': 'BTR/W107', 'name': '喜多郁代', 'jp_name': '喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 2, 'cost': 2, 'power': 7000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['音樂', '高人氣'], 'default_count': 2, 'effects': ['AUTO_ENCORE_1STOCK_1HAND', 'ACT_1STOCK_1000_CLOCK_KICK'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t18.png', 'text': '【自】再登場 ［(1) 手牌的1張卡片放到休息室］ 此卡從舞台放到休息室時，你可以支付費用。這樣做的話，此卡【橫置】放到它本來在的格子上。\n【起】［(1)］ 在那回合中，此卡的攻擊力+1000，此卡獲得以下能力。『【自】此卡的戰鬥對手【倒置】時，你可以將那個角色放到時計區。』', 'base_id': 'BTR/W107-T18', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-T18R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T18.png', 'https://img.bottleneko.app/BTR_W107_T18.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t18.png']}, 'BTR/W107-T18R': {'id': 'BTR/W107-T18R', 'series': 'BTR/W107', 'name': '喜多郁代', 'jp_name': '喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 2, 'cost': 2, 'power': 7000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['音樂', '高人氣'], 'default_count': 0, 'effects': ['AUTO_ENCORE_1STOCK_1HAND', 'ACT_1STOCK_1000_CLOCK_KICK'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T18R.png', 'text': '【自】再登場 ［(1) 手牌的1張卡片放到休息室］ 此卡從舞台放到休息室時，你可以支付費用。這樣做的話，此卡【橫置】放到它本來在的格子上。\n【起】［(1)］ 在那回合中，此卡的攻擊力+1000，此卡獲得以下能力。『【自】此卡的戰鬥對手【倒置】時，你可以將那個角色放到時計區。』', 'base_id': 'BTR/W107-T18', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BTR/W107-T18R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T18R.png', 'https://img.bottleneko.app/BTR_W107_T18R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T18R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t18r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t18r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t18r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T18SP.png', 'https://img.bottleneko.app/BTR_W107_T18SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T18SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t18sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t18sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t18sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T18S.png', 'https://img.bottleneko.app/BTR_W107_T18S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T18S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t18s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t18s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t18s.gif']}, 'BTR/W107-077': {'id': 'BTR/W107-077', 'series': 'BTR/W107', 'name': '裝過頭的面子 後藤一里', 'jp_name': '張り切りすぎた見栄 後藤ひとり', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂'], 'default_count': 2, 'effects': ['AUTO_OTHER_BATTLE_REVERSE_TARGET_1000', 'AUTO_STAGE_TO_WR_DISCARD_MUSIC_LOOK4_LV1'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_077.png', 'text': '【自】其他的你的戰鬥中的角色【倒置】時，你選擇自己的角色1張，在那回合中，攻擊力+1000。\n【自】［手牌1張《音樂》的角色放到休息室］ 當此卡從舞台放到休息室時，你可以支付費用。這樣做的話，你從自己的牌組上方看最多4張，選擇等級1以上的卡片最多1張給對手確認，加到手牌，剩下的卡片放到休息室。名場面視為等級0。', 'base_id': 'BTR/W107-077', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-077KBR', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_077.png', 'https://img.bottleneko.app/BTR_W107_077.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_077.png']}, 'BTR/W107-077KBR': {'id': 'BTR/W107-077KBR', 'series': 'BTR/W107', 'name': '裝過頭的面子 後藤一里', 'jp_name': '張り切りすぎた見栄 後藤ひとり', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂'], 'default_count': 0, 'effects': ['AUTO_OTHER_BATTLE_REVERSE_TARGET_1000', 'AUTO_STAGE_TO_WR_DISCARD_MUSIC_LOOK4_LV1'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_077KBR.png', 'text': '【自】其他的你的戰鬥中的角色【倒置】時，你選擇自己的角色1張，在那回合中，攻擊力+1000。\n【自】［手牌1張《音樂》的角色放到休息室］ 當此卡從舞台放到休息室時，你可以支付費用。這樣做的話，你從自己的牌組上方看最多4張，選擇等級1以上的卡片最多1張給對手確認，加到手牌，剩下的卡片放到休息室。名場面視為等級0。', 'base_id': 'BTR/W107-077', 'is_high_rarity': True, 'rarity': 'KBR', 'high_rarity_id': 'BTR/W107-077KBR', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_077KBR.png', 'https://img.bottleneko.app/BTR_W107_077KBR.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_077KBR.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_077kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_077kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_077kbr.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_077S.png', 'https://img.bottleneko.app/BTR_W107_077S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_077S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_077s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_077s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_077s.gif']}, 'BTR/W107-076': {'id': 'BTR/W107-076', 'series': 'BTR/W107', 'name': '成長歷程 喜多郁代', 'jp_name': '成長の軌跡 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 3, 'cost': 2, 'power': 9000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['音樂', '高人氣'], 'default_count': 4, 'effects': ['CONT_OTHER_MUSIC_500_EACH', 'AUTO_ON_PLAY_HEAL', 'CX_COMBO_KITA_ATK_BURN4'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076.png', 'text': '【永】其他的你的《音樂》的角色每有1張，此卡的攻擊力+500。\n【自】此卡從手牌放置到舞台時，你可以將自己時鐘區上方1張卡片放到休息室。\n【自】【CX連動】［手牌2張卡片放到休息室］ 此卡攻擊時，名場面區有「逐漸增加的回憶」，且其他的你的《音樂》的角色有4張以上的話，你可以支付費用。這樣做的話，給予對手4點傷害。會發生傷害取消。', 'base_id': 'BTR/W107-076', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-076S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_076.png', 'https://img.bottleneko.app/BTR_W107_076.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076.png']}, 'BTR/W107-076S': {'id': 'BTR/W107-076S', 'series': 'BTR/W107', 'name': '成長歷程 喜多郁代', 'jp_name': '成長の軌跡 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 3, 'cost': 2, 'power': 9000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['音樂', '高人氣'], 'default_count': 0, 'effects': ['CONT_OTHER_MUSIC_500_EACH', 'AUTO_ON_PLAY_HEAL', 'CX_COMBO_KITA_ATK_BURN4'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_076S.png', 'text': '【永】其他的你的《音樂》的角色每有1張，此卡的攻擊力+500。\n【自】此卡從手牌放置到舞台時，你可以將自己時鐘區上方1張卡片放到休息室。\n【自】【CX連動】［手牌2張卡片放到休息室］ 此卡攻擊時，名場面區有「逐漸增加的回憶」，且其他的你的《音樂》的角色有4張以上的話，你可以支付費用。這樣做的話，給予對手4點傷害。會發生傷害取消。', 'base_id': 'BTR/W107-076', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'BTR/W107-076S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_076S.png', 'https://img.bottleneko.app/BTR_W107_076S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_076S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_076s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_076SSP.png', 'https://img.bottleneko.app/BTR_W107_076SSP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_076SSP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_076ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076ssp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_076SP.png', 'https://img.bottleneko.app/BTR_W107_076SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_076SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_076sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_076KBR.png', 'https://img.bottleneko.app/BTR_W107_076KBR.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_076KBR.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_076kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076kbr.gif']}, 'BTR/W107-075': {'id': 'BTR/W107-075', 'series': 'BTR/W107', 'name': '晚霞的歸路 喜多郁代', 'jp_name': '夕焼けの帰り道 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 2, 'cost': 1, 'power': 5500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['音樂', '高人氣'], 'default_count': 4, 'effects': ['CONT_OTHER_2MUSIC_BUFF_3000', 'AUTO_ON_PLAY_STOCK_HEAL_IF_4', 'CX_COMBO_SUNSET_KITA'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_075.png', 'text': '【永】其他的你的《音樂》的角色有2張以上的話，此卡的攻擊力+3000。\n【自】此卡從手牌放置到舞台時，若你的等級區與時鐘區的卡片合計有4張以上，你可以將自己時鐘區上方1張放到能量區。\n【自】【CX連動】當「成長與信賴的8小節」放置到你的名場面區時，前列有此卡，且有其他的你的《音樂》角色的話，在那個回合中，此卡的攻擊力+1000，並獲得以下能力。『【自】此卡的戰鬥對手【倒置】時，你可以從自己的休息室選擇《音樂》的角色1張回到手牌。』', 'base_id': 'BTR/W107-075', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-075S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_075.png', 'https://img.bottleneko.app/BTR_W107_075.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_075.png']}, 'BTR/W107-075S': {'id': 'BTR/W107-075S', 'series': 'BTR/W107', 'name': '晚霞的歸路 喜多郁代', 'jp_name': '夕焼けの帰り道 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 2, 'cost': 1, 'power': 5500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['音樂', '高人氣'], 'default_count': 0, 'effects': ['CONT_OTHER_2MUSIC_BUFF_3000', 'AUTO_ON_PLAY_STOCK_HEAL_IF_4', 'CX_COMBO_SUNSET_KITA'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_075S.png', 'text': '【永】其他的你的《音樂》的角色有2張以上的話，此卡的攻擊力+3000。\n【自】此卡從手牌放置到舞台時，若你的等級區與時鐘區的卡片合計有4張以上，你可以將自己時鐘區上方1張放到能量區。\n【自】【CX連動】當「成長與信賴的8小節」放置到你的名場面區時，前列有此卡，且有其他的你的《音樂》角色的話，在那個回合中，此卡的攻擊力+1000，並獲得以下能力。『【自】此卡的戰鬥對手【倒置】時，你可以從自己的休息室選擇《音樂》的角色1張回到手牌。』', 'base_id': 'BTR/W107-075', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'BTR/W107-075S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_075S.png', 'https://img.bottleneko.app/BTR_W107_075S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_075S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_075s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_075s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_075s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_075SP.png', 'https://img.bottleneko.app/BTR_W107_075SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_075SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_075sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_075sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_075sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_075KBR.png', 'https://img.bottleneko.app/BTR_W107_075KBR.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_075KBR.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_075kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_075kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_075kbr.gif']}, 'BTR/W107-T06': {'id': 'BTR/W107-T06', 'series': 'BTR/W107', 'name': '音樂話題～ 伊地知虹夏', 'jp_name': '音楽バナシ～ 伊地知虹夏', 'type': 'CHAR', 'color': '黃', 'level': 1, 'cost': 1, 'power': 500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['音樂', '可靠'], 'default_count': 2, 'effects': ['COUNTER_BACKUP_2000_LV1', 'AUTO_ON_BACKUP_TOP_CHECK_MUSIC'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t06.png', 'text': '【自】當你使用此卡的『助太刀』時，你將自己的牌組上方1張公開。那張卡片是《音樂》的角色的話加到手牌，你選擇自己的手牌1張，放到休息室。如果不是的話放回原位。\n【起】【反擊】助太刀2000 等級1 ［(1) 手牌的此卡放到休息室］ 你選擇自己的正在被正打的角色1張，在那回合中，攻擊力+2000。', 'base_id': 'BTR/W107-T06', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-T06R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T06.png', 'https://img.bottleneko.app/BTR_W107_T06.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t06.png']}, 'BTR/W107-T06R': {'id': 'BTR/W107-T06R', 'series': 'BTR/W107', 'name': '音樂話題～ 伊地知虹夏', 'jp_name': '音楽バナシ～ 伊地知虹夏', 'type': 'CHAR', 'color': '黃', 'level': 1, 'cost': 1, 'power': 500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['音樂', '可靠'], 'default_count': 0, 'effects': ['COUNTER_BACKUP_2000_LV1', 'AUTO_ON_BACKUP_TOP_CHECK_MUSIC'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T06R.png', 'text': '【自】當你使用此卡的『助太刀』時，你將自己的牌組上方1張公開。那張卡片是《音樂》的角色的話加到手牌，你選擇自己的手牌1張，放到休息室。如果不是的話放回原位。\n【起】【反擊】助太刀2000 等級1 ［(1) 手牌的此卡放到休息室］ 你選擇自己的正在被正打的角色1張，在那回合中，攻擊力+2000。', 'base_id': 'BTR/W107-T06', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BTR/W107-T06R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T06R.png', 'https://img.bottleneko.app/BTR_W107_T06R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T06R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t06r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t06r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t06r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T06S.png', 'https://img.bottleneko.app/BTR_W107_T06S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T06S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t06s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t06s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t06s.gif']}, 'BTR/W107-046': {'id': 'BTR/W107-046', 'series': 'BTR/W107', 'name': '打卡美照 喜多郁代', 'jp_name': '映える写真 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '高人氣'], 'default_count': 2, 'effects': ['AUTO_OPP_ATK_START_MOVE_BACK', 'ACT_REST_SELF_BUFF_MUSIC_1000'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_046.png', 'text': '【自】當對手的攻擊階段開始時，你可以將此卡移動到後列沒有角色的格子。\n【起】［此卡【橫置】］ 你選擇自己1張《音樂》的角色，在那回合中，攻擊力+1000。', 'base_id': 'BTR/W107-046', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-046KBR', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_046.png', 'https://img.bottleneko.app/BTR_W107_046.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_046.png']}, 'BTR/W107-046KBR': {'id': 'BTR/W107-046KBR', 'series': 'BTR/W107', 'name': '打卡美照 喜多郁代', 'jp_name': '映える写真 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '高人氣'], 'default_count': 0, 'effects': ['AUTO_OPP_ATK_START_MOVE_BACK', 'ACT_REST_SELF_BUFF_MUSIC_1000'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_046KBR.png', 'text': '【自】當對手的攻擊階段開始時，你可以將此卡移動到後列沒有角色的格子。\n【起】［此卡【橫置】］ 你選擇自己1張《音樂》的角色，在那回合中，攻擊力+1000。', 'base_id': 'BTR/W107-046', 'is_high_rarity': True, 'rarity': 'KBR', 'high_rarity_id': 'BTR/W107-046KBR', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_046KBR.png', 'https://img.bottleneko.app/BTR_W107_046KBR.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_046KBR.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_046kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_046kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_046kbr.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_046S.png', 'https://img.bottleneko.app/BTR_W107_046S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_046S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_046s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_046s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_046s.gif']}, 'BTR/W107-089': {'id': 'BTR/W107-089', 'series': 'BTR/W107', 'name': '開始轉動的故事 後藤一里', 'jp_name': '動き出す物語 後藤ひとり', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂'], 'default_count': 2, 'effects': ['AUTO_ON_PLAY_DISCARD_MUSIC_SEARCH_VOCAL_KITA'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_089.png', 'text': '【自】［手牌1張《音樂》的角色放到休息室］ 當此卡從手牌放到舞台時，你可以支付費用。這樣做的話，你從自己的牌組選擇「主唱吉他手 喜多郁代」最多1張給對手確認，加到手牌，將那個牌組洗牌。', 'base_id': 'BTR/W107-089', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-089KBR', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_089.png', 'https://img.bottleneko.app/BTR_W107_089.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_089.png']}, 'BTR/W107-089KBR': {'id': 'BTR/W107-089KBR', 'series': 'BTR/W107', 'name': '開始轉動的故事 後藤一里', 'jp_name': '動き出す物語 後藤ひとり', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_DISCARD_MUSIC_SEARCH_VOCAL_KITA'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_089KBR.png', 'text': '【自】［手牌1張《音樂》的角色放到休息室］ 當此卡從手牌放到舞台時，你可以支付費用。這樣做的話，你從自己的牌組選擇「主唱吉他手 喜多郁代」最多1張給對手確認，加到手牌，將那個牌組洗牌。', 'base_id': 'BTR/W107-089', 'is_high_rarity': True, 'rarity': 'KBR', 'high_rarity_id': 'BTR/W107-089KBR', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_089KBR.png', 'https://img.bottleneko.app/BTR_W107_089KBR.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_089KBR.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_089kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_089kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_089kbr.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_089S.png', 'https://img.bottleneko.app/BTR_W107_089S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_089S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_089s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_089s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_089s.gif']}, 'BTR/W107-069': {'id': 'BTR/W107-069', 'series': 'BTR/W107', 'name': '對於不憧憬的憧憬 喜多郁代', 'jp_name': '憧れなかった憧れ 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 3, 'cost': 2, 'power': 8500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['音樂', '高人氣'], 'default_count': 4, 'effects': ['CONT_EARLY_PLAY_4MUSIC', 'CONT_CANNOT_PLAY_BACKUP', 'AUTO_ON_PLAY_HEAL'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069.png', 'text': '【永】其他的你的《音樂》的角色有4張以上的話，你的手牌的此卡的等級-1。\n【永】此卡戰鬥中，對手不能從手牌使用『助太刀』。\n【自】此卡從手牌放置到舞台時，你可以將自己時鐘區上方1張卡片放到休息室。', 'base_id': 'BTR/W107-069', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-069SSP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_069.png', 'https://img.bottleneko.app/BTR_W107_069.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069.png']}, 'BTR/W107-069SSP': {'id': 'BTR/W107-069SSP', 'series': 'BTR/W107', 'name': '對於不憧憬的憧憬 喜多郁代', 'jp_name': '憧れなかった憧れ 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 3, 'cost': 2, 'power': 8500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['音樂', '高人氣'], 'default_count': 0, 'effects': ['CONT_EARLY_PLAY_4MUSIC', 'CONT_CANNOT_PLAY_BACKUP', 'AUTO_ON_PLAY_HEAL'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_069SSP.png', 'text': '【永】其他的你的《音樂》的角色有4張以上的話，你的手牌的此卡的等級-1。\n【永】此卡戰鬥中，對手不能從手牌使用『助太刀』。\n【自】此卡從手牌放置到舞台時，你可以將自己時鐘區上方1張卡片放到休息室。', 'base_id': 'BTR/W107-069', 'is_high_rarity': True, 'rarity': 'SSP', 'high_rarity_id': 'BTR/W107-069SSP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_069SSP.png', 'https://img.bottleneko.app/BTR_W107_069SSP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_069SSP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_069ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069ssp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_069SP.png', 'https://img.bottleneko.app/BTR_W107_069SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_069SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_069sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_069S.png', 'https://img.bottleneko.app/BTR_W107_069S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_069S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_069s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_069KBR.png', 'https://img.bottleneko.app/BTR_W107_069KBR.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_069KBR.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_069kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069kbr.gif']}, 'BTR/W107-T10': {'id': 'BTR/W107-T10', 'series': 'BTR/W107', 'name': '樂團名「團結Band」', 'jp_name': 'バンド名「結束バンド」', 'type': 'EVENT', 'color': '黃', 'level': 1, 'cost': 1, 'power': 0, 'soul': 0, 'trigger': 'NONE', 'traits': [], 'default_count': 4, 'effects': ['EVENT_SEARCH_MUSIC_OR_CX'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t10.png', 'text': '你從自己的牌組選擇《音樂》的角色或名場面最多1張給對手確認，加到手牌，將那個牌組洗牌。', 'base_id': 'BTR/W107-T10', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-T10R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T10.png', 'https://img.bottleneko.app/BTR_W107_T10.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t10.png']}, 'BTR/W107-T10R': {'id': 'BTR/W107-T10R', 'series': 'BTR/W107', 'name': '樂團名「團結Band」', 'jp_name': 'バンド名「結束バンド」', 'type': 'EVENT', 'color': '黃', 'level': 1, 'cost': 1, 'power': 0, 'soul': 0, 'trigger': 'NONE', 'traits': [], 'default_count': 0, 'effects': ['EVENT_SEARCH_MUSIC_OR_CX'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T10R.png', 'text': '你從自己的牌組選擇《音樂》的角色或名場面最多1張給對手確認，加到手牌，將那個牌組洗牌。', 'base_id': 'BTR/W107-T10', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BTR/W107-T10R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T10R.png', 'https://img.bottleneko.app/BTR_W107_T10R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T10R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t10r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t10r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t10r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T10S.png', 'https://img.bottleneko.app/BTR_W107_T10S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T10S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t10s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t10s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t10s.gif']}}
+FALLBACK_CARD_DB = {'BFR/S78-076': {'id': 'BFR/S78-076', 'name': '公會長之間的對決', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'STANDBY', 'traits': [], 'default_count': 2, 'effects': ['CX_STANDBY'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_076.png', 'text': '【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你從自己的休息室選擇自己等級+1的等級的角色1張，【橫置】放置到任意的格子。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-076', 'is_high_rarity': False, 'rarity': 'CR', 'high_rarity_id': 'BFR/S78-076R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_076.png', 'https://img.bottleneko.app/BFR_S78_076.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_076.png']}, 'BFR/S78-076R': {'id': 'BFR/S78-076R', 'name': '公會長之間的對決', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'STANDBY', 'traits': [], 'default_count': 0, 'effects': ['CX_STANDBY'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_076R.png', 'text': '【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你從自己的休息室選擇自己等級+1的等級的角色1張，【橫置】放置到任意的格子。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-076', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BFR/S78-076R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_076R.png', 'https://img.bottleneko.app/BFR_S78_076R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_076R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_076r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_076r.gif']}, 'BFR/S78-077': {'id': 'BFR/S78-077', 'name': 'Boss級怪物', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'DOOR', 'traits': [], 'default_count': 2, 'effects': ['CX_ALL_1000_1SOUL'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_077.png', 'text': '【永】你的角色全部，攻擊力+1000，魂傷+1。\n木門：當你判定出此卡時，你可以選擇自己休息室的角色1張，回到手牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-077', 'is_high_rarity': False, 'rarity': 'CR', 'high_rarity_id': 'BFR/S78-077R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_077.png', 'https://img.bottleneko.app/BFR_S78_077.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_077.png']}, 'BFR/S78-077R': {'id': 'BFR/S78-077R', 'name': 'Boss級怪物', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'DOOR', 'traits': [], 'default_count': 0, 'effects': ['CX_ALL_1000_1SOUL'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_077R.png', 'text': '【永】你的角色全部，攻擊力+1000，魂傷+1。\n木門：當你判定出此卡時，你可以選擇自己休息室的角色1張，回到手牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-077', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BFR/S78-077R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_077R.png', 'https://img.bottleneko.app/BFR_S78_077R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_077R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_077r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_077r.gif']}, 'BFR/S78-078': {'id': 'BFR/S78-078', 'name': '炎帝之國的公會長', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'STANDBY', 'traits': [], 'default_count': 2, 'effects': ['CX_STANDBY'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_078.png', 'text': '【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你從自己的休息室選擇自己等級+1的等級的角色1張，【橫置】放置到任意的格子。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-078', 'is_high_rarity': False, 'rarity': 'CR', 'high_rarity_id': 'BFR/S78-078R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_078.png', 'https://img.bottleneko.app/BFR_S78_078.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_078.png']}, 'BFR/S78-078R': {'id': 'BFR/S78-078R', 'name': '炎帝之國的公會長', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'STANDBY', 'traits': [], 'default_count': 0, 'effects': ['CX_STANDBY'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_078R.png', 'text': '【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你從自己的休息室選擇自己等級+1的等級的角色1張，【橫置】放置到任意的格子。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-078', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BFR/S78-078R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_078R.png', 'https://img.bottleneko.app/BFR_S78_078R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_078R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_078r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_078r.gif']}, 'BFR/S78-107': {'id': 'BFR/S78-107', 'name': '展開．左手', 'type': 'CX', 'color': '藍', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'GATE', 'traits': [], 'default_count': 2, 'effects': ['CX_ALL_1000_1SOUL'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_107.png', 'text': '【永】你的角色全部，攻擊力+1000，魂傷+1。\n城門：當你判定出此卡時，你可以選擇自己休息室的1張名場面，回到手牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-107', 'is_high_rarity': False, 'rarity': 'CR', 'high_rarity_id': 'BFR/S78-107R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_107.png', 'https://img.bottleneko.app/BFR_S78_107.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_107.png']}, 'BFR/S78-107R': {'id': 'BFR/S78-107R', 'name': '展開．左手', 'type': 'CX', 'color': '藍', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'GATE', 'traits': [], 'default_count': 0, 'effects': ['CX_ALL_1000_1SOUL'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_107R.png', 'text': '【永】你的角色全部，攻擊力+1000，魂傷+1。\n城門：當你判定出此卡時，你可以選擇自己休息室的1張名場面，回到手牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-107', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BFR/S78-107R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_107R.png', 'https://img.bottleneko.app/BFR_S78_107R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_107R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_107r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_107r.gif']}, 'BFR/S78-075': {'id': 'BFR/S78-075', 'name': '獨有系列', 'type': 'EVENT', 'color': '紅', 'level': 1, 'cost': 1, 'power': 0, 'soul': 0, 'trigger': 'NONE', 'traits': [], 'default_count': 2, 'effects': ['EVENT_COUNTER_2500_MEMORY', 'MEMORY_MAIN_START_RETURN'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_075.png', 'text': '【反擊】你選擇自己的《遊戲》的角色1張，在那個回合中，攻擊力+2500。將此卡放到回憶區。\n【自】記憶 ［手牌的《遊戲》的角色1張放到休息室］ 在你的主要階段開始時，回憶區有此卡存在的話，你可以支付代價。支付代價的話，將此卡返回手牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-075', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': None, 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_075.png', 'https://img.bottleneko.app/BFR_S78_075.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_075.png']}, 'BFR/S78-015': {'id': 'BFR/S78-015', 'name': '雙胞胎的妹妹 結衣', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 3000, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '雙胞胎'], 'default_count': 2, 'effects': ['CONT_CANNOT_SIDE_ATTACK', 'AUTO_ON_PLAY_SWAP_CX'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_015.png', 'text': '【永】此卡不能側打。\n【自】［(1) 手牌1張名場面放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的名場面1張，回到手牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-015', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': None, 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_015.png', 'https://img.bottleneko.app/BFR_S78_015.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_015.png']}, 'BFR/S78-001': {'id': 'BFR/S78-001', 'name': '戰鬥的工匠 伊茲', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 1500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '鍛造'], 'default_count': 3, 'effects': ['AUTO_ON_PLAY_CLOCK_SEARCH_LV1', 'AUTO_OTHER_REVERSE_BUFF_1000'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_001.png', 'text': '【自】［(1) 你的牌組上方1張放到傷害區］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇等級1以下的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。\n【自】其他的你的角色的戰鬥對手【倒置】時，在那個回合中，此卡的攻擊力+1000。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-001', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-001SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_001.png', 'https://img.bottleneko.app/BFR_S78_001.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_001.png']}, 'BFR/S78-001SP': {'id': 'BFR/S78-001SP', 'name': '戰鬥的工匠 伊茲', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 1500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '鍛造'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_CLOCK_SEARCH_LV1', 'AUTO_OTHER_REVERSE_BUFF_1000'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_001SP.png', 'text': '【自】［(1) 你的牌組上方1張放到傷害區］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇等級1以下的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。\n【自】其他的你的角色的戰鬥對手【倒置】時，在那個回合中，此卡的攻擊力+1000。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-001', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'BFR/S78-001SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_001SP.png', 'https://img.bottleneko.app/BFR_S78_001SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_001SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_001sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_001sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_001S.png', 'https://img.bottleneko.app/BFR_S78_001S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_001S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_001s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_001s.gif']}, 'BFR/S78-031': {'id': 'BFR/S78-031', 'name': '多彩多樣 莎莉', 'type': 'CHAR', 'color': '綠', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '水'], 'default_count': 3, 'effects': ['CONT_IGNORE_CX_COLOR', 'AUTO_ON_CX_LOOT', 'ACT_CONCENTRATE_SINGLE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_031.png', 'text': '【永】你的名場面可以無需滿足顏色條件從手牌使用。\n【自】［手牌1張放到休息室］ 當你的名場面被放置到名場面區時，你可以支付代價。支付代價的話，你抽1張牌。\n【起】集中 ［(1) 將此卡【橫置】］ 你從自己的牌組上方翻4張，放到休息室。那些卡片中每有1張名場面，你從自己的牌組選擇《遊戲》的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-031', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-031SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_031.png', 'https://img.bottleneko.app/BFR_S78_031.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_031.png']}, 'BFR/S78-031SP': {'id': 'BFR/S78-031SP', 'name': '多彩多樣 莎莉', 'type': 'CHAR', 'color': '綠', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '水'], 'default_count': 0, 'effects': ['CONT_IGNORE_CX_COLOR', 'AUTO_ON_CX_LOOT', 'ACT_CONCENTRATE_SINGLE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_031SP.png', 'text': '【永】你的名場面可以無需滿足顏色條件從手牌使用。\n【自】［手牌1張放到休息室］ 當你的名場面被放置到名場面區時，你可以支付代價。支付代價的話，你抽1張牌。\n【起】集中 ［(1) 將此卡【橫置】］ 你從自己的牌組上方翻4張，放到休息室。那些卡片中每有1張名場面，你從自己的牌組選擇《遊戲》的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-031', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'BFR/S78-031SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_031SP.png', 'https://img.bottleneko.app/BFR_S78_031SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_031SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_031sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_031sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_031S.png', 'https://img.bottleneko.app/BFR_S78_031S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_031S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_031s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_031s.gif']}, 'BFR/S78-062': {'id': 'BFR/S78-062', 'name': '咬咬 梅普露', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2000, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '盾'], 'default_count': 3, 'effects': ['AUTO_STAGE_TO_WR_LOOK4_STEPWISE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_062.png', 'text': '【自】［手牌1張放到休息室］ 此卡從舞台被放到休息室時，你可以支付代價。支付代價的話，你從自己的牌組上方看最多4張，選擇等級1以上的卡片最多1張給對手確認，加到手牌，剩下的卡片放到休息室。名場面的等級視為0。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-062', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-062S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_062.png', 'https://img.bottleneko.app/BFR_S78_062.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_062.png']}, 'BFR/S78-062S': {'id': 'BFR/S78-062S', 'name': '咬咬 梅普露', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2000, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '盾'], 'default_count': 0, 'effects': ['AUTO_STAGE_TO_WR_LOOK4_STEPWISE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_062S.png', 'text': '【自】［手牌1張放到休息室］ 此卡從舞台被放到休息室時，你可以支付代價。支付代價的話，你從自己的牌組上方看最多4張，選擇等級1以上的卡片最多1張給對手確認，加到手牌，剩下的卡片放到休息室。名場面的等級視為0。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-062', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'BFR/S78-062S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_062S.png', 'https://img.bottleneko.app/BFR_S78_062S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_062S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_062s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_062s.gif']}, 'BFR/S78-061': {'id': 'BFR/S78-061', 'name': '作戰變更 米瑟莉', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 1500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '炎'], 'default_count': 2, 'effects': ['ACT_MARKER_OR_STOCK'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_061.png', 'text': '【起】［將此卡【橫置】］ 此卡下方沒有標記的話，你將自己的牌組上方1張公開。那張卡片的等級是1以上的話作為標記以裏側表示放到此卡下方。名場面的等級視為0。如果不是的話放回原位。\n【起】［將此卡【橫置】］ 你將此卡下方的標記1張放到能量區。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-061', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': None, 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_061.png', 'https://img.bottleneko.app/BFR_S78_061.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_061.png']}, 'BFR/S78-060': {'id': 'BFR/S78-060', 'name': '焰火飛馳 蜜伊', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '炎'], 'default_count': 3, 'effects': ['AUTO_ON_PLAY_DEBUFF_AND_SEARCH'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_060.png', 'text': '【自】此卡從手牌被放置到舞台時，你選擇對手前列的角色1張，在那個回合中，攻擊力-1000。\n【自】［(1) 手牌1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇《遊戲》的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-060', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-060S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_060.png', 'https://img.bottleneko.app/BFR_S78_060.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_060.png']}, 'BFR/S78-060S': {'id': 'BFR/S78-060S', 'name': '焰火飛馳 蜜伊', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '炎'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_DEBUFF_AND_SEARCH'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_060S.png', 'text': '【自】此卡從手牌被放置到舞台時，你選擇對手前列的角色1張，在那個回合中，攻擊力-1000。\n【自】［(1) 手牌1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇《遊戲》的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-060', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'BFR/S78-060S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_060S.png', 'https://img.bottleneko.app/BFR_S78_060S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_060S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_060s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_060s.gif']}, 'BFR/S78-083': {'id': 'BFR/S78-083', 'name': '情報戰 莎莉', 'type': 'CHAR', 'color': '藍', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '水'], 'default_count': 2, 'effects': ['AUTO_ON_PLAY_SCRY2_AND_GUESS_DRAW'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_083.png', 'text': '【自】此卡從手牌被放置到舞台時，你看自己的牌組上方最多2張，以任意順序放回牌組上方。\n【自】此卡從手牌被放置到舞台時，對手宣言0或1或2或3。你將自己的牌組上方1張，放到休息室，那張卡片是對手宣言的等級的卡片的話，你抽最多X張牌。X等於對手宣言的數字+1。名場面的等級視為0。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-083', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': None, 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_083.png', 'https://img.bottleneko.app/BFR_S78_083.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_083.png']}, 'BFR/S78-073': {'id': 'BFR/S78-073', 'name': '不屈的守護者 梅普露', 'type': 'CHAR', 'color': '紅', 'level': 1, 'cost': 1, 'power': 5500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '盾'], 'default_count': 3, 'effects': ['CONT_OTHER_2GAME_BUFF_2000', 'AUTO_HAND_ENCORE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_073.png', 'text': '【永】其他的你的《遊戲》的角色存在2張以上的話，此卡的攻擊力+2000。\n【自】安可 ［手牌的角色1張放到休息室］', 'series': 'BFR/S78', 'base_id': 'BFR/S78-073', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': None, 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_073.png', 'https://img.bottleneko.app/BFR_S78_073.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_073.png']}, 'BFR/S78-057': {'id': 'BFR/S78-057', 'name': '移動要塞 梅普露', 'type': 'CHAR', 'color': '紅', 'level': 1, 'cost': 0, 'power': 4500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '盾'], 'default_count': 4, 'effects': ['AUTO_ON_PLAY_BUFF_1500', 'CX_COMBO_ATK_START_STAND_SALVAGE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_057.png', 'text': '【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+1500。\n【自】【CX連動】 ［手牌的「移動要塞 梅普露」1張放到休息室，你的名場面區的「公會長之間的對決」1張放到休息室］ 在你的攻擊階段開始時，此卡存在於前列的話，你可以支付代價。支付代價的話，你選擇其他的自己的《遊戲》的角色最多1張，【正置】，選擇自己休息室的《遊戲》的角色最多1張，回到手牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-057', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-057SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_057.png', 'https://img.bottleneko.app/BFR_S78_057.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_057.png']}, 'BFR/S78-057SP': {'id': 'BFR/S78-057SP', 'name': '移動要塞 梅普露', 'type': 'CHAR', 'color': '紅', 'level': 1, 'cost': 0, 'power': 4500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '盾'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_BUFF_1500', 'CX_COMBO_ATK_START_STAND_SALVAGE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_057SP.png', 'text': '【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+1500。\n【自】【CX連動】 ［手牌的「移動要塞 梅普露」1張放到休息室，你的名場面區的「公會長之間的對決」1張放到休息室］ 在你的攻擊階段開始時，此卡存在於前列的話，你可以支付代價。支付代價的話，你選擇其他的自己的《遊戲》的角色最多1張，【正置】，選擇自己休息室的《遊戲》的角色最多1張，回到手牌。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-057', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'BFR/S78-057SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_057SP.png', 'https://img.bottleneko.app/BFR_S78_057SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_057SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_057sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_057sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_057S.png', 'https://img.bottleneko.app/BFR_S78_057S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_057S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_057s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_057s.gif']}, 'BFR/S78-102': {'id': 'BFR/S78-102', 'name': '通往勝利的方程式 梅普露', 'type': 'CHAR', 'color': '藍', 'level': 1, 'cost': 1, 'power': 3000, 'soul': 1, 'trigger': 'SOUL', 'traits': ['遊戲', '盾'], 'default_count': 2, 'effects': ['CONT_LEVEL_ASSIST', 'AUTO_ON_ACT_BUFF_1000'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_102.png', 'text': '【永】應援 此卡前面的你的《遊戲》的角色全部，攻擊力+X。X等於那張角色的等級×500。\n【自】此能力每1回合最多發動1次。當你使用【起】的時候，你選擇自己的角色1張，在那個回合中，攻擊力+1000。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-102', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': None, 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_102.png', 'https://img.bottleneko.app/BFR_S78_102.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_102.png']}, 'BFR/S78-087': {'id': 'BFR/S78-087', 'name': '盾與盾 梅普露＆莎莉', 'type': 'CHAR', 'color': '藍', 'level': 1, 'cost': 0, 'power': 4500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '盾'], 'default_count': 2, 'effects': ['AUTO_ON_PLAY_FORCE_OPP_SWAP'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_087.png', 'text': '【自】［手牌1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇對手的等級1以上的角色1張，對手選擇自己休息室的等級X以下的角色1張，交換位置。X等於你選擇的角色的等級-1。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-087', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': None, 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_087.png', 'https://img.bottleneko.app/BFR_S78_087.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_087.png']}, 'BFR/S78-072': {'id': 'BFR/S78-072', 'name': '火炎牢 蜜伊', 'type': 'CHAR', 'color': '紅', 'level': 1, 'cost': 0, 'power': 4500, 'soul': 1, 'trigger': 'NONE', 'traits': ['遊戲', '炎'], 'default_count': 2, 'effects': ['AUTO_ON_PLAY_SCALING_BUFF_AND_LOCK'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_072.png', 'text': '【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+X。X等於你的《遊戲》的角色張數×500。\n【自】此卡從手牌被放置到舞台時，你選擇對手的角色1張，在那個回合中，給予以下能力。『【永】此卡不能回到手牌，不能放到回憶區。』', 'series': 'BFR/S78', 'base_id': 'BFR/S78-072', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': None, 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_072.png', 'https://img.bottleneko.app/BFR_S78_072.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_072.png']}, 'BFR/S78-058': {'id': 'BFR/S78-058', 'name': '聖女米瑟莉', 'type': 'CHAR', 'color': '紅', 'level': 2, 'cost': 2, 'power': 7000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '炎'], 'default_count': 1, 'effects': ['CONT_ALL_GAME_BUFF_3000', 'AUTO_DIRECT_ATK_STOCK_CHARGE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_058.png', 'text': '【永】你的角色全部都是《遊戲》的話，此卡的攻擊力+3000。\n【自】此卡直接攻擊時，你可以選擇自己休息室的《遊戲》的角色1張，放到能量區。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-058', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-058S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_058.png', 'https://img.bottleneko.app/BFR_S78_058.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_058.png']}, 'BFR/S78-058S': {'id': 'BFR/S78-058S', 'name': '聖女米瑟莉', 'type': 'CHAR', 'color': '紅', 'level': 2, 'cost': 2, 'power': 7000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '炎'], 'default_count': 0, 'effects': ['CONT_ALL_GAME_BUFF_3000', 'AUTO_DIRECT_ATK_STOCK_CHARGE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_058SP.png', 'text': '【永】你的角色全部都是《遊戲》的話，此卡的攻擊力+3000。\n【自】此卡直接攻擊時，你可以選擇自己休息室的《遊戲》的角色1張，放到能量區。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-058', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'BFR/S78-058S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_058SP.png', 'https://img.bottleneko.app/BFR_S78_058SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_058SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_058sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_058sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_058S.png', 'https://img.bottleneko.app/BFR_S78_058S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_058S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_058s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_058s.gif']}, 'BFR/S78-069': {'id': 'BFR/S78-069', 'name': '被託付的生命 蜜伊', 'type': 'CHAR', 'color': '紅', 'level': 2, 'cost': 1, 'power': 5000, 'soul': 1, 'trigger': 'SOUL', 'traits': ['遊戲', '炎'], 'default_count': 1, 'effects': ['AUTO_FRONT_ATK_LOWER_LEVEL', 'AUTO_REVERSE_BOMB_LV2'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_069.png', 'text': '【自】［(1)］ 此卡正打時，你可以支付代價。支付代價的話，你選擇對手的角色1張，在那個回合中，等級-1。\n【自】此卡【倒置】時，此卡的戰鬥對手是等級2以下的話，你可以將那張角色【倒置】。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-069', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': None, 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_069.png', 'https://img.bottleneko.app/BFR_S78_069.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_069.png']}, 'BFR/S78-089': {'id': 'BFR/S78-089', 'name': '大摯友 梅普露＆莎莉', 'type': 'CHAR', 'color': '藍', 'level': 2, 'cost': 2, 'power': 7000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '盾'], 'default_count': 1, 'effects': ['CONT_OPP_BACKROW_BUFF_1500', 'AUTO_DEFEND_IMMUNE_REVERSE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_089.png', 'text': '【永】對手的後列的角色每有1張，此卡的攻擊力+1500。\n【自】［(1) 手牌的《遊戲》的角色1張放到休息室］ 此卡被正打時，你可以支付代價。支付代價的話，在那個回合中，此卡不會【倒置】。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-089', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-089S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_089.png', 'https://img.bottleneko.app/BFR_S78_089.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_089.png']}, 'BFR/S78-089S': {'id': 'BFR/S78-089S', 'name': '大摯友 梅普露＆莎莉', 'type': 'CHAR', 'color': '藍', 'level': 2, 'cost': 2, 'power': 7000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '盾'], 'default_count': 0, 'effects': ['CONT_OPP_BACKROW_BUFF_1500', 'AUTO_DEFEND_IMMUNE_REVERSE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_089S.png', 'text': '【永】對手的後列的角色每有1張，此卡的攻擊力+1500。\n【自】［(1) 手牌的《遊戲》的角色1張放到休息室］ 此卡被正打時，你可以支付代價。支付代價的話，在那個回合中，此卡不會【倒置】。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-089', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'BFR/S78-089S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_089S.png', 'https://img.bottleneko.app/BFR_S78_089S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_089S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_089s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_089s.gif']}, 'BFR/S78-063': {'id': 'BFR/S78-063', 'name': '暴虐 梅普露', 'type': 'CHAR', 'color': '紅', 'level': 3, 'cost': 2, 'power': 9500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '盾'], 'default_count': 2, 'effects': ['AUTO_ON_PLAY_3000_AND_SALVAGE_CX', 'CX_COMBO_REVERSE_BURN_1_2_3'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063.png', 'text': '【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+3000。\n【自】［(1)］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的名場面1張，回到手牌。\n【自】【CX連動】 ［(6) 手牌2張放到休息室，你的名場面區的「Boss級怪物」1張放到休息室］ 此卡的戰鬥對手【倒置】時，你可以支付代價。支付代價的話，給對手1點傷害，給對手2點傷害，給對手3點傷害。會發生傷害取消。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-063', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-063S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_063.png', 'https://img.bottleneko.app/BFR_S78_063.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063.png']}, 'BFR/S78-063S': {'id': 'BFR/S78-063S', 'name': '暴虐 梅普露', 'type': 'CHAR', 'color': '紅', 'level': 3, 'cost': 2, 'power': 9500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '盾'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_3000_AND_SALVAGE_CX', 'CX_COMBO_REVERSE_BURN_1_2_3'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_063S.png', 'text': '【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+3000。\n【自】［(1)］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的名場面1張，回到手牌。\n【自】【CX連動】 ［(6) 手牌2張放到休息室，你的名場面區的「Boss級怪物」1張放到休息室］ 此卡的戰鬥對手【倒置】時，你可以支付代價。支付代價的話，給對手1點傷害，給對手2點傷害，給對手3點傷害。會發生傷害取消。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-063', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'BFR/S78-063S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_063S.png', 'https://img.bottleneko.app/BFR_S78_063S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_063S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_063SEC.png', 'https://img.bottleneko.app/BFR_S78_063SEC.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_063SEC.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063sec.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063sec.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_063SP.png', 'https://img.bottleneko.app/BFR_S78_063SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_063SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_063sp.gif']}, 'BFR/S78-064': {'id': 'BFR/S78-064', 'name': '炎帝 蜜伊', 'type': 'CHAR', 'color': '紅', 'level': 3, 'cost': 2, 'power': 10000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '炎'], 'default_count': 2, 'effects': ['AUTO_ON_PLAY_HEAL', 'CX_COMBO_STANDBY_STAND'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_064.png', 'text': '【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】【CX連動】 ［手牌的《遊戲》的角色3張放到休息室］ 此卡因為「炎帝之國的公會長」的效果被放到舞台時，你可以支付代價。支付代價的話，將此卡【正置】。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-064', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-064S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_064.png', 'https://img.bottleneko.app/BFR_S78_064.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_064.png']}, 'BFR/S78-064S': {'id': 'BFR/S78-064S', 'name': '炎帝 蜜伊', 'type': 'CHAR', 'color': '紅', 'level': 3, 'cost': 2, 'power': 10000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '炎'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_HEAL', 'CX_COMBO_STANDBY_STAND'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_064S.png', 'text': '【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】【CX連動】 ［手牌的《遊戲》的角色3張放到休息室］ 此卡因為「炎帝之國的公會長」的效果被放到舞台時，你可以支付代價。支付代價的話，將此卡【正置】。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-064', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'BFR/S78-064S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_064S.png', 'https://img.bottleneko.app/BFR_S78_064S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_064S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_064s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_064s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_064SP.png', 'https://img.bottleneko.app/BFR_S78_064SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_064SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_064sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_064sp.gif']}, 'BFR/S78-081': {'id': 'BFR/S78-081', 'name': '天才少年 奏', 'type': 'CHAR', 'color': '藍', 'level': 3, 'cost': 2, 'power': 9000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '武器'], 'default_count': 1, 'effects': ['CONT_EARLY_PLAY_4GAME', 'AUTO_ON_PLAY_HEAL', 'AUTO_ON_PLAY_OTHER_GAME_2000'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_081.png', 'text': '【永】你的《遊戲》的角色存在4張以上的話，你的手牌的此卡等級-1。\n【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】此卡從手牌被放置到舞台時，有其他的你的《遊戲》的角色存在的話，在那個回合中，此卡的攻擊力+2000。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-081', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-081SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_081.png', 'https://img.bottleneko.app/BFR_S78_081.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_081.png']}, 'BFR/S78-081SP': {'id': 'BFR/S78-081SP', 'name': '天才少年 奏', 'type': 'CHAR', 'color': '藍', 'level': 3, 'cost': 2, 'power': 9000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '武器'], 'default_count': 0, 'effects': ['CONT_EARLY_PLAY_4GAME', 'AUTO_ON_PLAY_HEAL', 'AUTO_ON_PLAY_OTHER_GAME_2000'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_081SP.png', 'text': '【永】你的《遊戲》的角色存在4張以上的話，你的手牌的此卡等級-1。\n【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】此卡從手牌被放置到舞台時，有其他的你的《遊戲》的角色存在的話，在那個回合中，此卡的攻擊力+2000。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-081', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'BFR/S78-081SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_081SP.png', 'https://img.bottleneko.app/BFR_S78_081SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_081SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_081sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_081sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_081S.png', 'https://img.bottleneko.app/BFR_S78_081S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_081S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_081s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_081s.gif']}, 'BFR/S78-082': {'id': 'BFR/S78-082', 'name': '機械神 梅普露', 'type': 'CHAR', 'color': '藍', 'level': 3, 'cost': 2, 'power': 10000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '盾'], 'default_count': 1, 'effects': ['AUTO_ON_PLAY_RESHUFFLE_OPP_STOCK', 'CX_COMBO_ATK_BOTTOM_MILL4_BURN'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_082.png', 'text': '【自】［(1)］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，對手將自己的能量區全部，放到休息室，從自己的牌組上方將相同張數放到能量區。\n【自】【CX連動】 此卡攻擊時，名場面區有「展開．左手」的話，你將對手的牌組下方4張，放到休息室，給對手X點傷害。X等於那些卡片中的名場面張數。會發生傷害取消。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-082', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BFR/S78-082SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_082.png', 'https://img.bottleneko.app/BFR_S78_082.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_082.png']}, 'BFR/S78-082SP': {'id': 'BFR/S78-082SP', 'name': '機械神 梅普露', 'type': 'CHAR', 'color': '藍', 'level': 3, 'cost': 2, 'power': 10000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['遊戲', '盾'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_RESHUFFLE_OPP_STOCK', 'CX_COMBO_ATK_BOTTOM_MILL4_BURN'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_082SP.png', 'text': '【自】［(1)］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，對手將自己的能量區全部，放到休息室，從自己的牌組上方將相同張數放到能量區。\n【自】【CX連動】 此卡攻擊時，名場面區有「展開．左手」的話，你將對手的牌組下方4張，放到休息室，給對手X點傷害。X等於那些卡片中的名場面張數。會發生傷害取消。', 'series': 'BFR/S78', 'base_id': 'BFR/S78-082', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'BFR/S78-082SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_082SP.png', 'https://img.bottleneko.app/BFR_S78_082SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_082SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_082sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_082sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BFR_S78_082S.png', 'https://img.bottleneko.app/BFR_S78_082S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BFR_S78_082S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_082s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/bfr_s78/bfr_s78_082s.gif']}, 'GA10/S131-030': {'id': 'GA10/S131-030', 'series': 'GA/S131', 'name': '時隔五年的【能力值】更新', 'jp_name': '五年振りの【ステイタス】更新', 'type': 'CX', 'color': '黃', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'CHOICE', 'traits': [], 'default_count': 4, 'effects': ['CX_ALL_1000_1SOUL', 'CX_TRIGGER_CHOICE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_030.png', 'text': '【永】你的角色全部，攻擊力+1000，魂傷+1。\n箭頭：當你判定出此卡時，你可以選擇自己休息室的判定標誌有魂傷的角色1張，回到手牌或放到能量區。', 'base_id': 'GA10/S131-030', 'is_high_rarity': False, 'rarity': 'CR', 'high_rarity_id': 'GA10/S131-030R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_030.png', 'https://img.bottleneko.app/GA10_S131_030.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_030.png']}, 'GA10/S131-030R': {'id': 'GA10/S131-030R', 'series': 'GA/S131', 'name': '時隔五年的【能力值】更新', 'jp_name': '五年振りの【ステイタス】更新', 'type': 'CX', 'color': '黃', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'CHOICE', 'traits': [], 'default_count': 0, 'effects': ['CX_ALL_1000_1SOUL', 'CX_TRIGGER_CHOICE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_030R.png', 'text': '【永】你的角色全部，攻擊力+1000，魂傷+1。\n箭頭：當你判定出此卡時，你可以選擇自己休息室的判定標誌有魂傷的角色1張，回到手牌或放到能量區。', 'base_id': 'GA10/S131-030', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'GA10/S131-030R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_030R.png', 'https://img.bottleneko.app/GA10_S131_030R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_030R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_030r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_030r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_030r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_030r.gif']}, 'GA17/S131-033': {'id': 'GA17/S131-033', 'series': 'GA/S131', 'name': '灰之魔女', 'jp_name': '灰の魔女', 'type': 'CX', 'color': '黃', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'CHOICE', 'traits': [], 'default_count': 4, 'effects': ['CX_ALL_1000_1SOUL', 'CX_TRIGGER_CHOICE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_033.png', 'text': '【永】你的角色全部，攻擊力+1000，魂傷+1。\n箭頭：當你判定出此卡時，你可以選擇自己休息室的判定標誌有魂傷的角色1張，回到手牌或放到能量區。', 'base_id': 'GA17/S131-033', 'is_high_rarity': False, 'rarity': 'CR', 'high_rarity_id': 'GA17/S131-033R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_033.png', 'https://img.bottleneko.app/GA17_S131_033.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_033.png']}, 'GA17/S131-033R': {'id': 'GA17/S131-033R', 'series': 'GA/S131', 'name': '灰之魔女', 'jp_name': '灰の魔女', 'type': 'CX', 'color': '黃', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'CHOICE', 'traits': [], 'default_count': 0, 'effects': ['CX_ALL_1000_1SOUL', 'CX_TRIGGER_CHOICE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_033R.png', 'text': '【永】你的角色全部，攻擊力+1000，魂傷+1。\n箭頭：當你判定出此卡時，你可以選擇自己休息室的判定標誌有魂傷的角色1張，回到手牌或放到能量區。', 'base_id': 'GA17/S131-033', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'GA17/S131-033R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_033R.png', 'https://img.bottleneko.app/GA17_S131_033R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_033R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_033r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_033r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_033r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_033r.gif']}, 'GA05/S131-007': {'id': 'GA05/S131-007', 'series': 'GA/S131', 'name': '〈迪亞馬特〉的使用者 莉姿夏爾蒂·亞提司瑪特', 'jp_name': '《ティアマト》の使い手 リーズシャルテ・アティスマータ', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 1500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '王族', '機龍'], 'default_count': 2, 'effects': ['AUTO_ON_PLAY_LOCK_MOVE', 'AUTO_ON_PLAY_SWAP_CX'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga05_s131_007.png', 'text': '【自】此卡從手牌被放置到舞台時，你選擇對手的角色1張，到下次的對手回合結束前，給予以下能力。『【永】此卡不能移動到其他格子。』\n【自】［(1) 手牌的CX1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的CX1張，回到手牌。', 'base_id': 'GA05/S131-007', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA05/S131-007SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA05_S131_007.png', 'https://img.bottleneko.app/GA05_S131_007.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga05_s131_007.png']}, 'GA05/S131-007SP': {'id': 'GA05/S131-007SP', 'series': 'GA/S131', 'name': '〈迪亞馬特〉的使用者 莉姿夏爾蒂·亞提司瑪特', 'jp_name': '《ティアマト》の使い手 リーズシャルテ・アティスマータ', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 1500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '王族', '機龍'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_LOCK_MOVE', 'AUTO_ON_PLAY_SWAP_CX'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA05_S131_007SP.png', 'text': '【自】此卡從手牌被放置到舞台時，你選擇對手的角色1張，到下次的對手回合結束前，給予以下能力。『【永】此卡不能移動到其他格子。』\n【自】［(1) 手牌的CX1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的CX1張，回到手牌。', 'base_id': 'GA05/S131-007', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'GA05/S131-007SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA05_S131_007SP.png', 'https://img.bottleneko.app/GA05_S131_007SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA05_S131_007SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga05_s131_007sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga05_s131/ga05_s131_007sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga05_s131_007sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga05_s131_007sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA05_S131_007S.png', 'https://img.bottleneko.app/GA05_S131_007S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA05_S131_007S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga05_s131_007s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga05_s131/ga05_s131_007s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga05_s131_007s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga05_s131_007s.gif']}, 'GA08/S131-038': {'id': 'GA08/S131-038', 'series': 'GA/S131', 'name': '魔族農業大臣 別西卜', 'jp_name': '魔族の農相 ベルゼブブ', 'type': 'CHAR', 'color': '綠', 'level': 0, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '魔族', '農家'], 'default_count': 2, 'effects': ['AUTO_ON_PLAY_DOKITEMA'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga08_s131_038.png', 'text': '【自】［手牌1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你將自己的牌組上方1張公開，選擇自己休息室的等級X以下的角色1張，回到手牌。X等於被公開的卡片等級。CX視為等級0。公開過的卡片放回原位。', 'base_id': 'GA08/S131-038', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA08/S131-038SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA08_S131_038.png', 'https://img.bottleneko.app/GA08_S131_038.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga08_s131_038.png']}, 'GA08/S131-038SP': {'id': 'GA08/S131-038SP', 'series': 'GA/S131', 'name': '魔族農業大臣 別西卜', 'jp_name': '魔族の農相 ベルゼブブ', 'type': 'CHAR', 'color': '綠', 'level': 0, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '魔族', '農家'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_DOKITEMA'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA08_S131_038SP.png', 'text': '【自】［手牌1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你將自己的牌組上方1張公開，選擇自己休息室的等級X以下的角色1張，回到手牌。X等於被公開的卡片等級。CX視為等級0。公開過的卡片放回原位。', 'base_id': 'GA08/S131-038', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'GA08/S131-038SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA08_S131_038SP.png', 'https://img.bottleneko.app/GA08_S131_038SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA08_S131_038SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga08_s131_038sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga08_s131/ga08_s131_038sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga08_s131_038sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga08_s131_038sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA08_S131_038S.png', 'https://img.bottleneko.app/GA08_S131_038S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA08_S131_038S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga08_s131_038s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga08_s131/ga08_s131_038s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga08_s131_038s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga08_s131_038s.gif']}, 'GA10/S131-012': {'id': 'GA10/S131-012', 'series': 'GA/S131', 'name': '奇怪的妖精 琉', 'jp_name': '変り種のエルフ リュー', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '冒險者', '妖精'], 'default_count': 3, 'effects': ['CONT_CHOICE_CX_GIVES_WIND', 'ACT_CONCENTRATE_5_SALVAGE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_012.png', 'text': '【永】你的CX區有判定標誌是箭頭的CX的話，給予你的所有的領域的黃色的CX風的判定標誌。\n【起】集中 ［(1) 將此卡【橫置】］ 你從自己的牌組上方翻出5張，放到休息室。那些卡片中每有1張判定標誌是箭頭的CX，你選擇自己休息室的角色最多1張，回到手牌。', 'base_id': 'GA10/S131-012', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA10/S131-012GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_012.png', 'https://img.bottleneko.app/GA10_S131_012.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_012.png']}, 'GA10/S131-012GA': {'id': 'GA10/S131-012GA', 'series': 'GA/S131', 'name': '奇怪的妖精 琉', 'jp_name': '変り種のエルフ リュー', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '冒險者', '妖精'], 'default_count': 0, 'effects': ['CONT_CHOICE_CX_GIVES_WIND', 'ACT_CONCENTRATE_5_SALVAGE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_012GA.png', 'text': '【永】你的CX區有判定標誌是箭頭的CX的話，給予你的所有的領域的黃色的CX風的判定標誌。\n【起】集中 ［(1) 將此卡【橫置】］ 你從自己的牌組上方翻出5張，放到休息室。那些卡片中每有1張判定標誌是箭頭的CX，你選擇自己休息室的角色最多1張，回到手牌。', 'base_id': 'GA10/S131-012', 'is_high_rarity': True, 'rarity': 'GA', 'high_rarity_id': 'GA10/S131-012GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_012GA.png', 'https://img.bottleneko.app/GA10_S131_012GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_012GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_012ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_012ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_012ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_012ga.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_012S.png', 'https://img.bottleneko.app/GA10_S131_012S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_012S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_012s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_012s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_012s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_012s.gif']}, 'GA10/S131-T09': {'id': 'GA10/S131-T09', 'series': 'GA/S131', 'name': '女神之鐘 赫斯緹雅', 'jp_name': '女神のカンパネラ ヘスティア', 'type': 'CHAR', 'color': '藍', 'level': 0, 'cost': 0, 'power': 1500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '眷族', '神'], 'default_count': 3, 'effects': ['CONT_HAND5_BUFF_2000', 'AUTO_ATK_TWIN_DRIVE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09.png', 'text': '【永】在你的回合中，你的手牌有5張以上的話，此卡的攻擊力+2000。\n【自】［(1)］ 此卡攻擊時，你可以支付代價。支付代價的話，在那次攻擊中，你在判定階段執行2次判定。', 'base_id': 'GA10/S131-T09', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA10/S131-T09TDP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_T09.png', 'https://img.bottleneko.app/GA10_S131_T09.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09.png']}, 'GA10/S131-T09TDP': {'id': 'GA10/S131-T09TDP', 'series': 'GA/S131', 'name': '女神之鐘 赫斯緹雅', 'jp_name': '女神のカンパネラ ヘスティア', 'type': 'CHAR', 'color': '藍', 'level': 0, 'cost': 0, 'power': 1500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '眷族', '神'], 'default_count': 0, 'effects': ['CONT_HAND5_BUFF_2000', 'AUTO_ATK_TWIN_DRIVE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_T09TDP.png', 'text': '【永】在你的回合中，你的手牌有5張以上的話，此卡的攻擊力+2000。\n【自】［(1)］ 此卡攻擊時，你可以支付代價。支付代價的話，在那次攻擊中，你在判定階段執行2次判定。', 'base_id': 'GA10/S131-T09', 'is_high_rarity': True, 'rarity': 'TDP', 'high_rarity_id': 'GA10/S131-T09TDP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_T09TDP.png', 'https://img.bottleneko.app/GA10_S131_T09TDP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_T09TDP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09tdp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_t09tdp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_t09tdp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09tdp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_T09SP.png', 'https://img.bottleneko.app/GA10_S131_T09SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_T09SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_t09sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_t09sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_T09R.png', 'https://img.bottleneko.app/GA10_S131_T09R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_T09R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_t09r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_t09r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_T09S.png', 'https://img.bottleneko.app/GA10_S131_T09S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_T09S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_t09s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_t09s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_t09s.gif']}, 'GA12/S131-013': {'id': 'GA12/S131-013', 'series': 'GA/S131', 'name': '朋友的話是當然的 月之森真白', 'jp_name': '友達ならトーゼン 月ノ森真白', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '學生'], 'default_count': 4, 'effects': ['CONT_GAIN_CHOICE_TRIGGER', 'AUTO_ON_PLAY_BUFF_3000'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga12_s131_013.png', 'text': '【永】你的CX區有判定標誌是箭頭的CX的話，所有的領域的此卡獲得箭頭的判定標誌。\n【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+3000。', 'base_id': 'GA12/S131-013', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA12/S131-013GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA12_S131_013.png', 'https://img.bottleneko.app/GA12_S131_013.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga12_s131_013.png']}, 'GA12/S131-013GA': {'id': 'GA12/S131-013GA', 'series': 'GA/S131', 'name': '朋友的話是當然的 月之森真白', 'jp_name': '友達ならトーゼン 月ノ森真白', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '學生'], 'default_count': 0, 'effects': ['CONT_GAIN_CHOICE_TRIGGER', 'AUTO_ON_PLAY_BUFF_3000'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA12_S131_013GA.png', 'text': '【永】你的CX區有判定標誌是箭頭的CX的話，所有的領域的此卡獲得箭頭的判定標誌。\n【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+3000。', 'base_id': 'GA12/S131-013', 'is_high_rarity': True, 'rarity': 'GA', 'high_rarity_id': 'GA12/S131-013GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA12_S131_013GA.png', 'https://img.bottleneko.app/GA12_S131_013GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA12_S131_013GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga12_s131_013ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga12_s131/ga12_s131_013ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga12_s131_013ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga12_s131_013ga.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA12_S131_013S.png', 'https://img.bottleneko.app/GA12_S131_013S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA12_S131_013S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga12_s131_013s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga12_s131/ga12_s131_013s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga12_s131_013s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga12_s131_013s.gif']}, 'GA13/S131-077': {'id': 'GA13/S131-077', 'series': 'GA/S131', 'name': '我的女神 草壁由佳', 'jp_name': 'ぼくの女神 草壁ゆか', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2000, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '農業'], 'default_count': 4, 'effects': ['AUTO_STAGE_TO_WR_CLOCK_LOOK2_GA'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga13_s131_077.png', 'text': '【自】［(1) 你的牌組上方1張放到傷害區］ 此卡從舞台被放到休息室時，你可以支付代價。支付代價的話，你從自己的牌組上方看最多2張，選擇《GA文庫》的角色最多2張給對手確認，加到手牌，剩下的卡片放到休息室。', 'base_id': 'GA13/S131-077', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA13/S131-077GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA13_S131_077.png', 'https://img.bottleneko.app/GA13_S131_077.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga13_s131_077.png']}, 'GA13/S131-077GA': {'id': 'GA13/S131-077GA', 'series': 'GA/S131', 'name': '我的女神 草壁由佳', 'jp_name': 'ぼくの女神 草壁ゆか', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2000, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '農業'], 'default_count': 0, 'effects': ['AUTO_STAGE_TO_WR_CLOCK_LOOK2_GA'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA13_S131_077GA.png', 'text': '【自】［(1) 你的牌組上方1張放到傷害區］ 此卡從舞台被放到休息室時，你可以支付代價。支付代價的話，你從自己的牌組上方看最多2張，選擇《GA文庫》的角色最多2張給對手確認，加到手牌，剩下的卡片放到休息室。', 'base_id': 'GA13/S131-077', 'is_high_rarity': True, 'rarity': 'GA', 'high_rarity_id': 'GA13/S131-077GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA13_S131_077GA.png', 'https://img.bottleneko.app/GA13_S131_077GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA13_S131_077GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga13_s131_077ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga13_s131/ga13_s131_077ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga13_s131_077ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga13_s131_077ga.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA13_S131_077S.png', 'https://img.bottleneko.app/GA13_S131_077S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA13_S131_077S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga13_s131_077s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga13_s131/ga13_s131_077s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga13_s131_077s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga13_s131_077s.gif']}, 'GA10/S131-002': {'id': 'GA10/S131-002', 'series': 'GA/S131', 'name': '跨越復仇 琉', 'jp_name': '復讐を越えて リュー', 'type': 'CHAR', 'color': '黃', 'level': 1, 'cost': 0, 'power': 2500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '冒險者', '妖精'], 'default_count': 4, 'effects': ['AUTO_ON_PLAY_OPP_COUNT_BUFF_1000', 'CX_COMBO_RYU_ATK_SCRY2_SALVAGE'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_002.png', 'text': '【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+X。X等於對手的角色張數×1000。\n【自】【CX連動】此卡攻擊時，CX區有「時隔五年的【能力值】更新」的話，你看自己牌組上方最多2張，選擇卡片最多2張，以任意順序放到牌組上方，剩下的卡片放到休息室，將自己的牌組上方1張公開，選擇自己休息室的等級X以下的角色1張，回到手牌。X等於被公開的卡片等級。CX視為等級0。公開過的卡片放回原位。', 'base_id': 'GA10/S131-002', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA10/S131-002SSP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_002.png', 'https://img.bottleneko.app/GA10_S131_002.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_002.png']}, 'GA10/S131-002SSP': {'id': 'GA10/S131-002SSP', 'series': 'GA/S131', 'name': '跨越復仇 琉', 'jp_name': '復讐を越えて リュー', 'type': 'CHAR', 'color': '黃', 'level': 1, 'cost': 0, 'power': 2500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '冒險者', '妖精'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_OPP_COUNT_BUFF_1000', 'CX_COMBO_RYU_ATK_SCRY2_SALVAGE'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_002SSP.png', 'text': '【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+X。X等於對手的角色張數×1000。\n【自】【CX連動】此卡攻擊時，CX區有「時隔五年的【能力值】更新」的話，你看自己牌組上方最多2張，選擇卡片最多2張，以任意順序放到牌組上方，剩下的卡片放到休息室，將自己的牌組上方1張公開，選擇自己休息室的等級X以下的角色1張，回到手牌。X等於被公開的卡片等級。CX視為等級0。公開過的卡片放回原位。', 'base_id': 'GA10/S131-002', 'is_high_rarity': True, 'rarity': 'SSP', 'high_rarity_id': 'GA10/S131-002SSP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_002SSP.png', 'https://img.bottleneko.app/GA10_S131_002SSP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_002SSP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_002ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_002ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_002ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_002ssp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_002S.png', 'https://img.bottleneko.app/GA10_S131_002S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_002S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_002s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_002s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_002s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_002s.gif']}, 'GA17/S131-014': {'id': 'GA17/S131-014', 'series': 'GA/S131', 'name': '我的旅路 伊蕾娜', 'jp_name': '私の旅路 イレイナ', 'type': 'CHAR', 'color': '黃', 'level': 1, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '魔法'], 'default_count': 1, 'effects': ['AUTO_MEMORY_DEF_DIRECT_MINUS_SOUL', 'ACT_MILL_ELAINA_BUFF_2000'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_014.png', 'text': '【自】回合1次 記憶 對手的角色直接攻擊時，你的回憶區有卡名包含「伊蕾娜」的角色，沒有其他的你的「我的旅路 伊蕾娜」存在的話，你選擇攻擊中的角色最多1張，在那個回合中，魂傷-1。\n【起】［將此卡【橫置】］ 你從自己的牌組選擇「第二章 伊蕾娜」或「第三章 伊蕾娜」最多1張，放到休息室，將那個牌組洗牌，你選擇自己的《GA文庫》的角色1張，在那個回合中，攻擊力+2000。', 'base_id': 'GA17/S131-014', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA17/S131-014GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_014.png', 'https://img.bottleneko.app/GA17_S131_014.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_014.png']}, 'GA17/S131-014GA': {'id': 'GA17/S131-014GA', 'series': 'GA/S131', 'name': '我的旅路 伊蕾娜', 'jp_name': '私の旅路 イレイナ', 'type': 'CHAR', 'color': '黃', 'level': 1, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['GA文庫', '魔法'], 'default_count': 0, 'effects': ['AUTO_MEMORY_DEF_DIRECT_MINUS_SOUL', 'ACT_MILL_ELAINA_BUFF_2000'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_014GA.png', 'text': '【自】回合1次 記憶 對手的角色直接攻擊時，你的回憶區有卡名包含「伊蕾娜」的角色，沒有其他的你的「我的旅路 伊蕾娜」存在的話，你選擇攻擊中的角色最多1張，在那個回合中，魂傷-1。\n【起】［將此卡【橫置】］ 你從自己的牌組選擇「第二章 伊蕾娜」或「第三章 伊蕾娜」最多1張，放到休息室，將那個牌組洗牌，你選擇自己的《GA文庫》的角色1張，在那個回合中，攻擊力+2000。', 'base_id': 'GA17/S131-014', 'is_high_rarity': True, 'rarity': 'GA', 'high_rarity_id': 'GA17/S131-014GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_014GA.png', 'https://img.bottleneko.app/GA17_S131_014GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_014GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_014ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_014ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_014ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_014ga.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_014S.png', 'https://img.bottleneko.app/GA17_S131_014S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_014S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_014s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_014s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_014s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_014s.gif']}, 'GA17/S131-015': {'id': 'GA17/S131-015', 'series': 'GA/S131', 'name': '第一章 伊蕾娜', 'jp_name': '第一章 イレイナ', 'type': 'CHAR', 'color': '黃', 'level': 1, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '魔法'], 'default_count': 3, 'effects': ['CONT_YOUR_TURN_6000', 'AUTO_REVERSE_CHAIN_CH2_ELAINA'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_015.png', 'text': '【永】在你的回合中，此卡的攻擊力+6000。\n【自】［(1) 將此卡放到休息室］ 此卡的戰鬥對手【倒置】時，其他的你的《GA文庫》的角色存在2張以上的話，你可以支付代價。支付代價的話，你選擇自己休息室的「第二章 伊蕾娜」1張，放到回憶區。放到回憶區的話，你看自己的牌組上方最多3張，以任意順序放到牌組上方，在下次的你的抽牌階段開始時，你可以選擇自己的回憶區的「第二章 伊蕾娜」1張，放到舞台上任意的格子。', 'base_id': 'GA17/S131-015', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA17/S131-015S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_015.png', 'https://img.bottleneko.app/GA17_S131_015.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_015.png']}, 'GA17/S131-015S': {'id': 'GA17/S131-015S', 'series': 'GA/S131', 'name': '第一章 伊蕾娜', 'jp_name': '第一章 イレイナ', 'type': 'CHAR', 'color': '黃', 'level': 1, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '魔法'], 'default_count': 0, 'effects': ['CONT_YOUR_TURN_6000', 'AUTO_REVERSE_CHAIN_CH2_ELAINA'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_015S.png', 'text': '【永】在你的回合中，此卡的攻擊力+6000。\n【自】［(1) 將此卡放到休息室］ 此卡的戰鬥對手【倒置】時，其他的你的《GA文庫》的角色存在2張以上的話，你可以支付代價。支付代價的話，你選擇自己休息室的「第二章 伊蕾娜」1張，放到回憶區。放到回憶區的話，你看自己的牌組上方最多3張，以任意順序放到牌組上方，在下次的你的抽牌階段開始時，你可以選擇自己的回憶區的「第二章 伊蕾娜」1張，放到舞台上任意的格子。', 'base_id': 'GA17/S131-015', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'GA17/S131-015S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_015S.png', 'https://img.bottleneko.app/GA17_S131_015S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_015S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_015s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_015s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_015s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_015s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_015GA.png', 'https://img.bottleneko.app/GA17_S131_015GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_015GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_015ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_015ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_015ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_015ga.gif']}, 'GA02/S131-009': {'id': 'GA02/S131-009', 'series': 'GA/S131', 'name': '告別膽小的自己 椎名真晝', 'jp_name': '臆病だった自分にさよならを 椎名真昼', 'type': 'CHAR', 'color': '黃', 'level': 2, 'cost': 1, 'power': 2500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '天使'], 'default_count': 1, 'effects': ['COUNTER_BACKUP_2500_LV2', 'AUTO_ON_BACKUP_REFRESH_WR'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_009.png', 'text': '【自】［(2)］ 當你使用此卡的『助太刀』時，你可以支付代價。支付代價的話，你將自己休息室的卡片全部，返回牌組，將那個牌組洗牌。\n【起】【反擊】 助太刀2500 等級2 ［(1) 手牌的此卡放到休息室］ 你選擇自己的正在被正打的角色1張，在那個回合中，攻擊力+2500。', 'base_id': 'GA02/S131-009', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA02/S131-009SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA02_S131_009.png', 'https://img.bottleneko.app/GA02_S131_009.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_009.png']}, 'GA02/S131-009SP': {'id': 'GA02/S131-009SP', 'series': 'GA/S131', 'name': '告別膽小的自己 椎名真晝', 'jp_name': '臆病だった自分にさよならを 椎名真昼', 'type': 'CHAR', 'color': '黃', 'level': 2, 'cost': 1, 'power': 2500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '天使'], 'default_count': 0, 'effects': ['COUNTER_BACKUP_2500_LV2', 'AUTO_ON_BACKUP_REFRESH_WR'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA02_S131_009SP.png', 'text': '【自】［(2)］ 當你使用此卡的『助太刀』時，你可以支付代價。支付代價的話，你將自己休息室的卡片全部，返回牌組，將那個牌組洗牌。\n【起】【反擊】 助太刀2500 等級2 ［(1) 手牌的此卡放到休息室］ 你選擇自己的正在被正打的角色1張，在那個回合中，攻擊力+2500。', 'base_id': 'GA02/S131-009', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'GA02/S131-009SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA02_S131_009SP.png', 'https://img.bottleneko.app/GA02_S131_009SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA02_S131_009SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_009sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga02_s131/ga02_s131_009sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga02_s131_009sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_009sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA02_S131_009S.png', 'https://img.bottleneko.app/GA02_S131_009S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA02_S131_009S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_009s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga02_s131/ga02_s131_009s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga02_s131_009s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_009s.gif']}, 'GA10/S131-019': {'id': 'GA10/S131-019', 'series': 'GA/S131', 'name': '炸薯球 艾絲', 'jp_name': 'ジャガ丸くん アイズ', 'type': 'CHAR', 'color': '黃', 'level': 2, 'cost': 1, 'power': 7000, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '冒險者', '眷族'], 'default_count': 1, 'effects': ['AUTO_ON_PLAY_OPP_REVERSE_COMPRESS', 'AUTO_DIRECT_ATK_YELLOW_STOCK'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_019.png', 'text': '【自】［(1) 手牌1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，對手選擇自己休息室的CX1張，除那張卡片以外的休息室的卡片全部，回到牌組，將那個牌組洗牌。\n【自】此卡直接攻擊時，你可以選擇自己休息室的黃色的卡片1張，放到能量區。', 'base_id': 'GA10/S131-019', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA10/S131-019S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_019.png', 'https://img.bottleneko.app/GA10_S131_019.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_019.png']}, 'GA10/S131-019S': {'id': 'GA10/S131-019S', 'series': 'GA/S131', 'name': '炸薯球 艾絲', 'jp_name': 'ジャガ丸くん アイズ', 'type': 'CHAR', 'color': '黃', 'level': 2, 'cost': 1, 'power': 7000, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '冒險者', '眷族'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_OPP_REVERSE_COMPRESS', 'AUTO_DIRECT_ATK_YELLOW_STOCK'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_019S.png', 'text': '【自】［(1) 手牌1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，對手選擇自己休息室的CX1張，除那張卡片以外的休息室的卡片全部，回到牌組，將那個牌組洗牌。\n【自】此卡直接攻擊時，你可以選擇自己休息室的黃色的卡片1張，放到能量區。', 'base_id': 'GA10/S131-019', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'GA10/S131-019S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_019S.png', 'https://img.bottleneko.app/GA10_S131_019S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_019S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_019s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_019s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_019s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_019s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_019GA.png', 'https://img.bottleneko.app/GA10_S131_019GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_019GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_019ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_019ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_019ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_019ga.gif']}, 'GA10/S131-029': {'id': 'GA10/S131-029', 'series': 'GA/S131', 'name': '蕾菲亞&艾絲', 'jp_name': 'レフィーヤ＆アイズ', 'type': 'CHAR', 'color': '黃', 'level': 2, 'cost': 1, 'power': 5500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '冒險者', '眷族'], 'default_count': 1, 'effects': ['AUTO_ON_PLAY_GRANT_ANTI_EARLY_PLAY_BOMB'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_029.png', 'text': '【自】此卡從手牌被放置到舞台時，你選擇自己的角色最多2張，在那個回合中，給予以下能力。『【自】此卡【倒置】時，此卡的戰鬥對手的等級比對手玩家等級還要高的話，你可以將那張角色放到能量區。放到能量區的話，你將對手的能量區下方1張，放到休息室。』', 'base_id': 'GA10/S131-029', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA10/S131-029GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_029.png', 'https://img.bottleneko.app/GA10_S131_029.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_029.png']}, 'GA10/S131-029GA': {'id': 'GA10/S131-029GA', 'series': 'GA/S131', 'name': '蕾菲亞&艾絲', 'jp_name': 'レフィーヤ＆アイズ', 'type': 'CHAR', 'color': '黃', 'level': 2, 'cost': 1, 'power': 5500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['GA文庫', '冒險者', '眷族'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_GRANT_ANTI_EARLY_PLAY_BOMB'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_029GA.png', 'text': '【自】此卡從手牌被放置到舞台時，你選擇自己的角色最多2張，在那個回合中，給予以下能力。『【自】此卡【倒置】時，此卡的戰鬥對手的等級比對手玩家等級還要高的話，你可以將那張角色放到能量區。放到能量區的話，你將對手的能量區下方1張，放到休息室。』', 'base_id': 'GA10/S131-029', 'is_high_rarity': True, 'rarity': 'GA', 'high_rarity_id': 'GA10/S131-029GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_029GA.png', 'https://img.bottleneko.app/GA10_S131_029GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_029GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_029ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_029ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_029ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_029ga.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA10_S131_029S.png', 'https://img.bottleneko.app/GA10_S131_029S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA10_S131_029S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_029s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga10_s131/ga10_s131_029s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga10_s131_029s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga10_s131_029s.gif']}, 'GA17/S131-017': {'id': 'GA17/S131-017', 'series': 'GA/S131', 'name': '第二章 伊蕾娜', 'jp_name': '第二章 イレイナ', 'type': 'CHAR', 'color': '黃', 'level': 2, 'cost': 1, 'power': 1500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '魔法'], 'default_count': 4, 'effects': ['CONT_YOUR_TURN_11000', 'AUTO_REVERSE_CHAIN_CH3_ELAINA'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_017.png', 'text': '【永】在你的回合中，此卡的攻擊力+11000。\n【自】［(1) 將此卡放到休息室］ 此卡的戰鬥對手【倒置】時，有其他的你的《GA文庫》的角色存在的話，你可以支付代價。支付代價的話，你選擇自己休息室的「第三章 伊蕾娜」1張，放到回憶區。放到回憶區的話，你看自己的牌組上方1張，放到牌組上方或下方或休息室，在下次的你的抽牌階段開始時，你可以選擇自己的回憶區的「第三章 伊蕾娜」1張，放到舞台上任意的格子。', 'base_id': 'GA17/S131-017', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA17/S131-017S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_017.png', 'https://img.bottleneko.app/GA17_S131_017.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_017.png']}, 'GA17/S131-017S': {'id': 'GA17/S131-017S', 'series': 'GA/S131', 'name': '第二章 伊蕾娜', 'jp_name': '第二章 イレイナ', 'type': 'CHAR', 'color': '黃', 'level': 2, 'cost': 1, 'power': 1500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '魔法'], 'default_count': 0, 'effects': ['CONT_YOUR_TURN_11000', 'AUTO_REVERSE_CHAIN_CH3_ELAINA'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_017S.png', 'text': '【永】在你的回合中，此卡的攻擊力+11000。\n【自】［(1) 將此卡放到休息室］ 此卡的戰鬥對手【倒置】時，有其他的你的《GA文庫》的角色存在的話，你可以支付代價。支付代價的話，你選擇自己休息室的「第三章 伊蕾娜」1張，放到回憶區。放到回憶區的話，你看自己的牌組上方1張，放到牌組上方或下方或休息室，在下次的你的抽牌階段開始時，你可以選擇自己的回憶區的「第三章 伊蕾娜」1張，放到舞台上任意的格子。', 'base_id': 'GA17/S131-017', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'GA17/S131-017S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_017S.png', 'https://img.bottleneko.app/GA17_S131_017S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_017S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_017s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_017s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_017s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_017s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_017GA.png', 'https://img.bottleneko.app/GA17_S131_017GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_017GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_017ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_017ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_017ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_017ga.gif']}, 'GA01/S131-115': {'id': 'GA01/S131-115', 'series': 'GA/S131', 'name': '《五帝》櫛川鳩子', 'jp_name': '《五帝》櫛川鳩子', 'type': 'CHAR', 'color': '藍', 'level': 3, 'cost': 2, 'power': 10500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '文藝部'], 'default_count': 1, 'effects': ['CONT_IGNORE_SELF_COLOR', 'AUTO_ON_PLAY_SAC_STAGE_SALVAGE_CX'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga01_s131_115.png', 'text': '【永】此卡可以無需滿足顏色條件從手牌使用。\n【自】［其他的你的舞台的角色1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的CX1張，回到手牌。', 'base_id': 'GA01/S131-115', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA01/S131-115GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA01_S131_115.png', 'https://img.bottleneko.app/GA01_S131_115.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga01_s131_115.png']}, 'GA01/S131-115GA': {'id': 'GA01/S131-115GA', 'series': 'GA/S131', 'name': '《五帝》櫛川鳩子', 'jp_name': '《五帝》櫛川鳩子', 'type': 'CHAR', 'color': '藍', 'level': 3, 'cost': 2, 'power': 10500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '文藝部'], 'default_count': 0, 'effects': ['CONT_IGNORE_SELF_COLOR', 'AUTO_ON_PLAY_SAC_STAGE_SALVAGE_CX'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA01_S131_115GA.png', 'text': '【永】此卡可以無需滿足顏色條件從手牌使用。\n【自】［其他的你的舞台的角色1張放到休息室］ 此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的CX1張，回到手牌。', 'base_id': 'GA01/S131-115', 'is_high_rarity': True, 'rarity': 'GA', 'high_rarity_id': 'GA01/S131-115GA', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA01_S131_115GA.png', 'https://img.bottleneko.app/GA01_S131_115GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA01_S131_115GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga01_s131_115ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga01_s131/ga01_s131_115ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga01_s131_115ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga01_s131_115ga.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA01_S131_115S.png', 'https://img.bottleneko.app/GA01_S131_115S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA01_S131_115S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga01_s131_115s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga01_s131/ga01_s131_115s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga01_s131_115s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga01_s131_115s.gif']}, 'GA02/S131-003': {'id': 'GA02/S131-003', 'series': 'GA/S131', 'name': '隔壁的天使 椎名真晝', 'jp_name': 'お隣の天使様 椎名真昼', 'type': 'CHAR', 'color': '黃', 'level': 3, 'cost': 2, 'power': 9000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '天使'], 'default_count': 2, 'effects': ['CONT_EARLY_PLAY_4GA', 'AUTO_ON_PLAY_BUFF_1500', 'AUTO_ON_PLAY_DISCARD_HEAL_AND_SALVAGE_GA'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_003.png', 'text': '【永】你的《GA文庫》的角色存在4張以上的話，你的手牌的此卡等級-1。\n【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+1500。\n【自】［手牌1張放到休息室］ 此卡從手牌被放置到舞台時，有其他的你的《GA文庫》的角色存在的話，你可以支付代價。支付代價的話，你將自己的傷害區上方最多1張，放到休息室，選擇自己休息室的《GA文庫》的角色1張，回到手牌。', 'base_id': 'GA02/S131-003', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA02/S131-003SSP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA02_S131_003.png', 'https://img.bottleneko.app/GA02_S131_003.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_003.png']}, 'GA02/S131-003SSP': {'id': 'GA02/S131-003SSP', 'series': 'GA/S131', 'name': '隔壁的天使 椎名真晝', 'jp_name': 'お隣の天使様 椎名真昼', 'type': 'CHAR', 'color': '黃', 'level': 3, 'cost': 2, 'power': 9000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '天使'], 'default_count': 0, 'effects': ['CONT_EARLY_PLAY_4GA', 'AUTO_ON_PLAY_BUFF_1500', 'AUTO_ON_PLAY_DISCARD_HEAL_AND_SALVAGE_GA'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA02_S131_003SSP.png', 'text': '【永】你的《GA文庫》的角色存在4張以上的話，你的手牌的此卡等級-1。\n【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+1500。\n【自】［手牌1張放到休息室］ 此卡從手牌被放置到舞台時，有其他的你的《GA文庫》的角色存在的話，你可以支付代價。支付代價的話，你將自己的傷害區上方最多1張，放到休息室，選擇自己休息室的《GA文庫》的角色1張，回到手牌。', 'base_id': 'GA02/S131-003', 'is_high_rarity': True, 'rarity': 'SSP', 'high_rarity_id': 'GA02/S131-003SSP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA02_S131_003SSP.png', 'https://img.bottleneko.app/GA02_S131_003SSP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA02_S131_003SSP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_003ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga02_s131/ga02_s131_003ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga02_s131_003ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_003ssp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA02_S131_003SP.png', 'https://img.bottleneko.app/GA02_S131_003SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA02_S131_003SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_003sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga02_s131/ga02_s131_003sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga02_s131_003sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_003sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA02_S131_003S.png', 'https://img.bottleneko.app/GA02_S131_003S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA02_S131_003S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_003s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga02_s131/ga02_s131_003s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga02_s131_003s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga02_s131_003s.gif']}, 'GA04/S131-100': {'id': 'GA04/S131-100', 'series': 'GA/S131', 'name': '新的黎明 女神官', 'jp_name': '新しい夜明け 女神官', 'type': 'CHAR', 'color': '藍', 'level': 3, 'cost': 2, 'power': 8500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '冒險者', '神官'], 'default_count': 2, 'effects': ['CONT_EARLY_PLAY_WR_CX_2OR6', 'CONT_YOUR_TURN_1000', 'AUTO_ON_PLAY_CHOOSE_HEAL_OR_RESHUFFLE_OPP_STOCK'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga04_s131_100.png', 'text': '【永】你的休息室的CX在2張以下或6張以上的話，你的手牌的此卡等級-1。\n【永】在你的回合中，此卡的攻擊力+1000。\n【自】此卡從手牌被放置到舞台時，以下的2個效果之中你選擇1個執行。『你可以將自己的傷害區上方1張，放到休息室。』『對手將自己的能量全部，返回牌組，將那個牌組洗牌，從自己的牌組上方將相同張數放到能量區，在那個回合中，此卡的攻擊力+2000。』', 'base_id': 'GA04/S131-100', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA04/S131-100SSP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA04_S131_100.png', 'https://img.bottleneko.app/GA04_S131_100.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga04_s131_100.png']}, 'GA04/S131-100SSP': {'id': 'GA04/S131-100SSP', 'series': 'GA/S131', 'name': '新的黎明 女神官', 'jp_name': '新しい夜明け 女神官', 'type': 'CHAR', 'color': '藍', 'level': 3, 'cost': 2, 'power': 8500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '冒險者', '神官'], 'default_count': 0, 'effects': ['CONT_EARLY_PLAY_WR_CX_2OR6', 'CONT_YOUR_TURN_1000', 'AUTO_ON_PLAY_CHOOSE_HEAL_OR_RESHUFFLE_OPP_STOCK'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA04_S131_100SSP.png', 'text': '【永】你的休息室的CX在2張以下或6張以上的話，你的手牌的此卡等級-1。\n【永】在你的回合中，此卡的攻擊力+1000。\n【自】此卡從手牌被放置到舞台時，以下的2個效果之中你選擇1個執行。『你可以將自己的傷害區上方1張，放到休息室。』『對手將自己的能量全部，返回牌組，將那個牌組洗牌，從自己的牌組上方將相同張數放到能量區，在那個回合中，此卡的攻擊力+2000。』', 'base_id': 'GA04/S131-100', 'is_high_rarity': True, 'rarity': 'SSP', 'high_rarity_id': 'GA04/S131-100SSP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA04_S131_100SSP.png', 'https://img.bottleneko.app/GA04_S131_100SSP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA04_S131_100SSP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga04_s131_100ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga04_s131/ga04_s131_100ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga04_s131_100ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga04_s131_100ssp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA04_S131_100SP.png', 'https://img.bottleneko.app/GA04_S131_100SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA04_S131_100SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga04_s131_100sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga04_s131/ga04_s131_100sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga04_s131_100sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga04_s131_100sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA04_S131_100S.png', 'https://img.bottleneko.app/GA04_S131_100S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA04_S131_100S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga04_s131_100s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga04_s131/ga04_s131_100s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga04_s131_100s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga04_s131_100s.gif']}, 'GA17/S131-010': {'id': 'GA17/S131-010', 'series': 'GA/S131', 'name': '第三章 伊蕾娜', 'jp_name': '第三章 イレイナ', 'type': 'CHAR', 'color': '黃', 'level': 3, 'cost': 2, 'power': 10000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '魔法'], 'default_count': 4, 'effects': ['AUTO_ATK_BURN1_ON_ENTER_TURN', 'AUTO_SEND_TO_MEMORY_ON_REV_OR_END', 'CX_COMBO_MEMORY_ASH_WITCH_DEPLOY_BURN2'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_010.png', 'text': '【自】此卡從手牌或回憶區被放到舞台的回合中，此卡攻擊時，你可以給對手1點傷害。會發生傷害取消。\n【自】此卡【倒置】時或回合結束時，將此卡放到回憶區。\n【自】【CX連動】記憶 ［(2) 手牌1張放到休息室］ 此卡在回憶區，你的等級在3以上的話，當「灰之魔女」被放置到你的CX區時，你可以支付代價。支付代價的話，你將此卡放到舞台的前列的格子，給對手2點傷害。會發生傷害取消。', 'base_id': 'GA17/S131-010', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'GA17/S131-010SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_010.png', 'https://img.bottleneko.app/GA17_S131_010.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_010.png']}, 'GA17/S131-010SP': {'id': 'GA17/S131-010SP', 'series': 'GA/S131', 'name': '第三章 伊蕾娜', 'jp_name': '第三章 イレイナ', 'type': 'CHAR', 'color': '黃', 'level': 3, 'cost': 2, 'power': 10000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['GA文庫', '魔法'], 'default_count': 0, 'effects': ['AUTO_ATK_BURN1_ON_ENTER_TURN', 'AUTO_SEND_TO_MEMORY_ON_REV_OR_END', 'CX_COMBO_MEMORY_ASH_WITCH_DEPLOY_BURN2'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_010SP.png', 'text': '【自】此卡從手牌或回憶區被放到舞台的回合中，此卡攻擊時，你可以給對手1點傷害。會發生傷害取消。\n【自】此卡【倒置】時或回合結束時，將此卡放到回憶區。\n【自】【CX連動】記憶 ［(2) 手牌1張放到休息室］ 此卡在回憶區，你的等級在3以上的話，當「灰之魔女」被放置到你的CX區時，你可以支付代價。支付代價的話，你將此卡放到舞台的前列的格子，給對手2點傷害。會發生傷害取消。', 'base_id': 'GA17/S131-010', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'GA17/S131-010SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_010SP.png', 'https://img.bottleneko.app/GA17_S131_010SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_010SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_010sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_010sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_010sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_010sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_010S.png', 'https://img.bottleneko.app/GA17_S131_010S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_010S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_010s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_010s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_010s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_010s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/GA17_S131_010GA.png', 'https://img.bottleneko.app/GA17_S131_010GA.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/GA17_S131_010GA.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_010ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga17_s131/ga17_s131_010ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131_td/ga17_s131_010ga.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/g/ga_s131/ga17_s131_010ga.gif']}, 'BTR/W107-098': {'id': 'BTR/W107-098', 'series': 'BTR/W107', 'name': '成長與信賴的8小節', 'jp_name': '成長と信頼の8小節', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'STANDBY', 'traits': [], 'default_count': 4, 'effects': ['CX_STANDBY'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_098.png', 'text': '【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你可以從自己的休息室選擇自己等級+1以下的等級的角色1張，【橫置】放到舞台上任意的格子。', 'base_id': 'BTR/W107-098', 'is_high_rarity': False, 'rarity': 'CR', 'high_rarity_id': 'BTR/W107-098OFR', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_098.png', 'https://img.bottleneko.app/BTR_W107_098.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_098.png']}, 'BTR/W107-098OFR': {'id': 'BTR/W107-098OFR', 'series': 'BTR/W107', 'name': '成長與信賴的8小節', 'jp_name': '成長と信頼の8小節', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'STANDBY', 'traits': [], 'default_count': 0, 'effects': ['CX_STANDBY'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_098OFR.png', 'text': '【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你可以從自己的休息室選擇自己等級+1以下的等級的角色1張，【橫置】放到舞台上任意的格子。', 'base_id': 'BTR/W107-098', 'is_high_rarity': True, 'rarity': 'OFR', 'high_rarity_id': 'BTR/W107-098OFR', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_098OFR.png', 'https://img.bottleneko.app/BTR_W107_098OFR.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_098OFR.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_098ofr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_098ofr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_098ofr.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_098R.png', 'https://img.bottleneko.app/BTR_W107_098R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_098R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_098r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_098r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_098r.gif']}, 'BTR/W107-100': {'id': 'BTR/W107-100', 'series': 'BTR/W107', 'name': '逐漸增加的回憶', 'jp_name': '増えていく思い出', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'STANDBY', 'traits': [], 'default_count': 4, 'effects': ['CX_STANDBY'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_100.png', 'text': '【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你可以從自己的休息室選擇自己等級+1以下的等級的角色1張，【橫置】放到舞台上任意的格子。', 'base_id': 'BTR/W107-100', 'is_high_rarity': False, 'rarity': 'CR', 'high_rarity_id': 'BTR/W107-100R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_100.png', 'https://img.bottleneko.app/BTR_W107_100.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_100.png']}, 'BTR/W107-100R': {'id': 'BTR/W107-100R', 'series': 'BTR/W107', 'name': '逐漸增加的回憶', 'jp_name': '増えていく思い出', 'type': 'CX', 'color': '紅', 'level': 0, 'cost': 0, 'power': 0, 'soul': 0, 'trigger': 'STANDBY', 'traits': [], 'default_count': 0, 'effects': ['CX_STANDBY'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_100R.png', 'text': '【自】當此卡從手牌放到名場面區時，執行開機的效果。\n開機：當你判定出此卡時，你可以從自己的休息室選擇自己等級+1以下的等級的角色1張，【橫置】放到舞台上任意的格子。', 'base_id': 'BTR/W107-100', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BTR/W107-100R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_100R.png', 'https://img.bottleneko.app/BTR_W107_100R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_100R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_100r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_100r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_100r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_100RRR.png', 'https://img.bottleneko.app/BTR_W107_100RRR.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_100RRR.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_100rrr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_100rrr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_100rrr.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_100OFR.png', 'https://img.bottleneko.app/BTR_W107_100OFR.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_100OFR.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_100ofr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_100ofr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_100ofr.gif']}, 'BTR/W107-T02': {'id': 'BTR/W107-T02', 'series': 'BTR/W107', 'name': '樂團的領導者 伊地知虹夏', 'jp_name': 'バンドのリーダー 伊地知虹夏', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '可靠'], 'default_count': 2, 'effects': ['AUTO_ON_YELLOW_CX_BUFF_1500', 'ACT_CONCENTRATE_5_DRAW'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t02.png', 'text': '【自】當你的黃色名場面放置到名場面區時，你選擇自己的角色1張，在那回合中，攻擊力+1500。\n【起】集中 ［(1) 此卡【橫置】］ 你從自己的牌組上方翻開5張卡片，放到休息室。那些卡片每有1張名場面，你最多抽1張牌。', 'base_id': 'BTR/W107-T02', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-T02R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T02.png', 'https://img.bottleneko.app/BTR_W107_T02.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t02.png']}, 'BTR/W107-T02R': {'id': 'BTR/W107-T02R', 'series': 'BTR/W107', 'name': '樂團的領導者 伊地知虹夏', 'jp_name': 'バンドのリーダー 伊地知虹夏', 'type': 'CHAR', 'color': '黃', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '可靠'], 'default_count': 0, 'effects': ['AUTO_ON_YELLOW_CX_BUFF_1500', 'ACT_CONCENTRATE_5_DRAW'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T02R.png', 'text': '【自】當你的黃色名場面放置到名場面區時，你選擇自己的角色1張，在那回合中，攻擊力+1500。\n【起】集中 ［(1) 此卡【橫置】］ 你從自己的牌組上方翻開5張卡片，放到休息室。那些卡片每有1張名場面，你最多抽1張牌。', 'base_id': 'BTR/W107-T02', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BTR/W107-T02R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T02R.png', 'https://img.bottleneko.app/BTR_W107_T02R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T02R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t02r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t02r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t02r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T02S.png', 'https://img.bottleneko.app/BTR_W107_T02S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T02S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t02s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t02s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t02s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T02SP.png', 'https://img.bottleneko.app/BTR_W107_T02SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T02SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t02sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t02sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t02sp.gif']}, 'BTR/W107-T13': {'id': 'BTR/W107-T13', 'series': 'BTR/W107', 'name': '樂團女子？ 後藤一里', 'jp_name': 'バンドマン？ 後藤ひとり', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂'], 'default_count': 2, 'effects': ['CONT_BUFF_VOCAL_KITA_1000_1SOUL', 'AUTO_BOND_VOCAL_KITA'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t13.png', 'text': '【永】其他的你的「主唱吉他手 喜多郁代」全部，攻擊力+1000，魂傷+1。\n【自】絆／「主唱吉他手 喜多郁代」 ［手牌1張放到休息室］ 此卡從手牌登場到舞台時，你可以支付費用。這樣做的話，你從自己的休息室選擇1張「主唱吉他手 喜多郁代」加到手牌。', 'base_id': 'BTR/W107-T13', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-T13R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T13.png', 'https://img.bottleneko.app/BTR_W107_T13.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t13.png']}, 'BTR/W107-T13R': {'id': 'BTR/W107-T13R', 'series': 'BTR/W107', 'name': '樂團女子？ 後藤一里', 'jp_name': 'バンドマン？ 後藤ひとり', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂'], 'default_count': 0, 'effects': ['CONT_BUFF_VOCAL_KITA_1000_1SOUL', 'AUTO_BOND_VOCAL_KITA'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T13R.png', 'text': '【永】其他的你的「主唱吉他手 喜多郁代」全部，攻擊力+1000，魂傷+1。\n【自】絆／「主唱吉他手 喜多郁代」 ［手牌1張放到休息室］ 此卡從手牌登場到舞台時，你可以支付費用。這樣做的話，你從自己的休息室選擇1張「主唱吉他手 喜多郁代」加到手牌。', 'base_id': 'BTR/W107-T13', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BTR/W107-T13R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T13R.png', 'https://img.bottleneko.app/BTR_W107_T13R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T13R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t13r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t13r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t13r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T13S.png', 'https://img.bottleneko.app/BTR_W107_T13S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T13S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t13s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t13s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t13s.gif']}, 'BTR/W107-T14': {'id': 'BTR/W107-T14', 'series': 'BTR/W107', 'name': '後藤一里', 'jp_name': '後藤ひとり', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2000, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂'], 'default_count': 2, 'effects': ['AUTO_ON_PLAY_LOOK3_EVENT', 'AUTO_ON_PLAY_BOMB_COST0_IF_OPP_LE1'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t14.png', 'text': '【自】此卡從手牌被放置到舞台時，你從自己的牌組上方看最多3張，選擇事件最多1張給對手確認，加到手牌，剩下的卡片放到休息室。加到手牌的話，你選擇自己的手牌1張，放到休息室。\n【自】此卡從手牌被放置到舞台時，對手的前列的角色在1張以下的話，你可以選擇對手的前列的費用0以下的角色1張，放到休息室。', 'base_id': 'BTR/W107-T14', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-T14SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T14.png', 'https://img.bottleneko.app/BTR_W107_T14.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t14.png']}, 'BTR/W107-T14SP': {'id': 'BTR/W107-T14SP', 'series': 'BTR/W107', 'name': '後藤一里', 'jp_name': '後藤ひとり', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2000, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_LOOK3_EVENT', 'AUTO_ON_PLAY_BOMB_COST0_IF_OPP_LE1'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T14SP.png', 'text': '【自】此卡從手牌被放置到舞台時，你從自己的牌組上方看最多3張，選擇事件最多1張給對手確認，加到手牌，剩下的卡片放到休息室。加到手牌的話，你選擇自己的手牌1張，放到休息室。\n【自】此卡從手牌被放置到舞台時，對手的前列的角色在1張以下的話，你可以選擇對手的前列的費用0以下的角色1張，放到休息室。', 'base_id': 'BTR/W107-T14', 'is_high_rarity': True, 'rarity': 'SP', 'high_rarity_id': 'BTR/W107-T14SP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T14SP.png', 'https://img.bottleneko.app/BTR_W107_T14SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T14SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t14sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t14sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t14sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T14R.png', 'https://img.bottleneko.app/BTR_W107_T14R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T14R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t14r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t14r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t14r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T14S.png', 'https://img.bottleneko.app/BTR_W107_T14S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T14S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t14s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t14s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t14s.gif']}, 'BTR/W107-T15': {'id': 'BTR/W107-T15', 'series': 'BTR/W107', 'name': '陽角 喜多郁代', 'jp_name': '陽キャ 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '高人氣'], 'default_count': 4, 'effects': ['AUTO_ON_REVERSE_LOOK3_CX'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t15.png', 'text': '【自】當戰鬥中的此卡【倒置】時，你從自己的牌組上方看最多3張，選擇名場面最多1張給對手確認，加到手牌，剩下的卡片放到休息室。加到手牌的話，你選擇自己的手牌1張，放到休息室。', 'base_id': 'BTR/W107-T15', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-T15R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T15.png', 'https://img.bottleneko.app/BTR_W107_T15.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t15.png']}, 'BTR/W107-T15R': {'id': 'BTR/W107-T15R', 'series': 'BTR/W107', 'name': '陽角 喜多郁代', 'jp_name': '陽キャ 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '高人氣'], 'default_count': 0, 'effects': ['AUTO_ON_REVERSE_LOOK3_CX'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T15R.png', 'text': '【自】當戰鬥中的此卡【倒置】時，你從自己的牌組上方看最多3張，選擇名場面最多1張給對手確認，加到手牌，剩下的卡片放到休息室。加到手牌的話，你選擇自己的手牌1張，放到休息室。', 'base_id': 'BTR/W107-T15', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BTR/W107-T15R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T15R.png', 'https://img.bottleneko.app/BTR_W107_T15R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T15R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t15r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t15r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t15r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T15S.png', 'https://img.bottleneko.app/BTR_W107_T15S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T15S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t15s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t15s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t15s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T15SP.png', 'https://img.bottleneko.app/BTR_W107_T15SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T15SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t15sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t15sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t15sp.gif']}, 'BTR/W107-T16': {'id': 'BTR/W107-T16', 'series': 'BTR/W107', 'name': '主唱吉他手 喜多郁代', 'jp_name': 'ギターボーカル 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 1, 'cost': 0, 'power': 5500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '高人氣'], 'default_count': 4, 'effects': [], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t16.png', 'text': '（無特殊效果）', 'base_id': 'BTR/W107-T16', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-T16R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T16.png', 'https://img.bottleneko.app/BTR_W107_T16.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t16.png']}, 'BTR/W107-T16R': {'id': 'BTR/W107-T16R', 'series': 'BTR/W107', 'name': '主唱吉他手 喜多郁代', 'jp_name': 'ギターボーカル 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 1, 'cost': 0, 'power': 5500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '高人氣'], 'default_count': 0, 'effects': [], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T16R.png', 'text': '（無特殊效果）', 'base_id': 'BTR/W107-T16', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BTR/W107-T16R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T16R.png', 'https://img.bottleneko.app/BTR_W107_T16R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T16R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t16r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t16r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t16r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T16S.png', 'https://img.bottleneko.app/BTR_W107_T16S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T16S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t16s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t16s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t16s.gif']}, 'BTR/W107-T17': {'id': 'BTR/W107-T17', 'series': 'BTR/W107', 'name': '高人氣 喜多郁代', 'jp_name': '人気者 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 1, 'cost': 1, 'power': 5500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '高人氣'], 'default_count': 2, 'effects': ['AUTO_OTHER_BATTLE_REVERSE_SELF_2000', 'AUTO_ENCORE_1STOCK_1HAND'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t17.png', 'text': '【自】其他的你的戰鬥中的角色【倒置】時，在那回合中，此卡的攻擊力+2000。\n【自】再登場 ［(1) 手牌的1張卡片放到休息室］ 此卡從舞台放到休息室時，你可以支付費用。這樣做的話，此卡【橫置】放到它本來在的格子上。', 'base_id': 'BTR/W107-T17', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-T17R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T17.png', 'https://img.bottleneko.app/BTR_W107_T17.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t17.png']}, 'BTR/W107-T17R': {'id': 'BTR/W107-T17R', 'series': 'BTR/W107', 'name': '高人氣 喜多郁代', 'jp_name': '人気者 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 1, 'cost': 1, 'power': 5500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '高人氣'], 'default_count': 0, 'effects': ['AUTO_OTHER_BATTLE_REVERSE_SELF_2000', 'AUTO_ENCORE_1STOCK_1HAND'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T17R.png', 'text': '【自】其他的你的戰鬥中的角色【倒置】時，在那回合中，此卡的攻擊力+2000。\n【自】再登場 ［(1) 手牌的1張卡片放到休息室］ 此卡從舞台放到休息室時，你可以支付費用。這樣做的話，此卡【橫置】放到它本來在的格子上。', 'base_id': 'BTR/W107-T17', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BTR/W107-T17R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T17R.png', 'https://img.bottleneko.app/BTR_W107_T17R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T17R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t17r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t17r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t17r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T17S.png', 'https://img.bottleneko.app/BTR_W107_T17S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T17S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t17s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t17s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t17s.gif']}, 'BTR/W107-T18': {'id': 'BTR/W107-T18', 'series': 'BTR/W107', 'name': '喜多郁代', 'jp_name': '喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 2, 'cost': 2, 'power': 7000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['音樂', '高人氣'], 'default_count': 2, 'effects': ['AUTO_ENCORE_1STOCK_1HAND', 'ACT_1STOCK_1000_CLOCK_KICK'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t18.png', 'text': '【自】再登場 ［(1) 手牌的1張卡片放到休息室］ 此卡從舞台放到休息室時，你可以支付費用。這樣做的話，此卡【橫置】放到它本來在的格子上。\n【起】［(1)］ 在那回合中，此卡的攻擊力+1000，此卡獲得以下能力。『【自】此卡的戰鬥對手【倒置】時，你可以將那個角色放到時計區。』', 'base_id': 'BTR/W107-T18', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-T18R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T18.png', 'https://img.bottleneko.app/BTR_W107_T18.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t18.png']}, 'BTR/W107-T18R': {'id': 'BTR/W107-T18R', 'series': 'BTR/W107', 'name': '喜多郁代', 'jp_name': '喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 2, 'cost': 2, 'power': 7000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['音樂', '高人氣'], 'default_count': 0, 'effects': ['AUTO_ENCORE_1STOCK_1HAND', 'ACT_1STOCK_1000_CLOCK_KICK'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T18R.png', 'text': '【自】再登場 ［(1) 手牌的1張卡片放到休息室］ 此卡從舞台放到休息室時，你可以支付費用。這樣做的話，此卡【橫置】放到它本來在的格子上。\n【起】［(1)］ 在那回合中，此卡的攻擊力+1000，此卡獲得以下能力。『【自】此卡的戰鬥對手【倒置】時，你可以將那個角色放到時計區。』', 'base_id': 'BTR/W107-T18', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BTR/W107-T18R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T18R.png', 'https://img.bottleneko.app/BTR_W107_T18R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T18R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t18r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t18r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t18r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T18SP.png', 'https://img.bottleneko.app/BTR_W107_T18SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T18SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t18sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t18sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t18sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T18S.png', 'https://img.bottleneko.app/BTR_W107_T18S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T18S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t18s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t18s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t18s.gif']}, 'BTR/W107-077': {'id': 'BTR/W107-077', 'series': 'BTR/W107', 'name': '裝過頭的面子 後藤一里', 'jp_name': '張り切りすぎた見栄 後藤ひとり', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂'], 'default_count': 2, 'effects': ['AUTO_OTHER_BATTLE_REVERSE_TARGET_1000', 'AUTO_STAGE_TO_WR_DISCARD_MUSIC_LOOK4_LV1'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_077.png', 'text': '【自】其他的你的戰鬥中的角色【倒置】時，你選擇自己的角色1張，在那回合中，攻擊力+1000。\n【自】［手牌1張《音樂》的角色放到休息室］ 當此卡從舞台放到休息室時，你可以支付費用。這樣做的話，你從自己的牌組上方看最多4張，選擇等級1以上的卡片最多1張給對手確認，加到手牌，剩下的卡片放到休息室。名場面視為等級0。', 'base_id': 'BTR/W107-077', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-077KBR', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_077.png', 'https://img.bottleneko.app/BTR_W107_077.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_077.png']}, 'BTR/W107-077KBR': {'id': 'BTR/W107-077KBR', 'series': 'BTR/W107', 'name': '裝過頭的面子 後藤一里', 'jp_name': '張り切りすぎた見栄 後藤ひとり', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 1000, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂'], 'default_count': 0, 'effects': ['AUTO_OTHER_BATTLE_REVERSE_TARGET_1000', 'AUTO_STAGE_TO_WR_DISCARD_MUSIC_LOOK4_LV1'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_077KBR.png', 'text': '【自】其他的你的戰鬥中的角色【倒置】時，你選擇自己的角色1張，在那回合中，攻擊力+1000。\n【自】［手牌1張《音樂》的角色放到休息室］ 當此卡從舞台放到休息室時，你可以支付費用。這樣做的話，你從自己的牌組上方看最多4張，選擇等級1以上的卡片最多1張給對手確認，加到手牌，剩下的卡片放到休息室。名場面視為等級0。', 'base_id': 'BTR/W107-077', 'is_high_rarity': True, 'rarity': 'KBR', 'high_rarity_id': 'BTR/W107-077KBR', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_077KBR.png', 'https://img.bottleneko.app/BTR_W107_077KBR.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_077KBR.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_077kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_077kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_077kbr.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_077S.png', 'https://img.bottleneko.app/BTR_W107_077S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_077S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_077s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_077s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_077s.gif']}, 'BTR/W107-076': {'id': 'BTR/W107-076', 'series': 'BTR/W107', 'name': '成長歷程 喜多郁代', 'jp_name': '成長の軌跡 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 3, 'cost': 2, 'power': 9000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['音樂', '高人氣'], 'default_count': 4, 'effects': ['CONT_OTHER_MUSIC_500_EACH', 'AUTO_ON_PLAY_HEAL', 'CX_COMBO_KITA_ATK_BURN4'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076.png', 'text': '【永】其他的你的《音樂》的角色每有1張，此卡的攻擊力+500。\n【自】此卡從手牌放置到舞台時，你可以將自己時鐘區上方1張卡片放到休息室。\n【自】【CX連動】［手牌2張卡片放到休息室］ 此卡攻擊時，名場面區有「逐漸增加的回憶」，且其他的你的《音樂》的角色有4張以上的話，你可以支付費用。這樣做的話，給予對手4點傷害。會發生傷害取消。', 'base_id': 'BTR/W107-076', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-076S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_076.png', 'https://img.bottleneko.app/BTR_W107_076.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076.png']}, 'BTR/W107-076S': {'id': 'BTR/W107-076S', 'series': 'BTR/W107', 'name': '成長歷程 喜多郁代', 'jp_name': '成長の軌跡 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 3, 'cost': 2, 'power': 9000, 'soul': 2, 'trigger': 'SOUL', 'traits': ['音樂', '高人氣'], 'default_count': 0, 'effects': ['CONT_OTHER_MUSIC_500_EACH', 'AUTO_ON_PLAY_HEAL', 'CX_COMBO_KITA_ATK_BURN4'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_076S.png', 'text': '【永】其他的你的《音樂》的角色每有1張，此卡的攻擊力+500。\n【自】此卡從手牌放置到舞台時，你可以將自己時鐘區上方1張卡片放到休息室。\n【自】【CX連動】［手牌2張卡片放到休息室］ 此卡攻擊時，名場面區有「逐漸增加的回憶」，且其他的你的《音樂》的角色有4張以上的話，你可以支付費用。這樣做的話，給予對手4點傷害。會發生傷害取消。', 'base_id': 'BTR/W107-076', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'BTR/W107-076S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_076S.png', 'https://img.bottleneko.app/BTR_W107_076S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_076S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_076s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_076SSP.png', 'https://img.bottleneko.app/BTR_W107_076SSP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_076SSP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_076ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076ssp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_076SP.png', 'https://img.bottleneko.app/BTR_W107_076SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_076SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_076sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_076KBR.png', 'https://img.bottleneko.app/BTR_W107_076KBR.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_076KBR.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_076kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_076kbr.gif']}, 'BTR/W107-075': {'id': 'BTR/W107-075', 'series': 'BTR/W107', 'name': '晚霞的歸路 喜多郁代', 'jp_name': '夕焼けの帰り道 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 2, 'cost': 1, 'power': 5500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['音樂', '高人氣'], 'default_count': 4, 'effects': ['CONT_OTHER_2MUSIC_BUFF_3000', 'AUTO_ON_PLAY_STOCK_HEAL_IF_4', 'CX_COMBO_SUNSET_KITA'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_075.png', 'text': '【永】其他的你的《音樂》的角色有2張以上的話，此卡的攻擊力+3000。\n【自】此卡從手牌放置到舞台時，若你的等級區與時鐘區的卡片合計有4張以上，你可以將自己時鐘區上方1張放到能量區。\n【自】【CX連動】當「成長與信賴的8小節」放置到你的名場面區時，前列有此卡，且有其他的你的《音樂》角色的話，在那個回合中，此卡的攻擊力+1000，並獲得以下能力。『【自】此卡的戰鬥對手【倒置】時，你可以從自己的休息室選擇《音樂》的角色1張回到手牌。』', 'base_id': 'BTR/W107-075', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-075S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_075.png', 'https://img.bottleneko.app/BTR_W107_075.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_075.png']}, 'BTR/W107-075S': {'id': 'BTR/W107-075S', 'series': 'BTR/W107', 'name': '晚霞的歸路 喜多郁代', 'jp_name': '夕焼けの帰り道 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 2, 'cost': 1, 'power': 5500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['音樂', '高人氣'], 'default_count': 0, 'effects': ['CONT_OTHER_2MUSIC_BUFF_3000', 'AUTO_ON_PLAY_STOCK_HEAL_IF_4', 'CX_COMBO_SUNSET_KITA'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_075S.png', 'text': '【永】其他的你的《音樂》的角色有2張以上的話，此卡的攻擊力+3000。\n【自】此卡從手牌放置到舞台時，若你的等級區與時鐘區的卡片合計有4張以上，你可以將自己時鐘區上方1張放到能量區。\n【自】【CX連動】當「成長與信賴的8小節」放置到你的名場面區時，前列有此卡，且有其他的你的《音樂》角色的話，在那個回合中，此卡的攻擊力+1000，並獲得以下能力。『【自】此卡的戰鬥對手【倒置】時，你可以從自己的休息室選擇《音樂》的角色1張回到手牌。』', 'base_id': 'BTR/W107-075', 'is_high_rarity': True, 'rarity': 'SR', 'high_rarity_id': 'BTR/W107-075S', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_075S.png', 'https://img.bottleneko.app/BTR_W107_075S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_075S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_075s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_075s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_075s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_075SP.png', 'https://img.bottleneko.app/BTR_W107_075SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_075SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_075sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_075sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_075sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_075KBR.png', 'https://img.bottleneko.app/BTR_W107_075KBR.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_075KBR.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_075kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_075kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_075kbr.gif']}, 'BTR/W107-T06': {'id': 'BTR/W107-T06', 'series': 'BTR/W107', 'name': '音樂話題～ 伊地知虹夏', 'jp_name': '音楽バナシ～ 伊地知虹夏', 'type': 'CHAR', 'color': '黃', 'level': 1, 'cost': 1, 'power': 500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['音樂', '可靠'], 'default_count': 2, 'effects': ['COUNTER_BACKUP_2000_LV1', 'AUTO_ON_BACKUP_TOP_CHECK_MUSIC'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t06.png', 'text': '【自】當你使用此卡的『助太刀』時，你將自己的牌組上方1張公開。那張卡片是《音樂》的角色的話加到手牌，你選擇自己的手牌1張，放到休息室。如果不是的話放回原位。\n【起】【反擊】助太刀2000 等級1 ［(1) 手牌的此卡放到休息室］ 你選擇自己的正在被正打的角色1張，在那回合中，攻擊力+2000。', 'base_id': 'BTR/W107-T06', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-T06R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T06.png', 'https://img.bottleneko.app/BTR_W107_T06.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t06.png']}, 'BTR/W107-T06R': {'id': 'BTR/W107-T06R', 'series': 'BTR/W107', 'name': '音樂話題～ 伊地知虹夏', 'jp_name': '音楽バナシ～ 伊地知虹夏', 'type': 'CHAR', 'color': '黃', 'level': 1, 'cost': 1, 'power': 500, 'soul': 1, 'trigger': 'SOUL', 'traits': ['音樂', '可靠'], 'default_count': 0, 'effects': ['COUNTER_BACKUP_2000_LV1', 'AUTO_ON_BACKUP_TOP_CHECK_MUSIC'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T06R.png', 'text': '【自】當你使用此卡的『助太刀』時，你將自己的牌組上方1張公開。那張卡片是《音樂》的角色的話加到手牌，你選擇自己的手牌1張，放到休息室。如果不是的話放回原位。\n【起】【反擊】助太刀2000 等級1 ［(1) 手牌的此卡放到休息室］ 你選擇自己的正在被正打的角色1張，在那回合中，攻擊力+2000。', 'base_id': 'BTR/W107-T06', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BTR/W107-T06R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T06R.png', 'https://img.bottleneko.app/BTR_W107_T06R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T06R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t06r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t06r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t06r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T06S.png', 'https://img.bottleneko.app/BTR_W107_T06S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T06S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t06s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t06s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t06s.gif']}, 'BTR/W107-046': {'id': 'BTR/W107-046', 'series': 'BTR/W107', 'name': '打卡美照 喜多郁代', 'jp_name': '映える写真 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '高人氣'], 'default_count': 2, 'effects': ['AUTO_OPP_ATK_START_MOVE_BACK', 'ACT_REST_SELF_BUFF_MUSIC_1000'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_046.png', 'text': '【自】當對手的攻擊階段開始時，你可以將此卡移動到後列沒有角色的格子。\n【起】［此卡【橫置】］ 你選擇自己1張《音樂》的角色，在那回合中，攻擊力+1000。', 'base_id': 'BTR/W107-046', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-046KBR', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_046.png', 'https://img.bottleneko.app/BTR_W107_046.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_046.png']}, 'BTR/W107-046KBR': {'id': 'BTR/W107-046KBR', 'series': 'BTR/W107', 'name': '打卡美照 喜多郁代', 'jp_name': '映える写真 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂', '高人氣'], 'default_count': 0, 'effects': ['AUTO_OPP_ATK_START_MOVE_BACK', 'ACT_REST_SELF_BUFF_MUSIC_1000'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_046KBR.png', 'text': '【自】當對手的攻擊階段開始時，你可以將此卡移動到後列沒有角色的格子。\n【起】［此卡【橫置】］ 你選擇自己1張《音樂》的角色，在那回合中，攻擊力+1000。', 'base_id': 'BTR/W107-046', 'is_high_rarity': True, 'rarity': 'KBR', 'high_rarity_id': 'BTR/W107-046KBR', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_046KBR.png', 'https://img.bottleneko.app/BTR_W107_046KBR.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_046KBR.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_046kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_046kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_046kbr.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_046S.png', 'https://img.bottleneko.app/BTR_W107_046S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_046S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_046s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_046s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_046s.gif']}, 'BTR/W107-089': {'id': 'BTR/W107-089', 'series': 'BTR/W107', 'name': '開始轉動的故事 後藤一里', 'jp_name': '動き出す物語 後藤ひとり', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂'], 'default_count': 2, 'effects': ['AUTO_ON_PLAY_DISCARD_MUSIC_SEARCH_VOCAL_KITA'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_089.png', 'text': '【自】［手牌1張《音樂》的角色放到休息室］ 當此卡從手牌放到舞台時，你可以支付費用。這樣做的話，你從自己的牌組選擇「主唱吉他手 喜多郁代」最多1張給對手確認，加到手牌，將那個牌組洗牌。', 'base_id': 'BTR/W107-089', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-089KBR', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_089.png', 'https://img.bottleneko.app/BTR_W107_089.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_089.png']}, 'BTR/W107-089KBR': {'id': 'BTR/W107-089KBR', 'series': 'BTR/W107', 'name': '開始轉動的故事 後藤一里', 'jp_name': '動き出す物語 後藤ひとり', 'type': 'CHAR', 'color': '紅', 'level': 0, 'cost': 0, 'power': 2500, 'soul': 1, 'trigger': 'NONE', 'traits': ['音樂'], 'default_count': 0, 'effects': ['AUTO_ON_PLAY_DISCARD_MUSIC_SEARCH_VOCAL_KITA'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_089KBR.png', 'text': '【自】［手牌1張《音樂》的角色放到休息室］ 當此卡從手牌放到舞台時，你可以支付費用。這樣做的話，你從自己的牌組選擇「主唱吉他手 喜多郁代」最多1張給對手確認，加到手牌，將那個牌組洗牌。', 'base_id': 'BTR/W107-089', 'is_high_rarity': True, 'rarity': 'KBR', 'high_rarity_id': 'BTR/W107-089KBR', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_089KBR.png', 'https://img.bottleneko.app/BTR_W107_089KBR.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_089KBR.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_089kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_089kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_089kbr.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_089S.png', 'https://img.bottleneko.app/BTR_W107_089S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_089S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_089s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_089s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_089s.gif']}, 'BTR/W107-069': {'id': 'BTR/W107-069', 'series': 'BTR/W107', 'name': '對於不憧憬的憧憬 喜多郁代', 'jp_name': '憧れなかった憧れ 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 3, 'cost': 2, 'power': 8500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['音樂', '高人氣'], 'default_count': 4, 'effects': ['CONT_EARLY_PLAY_4MUSIC', 'CONT_CANNOT_PLAY_BACKUP', 'AUTO_ON_PLAY_HEAL'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069.png', 'text': '【永】其他的你的《音樂》的角色有4張以上的話，你的手牌的此卡的等級-1。\n【永】此卡戰鬥中，對手不能從手牌使用『助太刀』。\n【自】此卡從手牌放置到舞台時，你可以將自己時鐘區上方1張卡片放到休息室。', 'base_id': 'BTR/W107-069', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-069SSP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_069.png', 'https://img.bottleneko.app/BTR_W107_069.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069.png']}, 'BTR/W107-069SSP': {'id': 'BTR/W107-069SSP', 'series': 'BTR/W107', 'name': '對於不憧憬的憧憬 喜多郁代', 'jp_name': '憧れなかった憧れ 喜多郁代', 'type': 'CHAR', 'color': '紅', 'level': 3, 'cost': 2, 'power': 8500, 'soul': 2, 'trigger': 'SOUL', 'traits': ['音樂', '高人氣'], 'default_count': 0, 'effects': ['CONT_EARLY_PLAY_4MUSIC', 'CONT_CANNOT_PLAY_BACKUP', 'AUTO_ON_PLAY_HEAL'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_069SSP.png', 'text': '【永】其他的你的《音樂》的角色有4張以上的話，你的手牌的此卡的等級-1。\n【永】此卡戰鬥中，對手不能從手牌使用『助太刀』。\n【自】此卡從手牌放置到舞台時，你可以將自己時鐘區上方1張卡片放到休息室。', 'base_id': 'BTR/W107-069', 'is_high_rarity': True, 'rarity': 'SSP', 'high_rarity_id': 'BTR/W107-069SSP', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_069SSP.png', 'https://img.bottleneko.app/BTR_W107_069SSP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_069SSP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_069ssp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069ssp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_069SP.png', 'https://img.bottleneko.app/BTR_W107_069SP.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_069SP.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_069sp.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069sp.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_069S.png', 'https://img.bottleneko.app/BTR_W107_069S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_069S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_069s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069s.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_069KBR.png', 'https://img.bottleneko.app/BTR_W107_069KBR.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_069KBR.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_069kbr.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_069kbr.gif']}, 'BTR/W107-T10': {'id': 'BTR/W107-T10', 'series': 'BTR/W107', 'name': '樂團名「團結Band」', 'jp_name': 'バンド名「結束バンド」', 'type': 'EVENT', 'color': '黃', 'level': 1, 'cost': 1, 'power': 0, 'soul': 0, 'trigger': 'NONE', 'traits': [], 'default_count': 4, 'effects': ['EVENT_SEARCH_MUSIC_OR_CX'], 'url': 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t10.png', 'text': '你從自己的牌組選擇《音樂》的角色或名場面最多1張給對手確認，加到手牌，將那個牌組洗牌。', 'base_id': 'BTR/W107-T10', 'is_high_rarity': False, 'rarity': 'R', 'high_rarity_id': 'BTR/W107-T10R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T10.png', 'https://img.bottleneko.app/BTR_W107_T10.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t10.png']}, 'BTR/W107-T10R': {'id': 'BTR/W107-T10R', 'series': 'BTR/W107', 'name': '樂團名「團結Band」', 'jp_name': 'バンド名「結束バンド」', 'type': 'EVENT', 'color': '黃', 'level': 1, 'cost': 1, 'power': 0, 'soul': 0, 'trigger': 'NONE', 'traits': [], 'default_count': 0, 'effects': ['EVENT_SEARCH_MUSIC_OR_CX'], 'url': 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T10R.png', 'text': '你從自己的牌組選擇《音樂》的角色或名場面最多1張給對手確認，加到手牌，將那個牌組洗牌。', 'base_id': 'BTR/W107-T10', 'is_high_rarity': True, 'rarity': 'RRR', 'high_rarity_id': 'BTR/W107-T10R', 'parallel_urls': ['https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T10R.png', 'https://img.bottleneko.app/BTR_W107_T10R.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T10R.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t10r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t10r.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t10r.gif', 'https://img.bottleneko.app/w_900,f_webp&q_80/BTR_W107_T10S.png', 'https://img.bottleneko.app/BTR_W107_T10S.png', 'https://img.bottleneko.app/w_360,f_webp&q_80/BTR_W107_T10S.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t10s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107_td/btr_w107_t10s.png', 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/b/btr_w107/btr_w107_t10s.gif']}}
 
 SERIES_LABELS = {
     "BFR/S78": "防盾系列 (BFR/S78)",
@@ -77,8 +77,71 @@ def _infer_series_code(cid: str, data: dict, fallback_name: str = "") -> str:
     return fallback_name or "BFR/S78"
 
 
+def _natural_card_sort_key(cid: str) -> tuple:
+    """依卡號自然排序：一般卡號 (001 -> 001S -> 001SP -> 002) 優先於預組 (T01) 與 PR 卡 (P01)"""
+    s = str(cid or "").strip()
+    right = s.split("-", 1)[1] if "-" in s else s
+    m = re.match(r"^([A-Za-z]*)(\d+)([A-Za-z]*)$", right)
+    if m:
+        pref, num_s, suf = m.group(1).upper(), int(m.group(2)), m.group(3).upper()
+        cat_order = 0 if pref == "" else (1 if pref == "T" else 2)
+        suf_order = {"": 0, "R": 1, "S": 2, "SR": 2, "RRR": 3, "OFR": 4, "SP": 5, "SSP": 6, "SEC": 7}.get(suf, 8)
+        return (s.split("-")[0].upper(), cat_order, pref, num_s, suf_order, suf)
+    return (s.upper(), 9, "", 9999, 9, s)
+
+
+BUILTIN_SERIES_TITLES = {
+    "BFR/S78": "怕痛的我，把防禦力點滿就對了 (BFR/S78)",
+    "GA/S131": "GA文庫 (GA/S131)",
+    "BTR/W107": "孤獨搖滾 (BTR/W107)",
+}
+
+
+def _is_polluted_deck_title(title_str: str) -> bool:
+    t = str(title_str or "")
+    return any(k in t for k in ("牌組", "優勝", "Challenge", "タイトルカップ", "デッキ", "社群"))
+
+
+def _migrate_polluted_deck_to_book(deck_title: str, recipe_dict: dict):
+    """若舊版曾誤將匯入的社群牌組寫入 sets/*.json，啟動時自動遷移至 custom_decks_book.json 並還原系列檔"""
+    if not isinstance(recipe_dict, dict) or sum(recipe_dict.values()) != 50:
+        return
+    clean_name = re.sub(r"\s*\([A-Za-z0-9/_-]+\)\s*$", "", str(deck_title or "")).strip() or "貓罐子社群牌組"
+    book_path = os.path.join(BASE_DIR, "custom_decks_book.json")
+    settings_path = os.path.join(BASE_DIR, "user_settings.json")
+    try:
+        book = {}
+        if os.path.exists(book_path):
+            with open(book_path, "r", encoding="utf-8") as f:
+                loaded_b = json.load(f)
+            if isinstance(loaded_b, dict):
+                book = loaded_b
+        settings = {}
+        if os.path.exists(settings_path):
+            with open(settings_path, "r", encoding="utf-8") as f:
+                loaded_s = json.load(f)
+            if isinstance(loaded_s, dict):
+                settings = loaded_s
+        user_names = dict(settings.get("user_deck_names") or {})
+        existing_slot = next((k for k, v in user_names.items() if v == clean_name and k.startswith("BN_DECK_")), None)
+        if not existing_slot:
+            idx_n = 1
+            while f"BN_DECK_{idx_n}" in book or f"BN_DECK_{idx_n}" in user_names:
+                idx_n += 1
+            existing_slot = f"BN_DECK_{idx_n}"
+        book[existing_slot] = dict(recipe_dict)
+        user_names[existing_slot] = clean_name
+        settings["user_deck_names"] = user_names
+        with open(book_path, "w", encoding="utf-8") as f:
+            json.dump(book, f, ensure_ascii=False, indent=2)
+        with open(settings_path, "w", encoding="utf-8") as f:
+            json.dump(settings, f, ensure_ascii=False, indent=2)
+    except Exception:
+        pass
+
+
 def load_all_card_sets(sets_dir="sets"):
-    """自動掃描並載入 sets/*.json 所有系列卡片資料庫，支援分系列卡池與預設卡組"""
+    """自動掃描並載入 sets/*.json 所有系列卡片資料庫，嚴格分離『系列卡池』與『玩家牌組』"""
     global CARD_DB, DEFAULT_DECK_RECIPE, SERIES_DB, SERIES_DEFAULT_DECKS
     full_sets_dir = os.path.join(BASE_DIR, sets_dir)
     os.makedirs(full_sets_dir, exist_ok=True)
@@ -88,62 +151,155 @@ def load_all_card_sets(sets_dir="sets"):
     series_db = {}
     series_decks = {}
 
+    for k_def, v_def in BUILTIN_SERIES_TITLES.items():
+        SERIES_LABELS[k_def] = v_def
+
+    # 內建三套預設套牌固定由 FALLBACK_CARD_DB 提供，永不被外部檔案覆蓋
+    for cid, cinfo in FALLBACK_CARD_DB.items():
+        scode = _infer_series_code(cid, cinfo, "BFR/S78")
+        if cinfo.get("default_count", 0) > 0:
+            series_decks.setdefault(scode, {})[cid] = cinfo["default_count"]
+
     search_patterns = [
         os.path.join(full_sets_dir, "*.json"),
         os.path.join(BASE_DIR, "BFR_S78.json"),
         os.path.join(BASE_DIR, "GA_S131.json"),
         os.path.join(BASE_DIR, "BTR_W107.json"),
     ]
+    extra_deck_cards_paths = []
+
     for pattern in search_patterns:
         for path in sorted(glob.glob(pattern)):
+            fname = os.path.basename(path)
+            if fname.startswith("_"):
+                extra_deck_cards_paths.append(path)
+                continue
             try:
                 with open(path, "r", encoding="utf-8") as f:
                     data = json.load(f)
                 if not isinstance(data, dict):
                     continue
-                file_stem = os.path.splitext(os.path.basename(path))[0]
+                file_stem = os.path.splitext(fname)[0]
                 explicit_series = data.get("series_code") or data.get("series_name") or ""
-                if explicit_series and data.get("series_title"):
-                    SERIES_LABELS[explicit_series] = data["series_title"]
-                cards_dict = data.get("cards", data)
-                if isinstance(cards_dict, dict):
-                    for cid, cinfo in cards_dict.items():
-                        if isinstance(cinfo, dict) and "name" in cinfo:
-                            scode = explicit_series or _infer_series_code(cid, cinfo, file_stem)
-                            cinfo["series"] = scode
-                            if "translate_jp_ws_text_to_zh" in globals():
-                                raw_t = cinfo.get("text", cinfo.get("effect", ""))
-                                if _has_japanese_kana(raw_t) or "控え室" in raw_t or "山札" in raw_t:
-                                    cinfo["text"] = translate_jp_ws_text_to_zh(raw_t)
-                                    cinfo["parsed_abilities"] = []
-                                if _has_japanese_kana(cinfo.get("name", "")):
-                                    cinfo["name"] = translate_jp_ws_name_to_zh(cinfo["name"])
-                                if cinfo.get("traits"):
-                                    cinfo["traits"] = [translate_jp_ws_trait_to_zh(t) for t in cinfo["traits"]]
-                                cinfo["parallel_urls"] = build_universal_ws_image_urls(cid, cinfo)
-                            if (not cinfo.get("parsed_abilities")) and "ChineseEffectParser" in globals():
-                                cinfo["parsed_abilities"] = ChineseEffectParser.parse_card_effects(
-                                    cinfo.get("text", cinfo.get("effect", "")), cinfo.get("type", "CHAR")
-                                )
-                            card_db[cid] = cinfo
-                            series_db.setdefault(scode, {})[cid] = cinfo
-                            if cinfo.get("default_count", 0) > 0:
-                                series_decks.setdefault(scode, {})[cid] = cinfo["default_count"]
-                if "default_deck_recipe" in data and isinstance(data["default_deck_recipe"], dict):
-                    s_key = explicit_series or file_stem
-                    series_decks[s_key] = dict(data["default_deck_recipe"])
+                if not explicit_series and file_stem in ("BFR_S78", "GA_S131", "BTR_W107"):
+                    explicit_series = file_stem.replace("_", "/")
+
+                cards_dict = data.get("cards", data) if "cards" in data and isinstance(data.get("cards"), dict) else data
+                if not isinstance(cards_dict, dict):
+                    continue
+
+                # 自動修復曾被舊版牌組匯入覆寫的 series_title 與 default_deck_recipe
+                needs_resave = False
+                raw_title = str(data.get("series_title") or "")
+                if _is_polluted_deck_title(raw_title):
+                    if isinstance(data.get("default_deck_recipe"), dict) and sum(data["default_deck_recipe"].values()) == 50:
+                        _migrate_polluted_deck_to_book(raw_title, data["default_deck_recipe"])
+                    clean_s = explicit_series or file_stem.replace("_", "/")
+                    data["series_title"] = BUILTIN_SERIES_TITLES.get(clean_s, f"系列 ({clean_s})")
+                    raw_title = data["series_title"]
+                    needs_resave = True
+
+                if "cards" in data and isinstance(data.get("default_deck_recipe"), dict) and data["default_deck_recipe"]:
+                    if explicit_series not in ("BFR/S78", "GA/S131", "BTR/W107") or len(cards_dict) > 40:
+                        data["default_deck_recipe"] = {}
+                        needs_resave = True
+
+                # 若該系列已匯入完整卡表 (>40張)，移除舊版誤塞入的 BFR/S78-058SP 等非官方卡號並依卡號自然排序
+                if len(cards_dict) > 40 and "BFR/S78-058SP" in cards_dict:
+                    cards_dict.pop("BFR/S78-058SP", None)
+                    needs_resave = True
+
+                if explicit_series and raw_title and not _is_polluted_deck_title(raw_title):
+                    SERIES_LABELS[explicit_series] = raw_title
+                elif explicit_series in BUILTIN_SERIES_TITLES:
+                    SERIES_LABELS[explicit_series] = BUILTIN_SERIES_TITLES[explicit_series]
+
+                sorted_items = sorted(
+                    [(k, v) for k, v in cards_dict.items() if isinstance(v, dict) and "name" in v],
+                    key=lambda kv: _natural_card_sort_key(kv[0]),
+                )
+                if "cards" in data and len(sorted_items) > 40 and list(cards_dict.keys()) != [k for k, _ in sorted_items]:
+                    data["cards"] = {k: v for k, v in sorted_items}
+                    needs_resave = True
+
+                if needs_resave and "cards" in data:
+                    try:
+                        with open(path, "w", encoding="utf-8") as fw:
+                            json.dump(data, fw, ensure_ascii=False, indent=2)
+                    except Exception:
+                        pass
+
+                for cid, cinfo in sorted_items:
+                    scode = explicit_series or _infer_series_code(cid, cinfo, file_stem)
+                    cinfo["series"] = scode
+                    if len(sorted_items) > 40:
+                        cinfo["default_count"] = 0
+                    if "translate_jp_ws_text_to_zh" in globals():
+                        raw_t = cinfo.get("text", cinfo.get("effect", ""))
+                        if not raw_t and cid in FALLBACK_CARD_DB:
+                            raw_t = FALLBACK_CARD_DB[cid].get("text", "")
+                            cinfo["text"] = raw_t
+                        if _has_japanese_kana(raw_t) or "控え室" in raw_t or "山札" in raw_t:
+                            cinfo["text"] = translate_jp_ws_text_to_zh(raw_t)
+                            cinfo["parsed_abilities"] = []
+                        if _has_japanese_kana(cinfo.get("name", "")):
+                            cinfo["name"] = translate_jp_ws_name_to_zh(cinfo["name"])
+                        if cinfo.get("traits"):
+                            cinfo["traits"] = [translate_jp_ws_trait_to_zh(t) for t in cinfo["traits"]]
+                        cinfo["parallel_urls"] = build_universal_ws_image_urls(cid, cinfo)
+                    # 強制矯正 BFR/S78-077 Boss級怪物 為木門 (DOOR) 與全體+1000/+1魂
+                    if cid in ("BFR/S78-077", "BFR/S78-077R") or cinfo.get("base_id") == "BFR/S78-077":
+                        cinfo["trigger"] = "DOOR"
+                        cinfo["effects"] = ["CX_ALL_1000_1SOUL"]
+                        cinfo["text"] = "【永】你的角色全部，攻擊力+1000，魂傷+1。\n木門：當你判定出此卡時，你可以選擇自己休息室的角色1張，回到手牌。"
+                    if "ChineseEffectParser" in globals():
+                        raw_eff_text = cinfo.get("text", cinfo.get("effect", ""))
+                        c_type = cinfo.get("type", "CHAR")
+                        cinfo["parsed_abilities"] = ChineseEffectParser.parse_card_effects(raw_eff_text, c_type)
+                        inferred_tags = ChineseEffectParser.infer_effect_tags(raw_eff_text, c_type, cinfo.get("trigger", "NONE"))
+                        cur_tags = list(cinfo.get("effects", cinfo.get("effect_tags", [])))
+                        for itag in inferred_tags:
+                            if itag not in cur_tags:
+                                cur_tags.append(itag)
+                        cinfo["effects"] = cur_tags
+                    card_db[cid] = cinfo
+                    series_db.setdefault(scode, {})[cid] = cinfo
             except Exception as e:
                 print(f"讀取系列檔 {path} 失敗: {e}")
 
-    # 確保內建的 BFR/S78 與 GA/S131 永遠存在
+    # 記錄已從外部完整匯入的系列（超過 40 張卡者不再混入 FALLBACK_CARD_DB 卡片，確保系列張數 100% 精準）
+    full_imported_series = {sc for sc, smap in series_db.items() if len(smap) > 40}
+
+    # 確保內建的 BFR/S78、GA/S131、BTR/W107 預設卡片存在於 CARD_DB（供預設套牌對戰使用）
     for cid, cinfo in FALLBACK_CARD_DB.items():
+        scode = _infer_series_code(cid, cinfo, "BFR/S78")
+        cinfo["series"] = scode
         if cid not in card_db:
-            scode = _infer_series_code(cid, cinfo, "BFR/S78")
-            cinfo["series"] = scode
             card_db[cid] = cinfo
-            series_db.setdefault(scode, {})[cid] = cinfo
-            if cinfo.get("default_count", 0) > 0:
-                series_decks.setdefault(scode, {})[cid] = cinfo["default_count"]
+        if scode not in full_imported_series and cid not in series_db.get(scode, {}):
+            series_db.setdefault(scode, {})[cid] = card_db[cid]
+
+    # 載入僅供已匯入牌組使用的額外卡片快取（_deck_extra_cards.json），絕不汙染或改變 SERIES_DB 系列卡池
+    for extra_path in extra_deck_cards_paths:
+        try:
+            with open(extra_path, "r", encoding="utf-8") as f:
+                ex_data = json.load(f)
+            ex_cards = ex_data.get("cards", ex_data) if isinstance(ex_data, dict) else {}
+            if isinstance(ex_cards, dict):
+                for cid, cinfo in ex_cards.items():
+                    if isinstance(cinfo, dict) and "name" in cinfo and cid not in card_db:
+                        if "ChineseEffectParser" in globals():
+                            raw_eff_text = cinfo.get("text", cinfo.get("effect", ""))
+                            c_type = cinfo.get("type", "CHAR")
+                            cinfo["parsed_abilities"] = ChineseEffectParser.parse_card_effects(raw_eff_text, c_type)
+                            cinfo["effects"] = ChineseEffectParser.infer_effect_tags(raw_eff_text, c_type, cinfo.get("trigger", "NONE"))
+                        card_db[cid] = cinfo
+        except Exception:
+            pass
+
+    # 對每個系列卡池進行自然卡號排序
+    for sc in list(series_db.keys()):
+        series_db[sc] = dict(sorted(series_db[sc].items(), key=lambda kv: _natural_card_sort_key(kv[0])))
 
     if "BFR/S78" in series_decks:
         default_recipe = dict(series_decks["BFR/S78"])
@@ -162,7 +318,7 @@ def load_all_card_sets(sets_dir="sets"):
     return CARD_DB, DEFAULT_DECK_RECIPE
 
 
-load_all_card_sets()
+# (將於 ChineseEffectParser 定義完成後統一執行 load_all_card_sets)
 
 
 class CardInstance:
@@ -184,11 +340,18 @@ class CardInstance:
         self.trigger = data["trigger"]
         self.traits = list(data.get("traits", []))
         self.series = data.get("series", _infer_series_code(cid, data))
-        raw_effects = data.get("effects", data.get("effect_tags", []))
-        self.effects = list(raw_effects)
-        self.effect_tags = self.effects
         self.text = data.get("text", data.get("effect", ""))
-        self.parsed_abilities = data.get("parsed_abilities") or ChineseEffectParser.parse_card_effects(self.text, self.type)
+        raw_effects = list(data.get("effects", data.get("effect_tags", [])))
+        if "ChineseEffectParser" in globals():
+            for itag in ChineseEffectParser.infer_effect_tags(self.text, self.type, self.trigger):
+                if itag not in raw_effects:
+                    raw_effects.append(itag)
+            fresh_parsed = ChineseEffectParser.parse_card_effects(self.text, self.type)
+            self.parsed_abilities = fresh_parsed if fresh_parsed else list(data.get("parsed_abilities") or [])
+        else:
+            self.parsed_abilities = list(data.get("parsed_abilities") or [])
+        self.effects = raw_effects
+        self.effect_tags = self.effects
         self.reset_stage_state()
 
     def has_effect(self, tag: str) -> bool:
@@ -443,38 +606,85 @@ class RuleEngine:
                     eff = ab.get("effect")
                     if ab.get("my_turn_only") and not is_my_turn:
                         continue
+                    if ab.get("opp_turn_only") and is_my_turn:
+                        continue
                     if eff == "per_other_char_buff":
                         other_cnt = sum(1 for i, c in enumerate(p.stage) if i != stage_idx and c is not None)
                         pwr += other_cnt * ab.get("power", 500)
+                    elif eff == "per_opp_backrow_buff" and opp:
+                        opp_b = sum(1 for i in [3, 4] if opp.stage[i] is not None)
+                        pwr += opp_b * ab.get("power", 500)
+                    elif eff == "per_opp_frontrow_buff" and opp:
+                        opp_f = sum(1 for i in [0, 1, 2] if opp.stage[i] is not None)
+                        pwr += opp_f * ab.get("power", 500)
+                    elif eff == "per_marker_buff":
+                        pwr += len(card.markers) * ab.get("power", 1000)
+                    elif eff == "has_marker_buff":
+                        if len(card.markers) > 0:
+                            pwr += ab.get("power", 1000)
+                    elif eff == "hand_min_buff":
+                        if len(p.hand) >= ab.get("min_hand", 5):
+                            pwr += ab.get("power", 1000)
+                    elif eff == "stock_min_buff":
+                        if len(p.stock) >= ab.get("min_stock", 3):
+                            pwr += ab.get("power", 1000)
+                    elif eff == "memory_has_buff":
+                        if len(p.memory) > 0:
+                            pwr += ab.get("power", 1000)
+                    elif eff == "experience_buff":
+                        exp_sum = sum(c.base_level for c in p.level_zone)
+                        if exp_sum >= ab.get("min_exp", 2):
+                            pwr += ab.get("power", 1000)
                     elif eff == "other_char_count_buff":
                         other_cnt = sum(1 for i, c in enumerate(p.stage) if i != stage_idx and c is not None)
                         if other_cnt >= ab.get("min_count", 2):
                             pwr += ab.get("power", 1000)
+                    elif eff == "other_char_max_buff":
+                        other_cnt = sum(1 for i, c in enumerate(p.stage) if i != stage_idx and c is not None)
+                        if other_cnt <= ab.get("max_count", 1):
+                            pwr += ab.get("power", 1000)
                     elif eff == "my_turn_self_buff" and is_my_turn:
                         pwr += ab.get("power", 1000)
+                    elif eff == "opp_turn_self_buff" and (not is_my_turn):
+                        pwr += ab.get("power", 1000)
+                    elif eff == "flat_self_buff":
+                        pwr += ab.get("power", 1000)
 
-        # 檢查舞台上其他角色的萬用應援 (assist_level / assist_flat / global_other_buff)
+        # 檢查舞台上其他角色的萬用應援與光環 (assist_level / assist_flat / global_other_buff / front_center_other_buff / named_other_buff)
+        char_lvl = RuleEngine.get_effective_level(p, card, stage_idx)
         for i, other_c in enumerate(p.stage):
             if other_c is None or i == stage_idx or other_c.id in HARDCODED_CONT_IDS:
                 continue
             for ab in getattr(other_c, "parsed_abilities", []):
                 if ab.get("category") == "CONT":
                     eff = ab.get("effect")
-                    if eff == "global_other_buff":
-                        if not ab.get("my_turn_only") or is_my_turn:
+                    if ab.get("my_turn_only") and not is_my_turn:
+                        continue
+                    if ab.get("opp_turn_only") and is_my_turn:
+                        continue
+                    if eff == "front_center_other_buff":
+                        if stage_idx == 1 and char_lvl <= ab.get("max_level", 99):
+                            pwr += ab.get("power", 1000)
+                    elif eff == "named_other_buff":
+                        t_name = ab.get("target_name", "")
+                        if t_name and t_name in card.name:
+                            pwr += ab.get("power", 1000)
+                    elif eff == "global_other_buff":
+                        if ab.get("front_only") and stage_idx not in [0, 1, 2]:
+                            continue
+                        if char_lvl <= ab.get("max_level", 99):
                             pwr += ab.get("power", 500)
                     elif eff == "assist_flat":
                         if (i == 3 and stage_idx in [0, 1]) or (i == 4 and stage_idx in [1, 2]):
                             pwr += ab.get("power", 500)
                     elif eff == "assist_level":
                         if (i == 3 and stage_idx in [0, 1]) or (i == 4 and stage_idx in [1, 2]):
-                            char_lvl = RuleEngine.get_effective_level(p, card, stage_idx)
                             pwr += char_lvl * ab.get("multiplier", 500)
 
         return pwr
 
     @staticmethod
-    def get_effective_soul(p: PlayerState, card: CardInstance, stage_idx: int) -> int:
+    def get_effective_soul(p: PlayerState, card: CardInstance, stage_idx: int, opp: PlayerState = None, is_my_turn: bool = True) -> int:
         if not card or card.type != "CHAR":
             return 0
         soul = card.base_soul + card.temp_soul
@@ -499,6 +709,26 @@ class RuleEngine:
                 and (c.has_effect("CONT_BUFF_VOCAL_KITA_1000_1SOUL") or c.id == "BTR/W107-T13")
             )
             soul += bocchi_support
+        # 其他角色的萬用 CONT 魂傷加成
+        for i, other_c in enumerate(p.stage):
+            if other_c is None or i == stage_idx or other_c.id == "BTR/W107-T13":
+                continue
+            for ab in getattr(other_c, "parsed_abilities", []):
+                if ab.get("category") == "CONT" and ab.get("soul", 0) > 0:
+                    eff = ab.get("effect")
+                    if eff == "global_other_buff":
+                        soul += ab.get("soul", 0)
+                    elif eff == "named_other_buff" and ab.get("target_name", "") in card.name:
+                        soul += ab.get("soul", 0)
+                    elif eff == "front_center_other_buff" and stage_idx == 1:
+                        soul += ab.get("soul", 0)
+        # 對手正對面角色的永續減魂（如 身捧ぐ慈愛 メイプル）
+        if opp and stage_idx in [0, 1, 2] and opp.stage[stage_idx]:
+            opp_front = opp.stage[stage_idx]
+            soul -= getattr(opp_front, "temp_front_opp_soul_penalty", 0)
+            for ab in getattr(opp_front, "parsed_abilities", []):
+                if ab.get("category") == "CONT" and ab.get("effect") == "front_opp_soul_penalty":
+                    soul -= ab.get("penalty", 1)
         return max(0, soul)
 
     @staticmethod
@@ -507,7 +737,11 @@ class RuleEngine:
         if card.type in ["CHAR", "EVENT"]:
             if eff_lvl > len(p.level_zone) or card.cost > len(p.stock):
                 return False
-            if card.has_effect("CONT_IGNORE_SELF_COLOR") or card.id == "GA01/S131-115":
+            if (
+                card.has_effect("CONT_IGNORE_SELF_COLOR")
+                or card.id == "GA01/S131-115"
+                or any(ab.get("effect") == "ignore_color" and ab.get("target") == "all" for ab in getattr(card, "parsed_abilities", []))
+            ):
                 return True
             if eff_lvl >= 1:
                 colors = {c.color for c in p.level_zone + p.clock}
@@ -515,7 +749,14 @@ class RuleEngine:
                     return False
             return True
         elif card.type == "CX":
-            if any(c and (c.has_effect("CONT_IGNORE_CX_COLOR") or c.id == "BFR/S78-031") for c in p.stage):
+            if any(
+                c and (
+                    c.has_effect("CONT_IGNORE_CX_COLOR")
+                    or c.id == "BFR/S78-031"
+                    or any(ab.get("effect") == "ignore_color" for ab in getattr(c, "parsed_abilities", []))
+                )
+                for c in p.stage
+            ):
                 return True
             colors = {c.color for c in p.level_zone + p.clock}
             return card.color in colors
@@ -588,69 +829,143 @@ import ssl
 class ChineseEffectParser:
     """
     將 Weiß Schwarz 繁體中文效果文（同時相容「官方台版譯名：牌組/休息室/名場面/時鐘區/攻擊力/安可」
-    與「貓罐子 BottleNeko 譯名：山札/控室/高潮區/鐘區/戰力/再場」）自動編譯為標準化 AST 結構 (parsed_abilities)，
-    擺脫逐張寫死 if card.id == ... 的土法鍊鋼架構。
+    與「貓罐子 BottleNeko 譯名：山札/控室/高潮區/鐘區/戰力/再場/被放置到」）自動編譯為標準化 AST 結構 (parsed_abilities)，
+    支援多子句複合效果（永/自/起/反擊/事件/名場面），全面擺脫逐張寫死 if card.id == ... 的限制。
     """
 
     @classmethod
     def normalize_terms(cls, text: str) -> str:
-        """將貓罐子 (BottleNeko) 常見譯名統一正規化為模擬器內部標準術語，確保雙語系 100% 互通"""
+        """將貓罐子 (BottleNeko) 與各種中文譯名統一正規化為模擬器內部標準術語"""
         if not text:
             return ""
-        t = text
+        t = str(text)
         replacements = [
             ("山札頂", "牌組上方"),
             ("山札上方", "牌組上方"),
+            ("卡組頂", "牌組上方"),
+            ("卡組上方", "牌組上方"),
             ("山札底", "牌組下方"),
+            ("卡組底", "牌組下方"),
+            ("卡組下方", "牌組下方"),
             ("山札", "牌組"),
+            ("卡組", "牌組"),
             ("控室", "休息室"),
             ("控え室", "休息室"),
             ("高潮區", "名場面區"),
+            ("CX區", "名場面區"),
+            ("クライマックス置場", "名場面區"),
             ("高潮卡", "名場面"),
             ("高潮", "名場面"),
             ("クライマックス", "名場面"),
             ("鐘區", "時鐘區"),
             ("時計區", "時鐘區"),
+            ("時计区", "時鐘區"),
+            ("傷害區", "時鐘區"),
+            ("クロック置場", "時鐘區"),
             ("クロック", "時鐘區"),
+            ("庫存區", "能量區"),
+            ("ストック置場", "能量區"),
+            ("ストック", "能量區"),
+            ("記憶區", "回憶區"),
+            ("思出區", "回憶區"),
+            ("思い出置場", "回憶區"),
             ("戰力", "攻擊力"),
+            ("力量", "攻擊力"),
             ("パワー", "攻擊力"),
             ("再場", "安可"),
+            ("再登場", "安可"),
+            ("再演", "安可"),
             ("アンコール", "安可"),
+            ("被放置到", "被放到"),
             ("放置到", "放到"),
+            ("被置於", "被放到"),
             ("置於", "放到"),
             ("置入", "放到"),
+            ("放上", "放到"),
+            ("上場時", "被放到舞台時"),
+            ("登場到舞台時", "被放到舞台時"),
+            ("登場時", "被放到舞台時"),
             ("加入手牌", "加到手牌"),
             ("返回手牌", "回到手牌"),
+            ("返回牌組", "回到牌組"),
+            ("返回卡組", "回到牌組"),
             ("【起】【反擊】", "【起】 助太刀"),
+            ("【CXコンボ】", "【CX連動】"),
+            ("【高潮連動】", "【CX連動】"),
             ("靈魂值", "魂傷"),
             ("靈魂", "魂傷"),
             ("ソウル", "魂傷"),
+            ("魂+", "魂傷+"),
+            ("魂＋", "魂傷+"),
+            ("魂-", "魂傷-"),
+            ("魂－", "魂傷-"),
+            ("正面攻擊", "正打"),
+            ("側面攻擊", "側打"),
+            ("側擊", "側打"),
             ("給予對手", "給對手造成"),
+            ("給對手", "給對手造成"),
+            ("造成造成", "造成"),
             ("點傷害", "傷害"),
         ]
         for old_w, new_w in replacements:
             t = t.replace(old_w, new_w)
-        # 修正「1傷害」->「1點傷害」
+        # 統一將獨立的 CX（排除【CX連動】）轉為名場面
+        t = re.sub(r"(?<!【)CX(?!連動)", "名場面", t)
         t = re.sub(r"造成(\d+)傷害", r"造成\1點傷害", t)
         return t
 
     @classmethod
-    def parse_card_effects(cls, effect_text: str, card_type: str = "CHAR") -> list:
+    def infer_effect_tags(cls, effect_text: str, card_type: str = "CHAR", trigger: str = "NONE") -> list:
+        """根據效果文與卡片類型自動推導標準化效果標籤 (effects_tags)"""
+        tags = []
         if not effect_text:
+            return tags
+        norm = cls.normalize_terms(effect_text)
+        if card_type == "CX":
+            if ("角色全部" in norm or "全部的角色" in norm or "所有的角色" in norm) and "1000" in norm and "魂傷+1" in norm:
+                tags.append("CX_ALL_1000_1SOUL")
+            elif ("角色全部" in norm or "全部的角色" in norm or "所有的角色" in norm) and ("魂傷+2" in norm or "魂傷＋2" in norm):
+                tags.append("CX_ALL_2SOUL")
+            if trigger == "STANDBY" or "執行開機的效果" in norm or "開機：" in norm or "スタンバイ" in effect_text:
+                if "CX_STANDBY" not in tags:
+                    tags.append("CX_STANDBY")
+            if "抽1張" in norm and "2000" in norm:
+                tags.append("CX_DRAW1_2000_1SOUL")
+            elif "抽1張" in norm and "1000" in norm and ("角色全部" in norm or "全部的角色" in norm):
+                tags.append("CX_DRAW1_ALL_1000_1SOUL")
+            elif "放到能量區" in norm and ("手牌被放到名場面區時" in norm or "手牌放到名場面區時" in norm):
+                if "休息室" in norm:
+                    tags.append("CX_WR_STOCK1_ALL_1SOUL")
+                else:
+                    tags.append("CX_STOCK1_ALL_1SOUL")
+        return tags
+
+    @classmethod
+    def parse_card_effects(cls, effect_text: str, card_type: str = "CHAR") -> list:
+        if not effect_text or effect_text.strip() == "（無特殊效果）":
             return []
         norm_text = cls.normalize_terms(effect_text)
         abilities = []
-        raw_lines = [line.strip() for line in effect_text.replace("\r\n", "\n").split("\n") if line.strip()]
+        raw_lines = [line.strip() for line in str(effect_text).replace("\r\n", "\n").split("\n") if line.strip()]
         norm_lines = [line.strip() for line in norm_text.replace("\r\n", "\n").split("\n") if line.strip()]
 
         for idx, line in enumerate(norm_lines):
             orig_line = raw_lines[idx] if idx < len(raw_lines) else line
+            # 略過純觸發標記說明行（如 木門：當你判定出此卡時...）
+            if re.match(r"^(木門|開機|城門|箭頭|金磚|書|金袋|風|射擊|寶物|門|袋|電源|選擇)：", line):
+                continue
             if line.startswith("【永】") or line.startswith("[永]"):
-                abilities.extend(cls._parse_cont(line, orig_line))
+                abilities.extend(cls._parse_cont(line, orig_line, card_type))
             elif line.startswith("【自】") or line.startswith("[自]"):
-                abilities.extend(cls._parse_auto(line, orig_line))
+                abilities.extend(cls._parse_auto(line, orig_line, card_type))
             elif line.startswith("【起】") or line.startswith("[起]"):
-                abilities.extend(cls._parse_act(line, orig_line))
+                abilities.extend(cls._parse_act(line, orig_line, card_type))
+            elif line.startswith("【反擊】") or line.startswith("[反擊]"):
+                abilities.extend(cls._parse_counter_event(line, orig_line))
+            elif card_type == "EVENT":
+                abilities.extend(cls._parse_main_event(line, orig_line))
+            elif card_type == "CX":
+                abilities.extend(cls._parse_auto("【自】" + line, orig_line, card_type))
         return abilities
 
     @classmethod
@@ -663,13 +978,25 @@ class ChineseEffectParser:
             "rest_self": 0,
             "send_self_wr": False,
             "send_self_memory": False,
+            "return_self_hand": False,
+            "sac_other_stage": 0,
+            "send_cx_wr": False,
         }
-        m = re.search(r"[［\[\(（]([^］\]\)）]+)[］\]\)）]", line)
-        if not m:
-            return cost
-        cost_str = m.group(1)
-        m_stock = re.search(r"[\(（](\d+)[\)）]", cost_str)
-        if m_stock:
+        # 擷取能力前段括號內的代價（排除『...』引號內部授予能力之括號）
+        prefix_line = line.split("『")[0]
+        sq_matches = [m[0] or m[1] for m in re.findall(r"［([^］]+)］|\[([^\]]+)\]", prefix_line)]
+        if sq_matches:
+            cost_str = " ".join(sq_matches)
+        else:
+            p_matches = re.findall(r"[\(（]([^\)）]+)[\)）]", prefix_line)
+            if not p_matches:
+                return cost
+            cost_str = " ".join(p_matches)
+        m_stock = re.search(r"(?:^|[^\d])([1-9])(?:$|[^\d張枚點級])", cost_str)
+        m_paren_stock = re.search(r"[\(（](\d+)[\)）]", prefix_line)
+        if m_paren_stock:
+            cost["stock"] = int(m_paren_stock.group(1))
+        elif m_stock and f"({m_stock.group(1)})" in prefix_line:
             cost["stock"] = int(m_stock.group(1))
         elif "①" in cost_str:
             cost["stock"] = 1
@@ -677,15 +1004,21 @@ class ChineseEffectParser:
             cost["stock"] = 2
         elif "③" in cost_str:
             cost["stock"] = 3
+        elif "④" in cost_str:
+            cost["stock"] = 4
 
-        if "手牌1張名場面" in cost_str or "1張名場面從手牌放到休息室" in cost_str:
+        if "手牌1張名場面" in cost_str or "手牌的名場面1張" in cost_str or "1張名場面從手牌放到休息室" in cost_str:
             cost["discard_cx"] = 1
-        elif "手牌2張" in cost_str or "2張手牌" in cost_str:
-            cost["discard_hand"] = 2
-        elif "手牌1張" in cost_str or "1張手牌" in cost_str or "手牌的角色1張" in cost_str or "1張角色卡放到休息室" in cost_str:
-            cost["discard_hand"] = 1
+        else:
+            m_dh = re.search(r"手牌.*?(\d+)張.*?放到休息室", cost_str)
+            if not m_dh:
+                m_dh = re.search(r"(\d+)張手牌.*?放到休息室", cost_str)
+            if m_dh:
+                cost["discard_hand"] = int(m_dh.group(1))
+            elif "手牌放到休息室" in cost_str:
+                cost["discard_hand"] = 1
 
-        if "牌組上方1張放到時鐘區" in cost_str or "牌組上方1張卡放到時鐘區" in cost_str or "牌組上方1張放到傷害區" in cost_str:
+        if "牌組上方1張放到時鐘區" in cost_str or "牌組上方1張卡放到時鐘區" in cost_str:
             cost["clock_top_deck"] = 1
 
         if "此卡【橫置】" in cost_str or "將此卡【橫置】" in cost_str:
@@ -693,201 +1026,560 @@ class ChineseEffectParser:
         if "2張【橫置】" in cost_str:
             cost["rest_self"] = 2
 
-        if "此卡放到休息室" in cost_str:
+        if "此卡放到休息室" in cost_str or "手牌的此卡放到休息室" in cost_str:
             cost["send_self_wr"] = True
         if "此卡放到回憶區" in cost_str:
             cost["send_self_memory"] = True
+        if "此卡回到手牌" in cost_str:
+            cost["return_self_hand"] = True
+        if "其他的你的舞台的角色1張放到休息室" in cost_str or "其他的你的角色1張放到休息室" in cost_str:
+            cost["sac_other_stage"] = 1
+        if "名場面區的" in cost_str and "放到休息室" in cost_str:
+            cost["send_cx_wr"] = True
         return cost
 
     @classmethod
-    def _parse_cont(cls, line: str, orig_line: str) -> list:
+    def _parse_cont(cls, line: str, orig_line: str, card_type: str = "CHAR") -> list:
         res = []
-        # 應援 等級×X
+        my_turn_only = ("你的回合中" in line)
+        opp_turn_only = ("對手的回合中" in line)
+
+        # 0. 名場面全體 +1000/+1魂 或 +2魂
+        if ("你所有的角色" in line or "你全部的角色" in line or "你的角色全部" in line or "自己的角色全部" in line):
+            if "1000" in line and ("魂傷+1" in line or "魂傷＋1" in line):
+                res.append({"category": "CONT", "effect": "climax_1k1", "power": 1000, "soul": 1, "raw": orig_line})
+                return res
+            if "魂傷+2" in line or "魂傷＋2" in line:
+                res.append({"category": "CONT", "effect": "climax_2soul", "soul": 2, "raw": orig_line})
+                return res
+
+        # 1. 應援 等級×X (也可能同時帶有固定應援或等級+1)
         m_lv_assist = re.search(r"應援.*等級[×xX\*](\d+)", line)
         if m_lv_assist:
             res.append({"category": "CONT", "effect": "assist_level", "multiplier": int(m_lv_assist.group(1)), "raw": orig_line})
             return res
-        # 應援 固定數值 +X
+
+        # 2. 應援 固定數值 +X
         m_flat_assist = re.search(r"應援.*攻擊力[＋\+](\d+)", line)
         if m_flat_assist:
             res.append({"category": "CONT", "effect": "assist_flat", "power": int(m_flat_assist.group(1)), "raw": orig_line})
             return res
-        # 早出し：舞台4張以上 等級-1
-        if ("等級-1" in line or "等級－1" in line) and ("4張以上" in line or "四張以上" in line):
-            res.append({"category": "CONT", "effect": "early_play_stage_4", "level_mod": -1, "raw": orig_line})
-            return res
-        # 早出し：休息室名場面2張以下 等級-1
-        if ("等級-1" in line or "等級－1" in line) and ("2張以下" in line or "兩張以下" in line):
-            res.append({"category": "CONT", "effect": "early_play_wr_cx_2_or_less", "level_mod": -1, "raw": orig_line})
-            return res
-        # 早出し：休息室名場面6張以上 等級-1
-        if ("等級-1" in line or "等級－1" in line) and ("6張以上" in line or "六張以上" in line):
-            res.append({"category": "CONT", "effect": "early_play_wr_cx_6_or_more", "level_mod": -1, "raw": orig_line})
-            return res
-        # 不能側打
-        if "不能側打" in line or "不可側擊" in line or "不能側面攻擊" in line:
+
+        # 3. 早出し：手牌的此卡等級-1
+        if ("等級-1" in line or "等級－1" in line) and "手牌" in line:
+            if "4張以上" in line or "四張以上" in line:
+                res.append({"category": "CONT", "effect": "early_play_stage_4", "level_mod": -1, "raw": orig_line})
+                return res
+            if "2張以下" in line or "兩張以下" in line:
+                res.append({"category": "CONT", "effect": "early_play_wr_cx_2_or_less", "level_mod": -1, "raw": orig_line})
+                return res
+            if "6張以上" in line or "六張以上" in line:
+                res.append({"category": "CONT", "effect": "early_play_wr_cx_6_or_more", "level_mod": -1, "raw": orig_line})
+                return res
+            if "回憶區" in line:
+                m_mc = re.search(r"(\d+)張以上", line)
+                res.append({"category": "CONT", "effect": "early_play_memory_min", "min_count": int(m_mc.group(1)) if m_mc else 1, "level_mod": -1, "raw": orig_line})
+                return res
+
+        # 4. 負面規則限制 / 無視顏色 / 封鎖助太刀 / 正面對手減魂
+        if "不能側打" in line or "不可側打" in line:
             res.append({"category": "CONT", "effect": "cannot_side_attack", "raw": orig_line})
-        # 無視顏色條件
-        if "無需滿足顏色條件" in line or "無視顏色條件" in line or "不需滿足顏色條件" in line:
+        if "不能正打" in line or "不可正打" in line:
+            res.append({"category": "CONT", "effect": "cannot_front_attack", "raw": orig_line})
+        if "不能移動" in line:
+            res.append({"category": "CONT", "effect": "cannot_move", "raw": orig_line})
+        if "不能從手牌使用『助太刀』" in line or "不能使用『助太刀』" in line:
+            res.append({"category": "CONT", "effect": "cannot_play_backup", "raw": orig_line})
+        if "無需滿足顏色條件" in line or "無視顏色條件" in line or "不需滿足顏色條件" in line or "無視顏色限制" in line:
             target = "climax" if "名場面" in line else "all"
             res.append({"category": "CONT", "effect": "ignore_color", "target": target, "raw": orig_line})
-        # 每有1張其他的角色 +X
-        m_per = re.search(r"其他的你的.*每有1張.*攻擊力[＋\+](\d+)", line)
-        if not m_per:
-            m_per = re.search(r"每有1張其他的你的.*攻擊力[＋\+](\d+)", line)
+        m_f_soul = re.search(r"此卡正面的角色.*魂傷[－\-](\d+)", line)
+        if m_f_soul:
+            res.append({"category": "CONT", "effect": "front_opp_soul_penalty", "penalty": int(m_f_soul.group(1)), "raw": orig_line})
+
+        # 5. 前列中央其他角色加成（如 BFR/S78-056 內心的表裏 蜜伊：其他的你的前列中央的等級0以下的角色，攻擊力+1000）
+        if "前列中央" in line and ("其他的你的" in line or "你的前列中央" in line) and "此卡的" not in line:
+            m_p = re.search(r"攻擊力[＋\+](\d+)", line)
+            m_s = re.search(r"魂傷[＋\+](\d+)", line)
+            m_lv = re.search(r"等級(\d+)以下", line)
+            if m_p or m_s:
+                res.append({
+                    "category": "CONT",
+                    "effect": "front_center_other_buff",
+                    "power": int(m_p.group(1)) if m_p else 0,
+                    "soul": int(m_s.group(1)) if m_s else 0,
+                    "max_level": int(m_lv.group(1)) if m_lv else 99,
+                    "my_turn_only": my_turn_only,
+                    "opp_turn_only": opp_turn_only,
+                    "raw": orig_line,
+                })
+                return res
+
+        # 6. 指定卡名其他角色加成（如 其他的你的「...」全部，攻擊力+X）
+        if "其他的你的" in line and "「" in line and "此卡的" not in line:
+            m_name = re.search(r"「([^」]+)」", line)
+            m_p = re.search(r"攻擊力[＋\+](\d+)", line)
+            m_s = re.search(r"魂傷[＋\+](\d+)", line)
+            if m_name and (m_p or m_s):
+                res.append({
+                    "category": "CONT",
+                    "effect": "named_other_buff",
+                    "target_name": m_name.group(1),
+                    "power": int(m_p.group(1)) if m_p else 0,
+                    "soul": int(m_s.group(1)) if m_s else 0,
+                    "my_turn_only": my_turn_only,
+                    "opp_turn_only": opp_turn_only,
+                    "raw": orig_line,
+                })
+                return res
+
+        # 7. 全體其他角色固定加成（其他的你的...角色全部，攻擊力+X）
+        if "其他的你的" in line and "此卡的" not in line and "每有1張" not in line:
+            m_all = re.search(r"攻擊力[＋\+](\d+)", line)
+            m_s = re.search(r"魂傷[＋\+](\d+)", line)
+            m_lv = re.search(r"等級(\d+)以下", line)
+            if m_all or m_s:
+                res.append({
+                    "category": "CONT",
+                    "effect": "global_other_buff",
+                    "power": int(m_all.group(1)) if m_all else 0,
+                    "soul": int(m_s.group(1)) if m_s else 0,
+                    "max_level": int(m_lv.group(1)) if m_lv else 99,
+                    "front_only": ("前列" in line),
+                    "my_turn_only": my_turn_only,
+                    "opp_turn_only": opp_turn_only,
+                    "raw": orig_line,
+                })
+                return res
+
+        # 8. 自身動態比例加成（每有1張對手後列/前列、每有1張標記、每有1張其他我方角色）
+        m_opp_back = re.search(r"對手的後列.*每有1張.*攻擊力[＋\+](\d+)", line)
+        if m_opp_back:
+            res.append({"category": "CONT", "effect": "per_opp_backrow_buff", "power": int(m_opp_back.group(1)), "my_turn_only": my_turn_only, "opp_turn_only": opp_turn_only, "raw": orig_line})
+            return res
+
+        m_opp_front = re.search(r"對手的前列.*每有1張.*攻擊力[＋\+](\d+)", line)
+        if m_opp_front:
+            res.append({"category": "CONT", "effect": "per_opp_frontrow_buff", "power": int(m_opp_front.group(1)), "my_turn_only": my_turn_only, "opp_turn_only": opp_turn_only, "raw": orig_line})
+            return res
+
+        m_mk_per = re.search(r"標記每有1張.*攻擊力[＋\+](\d+)", line)
+        if m_mk_per:
+            m_lv_b = re.search(r"等級[＋\+](\d+)", line)
+            res.append({"category": "CONT", "effect": "per_marker_buff", "power": int(m_mk_per.group(1)), "level_mod": int(m_lv_b.group(1)) if m_lv_b else 0, "raw": orig_line})
+            return res
+
+        m_per = re.search(r"其他的你的.*每有1張.*攻擊力[＋\+](\d+)", line) or re.search(r"每有1張其他的你的.*攻擊力[＋\+](\d+)", line)
         if m_per:
             res.append({
                 "category": "CONT",
                 "effect": "per_other_char_buff",
                 "power": int(m_per.group(1)),
-                "my_turn_only": ("你的回合中" in line),
+                "my_turn_only": my_turn_only,
+                "opp_turn_only": opp_turn_only,
                 "raw": orig_line,
             })
             return res
-        # 其他的角色N張以上 +X 或 全部角色均為《...》 +X
-        m_cnt = re.search(r"其他的你的.*(\d+)張以上.*攻擊力[＋\+](\d+)", line)
-        if m_cnt:
-            res.append({
-                "category": "CONT",
-                "effect": "other_char_count_buff",
-                "min_count": int(m_cnt.group(1)),
-                "power": int(m_cnt.group(2)),
-                "my_turn_only": ("你的回合中" in line),
-                "raw": orig_line,
-            })
-            return res
-        m_all_trait = re.search(r"你全部的角色.*攻擊力[＋\+](\d+)", line)
-        if m_all_trait:
-            res.append({
-                "category": "CONT",
-                "effect": "other_char_count_buff",
-                "min_count": 1,
-                "power": int(m_all_trait.group(1)),
-                "my_turn_only": ("你的回合中" in line),
-                "raw": orig_line,
-            })
+
+        # 9. 自身條件式固定加成（標記存在 / 手牌張數 / 能量張數 / 回憶區 / 經驗 / 其他角色張數 / 自回合 / 對手回合）
+        m_self_pwr = re.search(r"此卡的?攻擊力[＋\+](\d+)", line)
+        if m_self_pwr:
+            pwr_val = int(m_self_pwr.group(1))
+            m_lv_b = re.search(r"此卡的?等級[＋\+](\d+)", line)
+            lv_val = int(m_lv_b.group(1)) if m_lv_b else 0
+            m_s_b = re.search(r"此卡的?魂傷[＋\+](\d+)", line)
+            soul_val = int(m_s_b.group(1)) if m_s_b else 0
+
+            if "下方有標記" in line:
+                res.append({"category": "CONT", "effect": "has_marker_buff", "power": pwr_val, "level_mod": lv_val, "soul": soul_val, "my_turn_only": my_turn_only, "opp_turn_only": opp_turn_only, "raw": orig_line})
+            elif "手牌" in line and re.search(r"(\d+)張以上", line):
+                mh = re.search(r"(\d+)張以上", line)
+                res.append({"category": "CONT", "effect": "hand_min_buff", "min_hand": int(mh.group(1)), "power": pwr_val, "level_mod": lv_val, "soul": soul_val, "my_turn_only": my_turn_only, "opp_turn_only": opp_turn_only, "raw": orig_line})
+            elif "能量區" in line and re.search(r"(\d+)張以上", line):
+                ms = re.search(r"(\d+)張以上", line)
+                res.append({"category": "CONT", "effect": "stock_min_buff", "min_stock": int(ms.group(1)), "power": pwr_val, "level_mod": lv_val, "soul": soul_val, "my_turn_only": my_turn_only, "opp_turn_only": opp_turn_only, "raw": orig_line})
+            elif "回憶區" in line:
+                res.append({"category": "CONT", "effect": "memory_has_buff", "power": pwr_val, "level_mod": lv_val, "soul": soul_val, "my_turn_only": my_turn_only, "opp_turn_only": opp_turn_only, "raw": orig_line})
+            elif "經驗" in line and re.search(r"(\d+)以上", line):
+                me = re.search(r"(\d+)以上", line)
+                res.append({"category": "CONT", "effect": "experience_buff", "min_exp": int(me.group(1)), "power": pwr_val, "level_mod": lv_val, "soul": soul_val, "my_turn_only": my_turn_only, "opp_turn_only": opp_turn_only, "raw": orig_line})
+            elif "其他的你的" in line and re.search(r"(\d+)張以上", line):
+                mc = re.search(r"(\d+)張以上", line)
+                res.append({"category": "CONT", "effect": "other_char_count_buff", "min_count": int(mc.group(1)), "power": pwr_val, "level_mod": lv_val, "soul": soul_val, "my_turn_only": my_turn_only, "opp_turn_only": opp_turn_only, "raw": orig_line})
+            elif "其他的你的" in line and "存在的話" in line:
+                res.append({"category": "CONT", "effect": "other_char_count_buff", "min_count": 1, "power": pwr_val, "level_mod": lv_val, "soul": soul_val, "my_turn_only": my_turn_only, "opp_turn_only": opp_turn_only, "raw": orig_line})
+            elif "其他的你的" in line and re.search(r"(\d+)張以下", line):
+                mc = re.search(r"(\d+)張以下", line)
+                res.append({"category": "CONT", "effect": "other_char_max_buff", "max_count": int(mc.group(1)), "power": pwr_val, "level_mod": lv_val, "soul": soul_val, "my_turn_only": my_turn_only, "opp_turn_only": opp_turn_only, "raw": orig_line})
+            elif "你的角色全部" in line or "你全部的角色" in line:
+                res.append({"category": "CONT", "effect": "other_char_count_buff", "min_count": 1, "power": pwr_val, "level_mod": lv_val, "soul": soul_val, "my_turn_only": my_turn_only, "opp_turn_only": opp_turn_only, "raw": orig_line})
+            elif opp_turn_only:
+                res.append({"category": "CONT", "effect": "opp_turn_self_buff", "power": pwr_val, "level_mod": lv_val, "soul": soul_val, "raw": orig_line})
+            elif my_turn_only:
+                res.append({"category": "CONT", "effect": "my_turn_self_buff", "power": pwr_val, "level_mod": lv_val, "soul": soul_val, "raw": orig_line})
+            else:
+                res.append({"category": "CONT", "effect": "flat_self_buff", "power": pwr_val, "level_mod": lv_val, "soul": soul_val, "raw": orig_line})
+
             if "安可" in line and "手牌" in line:
                 res.append({"category": "CONT", "effect": "hand_encore", "raw": orig_line})
             return res
-        # 全體其他角色 +X
-        m_all = re.search(r"其他的你的.*角色全部，攻擊力[＋\+](\d+)", line)
-        if m_all:
-            res.append({
-                "category": "CONT",
-                "effect": "global_other_buff",
-                "power": int(m_all.group(1)),
-                "my_turn_only": ("你的回合中" in line),
-                "raw": orig_line,
-            })
-            return res
-        # 你的回合中 此卡攻擊力+X
-        m_my = re.search(r"你的回合中.*此卡的攻擊力[＋\+](\d+)", line)
-        if m_my:
-            res.append({"category": "CONT", "effect": "my_turn_self_buff", "power": int(m_my.group(1)), "raw": orig_line})
-            return res
-        # 名場面全體 +1000/+1魂
-        if ("你所有的角色" in line or "你全部的角色" in line or "你的角色全部" in line) and "1000" in line and ("魂傷+1" in line or "魂傷＋1" in line or "靈魂+1" in line or "靈魂＋1" in line):
-            res.append({"category": "CONT", "effect": "climax_1k1", "power": 1000, "soul": 1, "raw": orig_line})
-            return res
-        # 名場面全體 +2魂
-        if ("你所有的角色" in line or "你全部的角色" in line or "你的角色全部" in line) and ("魂傷+2" in line or "魂傷＋2" in line or "靈魂+2" in line or "靈魂＋2" in line):
-            res.append({"category": "CONT", "effect": "climax_2soul", "soul": 2, "raw": orig_line})
-            return res
+
         return res
 
     @classmethod
-    def _parse_auto(cls, line: str, orig_line: str) -> list:
+    def _extract_actions(cls, line: str, timing: str = "ON_PLAY", cost: dict = None) -> list:
+        """從正規化後的效果句子中提取所有可執行動作 (actions)，支援單句複合多重效果"""
+        actions = []
+        cost = cost or {}
+        # 去除前半段括號代價說明，避免將代價誤判為效果動作
+        body = re.sub(r"^[【\[](?:自|起|永|反擊)[】\]]\s*(?:【CX連動】\s*)?(?:回合1次\s*)?(?:記憶\s*)?(?:經驗\s*)?(?:絆[／/][^［\[]+\s*)?[［\[\(（][^］\]\)）]+[］\]\)）]", "", line)
+
+        # 0. 開機效果 (Standby)
+        if "執行開機的效果" in body:
+            actions.append({"action": "standby_deploy"})
+            return actions
+
+        # 1. 登場或效果回血 (Heal to WR / Stock)
+        if ("時鐘區上方1張" in body or "時鐘區上方最多1張" in body or "時鐘區頂1張" in body or "時鐘區最多1張" in body or "時鐘區最上1張" in body or "回復1點" in body):
+            if "放到能量區" in body:
+                actions.append({"action": "heal_to_stock", "amount": 1})
+            elif "放到休息室" in body or "回復1點" in body:
+                actions.append({"action": "heal_to_wr", "amount": 1})
+
+        # 2. 絆 (Bond) 回收指定卡名
+        m_bond = re.search(r"絆[／/]「([^」]+)」", line)
+        if m_bond:
+            actions.append({"action": "salvage_wr", "target_type": "Character", "target_name": m_bond.group(1), "count": 1})
+
+        # 3. 看牌組頂 X 張選 Y 張加手牌，其餘放休息室
+        m_look = re.search(r"(?:看.*?牌組上方|牌組上方看)最多(\d+)張.*?選.*?最多(\d+)張.*?(?:加到手牌|回到手牌)", body)
+        if not m_look:
+            m_look = re.search(r"(?:看.*?牌組上方|牌組上方看)(\d+)張.*?選.*?最多(\d+)張.*?(?:加到手牌|回到手牌)", body)
+        if m_look:
+            t_type = "CHAR"
+            if "名場面" in body and "角色" not in body:
+                t_type = "CX"
+            elif "事件" in body and "角色" not in body:
+                t_type = "EVENT"
+            elif "等級1以上" in body:
+                t_type = "LV1_PLUS"
+            elif "選最多1張卡" in body or "選擇卡片" in body:
+                t_type = "ANY"
+            then_disc = 1 if ("加到手牌的話" in body and "手牌1張" in body and "放到休息室" in body) else 0
+            actions.append({
+                "action": "look_top_add_hand",
+                "look": int(m_look.group(1)),
+                "pick": int(m_look.group(2)),
+                "target_type": t_type,
+                "then_discard": then_disc,
+            })
+
+        # 4. 占卜看牌組頂 X 張按任意順序放回牌組頂 (Scry)
+        if not m_look:
+            m_scry = re.search(r"看.*?牌組上方最多(\d+)張.*?(?:任意順序|放回牌組上方|放到牌組上方)", body)
+            if m_scry:
+                actions.append({"action": "scry_top", "count": int(m_scry.group(1))})
+
+        # 5. 公開牌組頂 1 張，回收休息室 Lv.X 以下角色 (Dokitema) 或判定加手/放標記/彈回對手
+        if "牌組上方1張公開" in body or "公開自己牌組上方1張" in body:
+            if "等級X以下" in body and "休息室" in body:
+                actions.append({"action": "dokitema_salvage"})
+            elif "作為標記" in body:
+                actions.append({"action": "top_check_marker", "min_level": 1 if "等級是1以上" in body else 0})
+            elif "選擇對手" in body and "回到牌組" in body:
+                actions.append({"action": "top_check_bounce_opp_deck"})
+            elif "加到手牌" in body or "回到手牌" in body:
+                then_disc = 1 if ("手牌1張" in body and "放到休息室" in body) else 0
+                actions.append({"action": "top_check_add_hand", "then_discard": then_disc})
+
+        # 6. 削自己牌組頂 N 張，回收等級合計 X 以下角色（如 BFR/S78-080 二人の時間 サリー）
+        m_mill_sal = re.search(r"牌組上方(\d+)張，?放到休息室.*?休息室.*?等級X以下", body)
+        if m_mill_sal:
+            actions.append({"action": "mill_salvage_level_sum", "mill_count": int(m_mill_sal.group(1))})
+
+        # 7. 從牌組檢索卡片加入手牌
+        if not m_look and ("從自己的牌組" in body or "從牌組" in body or "選自己牌組" in body) and ("加到手牌" in body or "回到手牌" in body):
+            m_lv_max = re.search(r"等級(\d+)以下", body)
+            t_type = "CHAR_OR_CX" if ("角色或名場面" in body) else ("CX" if ("名場面" in body and "角色" not in body) else "CHAR")
+            actions.append({
+                "action": "search_deck_char",
+                "count": 1,
+                "max_level": int(m_lv_max.group(1)) if m_lv_max else 99,
+                "target_type": t_type,
+            })
+
+        # 8. 從休息室回收角色或名場面回手牌
+        if not m_look and not m_bond and "等級X以下" not in body and ("休息室" in body) and ("回到手牌" in body or "加到手牌" in body):
+            after_trigger = body.split("時，")[-1] if "時，" in body else body
+            if any(k in after_trigger for k in ("休息室的", "從自己的休息室", "從休息室", "選自己休息室")):
+                t_type = "Climax" if ("名場面" in after_trigger and "角色" not in after_trigger) else "Character"
+                m_lv_max = re.search(r"等級(\d+)以下", after_trigger)
+                actions.append({
+                    "action": "salvage_wr",
+                    "target_type": t_type,
+                    "max_level": int(m_lv_max.group(1)) if m_lv_max else 99,
+                    "count": 1,
+                })
+
+        # 9. 從休息室選卡放到能量區（如 決鬥系統 BFR/S78-109、聖女米瑟莉、大物喰らい マイ＆ユイ）
+        if "休息室" in body and "放到能量區" in body:
+            after_trigger = body.split("時，")[-1] if "時，" in body else body
+            if "休息室" in after_trigger and "放到能量區" in after_trigger:
+                col_f = None
+                for c_zh in ("藍", "紅", "綠", "黃"):
+                    if f"{c_zh}色" in after_trigger:
+                        col_f = c_zh
+                        break
+                actions.append({
+                    "action": "charge_stock_wr",
+                    "color": col_f,
+                    "char_only": ("角色" in after_trigger and "卡片" not in after_trigger),
+                    "count": 1,
+                })
+
+        # 10. 將標記放到能量區 / 從牌組頂充能
+        if "標記1張放到能量區" in body or "標記放到能量區" in body:
+            actions.append({"action": "marker_to_stock", "count": 1})
+        elif "對手" not in body and "時鐘區" not in body:
+            m_stock = re.search(r"牌組上方(?:最多)?(\d+)張.*?放到能量區", body)
+            if m_stock:
+                actions.append({"action": "charge_stock_top", "count": int(m_stock.group(1))})
+
+        # 11. 魔石 / 機械神：對手能量全部洗回或放休息室並重填相同張數
+        if ("對手的能量" in body or "對手將自己的能量" in body or "對手能量區所有" in body) and "相同張數放到能量區" in body:
+            actions.append({"action": "reshuffle_opp_stock"})
+
+        # 12. 抽牌與棄牌 (Draw / Loot)
+        m_draw = re.search(r"抽(?:最多)?(\d+)張", body)
+        if m_draw:
+            actions.append({"action": "draw", "count": int(m_draw.group(1))})
+            after_draw = body.split("抽")[1]
+            if "手牌" in after_draw and "放到休息室" in after_draw:
+                actions.append({"action": "discard_hand", "count": 1})
+
+        # 13. 削對手牌組底/頂燒血 或 翻自己頂燒等級+1傷害
+        m_mill_opp_burn = re.search(r"對手的?牌組(?:下方|上方)(\d+)張，?放到休息室.*?給對手造成X點?傷害", body)
+        if m_mill_opp_burn:
+            actions.append({"action": "mill_opp_bottom_burn_cx", "count": int(m_mill_opp_burn.group(1))})
+        elif "牌組上方1張" in body and "放到休息室" in body and "給對手造成X" in body and ("等級+1" in body or "等級＋1" in body):
+            actions.append({"action": "mill_self_top_burn_lv1"})
+
+        # 14. 直接燒血（支援單句多段燒血，如給對手1點傷害，給對手2點傷害，給對手3點傷害）
+        for m_b in re.finditer(r"給對手造成(\d+)點?傷害", body):
+            actions.append({"action": "burn", "damage": int(m_b.group(1))})
+
+        # 15. 擊倒對手踢時鐘 / 踢回憶 / 踢能量 / 踢牌組底 / 彈回手牌
+        if timing == "ON_REVERSE_OPP":
+            after_t = body.split("時，")[-1] if "時，" in body else body
+            if "放到時鐘區" in after_t:
+                actions.append({"action": "kick_opp_to_clock"})
+            elif "放到回憶區" in after_t and "此卡" not in after_t:
+                actions.append({"action": "kick_opp_to_memory"})
+            elif "放到能量區" in after_t and "休息室" not in after_t and "牌組" not in after_t:
+                actions.append({"action": "kick_opp_to_stock"})
+            elif "放到牌組下方" in after_t:
+                actions.append({"action": "kick_opp_to_deck_bottom"})
+
+        # 16. 被倒置時相殺 (Reversal Bomb)
+        if timing == "ON_REVERSED":
+            m_rev_lv = re.search(r"等級(\d+)以下", body)
+            m_rev_cost = re.search(r"費用(\d+)以下", body)
+            anti_early = ("比對手玩家等級還要高" in body or "比對手的等級高" in body)
+            if "將那張角色【倒置】" in body or "將那個角色【倒置】" in body:
+                actions.append({
+                    "action": "reversal_bomb",
+                    "max_level": int(m_rev_lv.group(1)) if m_rev_lv else None,
+                    "max_cost": int(m_rev_cost.group(1)) if m_rev_cost else None,
+                    "anti_early": anti_early,
+                })
+            elif "放到時鐘區" in body and "那" in body:
+                actions.append({"action": "reversal_clock_bomb", "max_level": int(m_rev_lv.group(1)) if m_rev_lv else None})
+            elif "放到能量區" in body and "那" in body:
+                actions.append({"action": "reversal_stock_bomb", "anti_early": anti_early})
+            elif "此卡【橫置】" in body:
+                actions.append({"action": "rest_self_survive"})
+
+        # 17. 對手角色減益 / 退場 / 彈回手牌或牌組
+        if "選擇對手" in body or "選對手" in body:
+            m_debuff_p = re.search(r"攻擊力[－\-](\d+)", body)
+            m_debuff_lv = re.search(r"等級[－\-](\d+)", body)
+            m_debuff_s = re.search(r"魂傷[－\-](\d+)", body)
+            if m_debuff_p or m_debuff_lv or m_debuff_s:
+                actions.append({
+                    "action": "debuff_opp",
+                    "power": int(m_debuff_p.group(1)) if m_debuff_p else 0,
+                    "level": int(m_debuff_lv.group(1)) if m_debuff_lv else 0,
+                    "soul": int(m_debuff_s.group(1)) if m_debuff_s else 0,
+                    "front_only": ("對手前列" in body or "對手的前列" in body),
+                })
+            elif "回到手牌" in body and "休息室" not in body:
+                actions.append({"action": "bounce_opp_hand"})
+            elif "放到休息室" in body and ("費用0以下" in body or "等級0以下" in body):
+                actions.append({"action": "bomb_opp_front_low"})
+
+        # 18. 移動至空位 (Runner)
+        if "移動到" in body and "沒有角色的格子" in body:
+            z = "back" if "後列" in body else ("front" if "前列" in body else "any")
+            actions.append({"action": "move_to_empty_slot", "zone": z})
+
+        # 19. 正置 (Restand)
+        if "【正置】" in body:
+            if "選擇其他的" in body or "選其他的" in body:
+                actions.append({"action": "stand_ally", "other_only": True})
+            else:
+                actions.append({"action": "stand_self"})
+
+        # 20. 賦予本回合特殊能力（擊倒踢鐘 / 擊倒回收 / 正面減魂 / 不會倒置）
+        if "獲得以下能力" in body or "給予以下能力" in body or "得以下能力" in body:
+            granted_part = body.split("能力")[-1]
+            if "戰鬥對手【倒置】時" in granted_part and "時鐘區" in granted_part:
+                actions.append({"action": "grant_clock_kick"})
+            if "戰鬥對手【倒置】時" in granted_part and "休息室" in granted_part and ("回到手牌" in granted_part or "加到手牌" in granted_part):
+                actions.append({"action": "grant_salvage_on_reverse"})
+            if "正面的角色" in granted_part and "魂傷-" in granted_part:
+                actions.append({"action": "grant_front_soul_penalty", "penalty": 1})
+        if "不會【倒置】" in body:
+            actions.append({"action": "grant_immune_reverse"})
+
+        # 21. 攻擊力 / 魂傷 / 等級 增加（全體我方 / 指定友軍 / 自身 / 動態比例）
+        # 排除已由『獲得以下能力』內部子句處理的數字
+        main_clause = body.split("『")[0].split("「【")[0]
+        m_scale_p = re.search(r"攻擊力[＋\+]X.*?X等於(對手|你的).*?×(\d+)", main_clause)
+        if m_scale_p:
+            actions.append({
+                "action": "buff_self_scaling",
+                "target_side": "opp" if "對手" in m_scale_p.group(1) else "self",
+                "multiplier": int(m_scale_p.group(2)),
+            })
+        else:
+            m_pwr = re.search(r"攻擊力[＋\+](\d+)", main_clause)
+            m_soul = re.search(r"魂傷[＋\+](\d+)", main_clause)
+            m_lvl = re.search(r"(?<!那張卡)(?<!那張卡片)等級[＋\+](\d+)", main_clause.split("X等於")[0])
+            pwr_v = int(m_pwr.group(1)) if m_pwr else 0
+            soul_v = int(m_soul.group(1)) if m_soul else 0
+            lvl_v = int(m_lvl.group(1)) if m_lvl else 0
+            if pwr_v > 0 or soul_v > 0 or lvl_v > 0:
+                if "自己的角色全部" in main_clause or "你的角色全部" in main_clause or "你所有的角色" in main_clause or "你全部的角色" in main_clause:
+                    actions.append({"action": "buff_all_allies", "power": pwr_v, "soul": soul_v, "level": lvl_v})
+                elif "選擇自己的" in main_clause or "選自己" in main_clause or "選擇其他的" in main_clause or "選擇你" in main_clause:
+                    actions.append({
+                        "action": "buff_ally",
+                        "power": pwr_v,
+                        "soul": soul_v,
+                        "level": lvl_v,
+                        "other_only": ("其他的" in main_clause),
+                    })
+                else:
+                    actions.append({
+                        "action": "buff_self",
+                        "power": pwr_v,
+                        "soul": soul_v,
+                        "level": lvl_v,
+                    })
+
+        return actions
+
+    @classmethod
+    def _parse_auto(cls, line: str, orig_line: str, card_type: str = "CHAR") -> list:
         res = []
         cost = cls._parse_cost(line)
-        is_cx_combo = ("【CX連動】" in line or "CX連動" in line or "高潮連動" in line)
+
+        # 優先處理安可 / 再登場能力
+        if "安可" in line and ("手牌" in line or cost.get("discard_hand", 0) > 0 or cost.get("clock_top_deck", 0) > 0):
+            if cost.get("stock", 0) >= 1 and cost.get("discard_hand", 0) >= 1:
+                res.append({"category": "CONT", "effect": "stock1_hand1_encore", "raw": orig_line})
+            elif cost.get("clock_top_deck", 0) >= 1:
+                res.append({"category": "CONT", "effect": "clock_encore", "raw": orig_line})
+            else:
+                res.append({"category": "CONT", "effect": "hand_encore", "raw": orig_line})
+            return res
+
+        # 名場面卡自身的【自】登場效果（如 決鬥系統 BFR/S78-109 等）
+        if card_type == "CX":
+            if "執行開機的效果" in line:
+                res.append({"category": "AUTO", "timing": "ON_PLAY", "effect": "climax_standby", "cost": cost, "actions": [{"action": "standby_deploy"}], "raw": orig_line})
+                return res
+            actions = cls._extract_actions(line, timing="ON_PLAY", cost=cost)
+            if actions:
+                res.append({
+                    "category": "AUTO",
+                    "timing": "ON_PLAY",
+                    "cost": cost,
+                    "is_cx_combo": False,
+                    "cx_name": None,
+                    "actions": actions,
+                    "raw": orig_line,
+                })
+            return res
+
+        is_cx_combo = ("【CX連動】" in line or "CX連動" in line or "高潮連動" in line or "名場面區有「" in line or "名場面區存在「" in line or "名場面區放上「" in line or "名場面區放到「" in line)
         cx_name = None
-        m_cx = re.search(r"「([^」]+)」", line)
-        if is_cx_combo and m_cx:
-            cx_name = m_cx.group(1)
+        # 尋找名場面名稱引號（排除絆或角色自身名稱引號）
+        quotes = re.findall(r"「([^」]+)」", line.split("『")[0])
+        if is_cx_combo and quotes:
+            # 優先選在「名場面區」附近的引號名稱
+            m_cx_near = re.search(r"(?:名場面區|當)[^「]*「([^」]+)」", line)
+            cx_name = m_cx_near.group(1) if m_cx_near else quotes[0]
 
         timing = "OTHER"
-        if "從手牌被放到舞台時" in line or "從手牌放到舞台時" in line or "登場時" in line:
-            timing = "ON_PLAY"
+        atk_subtype = None
+        req_entered_this_turn = False
+
+        if "使用此卡的『助太刀』時" in line or "使用『助太刀』時" in line:
+            timing = "ON_BACKUP_USED"
+        elif "對手的攻擊階段開始時" in line:
+            timing = "ON_OPP_ATK_PHASE_START"
+        elif "攻擊階段開始時" in line:
+            timing = "ON_ATK_PHASE_START"
+        elif "安可步驟開始時" in line or "安可階段開始時" in line:
+            timing = "ON_ENCORE_STEP_START"
+        elif "主要階段開始時" in line:
+            timing = "ON_MAIN_PHASE_START"
+        elif "使用【起】" in line:
+            timing = "ON_ACT_USED"
+        elif "造成的傷害被取消時" in line:
+            timing = "ON_DAMAGE_CANCEL"
+            if "被放到舞台的回合中" in line:
+                req_entered_this_turn = True
+        elif "觸發" in line and ("名場面" in line or "判定" in line or "潮" in orig_line):
+            timing = "ON_TRIGGER_CX"
+        elif ("名場面" in line or "「" in line) and ("被放到名場面區時" in line or "放到名場面區時" in line or "被放到你的名場面區時" in line or "放到你的名場面區時" in line):
+            timing = "ON_CX_PLACED"
+        elif "被放到舞台的回合中" in line and "攻擊時" in line:
+            timing = "ON_ATTACK"
+            req_entered_this_turn = True
+        elif "其他的你的" in line and "戰鬥對手【倒置】時" in line:
+            timing = "ON_OTHER_REVERSE_OPP"
+        elif "其他的你的" in line and "【倒置】時" in line:
+            timing = "ON_OTHER_REVERSED"
+        elif re.search(r"其他的你的[^，。]*角色攻擊時", line):
+            timing = "ON_OTHER_ATTACK"
+        elif "此卡直接攻擊時" in line:
+            timing = "ON_ATTACK"
+            atk_subtype = "DIRECT"
+        elif "此卡正打時" in line:
+            timing = "ON_ATTACK"
+            atk_subtype = "FRONT"
         elif "此卡攻擊時" in line or "這張卡攻擊時" in line:
             timing = "ON_ATTACK"
+        elif "此卡被正打時" in line or "對手的角色直接攻擊時" in line:
+            timing = "ON_BEING_ATTACKED"
         elif "戰鬥對手【倒置】時" in line:
             timing = "ON_REVERSE_OPP"
         elif "此卡【倒置】時" in line:
             timing = "ON_REVERSED"
         elif "從舞台被放到休息室時" in line or "從舞台放到休息室時" in line:
             timing = "ON_STAGE_TO_WR"
+        elif "從手牌被放到舞台時" in line or "從手牌放到舞台時" in line or "被放到舞台時" in line:
+            timing = "ON_PLAY"
 
-        actions = []
-        # 1. 登場回血
-        if "時鐘區上方1張放到休息室" in line or "時鐘區頂1張放到休息室" in line or "時鐘區最多1張放到休息室" in line or "回復1點" in line or "時鐘區頂1張卡放到休息室" in line:
-            actions.append({"action": "heal_to_wr", "amount": 1})
-        elif "時鐘區上方1張放到能量區" in line or "時鐘區最多1張放到能量區" in line:
-            actions.append({"action": "heal_to_stock", "amount": 1})
-
-        # 2. 看牌組頂 X 張選 Y 張加手牌
-        m_look = re.search(r"看.*牌組上方最多(\d+)張.*選.*最多(\d+)張.*加到手牌", line)
-        if m_look:
-            actions.append({"action": "look_top_add_hand", "look": int(m_look.group(1)), "pick": int(m_look.group(2))})
-
-        # 3. 牌組檢索角色加手牌
-        if not m_look and ("從自己的牌組選擇" in line or "從牌組選擇" in line or "從自己牌組找" in line) and "加到手牌" in line:
-            actions.append({"action": "search_deck_char", "count": 1})
-
-        # 4. 休息室回收角色或名場面加手牌
-        if ("從自己的休息室選擇" in line or "選擇自己休息室的" in line) and ("回到手牌" in line or "加到手牌" in line):
-            target_type = "Climax" if "名場面" in line and "角色" not in line else "Character"
-            actions.append({"action": "salvage_wr", "target_type": target_type, "count": 1})
-
-        # 5. 抽牌 / 濾牌
-        m_draw = re.search(r"抽(\d+)張", line)
-        if m_draw:
-            actions.append({"action": "draw", "count": int(m_draw.group(1))})
-            if "手牌放到休息室" in line.split("抽")[1] or "1張手牌放到休息室" in line.split("抽")[1]:
-                actions.append({"action": "discard_hand", "count": 1})
-
-        # 6. 充能
-        m_stock = re.search(r"牌組上方(\d+)張.*放到能量區", line)
-        if m_stock:
-            actions.append({"action": "charge_stock_top", "count": int(m_stock.group(1))})
-
-        # 7. 燒血
-        m_burn = re.search(r"給對手造成(\d+)點傷害", line)
-        if m_burn:
-            actions.append({"action": "burn", "damage": int(m_burn.group(1))})
-
-        # 8. 擊倒踢時鐘 / 踢回憶 / 踢能量
-        if timing == "ON_REVERSE_OPP":
-            if "放到時鐘區" in line:
-                actions.append({"action": "kick_opp_to_clock"})
-            elif "放到回憶區" in line:
-                actions.append({"action": "kick_opp_to_memory"})
-            elif "放到能量區" in line:
-                actions.append({"action": "kick_opp_to_stock"})
-
-        # 9. 相殺
-        if timing == "ON_REVERSED" and "將那個角色【倒置】" in line:
-            actions.append({"action": "reversal_bomb"})
-        elif timing == "ON_REVERSED" and "放到時鐘區" in line:
-            actions.append({"action": "reversal_clock_bomb"})
-
-        # 10. 手牌安可
-        if "安可" in line and ("手牌1張" in line or "1張角色" in line):
-            res.append({"category": "CONT", "effect": "hand_encore", "raw": orig_line})
-            return res
-
-        # 11. 攻擊力增加
-        m_pwr = re.search(r"攻擊力[＋\+](\d+)", line)
-        if m_pwr:
-            pwr_val = int(m_pwr.group(1))
-            if "選擇自己的1張" in line or "選擇其他的你的1張" in line or "選擇你其他1張" in line:
-                actions.append({"action": "buff_ally", "power": pwr_val})
-            else:
-                actions.append({"action": "buff_self", "power": pwr_val})
-
+        actions = cls._extract_actions(line, timing=timing, cost=cost)
         if actions:
             res.append({
                 "category": "AUTO",
                 "timing": timing,
+                "atk_subtype": atk_subtype,
+                "req_entered_this_turn": req_entered_this_turn,
                 "cost": cost,
                 "is_cx_combo": is_cx_combo,
                 "cx_name": cx_name,
@@ -897,10 +1589,10 @@ class ChineseEffectParser:
         return res
 
     @classmethod
-    def _parse_act(cls, line: str, orig_line: str) -> list:
+    def _parse_act(cls, line: str, orig_line: str, card_type: str = "CHAR") -> list:
         res = []
         cost = cls._parse_cost(line)
-        # 1. 助太刀
+        # 1. 助太刀 (Backup)
         m_backup = re.search(r"助太刀\s*(\d+)\s*等級\s*(\d+)", line)
         if m_backup or ("助太刀" in line) or ("【反擊】" in orig_line):
             pwr = int(m_backup.group(1)) if m_backup else 1500
@@ -921,14 +1613,19 @@ class ChineseEffectParser:
         # 2. 集中 (Brainstorm)
         if "集中" in line:
             flip_cnt = 4
-            m_flip = re.search(r"翻(\d+)張", line)
+            m_flip = re.search(r"翻(?:開|出)?(\d+)張", line)
             if m_flip:
                 flip_cnt = int(m_flip.group(1))
+            after_flip = line.split("每有1張")[-1] if "每有1張" in line else line
             reward = "search"
-            if "抽最多" in line or "抽1張" in line or "抽X張" in line:
+            if "最多抽1張" in after_flip:
+                reward = "draw_once"
+            elif "抽" in after_flip:
                 reward = "draw"
-            elif "休息室選擇" in line or "休息室找" in line:
+            elif "休息室" in after_flip and ("回到手牌" in after_flip or "加到手牌" in after_flip):
                 reward = "salvage"
+            elif "牌組" in after_flip and ("加到手牌" in after_flip or "回到手牌" in after_flip):
+                reward = "search"
             res.append({
                 "category": "ACT",
                 "effect": "brainstorm",
@@ -939,20 +1636,45 @@ class ChineseEffectParser:
             })
             return res
 
-        # 3. 一般起動加攻
-        m_pwr = re.search(r"攻擊力[＋\+](\d+)", line)
-        if m_pwr:
-            pwr_val = int(m_pwr.group(1))
-            target = "ally" if ("選擇" in line) else "self"
+        # 3. 萬用一般【起】能力（支援看頂加手、檢索、回收、充能、標記、加攻、加魂、賦予能力等所有動作）
+        actions = cls._extract_actions(line, timing="ACT", cost=cost)
+        if actions:
             res.append({
                 "category": "ACT",
-                "effect": "act_buff",
-                "target": target,
-                "power": pwr_val,
+                "effect": "universal_act",
+                "actions": actions,
                 "cost": cost,
                 "raw": orig_line,
             })
         return res
+
+    @classmethod
+    def _parse_counter_event(cls, line: str, orig_line: str) -> list:
+        cost = cls._parse_cost(line)
+        actions = cls._extract_actions(line, timing="COUNTER", cost=cost)
+        if actions:
+            return [{
+                "category": "COUNTER_EVENT",
+                "cost": cost,
+                "actions": actions,
+                "send_to_memory": ("放到回憶區" in line),
+                "raw": orig_line,
+            }]
+        return []
+
+    @classmethod
+    def _parse_main_event(cls, line: str, orig_line: str) -> list:
+        cost = cls._parse_cost(line)
+        actions = cls._extract_actions(line, timing="EVENT", cost=cost)
+        if actions:
+            return [{
+                "category": "EVENT",
+                "cost": cost,
+                "actions": actions,
+                "send_to_memory": ("放到回憶區" in line),
+                "raw": orig_line,
+            }]
+        return []
 
 
 
@@ -1515,7 +2237,11 @@ class BottleNekoImporter:
 
         rare = str(c_info.get("rare") or c_info.get("rarity") or "R")
         low_vers = c_info.get("lowVer") or []
+        if isinstance(low_vers, str):
+            low_vers = [low_vers]
         high_vers = c_info.get("highVer") or []
+        if isinstance(high_vers, str):
+            high_vers = [high_vers]
         is_high_rarity = bool(low_vers) or any(tag in rare for tag in ["SP", "SSP", "SEC", "OFR", "SR", "RRR"])
         base_id = low_vers[0] if low_vers else cid
         high_rarity_id = high_vers[-1] if high_vers else None
@@ -1545,19 +2271,7 @@ class BottleNekoImporter:
             elif ("射擊：" in effect_text or "觸發此卡的攻擊角色下次造成的傷害被取消時" in effect_text) and trigger in ("NONE", "SOUL"):
                 trigger = "SHOT"
 
-        effects_tags = []
-        if ctype == "CX":
-            if "1000" in effect_text and ("魂" in effect_text or "靈魂" in effect_text or "ソウル" in effect_text):
-                effects_tags.append("CX_ALL_1000_1SOUL")
-            elif ("魂傷+2" in effect_text or "魂傷＋2" in effect_text or "靈魂+2" in effect_text or "ソウルを＋2" in effect_text) and ("角色全部" in effect_text or "全部的角色" in effect_text or "所有的角色" in effect_text):
-                effects_tags.append("CX_ALL_2SOUL")
-            if trigger == "STANDBY" or "執行開機的效果" in effect_text or "開機：" in effect_text or "スタンバイ" in effect_text:
-                if "CX_STANDBY" not in effects_tags:
-                    effects_tags.append("CX_STANDBY")
-            if ("抽1張" in effect_text or "1枚引" in effect_text) and ("2000" in effect_text or "攻擊力+2000" in effect_text):
-                effects_tags.append("CX_DRAW1_2000_1SOUL")
-            elif ("放到能量區" in effect_text or "ストック置場に置" in effect_text) and ("當此卡從手牌放到名場面區時" in effect_text or "手札からクライマックス置場に置かれた時" in effect_text):
-                effects_tags.append("CX_STOCK1_ALL_1SOUL")
+        effects_tags = ChineseEffectParser.infer_effect_tags(effect_text, ctype, trigger)
 
         parsed_abs = ChineseEffectParser.parse_card_effects(effect_text, ctype)
         return {
@@ -1652,17 +2366,18 @@ class BottleNekoImporter:
             series_code = "BTR/W107"
         elif "/S78-" in first_cid:
             series_code = "BFR/S78"
-        elif "/" in first_cid and "-" in first_cid:
-            # 統一使用該系列共通的編號（避免聯動文庫分拆成幾十個子編號）
-            right_set = first_cid.split("-")[0].split("/")[-1]
-            left_pre = re.sub(r"\d+$", "", first_cid.split("/")[0]) or first_cid.split("/")[0]
-            series_code = f"{left_pre}/{right_set}"
+        elif series_code.startswith("SERIES_") and "/" in first_cid and "-" in first_cid:
+            series_code = first_cid.split("-")[0]
+
+        if series_code in BUILTIN_SERIES_TITLES:
+            series_title = BUILTIN_SERIES_TITLES[series_code]
 
         converted = {}
         for c_obj in sliced_cards:
-            c_dict = cls._convert_bottleneko_card_obj(c_obj, default_series_code=series_code)
+            c_dict = cls._convert_bottleneko_card_obj(c_obj, default_series_code=series_code, count=0)
             if c_dict:
                 c_dict["series"] = series_code
+                c_dict["default_count"] = 0
                 converted[c_dict["id"]] = c_dict
 
         full_sets_dir = os.path.join(BASE_DIR, sets_dir)
@@ -1677,20 +2392,30 @@ class BottleNekoImporter:
             "default_deck_recipe": {},
             "cards": {},
         }
-        if os.path.exists(out_path):
+        if os.path.exists(out_path) and batch_limit > 0:
             try:
                 with open(out_path, "r", encoding="utf-8") as f:
                     loaded = json.load(f)
                 if isinstance(loaded, dict):
                     if "cards" in loaded and isinstance(loaded["cards"], dict):
-                        existing_payload = loaded
+                        existing_payload["cards"] = loaded["cards"]
                     else:
                         existing_payload["cards"] = {k: v for k, v in loaded.items() if isinstance(v, dict) and "name" in v}
             except Exception:
                 pass
 
-        cards_map = existing_payload.get("cards", {})
-        cards_map.update(converted)
+        if batch_limit == 0 and batch_offset == 0:
+            # 一次抓取全系列時，直接以官方完整卡表覆寫，杜絕殘留舊卡造成張數對不上
+            cards_map = dict(sorted(converted.items(), key=lambda kv: _natural_card_sort_key(kv[0])))
+        else:
+            cards_map = existing_payload.get("cards", {})
+            cards_map.update(converted)
+            cards_map = dict(sorted(cards_map.items(), key=lambda kv: _natural_card_sort_key(kv[0])))
+
+        existing_payload["series_code"] = series_code
+        existing_payload["series_name"] = series_code
+        existing_payload["series_title"] = series_title
+        existing_payload["default_deck_recipe"] = {}
         existing_payload["cards"] = cards_map
 
         # 純系列卡表匯入時不自動拼湊隨機 50 張套牌，僅保留貓罐子實際牌組匯入或內建三大真實構築套牌
@@ -1956,7 +2681,35 @@ class BottleNekoImporter:
         return deck_name, card_entries
 
     @classmethod
+    def _match_card_in_db(cls, raw_cid: str) -> str:
+        """在現有 CARD_DB 中比對卡號（支援精確比對、忽略大小寫、去除爬取贅字與 base_id 比對）"""
+        s = str(raw_cid or "").strip()
+        if not s:
+            return ""
+        if s in CARD_DB:
+            return s
+        upper_map = {k.upper(): k for k in CARD_DB}
+        if s.upper() in upper_map:
+            return upper_map[s.upper()]
+        # 嘗試去除爬取常見的尾綴 (RR, R, U, C, CR, CC, TD, PR)
+        m_base = re.match(r"^([A-Za-z0-9]+/[A-Za-z0-9]+-[A-Za-z0-9]+?)(RRRR|SPSP|SBRSBR|SSR|RR|CR|CC|TD|PR|R|U|C)$", s, re.I)
+        if m_base:
+            cand = m_base.group(1)
+            if cand.upper() in upper_map:
+                return upper_map[cand.upper()]
+        for k, v in CARD_DB.items():
+            if not v.get("is_high_rarity") and str(v.get("base_id", "")).upper() == s.upper():
+                return k
+        return ""
+
+    @classmethod
     def import_from_url_or_json(cls, source_input: str, sets_dir: str = "sets", log_callback=None) -> dict:
+        """
+        純粹匯入貓罐子牌組配比（50張）至玩家自訂卡組：
+        - 優先直接映射至已匯入的 SERIES_DB / CARD_DB 卡片，完全不修改或覆寫 sets/{series_code}.json！
+        - 絕不變更現有系列的名稱、卡池張數或預設套牌！
+        - 若牌組內含尚未匯入系列的卡片，僅寫入獨立快取 sets/_deck_extra_cards.json 供牌組顯示與對戰使用。
+        """
         def _log(msg):
             if log_callback:
                 log_callback(msg)
@@ -2024,126 +2777,131 @@ class BottleNekoImporter:
         if not raw_cards:
             raise ValueError("無法從該網址或代碼解析出卡片清單，請確認牌組代碼（如 peAYS / o7Hhb）或網址是否正確。")
 
-        need_enrich = any(isinstance(it, dict) and not it.get("effect") and not it.get("i18n") for it in raw_cards)
-        if need_enrich:
+        # 檢查是否有卡片尚未收錄於本地 CARD_DB 或缺少效果文
+        missing_prefixes = set()
+        for it in raw_cards:
+            c_obj = it.get("card", it) if isinstance(it, dict) and "card" in it else it
+            if not isinstance(c_obj, dict):
+                continue
+            cid_tmp = str(c_obj.get("id") or c_obj.get("cardId") or c_obj.get("code") or "").strip()
+            raw_tmp = str(c_obj.get("raw_id") or "").strip()
+            matched_k = cls._match_card_in_db(cid_tmp) or cls._match_card_in_db(raw_tmp)
+            zh_b = ((c_obj.get("i18n") or {}).get("zh") or {}) if isinstance(c_obj.get("i18n"), dict) else {}
+            raw_eff = zh_b.get("effect") or zh_b.get("ability") or zh_b.get("text") or c_obj.get("zhEffect") or c_obj.get("effect") or c_obj.get("text") or ""
+            if not matched_k or not str(CARD_DB.get(matched_k, {}).get("text") or "").strip():
+                if not str(raw_eff).strip() and "/" in cid_tmp and "-" in cid_tmp:
+                    missing_prefixes.add(cid_tmp.split("-")[0].upper())
+
+        api_card_lookup = {}
+        if missing_prefixes:
             try:
-                prefixes = set()
-                for it in raw_cards:
-                    c_id_tmp = str((it.get("card", it) if isinstance(it, dict) else {}).get("id") or "")
-                    if "/" in c_id_tmp and "-" in c_id_tmp:
-                        prefixes.add(c_id_tmp.split("-")[0].upper())
-                if prefixes:
-                    _log(f"🔍 正在從貓罐子系列資料庫自動補齊 {', '.join(sorted(prefixes))} 的完整繁中效果文與標記...")
-                    cats = cls.fetch_all_series_catalog()
-                    matched_sids = set()
-                    for cat in cats:
-                        cat_codes = [str(x).upper() for x in (cat.get("codes") or [])]
-                        for pref in prefixes:
-                            left_p = pref.split("/")[0]
-                            right_p = pref.split("/")[-1]
-                            if any(pref == cc or left_p == cc or right_p in cc for cc in cat_codes):
-                                matched_sids.add(cat["id"])
-                    api_card_lookup = {}
-                    for sid in list(matched_sids)[:4]:
-                        try:
-                            s_cards = cls._http_get_json(f"https://api.bottleneko.app/series/{sid}/cards", timeout=15)
-                            if isinstance(s_cards, list):
-                                for sc in s_cards:
-                                    if isinstance(sc, dict) and sc.get("id"):
-                                        api_card_lookup[sc["id"].upper()] = sc
-                        except Exception:
-                            pass
-                    if api_card_lookup:
-                        enriched_raw = []
-                        for it in raw_cards:
-                            c_obj = it.get("card", it) if isinstance(it, dict) and "card" in it else it
-                            cnt = int(it.get("count") or it.get("quantity") or 1) if isinstance(it, dict) else 1
-                            cid_u = str(c_obj.get("id") or "").upper()
-                            raw_u = str(c_obj.get("raw_id") or "").upper()
-                            full_sc = api_card_lookup.get(cid_u) or api_card_lookup.get(raw_u)
-                            if full_sc:
-                                merged = dict(full_sc)
-                                merged["count"] = cnt
-                                enriched_raw.append(merged)
-                            else:
-                                enriched_raw.append(it)
-                        raw_cards = enriched_raw
-                        _log(f"✨ 已成功補齊系列完整卡片效果資料（共比對 {len(api_card_lookup)} 張系列卡池）！")
+                _log(f"🔍 牌組內含本地尚未收錄效果的卡片，正在從貓罐子補齊 {', '.join(sorted(missing_prefixes))} 的卡片資料...")
+                cats = cls.fetch_all_series_catalog()
+                matched_sids = set()
+                for cat in cats:
+                    cat_codes = [str(x).upper() for x in (cat.get("codes") or [])]
+                    for pref in missing_prefixes:
+                        left_p = pref.split("/")[0]
+                        right_p = pref.split("/")[-1]
+                        if any(pref == cc or left_p == cc or right_p in cc for cc in cat_codes):
+                            matched_sids.add(cat["id"])
+                for sid in list(matched_sids)[:4]:
+                    try:
+                        s_cards = cls._http_get_json(f"https://api.bottleneko.app/series/{sid}/cards", timeout=15)
+                        if isinstance(s_cards, list):
+                            for sc in s_cards:
+                                if isinstance(sc, dict) and sc.get("id"):
+                                    api_card_lookup[sc["id"].upper()] = sc
+                    except Exception:
+                        pass
             except Exception as e:
                 _log(f"ℹ️ 自動補齊系列詳細效果略過：{e}")
 
-        converted_cards = {}
         recipe_dict = {}
-        series_code = None
+        extra_cards_to_cache = {}
+        series_counts = {}
 
         for item in raw_cards:
             c_info = item.get("card", item) if isinstance(item, dict) and "card" in item else item
-            count = int(item.get("count") or item.get("quantity") or 1) if isinstance(item, dict) else 1
-            c_dict = cls._convert_bottleneko_card_obj(c_info, default_series_code=series_code or "CUSTOM/S01", count=count)
+            if not isinstance(c_info, dict):
+                continue
+            count = int(item.get("count") or item.get("quantity") or item.get("amount") or 1) if isinstance(item, dict) else 1
+            raw_cid = str(c_info.get("id") or c_info.get("cardId") or c_info.get("code") or "").strip()
+            alt_cid = str(c_info.get("raw_id") or "").strip()
+
+            matched_cid = cls._match_card_in_db(raw_cid) or cls._match_card_in_db(alt_cid)
+            if matched_cid and str(CARD_DB[matched_cid].get("text") or "").strip():
+                # 本地系列已存在此卡且具備完整效果：直接加入牌組配比，完全不動動到原本的系列卡池！
+                recipe_dict[matched_cid] = recipe_dict.get(matched_cid, 0) + count
+                sc = CARD_DB[matched_cid].get("series", "")
+                if sc:
+                    series_counts[sc] = series_counts.get(sc, 0) + count
+                continue
+
+            # 若本地尚未匯入該系列，或舊版缺少效果文，才轉換單卡供牌組使用
+            full_sc = api_card_lookup.get(raw_cid.upper()) or api_card_lookup.get(alt_cid.upper())
+            src_obj = dict(full_sc) if full_sc else c_info
+            c_dict = cls._convert_bottleneko_card_obj(src_obj, default_series_code="CUSTOM/S01", count=0)
             if not c_dict:
                 continue
-            cid = c_dict["id"]
-            if not series_code and "/" in cid and "-" in cid:
-                first_prefix = cid.split("-")[0]
-                if "/S131" in first_prefix:
-                    series_code = "GA/S131"
-                elif "/W107" in first_prefix:
-                    series_code = "BTR/W107"
-                elif "/S78" in first_prefix:
-                    series_code = "BFR/S78"
-                else:
-                    series_code = first_prefix
-            c_dict["series"] = series_code or "CUSTOM/S01"
-            converted_cards[cid] = c_dict
+            cid = matched_cid or c_dict["id"]
+            c_dict["id"] = cid
+            c_dict["default_count"] = 0
+
+            if matched_cid and matched_cid in CARD_DB:
+                # 僅修補文字與解析後能力，不改變卡片所屬系列與結構
+                c_dict["series"] = CARD_DB[matched_cid].get("series", c_dict["series"])
+                CARD_DB[matched_cid].update({
+                    "text": c_dict["text"] or CARD_DB[matched_cid].get("text", ""),
+                    "trigger": c_dict["trigger"],
+                    "traits": c_dict["traits"] or CARD_DB[matched_cid].get("traits", []),
+                    "effects": c_dict["effects"],
+                    "parsed_abilities": c_dict["parsed_abilities"],
+                })
+            else:
+                CARD_DB[cid] = c_dict
+                extra_cards_to_cache[cid] = c_dict
+
             recipe_dict[cid] = recipe_dict.get(cid, 0) + count
+            sc = CARD_DB[cid].get("series", "")
+            if sc:
+                series_counts[sc] = series_counts.get(sc, 0) + count
 
-        if not series_code:
-            series_code = "CUSTOM/S01"
-        full_sets_dir = os.path.join(BASE_DIR, sets_dir)
-        os.makedirs(full_sets_dir, exist_ok=True)
-        safe_fname = series_code.replace("/", "_") + ".json"
-        out_path = os.path.join(full_sets_dir, safe_fname)
-
-        existing_payload = {
-            "series_code": series_code,
-            "series_name": series_code,
-            "series_title": f"{deck_name} ({series_code})",
-            "default_deck_recipe": recipe_dict,
-            "cards": {},
-        }
-        if os.path.exists(out_path):
+        # 若有牌組專屬的未收錄卡片，僅寫入獨立快取檔 sets/_deck_extra_cards.json，絕不觸碰任何 sets/{series}.json
+        if extra_cards_to_cache:
+            full_sets_dir = os.path.join(BASE_DIR, sets_dir)
+            os.makedirs(full_sets_dir, exist_ok=True)
+            extra_path = os.path.join(full_sets_dir, "_deck_extra_cards.json")
+            existing_extra = {"cards": {}}
+            if os.path.exists(extra_path):
+                try:
+                    with open(extra_path, "r", encoding="utf-8") as f:
+                        ld = json.load(f)
+                    if isinstance(ld, dict) and isinstance(ld.get("cards"), dict):
+                        existing_extra = ld
+                except Exception:
+                    pass
+            existing_extra["cards"].update(extra_cards_to_cache)
             try:
-                with open(out_path, "r", encoding="utf-8") as f:
-                    loaded_p = json.load(f)
-                if isinstance(loaded_p, dict):
-                    if "cards" in loaded_p and isinstance(loaded_p["cards"], dict):
-                        existing_payload = loaded_p
-                    else:
-                        existing_payload["cards"] = {k: v for k, v in loaded_p.items() if isinstance(v, dict) and "name" in v}
+                with open(extra_path, "w", encoding="utf-8") as f:
+                    json.dump(existing_extra, f, ensure_ascii=False, indent=2)
             except Exception:
                 pass
 
-        existing_map = existing_payload.get("cards", {})
-        existing_map.update(converted_cards)
-        existing_payload["cards"] = existing_map
-        if sum(recipe_dict.values()) == 50:
-            existing_payload["default_deck_recipe"] = recipe_dict
-
-        with open(out_path, "w", encoding="utf-8") as f:
-            json.dump(existing_payload, f, ensure_ascii=False, indent=2)
-
-        load_all_card_sets(sets_dir)
+        primary_series = max(series_counts, key=series_counts.get) if series_counts else "BFR/S78"
         total_cards_in_deck = sum(recipe_dict.values())
-        _log(f"✅ 成功匯入社群牌組【{deck_name}】（共 {len(converted_cards)} 種 / {total_cards_in_deck} 張卡片）！")
+        _log(f"✅ 成功匯入社群牌組【{deck_name}】（共 {len(recipe_dict)} 種 / {total_cards_in_deck} 張卡片，未更動任何現有系列卡池）！")
         return {
-            "series_code": series_code,
+            "series_code": primary_series,
             "deck_name": deck_name,
-            "card_count": len(converted_cards),
+            "card_count": len(recipe_dict),
             "total_cards": total_cards_in_deck,
             "recipe": recipe_dict,
-            "file_path": out_path,
         }
 
 
 # 確保所有翻譯器與萬用效果解析器定義完成後重新同步載入全部卡池
+load_all_card_sets()
+
+# 模組初始化完成後立即載入並編譯所有系列卡片 AST
 load_all_card_sets()

@@ -2,21 +2,7 @@
   "series_code": "NIK/S117",
   "series_name": "NIK/S117",
   "series_title": "勝利女神：妮姬 (NIK)",
-  "default_deck_recipe": {
-    "NIK/S117-026": 4,
-    "NIK/S117-027": 4,
-    "NIK/S117-001": 4,
-    "NIK/S117-002": 4,
-    "NIK/S117-003": 4,
-    "NIK/S117-004": 4,
-    "NIK/S117-005": 4,
-    "NIK/S117-006": 4,
-    "NIK/S117-007": 4,
-    "NIK/S117-008": 4,
-    "NIK/S117-009": 4,
-    "NIK/S117-010": 4,
-    "NIK/S117-011": 2
-  },
+  "default_deck_recipe": {},
   "cards": {
     "NIK/S117-001": {
       "id": "NIK/S117-001",
@@ -222,70 +208,6 @@
         }
       ]
     },
-    "NIK/S117-002EX": {
-      "id": "NIK/S117-002EX",
-      "base_id": "NIK/S117-002",
-      "series": "NIK/S117",
-      "name": "阿妮斯：閃耀夏日",
-      "jp_name": "アニス：スパークリングサマー",
-      "type": "CHAR",
-      "color": "黃",
-      "level": 1,
-      "cost": 0,
-      "power": 3500,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "NIKKE反擊部隊"
-      ],
-      "default_count": 0,
-      "rarity": "SEC+",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】在你的回合中，有其他的你的《NIKKE》的角色存在的話，此卡的攻擊力+3000。\n【永】在你的回合中，此卡正面的角色是藍色的話，此卡的攻擊力+4000。\n【自】【CX連動】在你的安可階段開始時，CX區有「SEA, YOU, AGAIN」，前列有此卡存在，其他的你的《NIKKE》的角色存在2張以上，此卡正面的角色不存在或是【倒置】狀態的話，你從自己的牌組選擇《NIKKE》的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_002EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_002EX.png",
-        "https://img.bottleneko.app/NIK_S117_002EX.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "CONT",
-          "effect": "my_turn_self_buff",
-          "power": 3000,
-          "raw": "【永】在你的回合中，有其他的你的《NIKKE》的角色存在的話，此卡的攻擊力+3000。"
-        },
-        {
-          "category": "CONT",
-          "effect": "my_turn_self_buff",
-          "power": 4000,
-          "raw": "【永】在你的回合中，此卡正面的角色是藍色的話，此卡的攻擊力+4000。"
-        },
-        {
-          "category": "AUTO",
-          "timing": "OTHER",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": true,
-          "cx_name": "SEA, YOU, AGAIN",
-          "actions": [
-            {
-              "action": "search_deck_char",
-              "count": 1
-            }
-          ],
-          "raw": "【自】【CX連動】在你的安可階段開始時，CX區有「SEA, YOU, AGAIN」，前列有此卡存在，其他的你的《NIKKE》的角色存在2張以上，此卡正面的角色不存在或是【倒置】狀態的話，你從自己的牌組選擇《NIKKE》的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。"
-        }
-      ]
-    },
     "NIK/S117-002S": {
       "id": "NIK/S117-002S",
       "base_id": "NIK/S117-002",
@@ -376,6 +298,70 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_002SP.png",
         "https://img.bottleneko.app/NIK_S117_002SP.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "CONT",
+          "effect": "my_turn_self_buff",
+          "power": 3000,
+          "raw": "【永】在你的回合中，有其他的你的《NIKKE》的角色存在的話，此卡的攻擊力+3000。"
+        },
+        {
+          "category": "CONT",
+          "effect": "my_turn_self_buff",
+          "power": 4000,
+          "raw": "【永】在你的回合中，此卡正面的角色是藍色的話，此卡的攻擊力+4000。"
+        },
+        {
+          "category": "AUTO",
+          "timing": "OTHER",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": true,
+          "cx_name": "SEA, YOU, AGAIN",
+          "actions": [
+            {
+              "action": "search_deck_char",
+              "count": 1
+            }
+          ],
+          "raw": "【自】【CX連動】在你的安可階段開始時，CX區有「SEA, YOU, AGAIN」，前列有此卡存在，其他的你的《NIKKE》的角色存在2張以上，此卡正面的角色不存在或是【倒置】狀態的話，你從自己的牌組選擇《NIKKE》的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。"
+        }
+      ]
+    },
+    "NIK/S117-002EX": {
+      "id": "NIK/S117-002EX",
+      "base_id": "NIK/S117-002",
+      "series": "NIK/S117",
+      "name": "阿妮斯：閃耀夏日",
+      "jp_name": "アニス：スパークリングサマー",
+      "type": "CHAR",
+      "color": "黃",
+      "level": 1,
+      "cost": 0,
+      "power": 3500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "NIKKE反擊部隊"
+      ],
+      "default_count": 0,
+      "rarity": "SEC+",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】在你的回合中，有其他的你的《NIKKE》的角色存在的話，此卡的攻擊力+3000。\n【永】在你的回合中，此卡正面的角色是藍色的話，此卡的攻擊力+4000。\n【自】【CX連動】在你的安可階段開始時，CX區有「SEA, YOU, AGAIN」，前列有此卡存在，其他的你的《NIKKE》的角色存在2張以上，此卡正面的角色不存在或是【倒置】狀態的話，你從自己的牌組選擇《NIKKE》的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_002EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_002EX.png",
+        "https://img.bottleneko.app/NIK_S117_002EX.png"
       ],
       "parsed_abilities": [
         {
@@ -1185,35 +1171,6 @@
       ],
       "parsed_abilities": []
     },
-    "NIK/S117-010EX": {
-      "id": "NIK/S117-010EX",
-      "base_id": "NIK/S117-010",
-      "series": "NIK/S117",
-      "name": "作戰執行 拉毗",
-      "jp_name": "作戦遂行 ラピ",
-      "type": "CHAR",
-      "color": "黃",
-      "level": 3,
-      "cost": 2,
-      "power": 10000,
-      "soul": 2,
-      "trigger": "SOUL",
-      "traits": [
-        "NIKKE反擊部隊"
-      ],
-      "default_count": 0,
-      "rarity": "SEC+",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】【CX連動】［(1) 手牌1張放到休息室］當「為人類帶來勝利」被放置到你的CX區時，前列有此卡存在，有其他的你的前列的「氣氛製造者 阿妮斯」和「\"火力至上\"尼恩」存在的話，你可以支付代價。支付代價的話，在那個回合中，給予此卡以外的你的前列的角色全部，以下能力。『【自】此能力每1回合最多發動1次。此卡給予的傷害被取消時，將此卡【正置】。』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_010EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_010EX.png",
-        "https://img.bottleneko.app/NIK_S117_010EX.png"
-      ],
-      "parsed_abilities": []
-    },
     "NIK/S117-010S": {
       "id": "NIK/S117-010S",
       "base_id": "NIK/S117-010",
@@ -1269,6 +1226,35 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_010SP.png",
         "https://img.bottleneko.app/NIK_S117_010SP.png"
+      ],
+      "parsed_abilities": []
+    },
+    "NIK/S117-010EX": {
+      "id": "NIK/S117-010EX",
+      "base_id": "NIK/S117-010",
+      "series": "NIK/S117",
+      "name": "作戰執行 拉毗",
+      "jp_name": "作戦遂行 ラピ",
+      "type": "CHAR",
+      "color": "黃",
+      "level": 3,
+      "cost": 2,
+      "power": 10000,
+      "soul": 2,
+      "trigger": "SOUL",
+      "traits": [
+        "NIKKE反擊部隊"
+      ],
+      "default_count": 0,
+      "rarity": "SEC+",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】【CX連動】［(1) 手牌1張放到休息室］當「為人類帶來勝利」被放置到你的CX區時，前列有此卡存在，有其他的你的前列的「氣氛製造者 阿妮斯」和「\"火力至上\"尼恩」存在的話，你可以支付代價。支付代價的話，在那個回合中，給予此卡以外的你的前列的角色全部，以下能力。『【自】此能力每1回合最多發動1次。此卡給予的傷害被取消時，將此卡【正置】。』",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_010EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_010EX.png",
+        "https://img.bottleneko.app/NIK_S117_010EX.png"
       ],
       "parsed_abilities": []
     },
@@ -2696,6 +2682,37 @@
       ],
       "parsed_abilities": []
     },
+    "NIK/S117-029R": {
+      "id": "NIK/S117-029R",
+      "base_id": "NIK/S117-029",
+      "series": "NIK/S117",
+      "name": "為人類帶來勝利",
+      "jp_name": "人類に勝利を",
+      "type": "CX",
+      "color": "黃",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "SOUL",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "RRR",
+      "is_high_rarity": true,
+      "high_rarity_id": "NIK/S117-029EX",
+      "effects": [
+        "CX_ALL_1000_1SOUL"
+      ],
+      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (火：這個回合中，判定出此卡的攻擊角色給予的下個傷害被取消時，給對手1點傷害)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_029R.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_029R.png",
+        "https://img.bottleneko.app/NIK_S117_029R.png"
+      ],
+      "parsed_abilities": []
+    },
     "NIK/S117-029A": {
       "id": "NIK/S117-029A",
       "base_id": "NIK/S117-029",
@@ -2755,37 +2772,6 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_029EX.png",
         "https://img.bottleneko.app/NIK_S117_029EX.png"
-      ],
-      "parsed_abilities": []
-    },
-    "NIK/S117-029R": {
-      "id": "NIK/S117-029R",
-      "base_id": "NIK/S117-029",
-      "series": "NIK/S117",
-      "name": "為人類帶來勝利",
-      "jp_name": "人類に勝利を",
-      "type": "CX",
-      "color": "黃",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "SOUL",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "RRR",
-      "is_high_rarity": true,
-      "high_rarity_id": "NIK/S117-029EX",
-      "effects": [
-        "CX_ALL_1000_1SOUL"
-      ],
-      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (火：這個回合中，判定出此卡的攻擊角色給予的下個傷害被取消時，給對手1點傷害)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_029R.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_029R.png",
-        "https://img.bottleneko.app/NIK_S117_029R.png"
       ],
       "parsed_abilities": []
     },
@@ -5745,37 +5731,6 @@
       ],
       "parsed_abilities": []
     },
-    "NIK/S117-056EX": {
-      "id": "NIK/S117-056EX",
-      "base_id": "NIK/S117-056",
-      "series": "NIK/S117",
-      "name": "Bunny X 777",
-      "jp_name": "Bunny X 777",
-      "type": "CX",
-      "color": "綠",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "SOUL",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "RRR+",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [
-        "CX_ALL_1000_1SOUL"
-      ],
-      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (金磚：當你判定出此卡時，你將此卡返回手牌，你可以將自己的牌組上方1張，放到能量區)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_056EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_056EX.png",
-        "https://img.bottleneko.app/NIK_S117_056EX.png"
-      ],
-      "parsed_abilities": []
-    },
     "NIK/S117-056R": {
       "id": "NIK/S117-056R",
       "base_id": "NIK/S117-056",
@@ -5804,6 +5759,37 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_056R.png",
         "https://img.bottleneko.app/NIK_S117_056R.png"
+      ],
+      "parsed_abilities": []
+    },
+    "NIK/S117-056EX": {
+      "id": "NIK/S117-056EX",
+      "base_id": "NIK/S117-056",
+      "series": "NIK/S117",
+      "name": "Bunny X 777",
+      "jp_name": "Bunny X 777",
+      "type": "CX",
+      "color": "綠",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "SOUL",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "RRR+",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [
+        "CX_ALL_1000_1SOUL"
+      ],
+      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (金磚：當你判定出此卡時，你將此卡返回手牌，你可以將自己的牌組上方1張，放到能量區)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_056EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_056EX.png",
+        "https://img.bottleneko.app/NIK_S117_056EX.png"
       ],
       "parsed_abilities": []
     },
@@ -6072,71 +6058,6 @@
         }
       ]
     },
-    "NIK/S117-059EX": {
-      "id": "NIK/S117-059EX",
-      "base_id": "NIK/S117-059",
-      "series": "NIK/S117",
-      "name": "神罰：初次的愛戀",
-      "jp_name": "モダニア：ファースト・アフェクション",
-      "type": "CHAR",
-      "color": "紅",
-      "level": 1,
-      "cost": 0,
-      "power": 2000,
-      "soul": 1,
-      "trigger": "SOUL",
-      "traits": [
-        "NIKKE異端者"
-      ],
-      "default_count": 0,
-      "rarity": "SEC+",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】其他的你的《NIKKE》的角色存在2張以上的話，此卡的攻擊力+4000。\n【自】【CX連動】此卡攻擊時，CX區有「First Affection」，其他的你的《NIKKE》的角色存在2張以上的話，你將自己的牌組上方1張公開，選擇自己休息室的等級X以下的角色1張，回到手牌。X等於2以上的話，你將自己的牌組上方最多1張，放到能量區。X等於被公開的卡片等級。(CX視為等級0。如果不放到能量區的話放回原位)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_059EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_059EX.png",
-        "https://img.bottleneko.app/NIK_S117_059EX.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "CONT",
-          "effect": "other_char_count_buff",
-          "min_count": 2,
-          "power": 4000,
-          "my_turn_only": false,
-          "raw": "【永】其他的你的《NIKKE》的角色存在2張以上的話，此卡的攻擊力+4000。"
-        },
-        {
-          "category": "AUTO",
-          "timing": "ON_ATTACK",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": true,
-          "cx_name": "First Affection",
-          "actions": [
-            {
-              "action": "salvage_wr",
-              "target_type": "Character",
-              "count": 1
-            },
-            {
-              "action": "charge_stock_top",
-              "count": 1
-            }
-          ],
-          "raw": "【自】【CX連動】此卡攻擊時，CX區有「First Affection」，其他的你的《NIKKE》的角色存在2張以上的話，你將自己的牌組上方1張公開，選擇自己休息室的等級X以下的角色1張，回到手牌。X等於2以上的話，你將自己的牌組上方最多1張，放到能量區。X等於被公開的卡片等級。(CX視為等級0。如果不放到能量區的話放回原位)"
-        }
-      ]
-    },
     "NIK/S117-059S": {
       "id": "NIK/S117-059S",
       "base_id": "NIK/S117-059",
@@ -6228,6 +6149,71 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_059SP.png",
         "https://img.bottleneko.app/NIK_S117_059SP.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "CONT",
+          "effect": "other_char_count_buff",
+          "min_count": 2,
+          "power": 4000,
+          "my_turn_only": false,
+          "raw": "【永】其他的你的《NIKKE》的角色存在2張以上的話，此卡的攻擊力+4000。"
+        },
+        {
+          "category": "AUTO",
+          "timing": "ON_ATTACK",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": true,
+          "cx_name": "First Affection",
+          "actions": [
+            {
+              "action": "salvage_wr",
+              "target_type": "Character",
+              "count": 1
+            },
+            {
+              "action": "charge_stock_top",
+              "count": 1
+            }
+          ],
+          "raw": "【自】【CX連動】此卡攻擊時，CX區有「First Affection」，其他的你的《NIKKE》的角色存在2張以上的話，你將自己的牌組上方1張公開，選擇自己休息室的等級X以下的角色1張，回到手牌。X等於2以上的話，你將自己的牌組上方最多1張，放到能量區。X等於被公開的卡片等級。(CX視為等級0。如果不放到能量區的話放回原位)"
+        }
+      ]
+    },
+    "NIK/S117-059EX": {
+      "id": "NIK/S117-059EX",
+      "base_id": "NIK/S117-059",
+      "series": "NIK/S117",
+      "name": "神罰：初次的愛戀",
+      "jp_name": "モダニア：ファースト・アフェクション",
+      "type": "CHAR",
+      "color": "紅",
+      "level": 1,
+      "cost": 0,
+      "power": 2000,
+      "soul": 1,
+      "trigger": "SOUL",
+      "traits": [
+        "NIKKE異端者"
+      ],
+      "default_count": 0,
+      "rarity": "SEC+",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】其他的你的《NIKKE》的角色存在2張以上的話，此卡的攻擊力+4000。\n【自】【CX連動】此卡攻擊時，CX區有「First Affection」，其他的你的《NIKKE》的角色存在2張以上的話，你將自己的牌組上方1張公開，選擇自己休息室的等級X以下的角色1張，回到手牌。X等於2以上的話，你將自己的牌組上方最多1張，放到能量區。X等於被公開的卡片等級。(CX視為等級0。如果不放到能量區的話放回原位)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_059EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_059EX.png",
+        "https://img.bottleneko.app/NIK_S117_059EX.png"
       ],
       "parsed_abilities": [
         {
@@ -8554,37 +8540,6 @@
       ],
       "parsed_abilities": []
     },
-    "NIK/S117-083EX": {
-      "id": "NIK/S117-083EX",
-      "base_id": "NIK/S117-083",
-      "series": "NIK/S117",
-      "name": "RED ASH",
-      "jp_name": "RED ASH",
-      "type": "CX",
-      "color": "紅",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "NONE",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "RRR+",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [
-        "CX_ALL_1000_1SOUL"
-      ],
-      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (木門：當你判定出此卡時，你可以選擇自己休息室的1張角色，回到手牌)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_083EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_083EX.png",
-        "https://img.bottleneko.app/NIK_S117_083EX.png"
-      ],
-      "parsed_abilities": []
-    },
     "NIK/S117-083R": {
       "id": "NIK/S117-083R",
       "base_id": "NIK/S117-083",
@@ -8613,6 +8568,37 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_083R.png",
         "https://img.bottleneko.app/NIK_S117_083R.png"
+      ],
+      "parsed_abilities": []
+    },
+    "NIK/S117-083EX": {
+      "id": "NIK/S117-083EX",
+      "base_id": "NIK/S117-083",
+      "series": "NIK/S117",
+      "name": "RED ASH",
+      "jp_name": "RED ASH",
+      "type": "CX",
+      "color": "紅",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "NONE",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "RRR+",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [
+        "CX_ALL_1000_1SOUL"
+      ],
+      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (木門：當你判定出此卡時，你可以選擇自己休息室的1張角色，回到手牌)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_083EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_083EX.png",
+        "https://img.bottleneko.app/NIK_S117_083EX.png"
       ],
       "parsed_abilities": []
     },
@@ -8707,35 +8693,6 @@
       ],
       "parsed_abilities": []
     },
-    "NIK/S117-085EX": {
-      "id": "NIK/S117-085EX",
-      "base_id": "NIK/S117-085",
-      "series": "NIK/S117",
-      "name": "紅蓮：暗影",
-      "jp_name": "紅蓮：ブラックシャドウ",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 0,
-      "cost": 0,
-      "power": 500,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "NIKKE女神部隊"
-      ],
-      "default_count": 0,
-      "rarity": "SEC+",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】［(1)］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇CX最多1張公開，選擇自己的手牌的CX最多1張公開，將那些CX交換位置，將那個牌組洗牌。\n【自】［你的休息室的藍色的角色1張放到傷害區下方］此卡從舞台被放到休息室時，有其他的你的《NIKKE》的角色存在的話，你可以支付代價。支付代價的話，你從自己的牌組上方看最多2張，選擇等級1以下的角色最多1張給對手確認，加到手牌，剩下的卡片放到休息室。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_085EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_085EX.png",
-        "https://img.bottleneko.app/NIK_S117_085EX.png"
-      ],
-      "parsed_abilities": []
-    },
     "NIK/S117-085S": {
       "id": "NIK/S117-085S",
       "base_id": "NIK/S117-085",
@@ -8791,6 +8748,35 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_085SP.png",
         "https://img.bottleneko.app/NIK_S117_085SP.png"
+      ],
+      "parsed_abilities": []
+    },
+    "NIK/S117-085EX": {
+      "id": "NIK/S117-085EX",
+      "base_id": "NIK/S117-085",
+      "series": "NIK/S117",
+      "name": "紅蓮：暗影",
+      "jp_name": "紅蓮：ブラックシャドウ",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 0,
+      "cost": 0,
+      "power": 500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "NIKKE女神部隊"
+      ],
+      "default_count": 0,
+      "rarity": "SEC+",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】［(1)］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇CX最多1張公開，選擇自己的手牌的CX最多1張公開，將那些CX交換位置，將那個牌組洗牌。\n【自】［你的休息室的藍色的角色1張放到傷害區下方］此卡從舞台被放到休息室時，有其他的你的《NIKKE》的角色存在的話，你可以支付代價。支付代價的話，你從自己的牌組上方看最多2張，選擇等級1以下的角色最多1張給對手確認，加到手牌，剩下的卡片放到休息室。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_085EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_085EX.png",
+        "https://img.bottleneko.app/NIK_S117_085EX.png"
       ],
       "parsed_abilities": []
     },
@@ -8933,58 +8919,6 @@
         }
       ]
     },
-    "NIK/S117-087EX": {
-      "id": "NIK/S117-087EX",
-      "base_id": "NIK/S117-087",
-      "series": "NIK/S117",
-      "name": "\"失樂園\"桃樂絲",
-      "jp_name": "“失楽園”ドロシー",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 3,
-      "cost": 2,
-      "power": 10000,
-      "soul": 2,
-      "trigger": "SOUL",
-      "traits": [
-        "NIKKE繼承者部隊"
-      ],
-      "default_count": 0,
-      "rarity": "SEC+",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】【CX連動】［(1)］當「OVER ZONE」被放置到你的CX區時，此卡存在於前列的話，你可以支付代價。支付代價的話，在那個回合中，此卡的攻擊力+3000，此卡獲得以下2個能力。『【永】給予其他的你的所有的領域的判定標誌有⚜的卡片火的判定標誌。』『【自】此卡攻擊時，你看自己的牌組上方最多2張，選擇卡片1張，放到牌組上方，剩下的卡片放到休息室。』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_087EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_087EX.png",
-        "https://img.bottleneko.app/NIK_S117_087EX.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "AUTO",
-          "timing": "ON_ATTACK",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": true,
-          "cx_name": "OVER ZONE",
-          "actions": [
-            {
-              "action": "buff_self",
-              "power": 3000
-            }
-          ],
-          "raw": "【自】【CX連動】［(1)］當「OVER ZONE」被放置到你的CX區時，此卡存在於前列的話，你可以支付代價。支付代價的話，在那個回合中，此卡的攻擊力+3000，此卡獲得以下2個能力。『【永】給予其他的你的所有的領域的判定標誌有⚜的卡片火的判定標誌。』『【自】此卡攻擊時，你看自己的牌組上方最多2張，選擇卡片1張，放到牌組上方，剩下的卡片放到休息室。』"
-        }
-      ]
-    },
     "NIK/S117-087S": {
       "id": "NIK/S117-087S",
       "base_id": "NIK/S117-087",
@@ -9063,6 +8997,58 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_087SP.png",
         "https://img.bottleneko.app/NIK_S117_087SP.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "AUTO",
+          "timing": "ON_ATTACK",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": true,
+          "cx_name": "OVER ZONE",
+          "actions": [
+            {
+              "action": "buff_self",
+              "power": 3000
+            }
+          ],
+          "raw": "【自】【CX連動】［(1)］當「OVER ZONE」被放置到你的CX區時，此卡存在於前列的話，你可以支付代價。支付代價的話，在那個回合中，此卡的攻擊力+3000，此卡獲得以下2個能力。『【永】給予其他的你的所有的領域的判定標誌有⚜的卡片火的判定標誌。』『【自】此卡攻擊時，你看自己的牌組上方最多2張，選擇卡片1張，放到牌組上方，剩下的卡片放到休息室。』"
+        }
+      ]
+    },
+    "NIK/S117-087EX": {
+      "id": "NIK/S117-087EX",
+      "base_id": "NIK/S117-087",
+      "series": "NIK/S117",
+      "name": "\"失樂園\"桃樂絲",
+      "jp_name": "“失楽園”ドロシー",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 3,
+      "cost": 2,
+      "power": 10000,
+      "soul": 2,
+      "trigger": "SOUL",
+      "traits": [
+        "NIKKE繼承者部隊"
+      ],
+      "default_count": 0,
+      "rarity": "SEC+",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】【CX連動】［(1)］當「OVER ZONE」被放置到你的CX區時，此卡存在於前列的話，你可以支付代價。支付代價的話，在那個回合中，此卡的攻擊力+3000，此卡獲得以下2個能力。『【永】給予其他的你的所有的領域的判定標誌有⚜的卡片火的判定標誌。』『【自】此卡攻擊時，你看自己的牌組上方最多2張，選擇卡片1張，放到牌組上方，剩下的卡片放到休息室。』",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_087EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_087EX.png",
+        "https://img.bottleneko.app/NIK_S117_087EX.png"
       ],
       "parsed_abilities": [
         {
@@ -11542,37 +11528,6 @@
       ],
       "parsed_abilities": []
     },
-    "NIK/S117-112EX": {
-      "id": "NIK/S117-112EX",
-      "base_id": "NIK/S117-112",
-      "series": "NIK/S117",
-      "name": "OVER ZONE",
-      "jp_name": "OVER ZONE",
-      "type": "CX",
-      "color": "藍",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "GATE",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "RRR+",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [
-        "CX_ALL_1000_1SOUL"
-      ],
-      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (城門：當你判定出此卡時，你可以選擇自己休息室的1張CX，回到手牌)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_112EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_112EX.png",
-        "https://img.bottleneko.app/NIK_S117_112EX.png"
-      ],
-      "parsed_abilities": []
-    },
     "NIK/S117-112R": {
       "id": "NIK/S117-112R",
       "base_id": "NIK/S117-112",
@@ -11601,6 +11556,37 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_112R.png",
         "https://img.bottleneko.app/NIK_S117_112R.png"
+      ],
+      "parsed_abilities": []
+    },
+    "NIK/S117-112EX": {
+      "id": "NIK/S117-112EX",
+      "base_id": "NIK/S117-112",
+      "series": "NIK/S117",
+      "name": "OVER ZONE",
+      "jp_name": "OVER ZONE",
+      "type": "CX",
+      "color": "藍",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "GATE",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "RRR+",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [
+        "CX_ALL_1000_1SOUL"
+      ],
+      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (城門：當你判定出此卡時，你可以選擇自己休息室的1張CX，回到手牌)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_112EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_112EX.png",
+        "https://img.bottleneko.app/NIK_S117_112EX.png"
       ],
       "parsed_abilities": []
     },
@@ -11789,792 +11775,6 @@
         "https://img.bottleneko.app/NIK_S117_115R.png"
       ],
       "parsed_abilities": []
-    },
-    "NIK/S117-P01": {
-      "id": "NIK/S117-P01",
-      "base_id": "NIK/S117-P01",
-      "series": "NIK/S117",
-      "name": "對火力的追求 尼恩",
-      "jp_name": "火力への追求 ネオン",
-      "type": "CHAR",
-      "color": "黃",
-      "level": 0,
-      "cost": 0,
-      "power": 1000,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "NIKKE反擊部隊"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】你的CX區有判定標誌是火的CX的話，所有的領域的此卡獲得火的判定標誌。\n【起】［手牌1張放到休息室，將此卡放到牌組下方］你從自己的牌組選擇《NIKKE》的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P01.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P01.png",
-        "https://img.bottleneko.app/NIK_S117_P01.png"
-      ],
-      "parsed_abilities": []
-    },
-    "NIK/S117-P02": {
-      "id": "NIK/S117-P02",
-      "base_id": "NIK/S117-P02",
-      "series": "NIK/S117",
-      "name": "\"蛇傷\"毒蛇",
-      "jp_name": "“スネークバイト”バイパー",
-      "type": "CHAR",
-      "color": "黃",
-      "level": 0,
-      "cost": 0,
-      "power": 1000,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "NIKKE外來者部隊"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】此卡從手牌被放置到舞台時，你可以選擇自己休息室的《NIKKE》的角色1張，作為標記以表側表示放到此卡下方。\n【自】【CX連動】當「D-OUTSIDERS」被放置到你的CX區時，其他的你的角色存在2張以上的話，你將自己的牌組上方1張公開。那張卡片是《NIKKE》的角色的話加到手牌。(如果不是的話放回原位)\n【自】在你的回合中，下方有標記的此卡從舞台被放到休息室時，有其他的你的《NIKKE》的角色存在的話，你可以將此卡【橫置】放回原位。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P02.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P02.png",
-        "https://img.bottleneko.app/NIK_S117_P02.png"
-      ],
-      "parsed_abilities": []
-    },
-    "NIK/S117-P03": {
-      "id": "NIK/S117-P03",
-      "base_id": "NIK/S117-P03",
-      "series": "NIK/S117",
-      "name": "作戰執行 拉毗",
-      "jp_name": "作戦遂行 ラピ",
-      "type": "CHAR",
-      "color": "黃",
-      "level": 3,
-      "cost": 2,
-      "power": 10000,
-      "soul": 2,
-      "trigger": "SOUL",
-      "traits": [
-        "NIKKE反擊部隊"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】【CX連動】［(1) 手牌1張放到休息室］當「為人類帶來勝利」被放置到你的CX區時，前列有此卡存在，有其他的你的「氣氛製造者 阿妮斯」和「\"火力至上\"尼恩」存在的話，你可以支付代價。支付代價的話，在那個回合中，給予此卡以外的你的前列的角色全部，以下能力。『【自】此能力每1回合最多發動1次。此卡給予的傷害被取消時，將此卡【正置】。』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P03.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P03.png",
-        "https://img.bottleneko.app/NIK_S117_P03.png"
-      ],
-      "parsed_abilities": []
-    },
-    "NIK/S117-P04": {
-      "id": "NIK/S117-P04",
-      "base_id": "NIK/S117-P04",
-      "series": "NIK/S117",
-      "name": "氣氛製造者 阿妮斯",
-      "jp_name": "ムードメーカー アニス",
-      "type": "CHAR",
-      "color": "黃",
-      "level": 2,
-      "cost": 1,
-      "power": 7000,
-      "soul": 1,
-      "trigger": "SOUL",
-      "traits": [
-        "NIKKE反擊部隊"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+X。X等於你的《NIKKE》的角色張數×1000。\n【自】［(2) 手牌2張放到休息室］此卡的戰鬥對手【倒置】時，你可以支付代價。支付代價的話，給對手5點傷害。(會發生傷害取消)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P04.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P04.png",
-        "https://img.bottleneko.app/NIK_S117_P04.png"
-      ],
-      "parsed_abilities": []
-    },
-    "NIK/S117-P05": {
-      "id": "NIK/S117-P05",
-      "base_id": "NIK/S117-P05",
-      "series": "NIK/S117",
-      "name": "布蘭兒：白兔",
-      "jp_name": "ブラン：ホワイトラビット",
-      "type": "CHAR",
-      "color": "綠",
-      "level": 1,
-      "cost": 0,
-      "power": 4500,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "NIKKE777"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】在你的回合中，其他的你的《NIKKE》的角色存在2張以上的話，此卡的攻擊力+2000。\n【自】【CX連動】此卡攻擊時，CX區有「Bunny X 777」，有其他的你的《NIKKE》的角色存在的話，你將自己的牌組上方2張，放到休息室，選擇自己休息室的等級X以下的《NIKKE》的角色最多1張，回到手牌。X等於因為此效果被放到休息室的卡片的等級合計。(CX視為等級0)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P05.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P05.png",
-        "https://img.bottleneko.app/NIK_S117_P05.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "AUTO",
-          "timing": "OTHER",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "buff_self",
-              "power": 2000
-            }
-          ],
-          "raw": "【自】在你的回合中，其他的你的《NIKKE》的角色存在2張以上的話，此卡的攻擊力+2000。"
-        },
-        {
-          "category": "AUTO",
-          "timing": "ON_ATTACK",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": true,
-          "cx_name": "Bunny X 777",
-          "actions": [
-            {
-              "action": "salvage_wr",
-              "target_type": "Character",
-              "count": 1
-            }
-          ],
-          "raw": "【自】【CX連動】此卡攻擊時，CX區有「Bunny X 777」，有其他的你的《NIKKE》的角色存在的話，你將自己的牌組上方2張，放到休息室，選擇自己休息室的等級X以下的《NIKKE》的角色最多1張，回到手牌。X等於因為此效果被放到休息室的卡片的等級合計。(CX視為等級0)"
-        }
-      ]
-    },
-    "NIK/S117-P06": {
-      "id": "NIK/S117-P06",
-      "base_id": "NIK/S117-P06",
-      "series": "NIK/S117",
-      "name": "諾亞爾：黑兔",
-      "jp_name": "ノワール：ブラックラビット",
-      "type": "CHAR",
-      "color": "綠",
-      "level": 2,
-      "cost": 1,
-      "power": 5000,
-      "soul": 1,
-      "trigger": "SOUL",
-      "traits": [
-        "NIKKE777"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】你的CX區有判定標誌是金磚的CX的話，給予其他你的所有的領域的CX火的判定標誌。\n【永】應援 此卡前面的你的角色全部，攻擊力+1500。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P06.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P06.png",
-        "https://img.bottleneko.app/NIK_S117_P06.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "CONT",
-          "effect": "assist_flat",
-          "power": 1500,
-          "raw": "【永】應援 此卡前面的你的角色全部，攻擊力+1500。"
-        }
-      ]
-    },
-    "NIK/S117-P07": {
-      "id": "NIK/S117-P07",
-      "base_id": "NIK/S117-P07",
-      "series": "NIK/S117",
-      "name": "諾伊斯：經典天后",
-      "jp_name": "ノイズ：クラシックディーバ",
-      "type": "CHAR",
-      "color": "紅",
-      "level": 2,
-      "cost": 1,
-      "power": 6500,
-      "soul": 1,
-      "trigger": "SOUL",
-      "traits": [
-        "NIKKE首席女歌手"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】［(1)］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，在那個回合中，此卡的攻擊力+1000，到下次的對手回合結束前，對手不能從手牌使用事件。\n【自】此卡攻擊時，其他的你的《NIKKE》的角色存在4張以上的話，到下次的對手回合結束前，此卡的攻擊力+4000，此卡獲得以下能力。『【永】此卡正面的角色不能側打。』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P07.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P07.png",
-        "https://img.bottleneko.app/NIK_S117_P07.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "AUTO",
-          "timing": "ON_PLAY",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "buff_self",
-              "power": 1000
-            }
-          ],
-          "raw": "【自】［(1)］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，在那個回合中，此卡的攻擊力+1000，到下次的對手回合結束前，對手不能從手牌使用事件。"
-        },
-        {
-          "category": "AUTO",
-          "timing": "ON_ATTACK",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "buff_self",
-              "power": 4000
-            }
-          ],
-          "raw": "【自】此卡攻擊時，其他的你的《NIKKE》的角色存在4張以上的話，到下次的對手回合結束前，此卡的攻擊力+4000，此卡獲得以下能力。『【永】此卡正面的角色不能側打。』"
-        }
-      ]
-    },
-    "NIK/S117-P08": {
-      "id": "NIK/S117-P08",
-      "base_id": "NIK/S117-P08",
-      "series": "NIK/S117",
-      "name": "\"大掃除女僕\"索達",
-      "jp_name": "“大掃除メイド”ソーダ",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 0,
-      "cost": 0,
-      "power": 2500,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "NIKKE專屬女僕部隊"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】［手牌的判定標誌是城門的CX1張放到休息室］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組上方看最多6張，選擇《NIKKE》的角色最多1張給對手確認，加到手牌，剩下的卡片放到休息室。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P08.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P08.png",
-        "https://img.bottleneko.app/NIK_S117_P08.png"
-      ],
-      "parsed_abilities": []
-    },
-    "NIK/S117-P09": {
-      "id": "NIK/S117-P09",
-      "base_id": "NIK/S117-P09",
-      "series": "NIK/S117",
-      "name": "\"AZX\"布麗德",
-      "jp_name": "“AZX”ブリッド",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 1,
-      "cost": 0,
-      "power": 4500,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "NIKKE無限軌道部隊"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】此卡從手牌被放置到舞台時，有其他的你的《NIKKE》的角色存在的話，在那個回合中，此卡的攻擊力+2000。\n【自】此卡攻擊時，你的CX區有判定標誌是城門的CX的話，你選擇自己休息室的《NIKKE》的角色最多1張，回到手牌，選擇自己的手牌1張，放到休息室。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P09.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P09.png",
-        "https://img.bottleneko.app/NIK_S117_P09.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "AUTO",
-          "timing": "ON_PLAY",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "buff_self",
-              "power": 2000
-            }
-          ],
-          "raw": "【自】此卡從手牌被放置到舞台時，有其他的你的《NIKKE》的角色存在的話，在那個回合中，此卡的攻擊力+2000。"
-        },
-        {
-          "category": "AUTO",
-          "timing": "ON_ATTACK",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "salvage_wr",
-              "target_type": "Character",
-              "count": 1
-            }
-          ],
-          "raw": "【自】此卡攻擊時，你的CX區有判定標誌是城門的CX的話，你選擇自己休息室的《NIKKE》的角色最多1張，回到手牌，選擇自己的手牌1張，放到休息室。"
-        }
-      ]
-    },
-    "NIK/S117-P10": {
-      "id": "NIK/S117-P10",
-      "base_id": "NIK/S117-P10",
-      "series": "NIK/S117",
-      "name": "桃樂絲：懷舊",
-      "jp_name": "ドロシー：ノスタルジア",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 2,
-      "cost": 1,
-      "power": 2500,
-      "soul": 1,
-      "trigger": "SOUL",
-      "traits": [
-        "NIKKE繼承者部隊"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】當你使用此卡的『助太刀』時，你選擇自己的戰鬥中的角色1張，在那個回合中，給予以下能力。『【自】此卡的戰鬥對手【倒置】時，你將那張角色放到回憶區。』\n【起】【反擊】助太刀3000 等級2［(1) 手牌的此卡放到休息室］(你選擇自己的正在被正打的角色1張，在那個回合中，攻擊力+3000)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P10.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P10.png",
-        "https://img.bottleneko.app/NIK_S117_P10.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "AUTO",
-          "timing": "ON_REVERSE_OPP",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "kick_opp_to_memory"
-            }
-          ],
-          "raw": "【自】當你使用此卡的『助太刀』時，你選擇自己的戰鬥中的角色1張，在那個回合中，給予以下能力。『【自】此卡的戰鬥對手【倒置】時，你將那張角色放到回憶區。』"
-        },
-        {
-          "category": "BACKUP",
-          "power": 3000,
-          "level": 2,
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "raw": "【起】【反擊】助太刀3000 等級2［(1) 手牌的此卡放到休息室］(你選擇自己的正在被正打的角色1張，在那個回合中，攻擊力+3000)"
-        }
-      ]
-    },
-    "NIK/S117-P11EX": {
-      "id": "NIK/S117-P11EX",
-      "base_id": "NIK/S117-P11S",
-      "series": "NIK/S117",
-      "name": "貫穿的赤紅之牙",
-      "jp_name": "撃ち穿つ赤い牙",
-      "type": "EVENT",
-      "color": "紅",
-      "level": 1,
-      "cost": 1,
-      "power": 0,
-      "soul": 0,
-      "trigger": "NONE",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "PR+",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "你從自己的牌組選擇CX最多1張給對手確認，加到手牌，將那個牌組洗牌。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P11EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P11EX.png",
-        "https://img.bottleneko.app/NIK_S117_P11EX.png"
-      ],
-      "parsed_abilities": []
-    },
-    "NIK/S117-P11S": {
-      "id": "NIK/S117-P11S",
-      "base_id": "NIK/S117-P11S",
-      "series": "NIK/S117",
-      "name": "貫穿的赤紅之牙",
-      "jp_name": "撃ち穿つ赤い牙",
-      "type": "EVENT",
-      "color": "紅",
-      "level": 1,
-      "cost": 1,
-      "power": 0,
-      "soul": 0,
-      "trigger": "NONE",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": "NIK/S117-P11EX",
-      "effects": [],
-      "text": "你從自己的牌組選擇CX最多1張給對手確認，加到手牌，將那個牌組洗牌。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P11S.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P11S.png",
-        "https://img.bottleneko.app/NIK_S117_P11S.png"
-      ],
-      "parsed_abilities": []
-    },
-    "NIK/S117-P12": {
-      "id": "NIK/S117-P12",
-      "base_id": "NIK/S117-P12",
-      "series": "NIK/S117",
-      "name": "\"最後的王國\"王冠",
-      "jp_name": "“ラストキングダム”クラウン",
-      "type": "CHAR",
-      "color": "紅",
-      "level": 0,
-      "cost": 0,
-      "power": 500,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "NIKKE白騎士"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": "NIK/S117-P12S",
-      "effects": [],
-      "text": "【自】在你的CX階段開始時，你可以看自己的牌組上方1張。(看過的卡片放回原位)\n【起】集中［(1) 將此卡【橫置】］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你執行以下的動作。『你從自己的牌組上方看最多3張，選擇卡片最多1張，加到手牌，剩下的卡片放到休息室。』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P12.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P12.png",
-        "https://img.bottleneko.app/NIK_S117_P12.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "ACT",
-          "effect": "brainstorm",
-          "flip_count": 4,
-          "reward": "search",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "raw": "【起】集中［(1) 將此卡【橫置】］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你執行以下的動作。『你從自己的牌組上方看最多3張，選擇卡片最多1張，加到手牌，剩下的卡片放到休息室。』"
-        }
-      ]
-    },
-    "NIK/S117-P12EX": {
-      "id": "NIK/S117-P12EX",
-      "base_id": "NIK/S117-P12",
-      "series": "NIK/S117",
-      "name": "\"最後的王國\"王冠",
-      "jp_name": "“ラストキングダム”クラウン",
-      "type": "CHAR",
-      "color": "紅",
-      "level": 0,
-      "cost": 0,
-      "power": 500,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "NIKKE白騎士"
-      ],
-      "default_count": 0,
-      "rarity": "PR+",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】在你的CX階段開始時，你可以看自己的牌組上方1張。(看過的卡片放回原位)\n【起】集中［(1) 將此卡【橫置】］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你執行以下的動作。『你從自己的牌組上方看最多3張，選擇卡片最多1張，加到手牌，剩下的卡片放到休息室。』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P12EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P12EX.png",
-        "https://img.bottleneko.app/NIK_S117_P12EX.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "ACT",
-          "effect": "brainstorm",
-          "flip_count": 4,
-          "reward": "search",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "raw": "【起】集中［(1) 將此卡【橫置】］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你執行以下的動作。『你從自己的牌組上方看最多3張，選擇卡片最多1張，加到手牌，剩下的卡片放到休息室。』"
-        }
-      ]
-    },
-    "NIK/S117-P12S": {
-      "id": "NIK/S117-P12S",
-      "base_id": "NIK/S117-P12",
-      "series": "NIK/S117",
-      "name": "\"最後的王國\"王冠",
-      "jp_name": "“ラストキングダム”クラウン",
-      "type": "CHAR",
-      "color": "紅",
-      "level": 0,
-      "cost": 0,
-      "power": 500,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "NIKKE白騎士"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": true,
-      "high_rarity_id": "NIK/S117-P12EX",
-      "effects": [],
-      "text": "【自】在你的CX階段開始時，你可以看自己的牌組上方1張。(看過的卡片放回原位)\n【起】集中［(1) 將此卡【橫置】］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你執行以下的動作。『你從自己的牌組上方看最多3張，選擇卡片最多1張，加到手牌，剩下的卡片放到休息室。』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P12S.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P12S.png",
-        "https://img.bottleneko.app/NIK_S117_P12S.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "ACT",
-          "effect": "brainstorm",
-          "flip_count": 4,
-          "reward": "search",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "raw": "【起】集中［(1) 將此卡【橫置】］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你執行以下的動作。『你從自己的牌組上方看最多3張，選擇卡片最多1張，加到手牌，剩下的卡片放到休息室。』"
-        }
-      ]
-    },
-    "NIK/S117-P13": {
-      "id": "NIK/S117-P13",
-      "base_id": "NIK/S117-P13",
-      "series": "NIK/S117",
-      "name": "深紅之繼承 拉毗：小紅帽",
-      "jp_name": "真紅の継承 ラピ：レッドフード",
-      "type": "CHAR",
-      "color": "紅",
-      "level": 0,
-      "cost": 0,
-      "power": 1500,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "NIKKE反擊部隊"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】此卡從手牌被放置到舞台時，你看自己的牌組上方最多2張，以任意順序放到牌組上方。\n【自】［(1) 手牌1張放到休息室］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的《NIKKE》的角色1張，回到手牌，選擇其他的自己的《NIKKE》的角色1張，在那個回合中，攻擊力+1000。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P13.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P13.png",
-        "https://img.bottleneko.app/NIK_S117_P13.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "AUTO",
-          "timing": "ON_PLAY",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "salvage_wr",
-              "target_type": "Character",
-              "count": 1
-            },
-            {
-              "action": "buff_self",
-              "power": 1000
-            }
-          ],
-          "raw": "【自】［(1) 手牌1張放到休息室］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的《NIKKE》的角色1張，回到手牌，選擇其他的自己的《NIKKE》的角色1張，在那個回合中，攻擊力+1000。"
-        }
-      ]
-    },
-    "NIK/S117-P14": {
-      "id": "NIK/S117-P14",
-      "base_id": "NIK/S117-P14",
-      "series": "NIK/S117",
-      "name": "灰姑娘 - 玻璃鞋的公主",
-      "jp_name": "シンデレラ - ガラスのプリンセス",
-      "type": "CHAR",
-      "color": "綠",
-      "level": 0,
-      "cost": 0,
-      "power": 1500,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "NIKKE遠古故事"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【起】［將此卡【橫置】］你選擇自己的角色1張，在那個回合中，攻擊力+1000。\n【起】集中［(1)］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你執行以下的動作。『你選擇自己休息室的《NIKKE》的角色1張，回到手牌，選擇自己的手牌1張，放到休息室。』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P14.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P14.png",
-        "https://img.bottleneko.app/NIK_S117_P14.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "ACT",
-          "effect": "act_buff",
-          "target": "ally",
-          "power": 1000,
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 1,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "raw": "【起】［將此卡【橫置】］你選擇自己的角色1張，在那個回合中，攻擊力+1000。"
-        },
-        {
-          "category": "ACT",
-          "effect": "brainstorm",
-          "flip_count": 4,
-          "reward": "search",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "raw": "【起】集中［(1)］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你執行以下的動作。『你選擇自己休息室的《NIKKE》的角色1張，回到手牌，選擇自己的手牌1張，放到休息室。』"
-        }
-      ]
     },
     "NIK/S117-T01": {
       "id": "NIK/S117-T01",
@@ -14769,6 +13969,792 @@
       ],
       "parsed_abilities": []
     },
+    "NIK/S117-P01": {
+      "id": "NIK/S117-P01",
+      "base_id": "NIK/S117-P01",
+      "series": "NIK/S117",
+      "name": "對火力的追求 尼恩",
+      "jp_name": "火力への追求 ネオン",
+      "type": "CHAR",
+      "color": "黃",
+      "level": 0,
+      "cost": 0,
+      "power": 1000,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "NIKKE反擊部隊"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】你的CX區有判定標誌是火的CX的話，所有的領域的此卡獲得火的判定標誌。\n【起】［手牌1張放到休息室，將此卡放到牌組下方］你從自己的牌組選擇《NIKKE》的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P01.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P01.png",
+        "https://img.bottleneko.app/NIK_S117_P01.png"
+      ],
+      "parsed_abilities": []
+    },
+    "NIK/S117-P02": {
+      "id": "NIK/S117-P02",
+      "base_id": "NIK/S117-P02",
+      "series": "NIK/S117",
+      "name": "\"蛇傷\"毒蛇",
+      "jp_name": "“スネークバイト”バイパー",
+      "type": "CHAR",
+      "color": "黃",
+      "level": 0,
+      "cost": 0,
+      "power": 1000,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "NIKKE外來者部隊"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】此卡從手牌被放置到舞台時，你可以選擇自己休息室的《NIKKE》的角色1張，作為標記以表側表示放到此卡下方。\n【自】【CX連動】當「D-OUTSIDERS」被放置到你的CX區時，其他的你的角色存在2張以上的話，你將自己的牌組上方1張公開。那張卡片是《NIKKE》的角色的話加到手牌。(如果不是的話放回原位)\n【自】在你的回合中，下方有標記的此卡從舞台被放到休息室時，有其他的你的《NIKKE》的角色存在的話，你可以將此卡【橫置】放回原位。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P02.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P02.png",
+        "https://img.bottleneko.app/NIK_S117_P02.png"
+      ],
+      "parsed_abilities": []
+    },
+    "NIK/S117-P03": {
+      "id": "NIK/S117-P03",
+      "base_id": "NIK/S117-P03",
+      "series": "NIK/S117",
+      "name": "作戰執行 拉毗",
+      "jp_name": "作戦遂行 ラピ",
+      "type": "CHAR",
+      "color": "黃",
+      "level": 3,
+      "cost": 2,
+      "power": 10000,
+      "soul": 2,
+      "trigger": "SOUL",
+      "traits": [
+        "NIKKE反擊部隊"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】【CX連動】［(1) 手牌1張放到休息室］當「為人類帶來勝利」被放置到你的CX區時，前列有此卡存在，有其他的你的「氣氛製造者 阿妮斯」和「\"火力至上\"尼恩」存在的話，你可以支付代價。支付代價的話，在那個回合中，給予此卡以外的你的前列的角色全部，以下能力。『【自】此能力每1回合最多發動1次。此卡給予的傷害被取消時，將此卡【正置】。』",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P03.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P03.png",
+        "https://img.bottleneko.app/NIK_S117_P03.png"
+      ],
+      "parsed_abilities": []
+    },
+    "NIK/S117-P04": {
+      "id": "NIK/S117-P04",
+      "base_id": "NIK/S117-P04",
+      "series": "NIK/S117",
+      "name": "氣氛製造者 阿妮斯",
+      "jp_name": "ムードメーカー アニス",
+      "type": "CHAR",
+      "color": "黃",
+      "level": 2,
+      "cost": 1,
+      "power": 7000,
+      "soul": 1,
+      "trigger": "SOUL",
+      "traits": [
+        "NIKKE反擊部隊"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】此卡從手牌被放置到舞台時，在那個回合中，此卡的攻擊力+X。X等於你的《NIKKE》的角色張數×1000。\n【自】［(2) 手牌2張放到休息室］此卡的戰鬥對手【倒置】時，你可以支付代價。支付代價的話，給對手5點傷害。(會發生傷害取消)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P04.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P04.png",
+        "https://img.bottleneko.app/NIK_S117_P04.png"
+      ],
+      "parsed_abilities": []
+    },
+    "NIK/S117-P05": {
+      "id": "NIK/S117-P05",
+      "base_id": "NIK/S117-P05",
+      "series": "NIK/S117",
+      "name": "布蘭兒：白兔",
+      "jp_name": "ブラン：ホワイトラビット",
+      "type": "CHAR",
+      "color": "綠",
+      "level": 1,
+      "cost": 0,
+      "power": 4500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "NIKKE777"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】在你的回合中，其他的你的《NIKKE》的角色存在2張以上的話，此卡的攻擊力+2000。\n【自】【CX連動】此卡攻擊時，CX區有「Bunny X 777」，有其他的你的《NIKKE》的角色存在的話，你將自己的牌組上方2張，放到休息室，選擇自己休息室的等級X以下的《NIKKE》的角色最多1張，回到手牌。X等於因為此效果被放到休息室的卡片的等級合計。(CX視為等級0)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P05.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P05.png",
+        "https://img.bottleneko.app/NIK_S117_P05.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "AUTO",
+          "timing": "OTHER",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "buff_self",
+              "power": 2000
+            }
+          ],
+          "raw": "【自】在你的回合中，其他的你的《NIKKE》的角色存在2張以上的話，此卡的攻擊力+2000。"
+        },
+        {
+          "category": "AUTO",
+          "timing": "ON_ATTACK",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": true,
+          "cx_name": "Bunny X 777",
+          "actions": [
+            {
+              "action": "salvage_wr",
+              "target_type": "Character",
+              "count": 1
+            }
+          ],
+          "raw": "【自】【CX連動】此卡攻擊時，CX區有「Bunny X 777」，有其他的你的《NIKKE》的角色存在的話，你將自己的牌組上方2張，放到休息室，選擇自己休息室的等級X以下的《NIKKE》的角色最多1張，回到手牌。X等於因為此效果被放到休息室的卡片的等級合計。(CX視為等級0)"
+        }
+      ]
+    },
+    "NIK/S117-P06": {
+      "id": "NIK/S117-P06",
+      "base_id": "NIK/S117-P06",
+      "series": "NIK/S117",
+      "name": "諾亞爾：黑兔",
+      "jp_name": "ノワール：ブラックラビット",
+      "type": "CHAR",
+      "color": "綠",
+      "level": 2,
+      "cost": 1,
+      "power": 5000,
+      "soul": 1,
+      "trigger": "SOUL",
+      "traits": [
+        "NIKKE777"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】你的CX區有判定標誌是金磚的CX的話，給予其他你的所有的領域的CX火的判定標誌。\n【永】應援 此卡前面的你的角色全部，攻擊力+1500。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P06.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P06.png",
+        "https://img.bottleneko.app/NIK_S117_P06.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "CONT",
+          "effect": "assist_flat",
+          "power": 1500,
+          "raw": "【永】應援 此卡前面的你的角色全部，攻擊力+1500。"
+        }
+      ]
+    },
+    "NIK/S117-P07": {
+      "id": "NIK/S117-P07",
+      "base_id": "NIK/S117-P07",
+      "series": "NIK/S117",
+      "name": "諾伊斯：經典天后",
+      "jp_name": "ノイズ：クラシックディーバ",
+      "type": "CHAR",
+      "color": "紅",
+      "level": 2,
+      "cost": 1,
+      "power": 6500,
+      "soul": 1,
+      "trigger": "SOUL",
+      "traits": [
+        "NIKKE首席女歌手"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】［(1)］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，在那個回合中，此卡的攻擊力+1000，到下次的對手回合結束前，對手不能從手牌使用事件。\n【自】此卡攻擊時，其他的你的《NIKKE》的角色存在4張以上的話，到下次的對手回合結束前，此卡的攻擊力+4000，此卡獲得以下能力。『【永】此卡正面的角色不能側打。』",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P07.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P07.png",
+        "https://img.bottleneko.app/NIK_S117_P07.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "AUTO",
+          "timing": "ON_PLAY",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "buff_self",
+              "power": 1000
+            }
+          ],
+          "raw": "【自】［(1)］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，在那個回合中，此卡的攻擊力+1000，到下次的對手回合結束前，對手不能從手牌使用事件。"
+        },
+        {
+          "category": "AUTO",
+          "timing": "ON_ATTACK",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "buff_self",
+              "power": 4000
+            }
+          ],
+          "raw": "【自】此卡攻擊時，其他的你的《NIKKE》的角色存在4張以上的話，到下次的對手回合結束前，此卡的攻擊力+4000，此卡獲得以下能力。『【永】此卡正面的角色不能側打。』"
+        }
+      ]
+    },
+    "NIK/S117-P08": {
+      "id": "NIK/S117-P08",
+      "base_id": "NIK/S117-P08",
+      "series": "NIK/S117",
+      "name": "\"大掃除女僕\"索達",
+      "jp_name": "“大掃除メイド”ソーダ",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 0,
+      "cost": 0,
+      "power": 2500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "NIKKE專屬女僕部隊"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】［手牌的判定標誌是城門的CX1張放到休息室］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組上方看最多6張，選擇《NIKKE》的角色最多1張給對手確認，加到手牌，剩下的卡片放到休息室。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P08.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P08.png",
+        "https://img.bottleneko.app/NIK_S117_P08.png"
+      ],
+      "parsed_abilities": []
+    },
+    "NIK/S117-P09": {
+      "id": "NIK/S117-P09",
+      "base_id": "NIK/S117-P09",
+      "series": "NIK/S117",
+      "name": "\"AZX\"布麗德",
+      "jp_name": "“AZX”ブリッド",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 1,
+      "cost": 0,
+      "power": 4500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "NIKKE無限軌道部隊"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】此卡從手牌被放置到舞台時，有其他的你的《NIKKE》的角色存在的話，在那個回合中，此卡的攻擊力+2000。\n【自】此卡攻擊時，你的CX區有判定標誌是城門的CX的話，你選擇自己休息室的《NIKKE》的角色最多1張，回到手牌，選擇自己的手牌1張，放到休息室。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P09.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P09.png",
+        "https://img.bottleneko.app/NIK_S117_P09.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "AUTO",
+          "timing": "ON_PLAY",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "buff_self",
+              "power": 2000
+            }
+          ],
+          "raw": "【自】此卡從手牌被放置到舞台時，有其他的你的《NIKKE》的角色存在的話，在那個回合中，此卡的攻擊力+2000。"
+        },
+        {
+          "category": "AUTO",
+          "timing": "ON_ATTACK",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "salvage_wr",
+              "target_type": "Character",
+              "count": 1
+            }
+          ],
+          "raw": "【自】此卡攻擊時，你的CX區有判定標誌是城門的CX的話，你選擇自己休息室的《NIKKE》的角色最多1張，回到手牌，選擇自己的手牌1張，放到休息室。"
+        }
+      ]
+    },
+    "NIK/S117-P10": {
+      "id": "NIK/S117-P10",
+      "base_id": "NIK/S117-P10",
+      "series": "NIK/S117",
+      "name": "桃樂絲：懷舊",
+      "jp_name": "ドロシー：ノスタルジア",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 2,
+      "cost": 1,
+      "power": 2500,
+      "soul": 1,
+      "trigger": "SOUL",
+      "traits": [
+        "NIKKE繼承者部隊"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】當你使用此卡的『助太刀』時，你選擇自己的戰鬥中的角色1張，在那個回合中，給予以下能力。『【自】此卡的戰鬥對手【倒置】時，你將那張角色放到回憶區。』\n【起】【反擊】助太刀3000 等級2［(1) 手牌的此卡放到休息室］(你選擇自己的正在被正打的角色1張，在那個回合中，攻擊力+3000)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P10.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P10.png",
+        "https://img.bottleneko.app/NIK_S117_P10.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "AUTO",
+          "timing": "ON_REVERSE_OPP",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "kick_opp_to_memory"
+            }
+          ],
+          "raw": "【自】當你使用此卡的『助太刀』時，你選擇自己的戰鬥中的角色1張，在那個回合中，給予以下能力。『【自】此卡的戰鬥對手【倒置】時，你將那張角色放到回憶區。』"
+        },
+        {
+          "category": "BACKUP",
+          "power": 3000,
+          "level": 2,
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "raw": "【起】【反擊】助太刀3000 等級2［(1) 手牌的此卡放到休息室］(你選擇自己的正在被正打的角色1張，在那個回合中，攻擊力+3000)"
+        }
+      ]
+    },
+    "NIK/S117-P11S": {
+      "id": "NIK/S117-P11S",
+      "base_id": "NIK/S117-P11S",
+      "series": "NIK/S117",
+      "name": "貫穿的赤紅之牙",
+      "jp_name": "撃ち穿つ赤い牙",
+      "type": "EVENT",
+      "color": "紅",
+      "level": 1,
+      "cost": 1,
+      "power": 0,
+      "soul": 0,
+      "trigger": "NONE",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": "NIK/S117-P11EX",
+      "effects": [],
+      "text": "你從自己的牌組選擇CX最多1張給對手確認，加到手牌，將那個牌組洗牌。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P11S.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P11S.png",
+        "https://img.bottleneko.app/NIK_S117_P11S.png"
+      ],
+      "parsed_abilities": []
+    },
+    "NIK/S117-P11EX": {
+      "id": "NIK/S117-P11EX",
+      "base_id": "NIK/S117-P11S",
+      "series": "NIK/S117",
+      "name": "貫穿的赤紅之牙",
+      "jp_name": "撃ち穿つ赤い牙",
+      "type": "EVENT",
+      "color": "紅",
+      "level": 1,
+      "cost": 1,
+      "power": 0,
+      "soul": 0,
+      "trigger": "NONE",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "PR+",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "你從自己的牌組選擇CX最多1張給對手確認，加到手牌，將那個牌組洗牌。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P11EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P11EX.png",
+        "https://img.bottleneko.app/NIK_S117_P11EX.png"
+      ],
+      "parsed_abilities": []
+    },
+    "NIK/S117-P12": {
+      "id": "NIK/S117-P12",
+      "base_id": "NIK/S117-P12",
+      "series": "NIK/S117",
+      "name": "\"最後的王國\"王冠",
+      "jp_name": "“ラストキングダム”クラウン",
+      "type": "CHAR",
+      "color": "紅",
+      "level": 0,
+      "cost": 0,
+      "power": 500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "NIKKE白騎士"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": "NIK/S117-P12S",
+      "effects": [],
+      "text": "【自】在你的CX階段開始時，你可以看自己的牌組上方1張。(看過的卡片放回原位)\n【起】集中［(1) 將此卡【橫置】］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你執行以下的動作。『你從自己的牌組上方看最多3張，選擇卡片最多1張，加到手牌，剩下的卡片放到休息室。』",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P12.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P12.png",
+        "https://img.bottleneko.app/NIK_S117_P12.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "ACT",
+          "effect": "brainstorm",
+          "flip_count": 4,
+          "reward": "search",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "raw": "【起】集中［(1) 將此卡【橫置】］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你執行以下的動作。『你從自己的牌組上方看最多3張，選擇卡片最多1張，加到手牌，剩下的卡片放到休息室。』"
+        }
+      ]
+    },
+    "NIK/S117-P12S": {
+      "id": "NIK/S117-P12S",
+      "base_id": "NIK/S117-P12",
+      "series": "NIK/S117",
+      "name": "\"最後的王國\"王冠",
+      "jp_name": "“ラストキングダム”クラウン",
+      "type": "CHAR",
+      "color": "紅",
+      "level": 0,
+      "cost": 0,
+      "power": 500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "NIKKE白騎士"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": true,
+      "high_rarity_id": "NIK/S117-P12EX",
+      "effects": [],
+      "text": "【自】在你的CX階段開始時，你可以看自己的牌組上方1張。(看過的卡片放回原位)\n【起】集中［(1) 將此卡【橫置】］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你執行以下的動作。『你從自己的牌組上方看最多3張，選擇卡片最多1張，加到手牌，剩下的卡片放到休息室。』",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P12S.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P12S.png",
+        "https://img.bottleneko.app/NIK_S117_P12S.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "ACT",
+          "effect": "brainstorm",
+          "flip_count": 4,
+          "reward": "search",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "raw": "【起】集中［(1) 將此卡【橫置】］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你執行以下的動作。『你從自己的牌組上方看最多3張，選擇卡片最多1張，加到手牌，剩下的卡片放到休息室。』"
+        }
+      ]
+    },
+    "NIK/S117-P12EX": {
+      "id": "NIK/S117-P12EX",
+      "base_id": "NIK/S117-P12",
+      "series": "NIK/S117",
+      "name": "\"最後的王國\"王冠",
+      "jp_name": "“ラストキングダム”クラウン",
+      "type": "CHAR",
+      "color": "紅",
+      "level": 0,
+      "cost": 0,
+      "power": 500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "NIKKE白騎士"
+      ],
+      "default_count": 0,
+      "rarity": "PR+",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】在你的CX階段開始時，你可以看自己的牌組上方1張。(看過的卡片放回原位)\n【起】集中［(1) 將此卡【橫置】］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你執行以下的動作。『你從自己的牌組上方看最多3張，選擇卡片最多1張，加到手牌，剩下的卡片放到休息室。』",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P12EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P12EX.png",
+        "https://img.bottleneko.app/NIK_S117_P12EX.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "ACT",
+          "effect": "brainstorm",
+          "flip_count": 4,
+          "reward": "search",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "raw": "【起】集中［(1) 將此卡【橫置】］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你執行以下的動作。『你從自己的牌組上方看最多3張，選擇卡片最多1張，加到手牌，剩下的卡片放到休息室。』"
+        }
+      ]
+    },
+    "NIK/S117-P13": {
+      "id": "NIK/S117-P13",
+      "base_id": "NIK/S117-P13",
+      "series": "NIK/S117",
+      "name": "深紅之繼承 拉毗：小紅帽",
+      "jp_name": "真紅の継承 ラピ：レッドフード",
+      "type": "CHAR",
+      "color": "紅",
+      "level": 0,
+      "cost": 0,
+      "power": 1500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "NIKKE反擊部隊"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】此卡從手牌被放置到舞台時，你看自己的牌組上方最多2張，以任意順序放到牌組上方。\n【自】［(1) 手牌1張放到休息室］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的《NIKKE》的角色1張，回到手牌，選擇其他的自己的《NIKKE》的角色1張，在那個回合中，攻擊力+1000。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P13.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P13.png",
+        "https://img.bottleneko.app/NIK_S117_P13.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "AUTO",
+          "timing": "ON_PLAY",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "salvage_wr",
+              "target_type": "Character",
+              "count": 1
+            },
+            {
+              "action": "buff_self",
+              "power": 1000
+            }
+          ],
+          "raw": "【自】［(1) 手牌1張放到休息室］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的《NIKKE》的角色1張，回到手牌，選擇其他的自己的《NIKKE》的角色1張，在那個回合中，攻擊力+1000。"
+        }
+      ]
+    },
+    "NIK/S117-P14": {
+      "id": "NIK/S117-P14",
+      "base_id": "NIK/S117-P14",
+      "series": "NIK/S117",
+      "name": "灰姑娘 - 玻璃鞋的公主",
+      "jp_name": "シンデレラ - ガラスのプリンセス",
+      "type": "CHAR",
+      "color": "綠",
+      "level": 0,
+      "cost": 0,
+      "power": 1500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "NIKKE遠古故事"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【起】［將此卡【橫置】］你選擇自己的角色1張，在那個回合中，攻擊力+1000。\n【起】集中［(1)］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你執行以下的動作。『你選擇自己休息室的《NIKKE》的角色1張，回到手牌，選擇自己的手牌1張，放到休息室。』",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P14.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S117_P14.png",
+        "https://img.bottleneko.app/NIK_S117_P14.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "ACT",
+          "effect": "act_buff",
+          "target": "ally",
+          "power": 1000,
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 1,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "raw": "【起】［將此卡【橫置】］你選擇自己的角色1張，在那個回合中，攻擊力+1000。"
+        },
+        {
+          "category": "ACT",
+          "effect": "brainstorm",
+          "flip_count": 4,
+          "reward": "search",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "raw": "【起】集中［(1)］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你執行以下的動作。『你選擇自己休息室的《NIKKE》的角色1張，回到手牌，選擇自己的手牌1張，放到休息室。』"
+        }
+      ]
+    },
     "NIK/S135-001": {
       "id": "NIK/S135-001",
       "base_id": "NIK/S135-001",
@@ -14919,8 +14905,8 @@
         }
       ]
     },
-    "NIK/S135-001SEC": {
-      "id": "NIK/S135-001SEC",
+    "NIK/S135-001SP": {
+      "id": "NIK/S135-001SP",
       "base_id": "NIK/S135-001",
       "series": "NIK/S135",
       "name": "伊萊格：BOOM與驚嚇",
@@ -14936,15 +14922,15 @@
         "NIKKE電力衝擊"
       ],
       "default_count": 0,
-      "rarity": "SEC",
+      "rarity": "SP",
       "is_high_rarity": true,
-      "high_rarity_id": null,
+      "high_rarity_id": "NIK/S135-001SEC",
       "effects": [],
       "text": "【自】在你的CX階段開始時，你選擇自己的《NIKKE》的角色1張，在那個回合中，攻擊力+1500。\n【自】【CX連動】當「BOOM！THE GHOST！」被放置到你的CX區時，其他的你的《NIKKE》的角色存在3張以上的話，你選擇自己的角色1張，在那個回合中，給予以下能力。『【自】此卡的戰鬥對手【倒置】時，你看自己的牌組上方1張，放到牌組上方或休息室，選擇自己休息室的角色最多1張，回到手牌。』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_001SEC.png",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_001SP.png",
       "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_001SEC.png",
-        "https://img.bottleneko.app/NIK_S135_001SEC.png"
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_001SP.png",
+        "https://img.bottleneko.app/NIK_S135_001SP.png"
       ],
       "parsed_abilities": [
         {
@@ -14994,8 +14980,8 @@
         }
       ]
     },
-    "NIK/S135-001SP": {
-      "id": "NIK/S135-001SP",
+    "NIK/S135-001SEC": {
+      "id": "NIK/S135-001SEC",
       "base_id": "NIK/S135-001",
       "series": "NIK/S135",
       "name": "伊萊格：BOOM與驚嚇",
@@ -15011,15 +14997,15 @@
         "NIKKE電力衝擊"
       ],
       "default_count": 0,
-      "rarity": "SP",
+      "rarity": "SEC",
       "is_high_rarity": true,
-      "high_rarity_id": "NIK/S135-001SEC",
+      "high_rarity_id": null,
       "effects": [],
       "text": "【自】在你的CX階段開始時，你選擇自己的《NIKKE》的角色1張，在那個回合中，攻擊力+1500。\n【自】【CX連動】當「BOOM！THE GHOST！」被放置到你的CX區時，其他的你的《NIKKE》的角色存在3張以上的話，你選擇自己的角色1張，在那個回合中，給予以下能力。『【自】此卡的戰鬥對手【倒置】時，你看自己的牌組上方1張，放到牌組上方或休息室，選擇自己休息室的角色最多1張，回到手牌。』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_001SP.png",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_001SEC.png",
       "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_001SP.png",
-        "https://img.bottleneko.app/NIK_S135_001SP.png"
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_001SEC.png",
+        "https://img.bottleneko.app/NIK_S135_001SEC.png"
       ],
       "parsed_abilities": [
         {
@@ -17841,8 +17827,8 @@
         }
       ]
     },
-    "NIK/S135-029SEC": {
-      "id": "NIK/S135-029SEC",
+    "NIK/S135-029SP": {
+      "id": "NIK/S135-029SP",
       "base_id": "NIK/S135-029",
       "series": "NIK/S135",
       "name": "“解決目標” D:殺手妻子",
@@ -17858,15 +17844,15 @@
         "NIKKE危險席部隊"
       ],
       "default_count": 0,
-      "rarity": "SEC",
+      "rarity": "SP",
       "is_high_rarity": true,
-      "high_rarity_id": null,
+      "high_rarity_id": "NIK/S135-029SEC",
       "effects": [],
       "text": "【自】［(1) 你的牌組上方1張放到傷害區］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇等級1以下的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。\n【自】此卡攻擊時，你選擇其他的自己的《NIKKE》的角色1張，到下次的對手回合結束前，攻擊力+500，給予『【自】安可［手牌的角色1張放到休息室］』。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_029SEC.png",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_029SP.png",
       "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_029SEC.png",
-        "https://img.bottleneko.app/NIK_S135_029SEC.png"
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_029SP.png",
+        "https://img.bottleneko.app/NIK_S135_029SP.png"
       ],
       "parsed_abilities": [
         {
@@ -17915,8 +17901,8 @@
         }
       ]
     },
-    "NIK/S135-029SP": {
-      "id": "NIK/S135-029SP",
+    "NIK/S135-029SEC": {
+      "id": "NIK/S135-029SEC",
       "base_id": "NIK/S135-029",
       "series": "NIK/S135",
       "name": "“解決目標” D:殺手妻子",
@@ -17932,15 +17918,15 @@
         "NIKKE危險席部隊"
       ],
       "default_count": 0,
-      "rarity": "SP",
+      "rarity": "SEC",
       "is_high_rarity": true,
-      "high_rarity_id": "NIK/S135-029SEC",
+      "high_rarity_id": null,
       "effects": [],
       "text": "【自】［(1) 你的牌組上方1張放到傷害區］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇等級1以下的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。\n【自】此卡攻擊時，你選擇其他的自己的《NIKKE》的角色1張，到下次的對手回合結束前，攻擊力+500，給予『【自】安可［手牌的角色1張放到休息室］』。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_029SP.png",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_029SEC.png",
       "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_029SP.png",
-        "https://img.bottleneko.app/NIK_S135_029SP.png"
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_029SEC.png",
+        "https://img.bottleneko.app/NIK_S135_029SEC.png"
       ],
       "parsed_abilities": [
         {
@@ -18107,8 +18093,8 @@
         }
       ]
     },
-    "NIK/S135-030SEC": {
-      "id": "NIK/S135-030SEC",
+    "NIK/S135-030SP": {
+      "id": "NIK/S135-030SP",
       "base_id": "NIK/S135-030",
       "series": "NIK/S135",
       "name": "“水晶鞋．完全連接”灰姑娘",
@@ -18124,15 +18110,15 @@
         "NIKKE遠古故事"
       ],
       "default_count": 0,
-      "rarity": "SEC",
+      "rarity": "SP",
       "is_high_rarity": true,
-      "high_rarity_id": null,
+      "high_rarity_id": "NIK/S135-030SEC",
       "effects": [],
       "text": "【永】在你的回合中，此卡的攻擊力+2000。\n【自】【CX連動】此卡攻擊時，CX區有「OLD TALES」的話，你選擇自己休息室的角色或「純潔無瑕的銀白」最多2張，選擇1張回到手牌，剩下的卡片放到能量區，到下次的對手回合結束前，此卡獲得以下能力。『【自】此卡正面的角色攻擊時，你從自己的牌組上方看最多2張，選擇卡片最多1張，作為標記以裏側表示放到此卡下方，剩下的卡片分別以任意順序放到牌組上方或放到休息室。』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_030SEC.png",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_030SP.png",
       "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_030SEC.png",
-        "https://img.bottleneko.app/NIK_S135_030SEC.png"
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_030SP.png",
+        "https://img.bottleneko.app/NIK_S135_030SP.png"
       ],
       "parsed_abilities": [
         {
@@ -18166,8 +18152,8 @@
         }
       ]
     },
-    "NIK/S135-030SP": {
-      "id": "NIK/S135-030SP",
+    "NIK/S135-030SEC": {
+      "id": "NIK/S135-030SEC",
       "base_id": "NIK/S135-030",
       "series": "NIK/S135",
       "name": "“水晶鞋．完全連接”灰姑娘",
@@ -18183,15 +18169,15 @@
         "NIKKE遠古故事"
       ],
       "default_count": 0,
-      "rarity": "SP",
+      "rarity": "SEC",
       "is_high_rarity": true,
-      "high_rarity_id": "NIK/S135-030SEC",
+      "high_rarity_id": null,
       "effects": [],
       "text": "【永】在你的回合中，此卡的攻擊力+2000。\n【自】【CX連動】此卡攻擊時，CX區有「OLD TALES」的話，你選擇自己休息室的角色或「純潔無瑕的銀白」最多2張，選擇1張回到手牌，剩下的卡片放到能量區，到下次的對手回合結束前，此卡獲得以下能力。『【自】此卡正面的角色攻擊時，你從自己的牌組上方看最多2張，選擇卡片最多1張，作為標記以裏側表示放到此卡下方，剩下的卡片分別以任意順序放到牌組上方或放到休息室。』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_030SP.png",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_030SEC.png",
       "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_030SP.png",
-        "https://img.bottleneko.app/NIK_S135_030SP.png"
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_030SEC.png",
+        "https://img.bottleneko.app/NIK_S135_030SEC.png"
       ],
       "parsed_abilities": [
         {
@@ -20455,37 +20441,6 @@
       ],
       "parsed_abilities": []
     },
-    "NIK/S135-053A": {
-      "id": "NIK/S135-053A",
-      "base_id": "NIK/S135-053",
-      "series": "NIK/S135",
-      "name": "OLD TALES",
-      "jp_name": "OLD TALES",
-      "type": "CX",
-      "color": "綠",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "SOUL",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "AGR",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [
-        "CX_ALL_1000_1SOUL"
-      ],
-      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (金磚：當你判定出此卡時，你將此卡返回手牌，你可以將自己的牌組上方1張，放到能量區)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_053A.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_053A.png",
-        "https://img.bottleneko.app/NIK_S135_053A.png"
-      ],
-      "parsed_abilities": []
-    },
     "NIK/S135-053R": {
       "id": "NIK/S135-053R",
       "base_id": "NIK/S135-053",
@@ -20514,6 +20469,37 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_053R.png",
         "https://img.bottleneko.app/NIK_S135_053R.png"
+      ],
+      "parsed_abilities": []
+    },
+    "NIK/S135-053A": {
+      "id": "NIK/S135-053A",
+      "base_id": "NIK/S135-053",
+      "series": "NIK/S135",
+      "name": "OLD TALES",
+      "jp_name": "OLD TALES",
+      "type": "CX",
+      "color": "綠",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "SOUL",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "AGR",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [
+        "CX_ALL_1000_1SOUL"
+      ],
+      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (金磚：當你判定出此卡時，你將此卡返回手牌，你可以將自己的牌組上方1張，放到能量區)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_053A.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_053A.png",
+        "https://img.bottleneko.app/NIK_S135_053A.png"
       ],
       "parsed_abilities": []
     },
@@ -20969,35 +20955,6 @@
       ],
       "parsed_abilities": []
     },
-    "NIK/S135-058SEC": {
-      "id": "NIK/S135-058SEC",
-      "base_id": "NIK/S135-058",
-      "series": "NIK/S135",
-      "name": "拉毗：小紅帽",
-      "jp_name": "ラピ：レッドフード",
-      "type": "CHAR",
-      "color": "紅",
-      "level": 3,
-      "cost": 2,
-      "power": 8000,
-      "soul": 2,
-      "trigger": "SOUL",
-      "traits": [
-        "NIKKE反擊部隊"
-      ],
-      "default_count": 0,
-      "rarity": "SEC",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】你的角色全部都是《NIKKE》的話，此卡的攻擊力+3000。\n【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】【CX連動】【回合1次】此卡給予的傷害被取消時，你的CX區有「FOOTSTEP, WALK, RUN」的話，你將自己的牌組上方4張公開，將那個牌組洗牌，給對手4點傷害X次。X等於那些卡片中的CX張數。(公開過的卡片放回原位。會發生傷害取消)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_058SEC.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_058SEC.png",
-        "https://img.bottleneko.app/NIK_S135_058SEC.png"
-      ],
-      "parsed_abilities": []
-    },
     "NIK/S135-058SP": {
       "id": "NIK/S135-058SP",
       "base_id": "NIK/S135-058",
@@ -21024,6 +20981,35 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_058SP.png",
         "https://img.bottleneko.app/NIK_S135_058SP.png"
+      ],
+      "parsed_abilities": []
+    },
+    "NIK/S135-058SEC": {
+      "id": "NIK/S135-058SEC",
+      "base_id": "NIK/S135-058",
+      "series": "NIK/S135",
+      "name": "拉毗：小紅帽",
+      "jp_name": "ラピ：レッドフード",
+      "type": "CHAR",
+      "color": "紅",
+      "level": 3,
+      "cost": 2,
+      "power": 8000,
+      "soul": 2,
+      "trigger": "SOUL",
+      "traits": [
+        "NIKKE反擊部隊"
+      ],
+      "default_count": 0,
+      "rarity": "SEC",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】你的角色全部都是《NIKKE》的話，此卡的攻擊力+3000。\n【自】此卡從手牌被放置到舞台時，你可以將自己的傷害區上方1張，放到休息室。\n【自】【CX連動】【回合1次】此卡給予的傷害被取消時，你的CX區有「FOOTSTEP, WALK, RUN」的話，你將自己的牌組上方4張公開，將那個牌組洗牌，給對手4點傷害X次。X等於那些卡片中的CX張數。(公開過的卡片放回原位。會發生傷害取消)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_058SEC.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_058SEC.png",
+        "https://img.bottleneko.app/NIK_S135_058SEC.png"
       ],
       "parsed_abilities": []
     },
@@ -23911,42 +23897,6 @@
         }
       ]
     },
-    "NIK/S135-084SEC": {
-      "id": "NIK/S135-084SEC",
-      "base_id": "NIK/S135-084",
-      "series": "NIK/S135",
-      "name": "“賽蓮之歌” 小美人魚",
-      "jp_name": "“セイレーンソング”リトルマーメイド",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 1,
-      "cost": 0,
-      "power": 3000,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "NIKKE遠古故事"
-      ],
-      "default_count": 0,
-      "rarity": "SEC",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】在你的回合中，有其他的你的《NIKKE》的角色存在的話，此卡的攻擊力+4500。\n【自】【CX連動】此卡攻擊時，CX區有「UNBREAKABLE SPHERE」的話，你從自己的牌組上方看最多5張，選擇《NIKKE》的角色或事件最多2張給對手確認，1張加到手牌，1張放到能量區，剩下的卡片放到休息室。1張放到能量區的畫，你選擇自己的手牌1張，放到休息室。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_084SEC.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_084SEC.png",
-        "https://img.bottleneko.app/NIK_S135_084SEC.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "CONT",
-          "effect": "my_turn_self_buff",
-          "power": 4500,
-          "raw": "【永】在你的回合中，有其他的你的《NIKKE》的角色存在的話，此卡的攻擊力+4500。"
-        }
-      ]
-    },
     "NIK/S135-084SP": {
       "id": "NIK/S135-084SP",
       "base_id": "NIK/S135-084",
@@ -23973,6 +23923,42 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_084SP.png",
         "https://img.bottleneko.app/NIK_S135_084SP.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "CONT",
+          "effect": "my_turn_self_buff",
+          "power": 4500,
+          "raw": "【永】在你的回合中，有其他的你的《NIKKE》的角色存在的話，此卡的攻擊力+4500。"
+        }
+      ]
+    },
+    "NIK/S135-084SEC": {
+      "id": "NIK/S135-084SEC",
+      "base_id": "NIK/S135-084",
+      "series": "NIK/S135",
+      "name": "“賽蓮之歌” 小美人魚",
+      "jp_name": "“セイレーンソング”リトルマーメイド",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 1,
+      "cost": 0,
+      "power": 3000,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "NIKKE遠古故事"
+      ],
+      "default_count": 0,
+      "rarity": "SEC",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】在你的回合中，有其他的你的《NIKKE》的角色存在的話，此卡的攻擊力+4500。\n【自】【CX連動】此卡攻擊時，CX區有「UNBREAKABLE SPHERE」的話，你從自己的牌組上方看最多5張，選擇《NIKKE》的角色或事件最多2張給對手確認，1張加到手牌，1張放到能量區，剩下的卡片放到休息室。1張放到能量區的畫，你選擇自己的手牌1張，放到休息室。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_084SEC.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_084SEC.png",
+        "https://img.bottleneko.app/NIK_S135_084SEC.png"
       ],
       "parsed_abilities": [
         {
@@ -28276,36 +28262,6 @@
       ],
       "parsed_abilities": []
     },
-    "NIK/S135-P01EX": {
-      "id": "NIK/S135-P01EX",
-      "base_id": "NIK/S135-P01",
-      "series": "NIK/S135",
-      "name": "ラピ：レッドフード - チェリッシュドレッド",
-      "jp_name": "ラピ：レッドフード - チェリッシュドレッド",
-      "type": "CHAR",
-      "color": "紅",
-      "level": 0,
-      "cost": 0,
-      "power": 2000,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "NIKKE",
-        "カウンターズ"
-      ],
-      "default_count": 0,
-      "rarity": "PR+",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】 あなたのターン中、このカードのパワーを＋1000。\n【自】 このカードが舞台から控え室に置かれた時、あなたは自分の山札を上から3枚まで見て、CXか「色づき出す世界」を1枚まで選んで相手に見せ、手札に加え、残りのカードを控え室に置く。手札に加えたなら、あなたは自分の手札を1枚選び、控え室に置く。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_P01EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_P01EX.png",
-        "https://img.bottleneko.app/NIK_S135_P01EX.png"
-      ],
-      "parsed_abilities": []
-    },
     "NIK/S135-P01S": {
       "id": "NIK/S135-P01S",
       "base_id": "NIK/S135-P01",
@@ -28336,58 +28292,35 @@
       ],
       "parsed_abilities": []
     },
-    "NIK/S135-P02EX": {
-      "id": "NIK/S135-P02EX",
-      "base_id": "NIK/S135-P02S",
+    "NIK/S135-P01EX": {
+      "id": "NIK/S135-P01EX",
+      "base_id": "NIK/S135-P01",
       "series": "NIK/S135",
-      "name": "毒蛇-愛情光芒",
-      "jp_name": "バイパー - シャイン・オブ・ラブ",
+      "name": "ラピ：レッドフード - チェリッシュドレッド",
+      "jp_name": "ラピ：レッドフード - チェリッシュドレッド",
       "type": "CHAR",
-      "color": "黃",
-      "level": 3,
-      "cost": 2,
-      "power": 10500,
-      "soul": 2,
-      "trigger": "SOUL",
+      "color": "紅",
+      "level": 0,
+      "cost": 0,
+      "power": 2000,
+      "soul": 1,
+      "trigger": "NONE",
       "traits": [
-        "NIKKE外來者部隊"
+        "NIKKE",
+        "カウンターズ"
       ],
       "default_count": 0,
       "rarity": "PR+",
       "is_high_rarity": true,
       "high_rarity_id": null,
       "effects": [],
-      "text": "【永】此卡在休息室，你的等級在3以上，你的角色全部都是《NIKKE》的話，此卡獲得以下能力。『【起】［(1) 手牌2張放到休息室］你將休息室的此卡放到舞台上的沒有角色的格子。』\n【自】［(1)］此卡從手牌被放置到舞台時或因「毒蛇-愛情光芒」的【起】的效果被放到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的CX1張，回到手牌。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_P02EX.png",
+      "text": "【永】 あなたのターン中、このカードのパワーを＋1000。\n【自】 このカードが舞台から控え室に置かれた時、あなたは自分の山札を上から3枚まで見て、CXか「色づき出す世界」を1枚まで選んで相手に見せ、手札に加え、残りのカードを控え室に置く。手札に加えたなら、あなたは自分の手札を1枚選び、控え室に置く。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_P01EX.png",
       "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_P02EX.png",
-        "https://img.bottleneko.app/NIK_S135_P02EX.png"
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_P01EX.png",
+        "https://img.bottleneko.app/NIK_S135_P01EX.png"
       ],
-      "parsed_abilities": [
-        {
-          "category": "AUTO",
-          "timing": "ON_PLAY",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "salvage_wr",
-              "target_type": "Character",
-              "count": 1
-            }
-          ],
-          "raw": "【自】［(1)］此卡從手牌被放置到舞台時或因「毒蛇-愛情光芒」的【起】的效果被放到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的CX1張，回到手牌。"
-        }
-      ]
+      "parsed_abilities": []
     },
     "NIK/S135-P02S": {
       "id": "NIK/S135-P02S",
@@ -28415,6 +28348,59 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_P02S.png",
         "https://img.bottleneko.app/NIK_S135_P02S.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "AUTO",
+          "timing": "ON_PLAY",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "salvage_wr",
+              "target_type": "Character",
+              "count": 1
+            }
+          ],
+          "raw": "【自】［(1)］此卡從手牌被放置到舞台時或因「毒蛇-愛情光芒」的【起】的效果被放到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的CX1張，回到手牌。"
+        }
+      ]
+    },
+    "NIK/S135-P02EX": {
+      "id": "NIK/S135-P02EX",
+      "base_id": "NIK/S135-P02S",
+      "series": "NIK/S135",
+      "name": "毒蛇-愛情光芒",
+      "jp_name": "バイパー - シャイン・オブ・ラブ",
+      "type": "CHAR",
+      "color": "黃",
+      "level": 3,
+      "cost": 2,
+      "power": 10500,
+      "soul": 2,
+      "trigger": "SOUL",
+      "traits": [
+        "NIKKE外來者部隊"
+      ],
+      "default_count": 0,
+      "rarity": "PR+",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】此卡在休息室，你的等級在3以上，你的角色全部都是《NIKKE》的話，此卡獲得以下能力。『【起】［(1) 手牌2張放到休息室］你將休息室的此卡放到舞台上的沒有角色的格子。』\n【自】［(1)］此卡從手牌被放置到舞台時或因「毒蛇-愛情光芒」的【起】的效果被放到舞台時，你可以支付代價。支付代價的話，你選擇自己休息室的CX1張，回到手牌。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_P02EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/NIK_S135_P02EX.png",
+        "https://img.bottleneko.app/NIK_S135_P02EX.png"
       ],
       "parsed_abilities": [
         {

@@ -2,21 +2,7 @@
   "series_code": "SFN/S108",
   "series_name": "SFN/S108",
   "series_title": "葬送的芙莉蓮 (SFN)",
-  "default_deck_recipe": {
-    "SFN/S108-022": 4,
-    "SFN/S108-023": 4,
-    "SFN/S108-001": 4,
-    "SFN/S108-002": 4,
-    "SFN/S108-003": 4,
-    "SFN/S108-004": 4,
-    "SFN/S108-005": 4,
-    "SFN/S108-006": 4,
-    "SFN/S108-007": 4,
-    "SFN/S108-008": 4,
-    "SFN/S108-009": 4,
-    "SFN/S108-010": 4,
-    "SFN/S108-011": 2
-  },
+  "default_deck_recipe": {},
   "cards": {
     "SFN/S108-001": {
       "id": "SFN/S108-001",
@@ -9147,310 +9133,6 @@
       ],
       "parsed_abilities": []
     },
-    "SFN/S108-P01": {
-      "id": "SFN/S108-P01",
-      "base_id": "SFN/S108-P01",
-      "series": "SFN/S108",
-      "name": "葬送のフリーレン",
-      "jp_name": "葬送のフリーレン",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 3,
-      "cost": 2,
-      "power": 10000,
-      "soul": 2,
-      "trigger": "SOUL",
-      "traits": [
-        "冒険者",
-        "魔法"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】 このカードが手札から舞台に置かれた時、あなたは自分の山札を上から3枚まで見て、カードを1枚まで選び、手札に加え、残りのカードを控え室に置く。\n【自】【CXコンボ】［手札を2枚控え室に置く］ このカードがアタックした時、クライマックス置場に「約束の蒼月草」があり、他のあなたの、《冒険者》か《魔法》のキャラが2枚以上なら、あなたはコストを払ってよい。そうしたら、相手に4ダメージを与え、あなたは自分の、《冒険者》か《魔法》のキャラを1枚選び、そのターン中、パワーを＋2000。（ダメージキャンセルは発生する）",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P01.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P01.png",
-        "https://img.bottleneko.app/SFN_S108_P01.png"
-      ],
-      "parsed_abilities": []
-    },
-    "SFN/S108-P02": {
-      "id": "SFN/S108-P02",
-      "base_id": "SFN/S108-P02",
-      "series": "SFN/S108",
-      "name": "まどろむフリーレン",
-      "jp_name": "まどろむフリーレン",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 2,
-      "cost": 1,
-      "power": 5000,
-      "soul": 1,
-      "trigger": "SOUL",
-      "traits": [
-        "冒険者",
-        "魔法"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": "SFN/S108-P02S",
-      "effects": [],
-      "text": "【自】 このカードが手札から舞台に置かれた時、あなたは自分のキャラを1枚選び、そのターン中、ソウルを＋1。\n【起】［このカードを控え室に置く］ あなたは相手のキャラを1枚選び、手札に戻す。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P02.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P02.png",
-        "https://img.bottleneko.app/SFN_S108_P02.png"
-      ],
-      "parsed_abilities": []
-    },
-    "SFN/S108-P02S": {
-      "id": "SFN/S108-P02S",
-      "base_id": "SFN/S108-P02",
-      "series": "SFN/S108",
-      "name": "まどろむフリーレン",
-      "jp_name": "まどろむフリーレン",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 2,
-      "cost": 1,
-      "power": 5000,
-      "soul": 1,
-      "trigger": "SOUL",
-      "traits": [
-        "冒険者",
-        "魔法"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】 このカードが手札から舞台に置かれた時、あなたは自分のキャラを1枚選び、そのターン中、ソウルを＋1。\n【起】［このカードを控え室に置く］ あなたは相手のキャラを1枚選び、手札に戻す。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P02S.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P02S.png",
-        "https://img.bottleneko.app/SFN_S108_P02S.png"
-      ],
-      "parsed_abilities": []
-    },
-    "SFN/S108-P03a": {
-      "id": "SFN/S108-P03a",
-      "base_id": "SFN/S108-P03a",
-      "series": "SFN/S108",
-      "name": "しろくろ戦士 シュタルク",
-      "jp_name": "しろくろ戦士 シュタルク",
-      "type": "CHAR",
-      "color": "紅",
-      "level": 0,
-      "cost": 0,
-      "power": 2000,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "冒険者",
-        "武器"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】 このカードが手札から舞台に置かれた時、相手の前列のキャラが1枚以下なら、あなたは相手の前列のコスト0以下のキャラを1枚選び、控え室に置いてよい。\n【自】［(2)］ このカードが手札から舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室の、《冒険者》か《魔法》のキャラを1枚選び、手札に戻す。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P03A.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P03A.png",
-        "https://img.bottleneko.app/SFN_S108_P03A.png"
-      ],
-      "parsed_abilities": []
-    },
-    "SFN/S108-P03b": {
-      "id": "SFN/S108-P03b",
-      "base_id": "SFN/S108-P03b",
-      "series": "SFN/S108",
-      "name": "しろくろ戦士 シュタルク",
-      "jp_name": "しろくろ戦士 シュタルク",
-      "type": "CHAR",
-      "color": "紅",
-      "level": 0,
-      "cost": 0,
-      "power": 2000,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "冒険者",
-        "武器"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】 このカードが手札から舞台に置かれた時、相手の前列のキャラが1枚以下なら、あなたは相手の前列のコスト0以下のキャラを1枚選び、控え室に置いてよい。\n【自】［(2)］ このカードが手札から舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室の、《冒険者》か《魔法》のキャラを1枚選び、手札に戻す。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P03B.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P03B.png",
-        "https://img.bottleneko.app/SFN_S108_P03B.png"
-      ],
-      "parsed_abilities": []
-    },
-    "SFN/S108-P04a": {
-      "id": "SFN/S108-P04a",
-      "base_id": "SFN/S108-P04a",
-      "series": "SFN/S108",
-      "name": "しろくろ魔法使い フェルン",
-      "jp_name": "しろくろ魔法使い フェルン",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 0,
-      "cost": 0,
-      "power": 1000,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "冒険者",
-        "魔法"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】［このカードを控え室に置く］ 他のあなたの、《冒険者》か《魔法》のキャラがフロントアタックされた時、あなたはコストを払ってよい。そうしたら、あなたは自分のバトル中のキャラを1枚選び、そのターン中、パワーを＋1500。\n【起】 集中 ［(1)］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのCX1枚につき、次の行動を行う。『あなたは自分の控え室のキャラを1枚選び、手札に戻し、自分の手札を1枚選び、控え室に置く。』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P04A.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P04A.png",
-        "https://img.bottleneko.app/SFN_S108_P04A.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "ACT",
-          "effect": "brainstorm",
-          "flip_count": 4,
-          "reward": "search",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "raw": "【起】 集中 ［(1)］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのCX1枚につき、次の行動を行う。『あなたは自分の控え室のキャラを1枚選び、手札に戻し、自分の手札を1枚選び、控え室に置く。』"
-        }
-      ]
-    },
-    "SFN/S108-P04b": {
-      "id": "SFN/S108-P04b",
-      "base_id": "SFN/S108-P04b",
-      "series": "SFN/S108",
-      "name": "しろくろ魔法使い フェルン",
-      "jp_name": "しろくろ魔法使い フェルン",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 0,
-      "cost": 0,
-      "power": 1000,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "冒険者",
-        "魔法"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】［このカードを控え室に置く］ 他のあなたの、《冒険者》か《魔法》のキャラがフロントアタックされた時、あなたはコストを払ってよい。そうしたら、あなたは自分のバトル中のキャラを1枚選び、そのターン中、パワーを＋1500。\n【起】 集中 ［(1)］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのCX1枚につき、次の行動を行う。『あなたは自分の控え室のキャラを1枚選び、手札に戻し、自分の手札を1枚選び、控え室に置く。』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P04B.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P04B.png",
-        "https://img.bottleneko.app/SFN_S108_P04B.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "ACT",
-          "effect": "brainstorm",
-          "flip_count": 4,
-          "reward": "search",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "raw": "【起】 集中 ［(1)］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのCX1枚につき、次の行動を行う。『あなたは自分の控え室のキャラを1枚選び、手札に戻し、自分の手札を1枚選び、控え室に置く。』"
-        }
-      ]
-    },
-    "SFN/S108-P05a": {
-      "id": "SFN/S108-P05a",
-      "base_id": "SFN/S108-P05a",
-      "series": "SFN/S108",
-      "name": "しろくろ魔法使い フリーレン",
-      "jp_name": "しろくろ魔法使い フリーレン",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 2,
-      "cost": 1,
-      "power": 5500,
-      "soul": 1,
-      "trigger": "SOUL",
-      "traits": [
-        "冒険者",
-        "魔法"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】 このカードがアタックした時、あなたは他の自分の、《冒険者》か《魔法》のキャラを1枚選び、そのターン中、パワーを＋Ｘ。Ｘはあなたの控え室のイベントの枚数×1500に等しい。\n【自】 このカードが【リバース】した時、このカードのバトル相手のレベルが相手のレベルより高いなら、あなたはそのキャラを山札の下に置いてよい。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P05A.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P05A.png",
-        "https://img.bottleneko.app/SFN_S108_P05A.png"
-      ],
-      "parsed_abilities": []
-    },
-    "SFN/S108-P05b": {
-      "id": "SFN/S108-P05b",
-      "base_id": "SFN/S108-P05b",
-      "series": "SFN/S108",
-      "name": "しろくろ魔法使い フリーレン",
-      "jp_name": "しろくろ魔法使い フリーレン",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 2,
-      "cost": 1,
-      "power": 5500,
-      "soul": 1,
-      "trigger": "SOUL",
-      "traits": [
-        "冒険者",
-        "魔法"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": false,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】 このカードがアタックした時、あなたは他の自分の、《冒険者》か《魔法》のキャラを1枚選び、そのターン中、パワーを＋Ｘ。Ｘはあなたの控え室のイベントの枚数×1500に等しい。\n【自】 このカードが【リバース】した時、このカードのバトル相手のレベルが相手のレベルより高いなら、あなたはそのキャラを山札の下に置いてよい。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P05B.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P05B.png",
-        "https://img.bottleneko.app/SFN_S108_P05B.png"
-      ],
-      "parsed_abilities": []
-    },
     "SFN/S108-T01": {
       "id": "SFN/S108-T01",
       "base_id": "SFN/S108-T01",
@@ -10837,58 +10519,6 @@
         }
       ]
     },
-    "SFN/S108-T17OFR": {
-      "id": "SFN/S108-T17OFR",
-      "base_id": "SFN/S108-T17",
-      "series": "SFN/S108",
-      "name": "葬送的芙莉蓮",
-      "jp_name": "葬送のフリーレン",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 3,
-      "cost": 2,
-      "power": 10000,
-      "soul": 2,
-      "trigger": "SOUL",
-      "traits": [
-        "冒險者魔法"
-      ],
-      "default_count": 0,
-      "rarity": "OFR",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】此卡從手牌被放置到舞台時，你從自己的牌組上方看最多3張，選擇卡片最多1張，加到手牌，剩下的卡片放到休息室。\n【自】【CX連動】［手牌2張放到休息室］此卡攻擊時，名場面區有「約定的蒼月草」，其他的你的《冒險者》或《魔法》的角色存在2張以上的話，你可以支付代價。支付代價的話，給對手4點傷害，你選擇自己的《冒險者》或《魔法》的角色1張，在那個回合中，攻擊力+2000。(會發生傷害取消)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_T17OFR.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_T17OFR.png",
-        "https://img.bottleneko.app/SFN_S108_T17OFR.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "AUTO",
-          "timing": "ON_ATTACK",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 2,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": true,
-          "cx_name": "約定的蒼月草",
-          "actions": [
-            {
-              "action": "buff_self",
-              "power": 2000
-            }
-          ],
-          "raw": "【自】【CX連動】［手牌2張放到休息室］此卡攻擊時，名場面區有「約定的蒼月草」，其他的你的《冒險者》或《魔法》的角色存在2張以上的話，你可以支付代價。支付代價的話，給對手4點傷害，你選擇自己的《冒險者》或《魔法》的角色1張，在那個回合中，攻擊力+2000。(會發生傷害取消)"
-        }
-      ]
-    },
     "SFN/S108-T17S": {
       "id": "SFN/S108-T17S",
       "base_id": "SFN/S108-T17",
@@ -10915,6 +10545,58 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_T17S.png",
         "https://img.bottleneko.app/SFN_S108_T17S.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "AUTO",
+          "timing": "ON_ATTACK",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 2,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": true,
+          "cx_name": "約定的蒼月草",
+          "actions": [
+            {
+              "action": "buff_self",
+              "power": 2000
+            }
+          ],
+          "raw": "【自】【CX連動】［手牌2張放到休息室］此卡攻擊時，名場面區有「約定的蒼月草」，其他的你的《冒險者》或《魔法》的角色存在2張以上的話，你可以支付代價。支付代價的話，給對手4點傷害，你選擇自己的《冒險者》或《魔法》的角色1張，在那個回合中，攻擊力+2000。(會發生傷害取消)"
+        }
+      ]
+    },
+    "SFN/S108-T17OFR": {
+      "id": "SFN/S108-T17OFR",
+      "base_id": "SFN/S108-T17",
+      "series": "SFN/S108",
+      "name": "葬送的芙莉蓮",
+      "jp_name": "葬送のフリーレン",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 3,
+      "cost": 2,
+      "power": 10000,
+      "soul": 2,
+      "trigger": "SOUL",
+      "traits": [
+        "冒險者魔法"
+      ],
+      "default_count": 0,
+      "rarity": "OFR",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】此卡從手牌被放置到舞台時，你從自己的牌組上方看最多3張，選擇卡片最多1張，加到手牌，剩下的卡片放到休息室。\n【自】【CX連動】［手牌2張放到休息室］此卡攻擊時，名場面區有「約定的蒼月草」，其他的你的《冒險者》或《魔法》的角色存在2張以上的話，你可以支付代價。支付代價的話，給對手4點傷害，你選擇自己的《冒險者》或《魔法》的角色1張，在那個回合中，攻擊力+2000。(會發生傷害取消)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_T17OFR.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_T17OFR.png",
+        "https://img.bottleneko.app/SFN_S108_T17OFR.png"
       ],
       "parsed_abilities": [
         {
@@ -11162,6 +10844,310 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_T20OFR.png",
         "https://img.bottleneko.app/SFN_S108_T20OFR.png"
+      ],
+      "parsed_abilities": []
+    },
+    "SFN/S108-P01": {
+      "id": "SFN/S108-P01",
+      "base_id": "SFN/S108-P01",
+      "series": "SFN/S108",
+      "name": "葬送のフリーレン",
+      "jp_name": "葬送のフリーレン",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 3,
+      "cost": 2,
+      "power": 10000,
+      "soul": 2,
+      "trigger": "SOUL",
+      "traits": [
+        "冒険者",
+        "魔法"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】 このカードが手札から舞台に置かれた時、あなたは自分の山札を上から3枚まで見て、カードを1枚まで選び、手札に加え、残りのカードを控え室に置く。\n【自】【CXコンボ】［手札を2枚控え室に置く］ このカードがアタックした時、クライマックス置場に「約束の蒼月草」があり、他のあなたの、《冒険者》か《魔法》のキャラが2枚以上なら、あなたはコストを払ってよい。そうしたら、相手に4ダメージを与え、あなたは自分の、《冒険者》か《魔法》のキャラを1枚選び、そのターン中、パワーを＋2000。（ダメージキャンセルは発生する）",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P01.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P01.png",
+        "https://img.bottleneko.app/SFN_S108_P01.png"
+      ],
+      "parsed_abilities": []
+    },
+    "SFN/S108-P02": {
+      "id": "SFN/S108-P02",
+      "base_id": "SFN/S108-P02",
+      "series": "SFN/S108",
+      "name": "まどろむフリーレン",
+      "jp_name": "まどろむフリーレン",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 2,
+      "cost": 1,
+      "power": 5000,
+      "soul": 1,
+      "trigger": "SOUL",
+      "traits": [
+        "冒険者",
+        "魔法"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": "SFN/S108-P02S",
+      "effects": [],
+      "text": "【自】 このカードが手札から舞台に置かれた時、あなたは自分のキャラを1枚選び、そのターン中、ソウルを＋1。\n【起】［このカードを控え室に置く］ あなたは相手のキャラを1枚選び、手札に戻す。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P02.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P02.png",
+        "https://img.bottleneko.app/SFN_S108_P02.png"
+      ],
+      "parsed_abilities": []
+    },
+    "SFN/S108-P02S": {
+      "id": "SFN/S108-P02S",
+      "base_id": "SFN/S108-P02",
+      "series": "SFN/S108",
+      "name": "まどろむフリーレン",
+      "jp_name": "まどろむフリーレン",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 2,
+      "cost": 1,
+      "power": 5000,
+      "soul": 1,
+      "trigger": "SOUL",
+      "traits": [
+        "冒険者",
+        "魔法"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】 このカードが手札から舞台に置かれた時、あなたは自分のキャラを1枚選び、そのターン中、ソウルを＋1。\n【起】［このカードを控え室に置く］ あなたは相手のキャラを1枚選び、手札に戻す。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P02S.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P02S.png",
+        "https://img.bottleneko.app/SFN_S108_P02S.png"
+      ],
+      "parsed_abilities": []
+    },
+    "SFN/S108-P03a": {
+      "id": "SFN/S108-P03a",
+      "base_id": "SFN/S108-P03a",
+      "series": "SFN/S108",
+      "name": "しろくろ戦士 シュタルク",
+      "jp_name": "しろくろ戦士 シュタルク",
+      "type": "CHAR",
+      "color": "紅",
+      "level": 0,
+      "cost": 0,
+      "power": 2000,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "冒険者",
+        "武器"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】 このカードが手札から舞台に置かれた時、相手の前列のキャラが1枚以下なら、あなたは相手の前列のコスト0以下のキャラを1枚選び、控え室に置いてよい。\n【自】［(2)］ このカードが手札から舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室の、《冒険者》か《魔法》のキャラを1枚選び、手札に戻す。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P03A.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P03A.png",
+        "https://img.bottleneko.app/SFN_S108_P03A.png"
+      ],
+      "parsed_abilities": []
+    },
+    "SFN/S108-P03b": {
+      "id": "SFN/S108-P03b",
+      "base_id": "SFN/S108-P03b",
+      "series": "SFN/S108",
+      "name": "しろくろ戦士 シュタルク",
+      "jp_name": "しろくろ戦士 シュタルク",
+      "type": "CHAR",
+      "color": "紅",
+      "level": 0,
+      "cost": 0,
+      "power": 2000,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "冒険者",
+        "武器"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】 このカードが手札から舞台に置かれた時、相手の前列のキャラが1枚以下なら、あなたは相手の前列のコスト0以下のキャラを1枚選び、控え室に置いてよい。\n【自】［(2)］ このカードが手札から舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室の、《冒険者》か《魔法》のキャラを1枚選び、手札に戻す。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P03B.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P03B.png",
+        "https://img.bottleneko.app/SFN_S108_P03B.png"
+      ],
+      "parsed_abilities": []
+    },
+    "SFN/S108-P04a": {
+      "id": "SFN/S108-P04a",
+      "base_id": "SFN/S108-P04a",
+      "series": "SFN/S108",
+      "name": "しろくろ魔法使い フェルン",
+      "jp_name": "しろくろ魔法使い フェルン",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 0,
+      "cost": 0,
+      "power": 1000,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "冒険者",
+        "魔法"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】［このカードを控え室に置く］ 他のあなたの、《冒険者》か《魔法》のキャラがフロントアタックされた時、あなたはコストを払ってよい。そうしたら、あなたは自分のバトル中のキャラを1枚選び、そのターン中、パワーを＋1500。\n【起】 集中 ［(1)］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのCX1枚につき、次の行動を行う。『あなたは自分の控え室のキャラを1枚選び、手札に戻し、自分の手札を1枚選び、控え室に置く。』",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P04A.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P04A.png",
+        "https://img.bottleneko.app/SFN_S108_P04A.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "ACT",
+          "effect": "brainstorm",
+          "flip_count": 4,
+          "reward": "search",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "raw": "【起】 集中 ［(1)］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのCX1枚につき、次の行動を行う。『あなたは自分の控え室のキャラを1枚選び、手札に戻し、自分の手札を1枚選び、控え室に置く。』"
+        }
+      ]
+    },
+    "SFN/S108-P04b": {
+      "id": "SFN/S108-P04b",
+      "base_id": "SFN/S108-P04b",
+      "series": "SFN/S108",
+      "name": "しろくろ魔法使い フェルン",
+      "jp_name": "しろくろ魔法使い フェルン",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 0,
+      "cost": 0,
+      "power": 1000,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "冒険者",
+        "魔法"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】［このカードを控え室に置く］ 他のあなたの、《冒険者》か《魔法》のキャラがフロントアタックされた時、あなたはコストを払ってよい。そうしたら、あなたは自分のバトル中のキャラを1枚選び、そのターン中、パワーを＋1500。\n【起】 集中 ［(1)］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのCX1枚につき、次の行動を行う。『あなたは自分の控え室のキャラを1枚選び、手札に戻し、自分の手札を1枚選び、控え室に置く。』",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P04B.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P04B.png",
+        "https://img.bottleneko.app/SFN_S108_P04B.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "ACT",
+          "effect": "brainstorm",
+          "flip_count": 4,
+          "reward": "search",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "raw": "【起】 集中 ［(1)］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのCX1枚につき、次の行動を行う。『あなたは自分の控え室のキャラを1枚選び、手札に戻し、自分の手札を1枚選び、控え室に置く。』"
+        }
+      ]
+    },
+    "SFN/S108-P05a": {
+      "id": "SFN/S108-P05a",
+      "base_id": "SFN/S108-P05a",
+      "series": "SFN/S108",
+      "name": "しろくろ魔法使い フリーレン",
+      "jp_name": "しろくろ魔法使い フリーレン",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 2,
+      "cost": 1,
+      "power": 5500,
+      "soul": 1,
+      "trigger": "SOUL",
+      "traits": [
+        "冒険者",
+        "魔法"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】 このカードがアタックした時、あなたは他の自分の、《冒険者》か《魔法》のキャラを1枚選び、そのターン中、パワーを＋Ｘ。Ｘはあなたの控え室のイベントの枚数×1500に等しい。\n【自】 このカードが【リバース】した時、このカードのバトル相手のレベルが相手のレベルより高いなら、あなたはそのキャラを山札の下に置いてよい。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P05A.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P05A.png",
+        "https://img.bottleneko.app/SFN_S108_P05A.png"
+      ],
+      "parsed_abilities": []
+    },
+    "SFN/S108-P05b": {
+      "id": "SFN/S108-P05b",
+      "base_id": "SFN/S108-P05b",
+      "series": "SFN/S108",
+      "name": "しろくろ魔法使い フリーレン",
+      "jp_name": "しろくろ魔法使い フリーレン",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 2,
+      "cost": 1,
+      "power": 5500,
+      "soul": 1,
+      "trigger": "SOUL",
+      "traits": [
+        "冒険者",
+        "魔法"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": false,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】 このカードがアタックした時、あなたは他の自分の、《冒険者》か《魔法》のキャラを1枚選び、そのターン中、パワーを＋Ｘ。Ｘはあなたの控え室のイベントの枚数×1500に等しい。\n【自】 このカードが【リバース】した時、このカードのバトル相手のレベルが相手のレベルより高いなら、あなたはそのキャラを山札の下に置いてよい。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P05B.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S108_P05B.png",
+        "https://img.bottleneko.app/SFN_S108_P05B.png"
       ],
       "parsed_abilities": []
     },
@@ -21011,83 +20997,6 @@
         }
       ]
     },
-    "SFN/S136-001PS": {
-      "id": "SFN/S136-001PS",
-      "base_id": "SFN/S136-001",
-      "series": "SFN/S108",
-      "name": "“萬聖節的魔法”芙莉蓮&費倫",
-      "jp_name": "“ハロウィンの魔法”フリーレン＆フェルン",
-      "type": "CHAR",
-      "color": "黃",
-      "level": 0,
-      "cost": 0,
-      "power": 500,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "冒險者魔法"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】你的事件可以無需滿足顏色條件從手牌使用。\n【自】當你在判定階段判出CX或「“萬聖節的魔法”芙莉蓮&費倫」時，你選擇自己的《冒險者》或《魔法》的角色1張，在那個回合中，攻擊力+1000，給予以下能力。『【自】此卡的戰鬥對手【倒置】時，你可以將那張角色放到回憶區。』\n【起】集中［(1) 將此卡【橫置】］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你選擇自己休息室的《冒險者》或《魔法》的角色最多1張，回到手牌。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_001PS.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_001PS.png",
-        "https://img.bottleneko.app/SFN_S136_001PS.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "CONT",
-          "effect": "ignore_color",
-          "target": "all",
-          "raw": "【永】你的事件可以無需滿足顏色條件從手牌使用。"
-        },
-        {
-          "category": "AUTO",
-          "timing": "ON_REVERSE_OPP",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "kick_opp_to_memory"
-            },
-            {
-              "action": "buff_self",
-              "power": 1000
-            }
-          ],
-          "raw": "【自】當你在判定階段判出CX或「“萬聖節的魔法”芙莉蓮&費倫」時，你選擇自己的《冒險者》或《魔法》的角色1張，在那個回合中，攻擊力+1000，給予以下能力。『【自】此卡的戰鬥對手【倒置】時，你可以將那張角色放到回憶區。』"
-        },
-        {
-          "category": "ACT",
-          "effect": "brainstorm",
-          "flip_count": 4,
-          "reward": "search",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "raw": "【起】集中［(1) 將此卡【橫置】］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你選擇自己休息室的《冒險者》或《魔法》的角色最多1張，回到手牌。"
-        }
-      ]
-    },
     "SFN/S136-001S": {
       "id": "SFN/S136-001S",
       "base_id": "SFN/S136-001",
@@ -21165,6 +21074,83 @@
         }
       ]
     },
+    "SFN/S136-001PS": {
+      "id": "SFN/S136-001PS",
+      "base_id": "SFN/S136-001",
+      "series": "SFN/S108",
+      "name": "“萬聖節的魔法”芙莉蓮&費倫",
+      "jp_name": "“ハロウィンの魔法”フリーレン＆フェルン",
+      "type": "CHAR",
+      "color": "黃",
+      "level": 0,
+      "cost": 0,
+      "power": 500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "冒險者魔法"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】你的事件可以無需滿足顏色條件從手牌使用。\n【自】當你在判定階段判出CX或「“萬聖節的魔法”芙莉蓮&費倫」時，你選擇自己的《冒險者》或《魔法》的角色1張，在那個回合中，攻擊力+1000，給予以下能力。『【自】此卡的戰鬥對手【倒置】時，你可以將那張角色放到回憶區。』\n【起】集中［(1) 將此卡【橫置】］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你選擇自己休息室的《冒險者》或《魔法》的角色最多1張，回到手牌。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_001PS.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_001PS.png",
+        "https://img.bottleneko.app/SFN_S136_001PS.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "CONT",
+          "effect": "ignore_color",
+          "target": "all",
+          "raw": "【永】你的事件可以無需滿足顏色條件從手牌使用。"
+        },
+        {
+          "category": "AUTO",
+          "timing": "ON_REVERSE_OPP",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "kick_opp_to_memory"
+            },
+            {
+              "action": "buff_self",
+              "power": 1000
+            }
+          ],
+          "raw": "【自】當你在判定階段判出CX或「“萬聖節的魔法”芙莉蓮&費倫」時，你選擇自己的《冒險者》或《魔法》的角色1張，在那個回合中，攻擊力+1000，給予以下能力。『【自】此卡的戰鬥對手【倒置】時，你可以將那張角色放到回憶區。』"
+        },
+        {
+          "category": "ACT",
+          "effect": "brainstorm",
+          "flip_count": 4,
+          "reward": "search",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "raw": "【起】集中［(1) 將此卡【橫置】］你從自己的牌組上方翻出4張，放到休息室。那些卡片中每有1張CX，你選擇自己休息室的《冒險者》或《魔法》的角色最多1張，回到手牌。"
+        }
+      ]
+    },
     "SFN/S136-002": {
       "id": "SFN/S136-002",
       "base_id": "SFN/S136-002",
@@ -21191,58 +21177,6 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_002.png",
         "https://img.bottleneko.app/SFN_S136_002.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "AUTO",
-          "timing": "ON_PLAY",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "search_deck_char",
-              "count": 1
-            }
-          ],
-          "raw": "【自】［(1) 你的牌組上方1張放到傷害區］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇等級1以下的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。"
-        }
-      ]
-    },
-    "SFN/S136-002PS": {
-      "id": "SFN/S136-002PS",
-      "base_id": "SFN/S136-002",
-      "series": "SFN/S108",
-      "name": "旅程的羈絆 芙莉蓮&欣梅爾",
-      "jp_name": "旅の絆 フリーレン＆ヒンメル",
-      "type": "CHAR",
-      "color": "黃",
-      "level": 0,
-      "cost": 0,
-      "power": 1500,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "冒險者魔法"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": true,
-      "high_rarity_id": "SFN/S136-002SSP",
-      "effects": [],
-      "text": "【自】［(1) 你的牌組上方1張放到傷害區］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇等級1以下的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。\n【自】［手牌的事件1張放到休息室］此卡從舞台被放到休息室時，你可以支付代價。支付代價的話，你從自己的牌組上方看最多5張，選擇《冒險者》或《魔法》的角色最多1張給對手確認，加到手牌，剩下的卡片放到休息室。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_002PS.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_002PS.png",
-        "https://img.bottleneko.app/SFN_S136_002PS.png"
       ],
       "parsed_abilities": [
         {
@@ -21373,6 +21307,58 @@
         }
       ]
     },
+    "SFN/S136-002PS": {
+      "id": "SFN/S136-002PS",
+      "base_id": "SFN/S136-002",
+      "series": "SFN/S108",
+      "name": "旅程的羈絆 芙莉蓮&欣梅爾",
+      "jp_name": "旅の絆 フリーレン＆ヒンメル",
+      "type": "CHAR",
+      "color": "黃",
+      "level": 0,
+      "cost": 0,
+      "power": 1500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "冒險者魔法"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": true,
+      "high_rarity_id": "SFN/S136-002SSP",
+      "effects": [],
+      "text": "【自】［(1) 你的牌組上方1張放到傷害區］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇等級1以下的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。\n【自】［手牌的事件1張放到休息室］此卡從舞台被放到休息室時，你可以支付代價。支付代價的話，你從自己的牌組上方看最多5張，選擇《冒險者》或《魔法》的角色最多1張給對手確認，加到手牌，剩下的卡片放到休息室。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_002PS.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_002PS.png",
+        "https://img.bottleneko.app/SFN_S136_002PS.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "AUTO",
+          "timing": "ON_PLAY",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "search_deck_char",
+              "count": 1
+            }
+          ],
+          "raw": "【自】［(1) 你的牌組上方1張放到傷害區］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組選擇等級1以下的角色最多1張給對手確認，加到手牌，將那個牌組洗牌。"
+        }
+      ]
+    },
     "SFN/S136-003": {
       "id": "SFN/S136-003",
       "base_id": "SFN/S136-003",
@@ -21399,66 +21385,6 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_003.png",
         "https://img.bottleneko.app/SFN_S136_003.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "CONT",
-          "effect": "other_char_count_buff",
-          "min_count": 2,
-          "power": 3500,
-          "my_turn_only": false,
-          "raw": "【永】其他的你的《冒險者》或《魔法》的角色存在2張以上的話，此卡的攻擊力+3500，此卡獲得以下能力。『【自】此卡的攻擊結束時，你看自己的能量區上方1張，放到能量區上方或下方。』"
-        },
-        {
-          "category": "AUTO",
-          "timing": "ON_ATTACK",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": true,
-          "cx_name": "優秀的代理父母",
-          "actions": [
-            {
-              "action": "buff_self",
-              "power": 2000
-            }
-          ],
-          "raw": "【自】【CX連動】此卡攻擊時，CX區有「優秀的代理父母」的話，你從自己的牌組上方看最多4張，選擇《冒險者》或《魔法》的角色或事件最多1張給對手確認，加到手牌或放到能量區，剩下的卡片放到休息室。放到能量區的話，在那個回合中，此卡的攻擊力+2000。"
-        }
-      ]
-    },
-    "SFN/S136-003PS": {
-      "id": "SFN/S136-003PS",
-      "base_id": "SFN/S136-003",
-      "series": "SFN/S108",
-      "name": "活了千年以上的精靈 芙莉蓮",
-      "jp_name": "千年以上生きるエルフ フリーレン",
-      "type": "CHAR",
-      "color": "黃",
-      "level": 1,
-      "cost": 0,
-      "power": 2500,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "冒險者魔法"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】其他的你的《冒險者》或《魔法》的角色存在2張以上的話，此卡的攻擊力+3500，此卡獲得以下能力。『【自】此卡的攻擊結束時，你看自己的能量區上方1張，放到能量區上方或下方。』\n【自】【CX連動】此卡攻擊時，CX區有「優秀的代理父母」的話，你從自己的牌組上方看最多4張，選擇《冒險者》或《魔法》的角色或事件最多1張給對手確認，加到手牌或放到能量區，剩下的卡片放到休息室。放到能量區的話，在那個回合中，此卡的攻擊力+2000。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_003PS.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_003PS.png",
-        "https://img.bottleneko.app/SFN_S136_003PS.png"
       ],
       "parsed_abilities": [
         {
@@ -21613,6 +21539,66 @@
         }
       ]
     },
+    "SFN/S136-003PS": {
+      "id": "SFN/S136-003PS",
+      "base_id": "SFN/S136-003",
+      "series": "SFN/S108",
+      "name": "活了千年以上的精靈 芙莉蓮",
+      "jp_name": "千年以上生きるエルフ フリーレン",
+      "type": "CHAR",
+      "color": "黃",
+      "level": 1,
+      "cost": 0,
+      "power": 2500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "冒險者魔法"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】其他的你的《冒險者》或《魔法》的角色存在2張以上的話，此卡的攻擊力+3500，此卡獲得以下能力。『【自】此卡的攻擊結束時，你看自己的能量區上方1張，放到能量區上方或下方。』\n【自】【CX連動】此卡攻擊時，CX區有「優秀的代理父母」的話，你從自己的牌組上方看最多4張，選擇《冒險者》或《魔法》的角色或事件最多1張給對手確認，加到手牌或放到能量區，剩下的卡片放到休息室。放到能量區的話，在那個回合中，此卡的攻擊力+2000。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_003PS.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_003PS.png",
+        "https://img.bottleneko.app/SFN_S136_003PS.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "CONT",
+          "effect": "other_char_count_buff",
+          "min_count": 2,
+          "power": 3500,
+          "my_turn_only": false,
+          "raw": "【永】其他的你的《冒險者》或《魔法》的角色存在2張以上的話，此卡的攻擊力+3500，此卡獲得以下能力。『【自】此卡的攻擊結束時，你看自己的能量區上方1張，放到能量區上方或下方。』"
+        },
+        {
+          "category": "AUTO",
+          "timing": "ON_ATTACK",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": true,
+          "cx_name": "優秀的代理父母",
+          "actions": [
+            {
+              "action": "buff_self",
+              "power": 2000
+            }
+          ],
+          "raw": "【自】【CX連動】此卡攻擊時，CX區有「優秀的代理父母」的話，你從自己的牌組上方看最多4張，選擇《冒險者》或《魔法》的角色或事件最多1張給對手確認，加到手牌或放到能量區，剩下的卡片放到休息室。放到能量區的話，在那個回合中，此卡的攻擊力+2000。"
+        }
+      ]
+    },
     "SFN/S136-004": {
       "id": "SFN/S136-004",
       "base_id": "SFN/S136-004",
@@ -21649,42 +21635,6 @@
         }
       ]
     },
-    "SFN/S136-004PS": {
-      "id": "SFN/S136-004PS",
-      "base_id": "SFN/S136-004",
-      "series": "SFN/S108",
-      "name": "一級魔法使選拔試驗 芙莉蓮",
-      "jp_name": "一級魔法使い選抜試験 フリーレン",
-      "type": "CHAR",
-      "color": "黃",
-      "level": 3,
-      "cost": 2,
-      "power": 9000,
-      "soul": 2,
-      "trigger": "SOUL",
-      "traits": [
-        "冒險者魔法"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】在你的回合中，此卡的攻擊力+3000。\n【自】【CX連動】此卡攻擊時，CX區有「魔法的高深之處」的話，以下的3個效果之中你選擇1個執行。『你將自己的牌組上方最多5張，放到能量區。』『你選擇自己的手牌的滿足等級條件和顏色條件的「釋放地獄業火的魔法」最多1張，無須支付代價使用卡片。』『在那個回合中，此卡獲得以下能力。『【自】［(8) 手牌的黃色的卡片1張放到休息室，你的CX區的CX1張放到休息室］在安可階段開始時，此卡存在於前列的話，你可以支付代價。支付代價的話，你選擇自己的手牌的滿足等級條件和顏色條件的「釋放破滅之雷的魔法」最多1張，無須支付代價使用卡片。』』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_004PS.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_004PS.png",
-        "https://img.bottleneko.app/SFN_S136_004PS.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "CONT",
-          "effect": "my_turn_self_buff",
-          "power": 3000,
-          "raw": "【永】在你的回合中，此卡的攻擊力+3000。"
-        }
-      ]
-    },
     "SFN/S136-004S": {
       "id": "SFN/S136-004S",
       "base_id": "SFN/S136-004",
@@ -21711,6 +21661,42 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_004S.png",
         "https://img.bottleneko.app/SFN_S136_004S.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "CONT",
+          "effect": "my_turn_self_buff",
+          "power": 3000,
+          "raw": "【永】在你的回合中，此卡的攻擊力+3000。"
+        }
+      ]
+    },
+    "SFN/S136-004PS": {
+      "id": "SFN/S136-004PS",
+      "base_id": "SFN/S136-004",
+      "series": "SFN/S108",
+      "name": "一級魔法使選拔試驗 芙莉蓮",
+      "jp_name": "一級魔法使い選抜試験 フリーレン",
+      "type": "CHAR",
+      "color": "黃",
+      "level": 3,
+      "cost": 2,
+      "power": 9000,
+      "soul": 2,
+      "trigger": "SOUL",
+      "traits": [
+        "冒險者魔法"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】在你的回合中，此卡的攻擊力+3000。\n【自】【CX連動】此卡攻擊時，CX區有「魔法的高深之處」的話，以下的3個效果之中你選擇1個執行。『你將自己的牌組上方最多5張，放到能量區。』『你選擇自己的手牌的滿足等級條件和顏色條件的「釋放地獄業火的魔法」最多1張，無須支付代價使用卡片。』『在那個回合中，此卡獲得以下能力。『【自】［(8) 手牌的黃色的卡片1張放到休息室，你的CX區的CX1張放到休息室］在安可階段開始時，此卡存在於前列的話，你可以支付代價。支付代價的話，你選擇自己的手牌的滿足等級條件和顏色條件的「釋放破滅之雷的魔法」最多1張，無須支付代價使用卡片。』』",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_004PS.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_004PS.png",
+        "https://img.bottleneko.app/SFN_S136_004PS.png"
       ],
       "parsed_abilities": [
         {
@@ -23258,6 +23244,37 @@
       ],
       "parsed_abilities": []
     },
+    "SFN/S136-022R": {
+      "id": "SFN/S136-022R",
+      "base_id": "SFN/S136-022",
+      "series": "SFN/S108",
+      "name": "作為隊伍",
+      "jp_name": "パーティーとして",
+      "type": "CX",
+      "color": "黃",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "CHOICE",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "RRR",
+      "is_high_rarity": true,
+      "high_rarity_id": "SFN/S136-022PS",
+      "effects": [
+        "CX_ALL_1000_1SOUL"
+      ],
+      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (箭頭：當你判定出此卡時，你可以選擇自己休息室的判定標誌有⚜的角色1張，回到手牌或放到能量區)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_022R.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_022R.png",
+        "https://img.bottleneko.app/SFN_S136_022R.png"
+      ],
+      "parsed_abilities": []
+    },
     "SFN/S136-022P": {
       "id": "SFN/S136-022P",
       "base_id": "SFN/S136-022",
@@ -23320,37 +23337,6 @@
       ],
       "parsed_abilities": []
     },
-    "SFN/S136-022R": {
-      "id": "SFN/S136-022R",
-      "base_id": "SFN/S136-022",
-      "series": "SFN/S108",
-      "name": "作為隊伍",
-      "jp_name": "パーティーとして",
-      "type": "CX",
-      "color": "黃",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "CHOICE",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "RRR",
-      "is_high_rarity": true,
-      "high_rarity_id": "SFN/S136-022PS",
-      "effects": [
-        "CX_ALL_1000_1SOUL"
-      ],
-      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (箭頭：當你判定出此卡時，你可以選擇自己休息室的判定標誌有⚜的角色1張，回到手牌或放到能量區)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_022R.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_022R.png",
-        "https://img.bottleneko.app/SFN_S136_022R.png"
-      ],
-      "parsed_abilities": []
-    },
     "SFN/S136-023": {
       "id": "SFN/S136-023",
       "base_id": "SFN/S136-023",
@@ -23379,6 +23365,37 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_023.png",
         "https://img.bottleneko.app/SFN_S136_023.png"
+      ],
+      "parsed_abilities": []
+    },
+    "SFN/S136-023R": {
+      "id": "SFN/S136-023R",
+      "base_id": "SFN/S136-023",
+      "series": "SFN/S108",
+      "name": "魔法的高深之處",
+      "jp_name": "魔法の高み",
+      "type": "CX",
+      "color": "黃",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "NONE",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "RRR",
+      "is_high_rarity": true,
+      "high_rarity_id": "SFN/S136-023PS",
+      "effects": [
+        "CX_ALL_1000_1SOUL"
+      ],
+      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (快門：當你判定出此卡時，你可以選擇自己休息室的事件或費用0以下的角色1張，回到手牌)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_023R.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_023R.png",
+        "https://img.bottleneko.app/SFN_S136_023R.png"
       ],
       "parsed_abilities": []
     },
@@ -23444,37 +23461,6 @@
       ],
       "parsed_abilities": []
     },
-    "SFN/S136-023R": {
-      "id": "SFN/S136-023R",
-      "base_id": "SFN/S136-023",
-      "series": "SFN/S108",
-      "name": "魔法的高深之處",
-      "jp_name": "魔法の高み",
-      "type": "CX",
-      "color": "黃",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "NONE",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "RRR",
-      "is_high_rarity": true,
-      "high_rarity_id": "SFN/S136-023PS",
-      "effects": [
-        "CX_ALL_1000_1SOUL"
-      ],
-      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (快門：當你判定出此卡時，你可以選擇自己休息室的事件或費用0以下的角色1張，回到手牌)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_023R.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_023R.png",
-        "https://img.bottleneko.app/SFN_S136_023R.png"
-      ],
-      "parsed_abilities": []
-    },
     "SFN/S136-024": {
       "id": "SFN/S136-024",
       "base_id": "SFN/S136-024",
@@ -23503,6 +23489,37 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_024.png",
         "https://img.bottleneko.app/SFN_S136_024.png"
+      ],
+      "parsed_abilities": []
+    },
+    "SFN/S136-024R": {
+      "id": "SFN/S136-024R",
+      "base_id": "SFN/S136-024",
+      "series": "SFN/S108",
+      "name": "優秀的代理父母",
+      "jp_name": "立派な親代わり",
+      "type": "CX",
+      "color": "黃",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "NONE",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "RRR",
+      "is_high_rarity": true,
+      "high_rarity_id": "SFN/S136-024PS",
+      "effects": [
+        "CX_ALL_1000_1SOUL"
+      ],
+      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (快門：當你判定出此卡時，你可以選擇自己休息室的事件或費用0以下的角色1張，回到手牌)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_024R.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_024R.png",
+        "https://img.bottleneko.app/SFN_S136_024R.png"
       ],
       "parsed_abilities": []
     },
@@ -23568,37 +23585,6 @@
       ],
       "parsed_abilities": []
     },
-    "SFN/S136-024R": {
-      "id": "SFN/S136-024R",
-      "base_id": "SFN/S136-024",
-      "series": "SFN/S108",
-      "name": "優秀的代理父母",
-      "jp_name": "立派な親代わり",
-      "type": "CX",
-      "color": "黃",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "NONE",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "RRR",
-      "is_high_rarity": true,
-      "high_rarity_id": "SFN/S136-024PS",
-      "effects": [
-        "CX_ALL_1000_1SOUL"
-      ],
-      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (快門：當你判定出此卡時，你可以選擇自己休息室的事件或費用0以下的角色1張，回到手牌)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_024R.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_024R.png",
-        "https://img.bottleneko.app/SFN_S136_024R.png"
-      ],
-      "parsed_abilities": []
-    },
     "SFN/S136-025": {
       "id": "SFN/S136-025",
       "base_id": "SFN/S136-025",
@@ -23627,6 +23613,37 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_025.png",
         "https://img.bottleneko.app/SFN_S136_025.png"
+      ],
+      "parsed_abilities": []
+    },
+    "SFN/S136-025R": {
+      "id": "SFN/S136-025R",
+      "base_id": "SFN/S136-025",
+      "series": "SFN/S108",
+      "name": "大姐姐該做的事",
+      "jp_name": "お姉さんの所業",
+      "type": "CX",
+      "color": "黃",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "CHOICE",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "RRR",
+      "is_high_rarity": true,
+      "high_rarity_id": "SFN/S136-025PS",
+      "effects": [
+        "CX_ALL_1000_1SOUL"
+      ],
+      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (箭頭：當你判定出此卡時，你可以選擇自己休息室的判定標誌有⚜的角色1張，回到手牌或放到能量區)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_025R.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_025R.png",
+        "https://img.bottleneko.app/SFN_S136_025R.png"
       ],
       "parsed_abilities": []
     },
@@ -23692,37 +23709,6 @@
       ],
       "parsed_abilities": []
     },
-    "SFN/S136-025R": {
-      "id": "SFN/S136-025R",
-      "base_id": "SFN/S136-025",
-      "series": "SFN/S108",
-      "name": "大姐姐該做的事",
-      "jp_name": "お姉さんの所業",
-      "type": "CX",
-      "color": "黃",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "CHOICE",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "RRR",
-      "is_high_rarity": true,
-      "high_rarity_id": "SFN/S136-025PS",
-      "effects": [
-        "CX_ALL_1000_1SOUL"
-      ],
-      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (箭頭：當你判定出此卡時，你可以選擇自己休息室的判定標誌有⚜的角色1張，回到手牌或放到能量區)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_025R.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_025R.png",
-        "https://img.bottleneko.app/SFN_S136_025R.png"
-      ],
-      "parsed_abilities": []
-    },
     "SFN/S136-026": {
       "id": "SFN/S136-026",
       "base_id": "SFN/S136-026",
@@ -23749,66 +23735,6 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_026.png",
         "https://img.bottleneko.app/SFN_S136_026.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "CONT",
-          "effect": "other_char_count_buff",
-          "min_count": 2,
-          "power": 4000,
-          "my_turn_only": true,
-          "raw": "【永】在你的回合中，其他的你的《冒險者》或《魔法》的角色存在2張以上的話，此卡的攻擊力+4000。"
-        },
-        {
-          "category": "AUTO",
-          "timing": "ON_ATTACK",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "buff_self",
-              "power": 500
-            }
-          ],
-          "raw": "【自】當你的CX被放置到CX區時，在那個回合中，此卡的攻擊力+500，此卡獲得以下能力。『【自】［(1)］此卡攻擊時，你可以支付代價。支付代價的話，在那次攻擊中，你在判定階段執行2次判定。』"
-        }
-      ]
-    },
-    "SFN/S136-026PS": {
-      "id": "SFN/S136-026PS",
-      "base_id": "SFN/S136-026",
-      "series": "SFN/S108",
-      "name": "一天最多只能摸10分鐘 賽莉耶&梅特戴",
-      "jp_name": "なでなでは一日十分まで ゼーリエ＆メトーデ",
-      "type": "CHAR",
-      "color": "綠",
-      "level": 1,
-      "cost": 0,
-      "power": 3500,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "魔法"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": true,
-      "high_rarity_id": "SFN/S136-026SSP",
-      "effects": [],
-      "text": "【永】在你的回合中，其他的你的《冒險者》或《魔法》的角色存在2張以上的話，此卡的攻擊力+4000。\n【自】［手牌的事件或CX1張放到休息室］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組上方看最多4張，選擇《冒險者》或《魔法》的角色最多1張給對手確認，加到手牌，剩下的卡片放到休息室。\n【自】當你的CX被放置到CX區時，在那個回合中，此卡的攻擊力+500，此卡獲得以下能力。『【自】［(1)］此卡攻擊時，你可以支付代價。支付代價的話，在那次攻擊中，你在判定階段執行2次判定。』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_026PS.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_026PS.png",
-        "https://img.bottleneko.app/SFN_S136_026PS.png"
       ],
       "parsed_abilities": [
         {
@@ -23963,6 +23889,66 @@
         }
       ]
     },
+    "SFN/S136-026PS": {
+      "id": "SFN/S136-026PS",
+      "base_id": "SFN/S136-026",
+      "series": "SFN/S108",
+      "name": "一天最多只能摸10分鐘 賽莉耶&梅特戴",
+      "jp_name": "なでなでは一日十分まで ゼーリエ＆メトーデ",
+      "type": "CHAR",
+      "color": "綠",
+      "level": 1,
+      "cost": 0,
+      "power": 3500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "魔法"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": true,
+      "high_rarity_id": "SFN/S136-026SSP",
+      "effects": [],
+      "text": "【永】在你的回合中，其他的你的《冒險者》或《魔法》的角色存在2張以上的話，此卡的攻擊力+4000。\n【自】［手牌的事件或CX1張放到休息室］此卡從手牌被放置到舞台時，你可以支付代價。支付代價的話，你從自己的牌組上方看最多4張，選擇《冒險者》或《魔法》的角色最多1張給對手確認，加到手牌，剩下的卡片放到休息室。\n【自】當你的CX被放置到CX區時，在那個回合中，此卡的攻擊力+500，此卡獲得以下能力。『【自】［(1)］此卡攻擊時，你可以支付代價。支付代價的話，在那次攻擊中，你在判定階段執行2次判定。』",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_026PS.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_026PS.png",
+        "https://img.bottleneko.app/SFN_S136_026PS.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "CONT",
+          "effect": "other_char_count_buff",
+          "min_count": 2,
+          "power": 4000,
+          "my_turn_only": true,
+          "raw": "【永】在你的回合中，其他的你的《冒險者》或《魔法》的角色存在2張以上的話，此卡的攻擊力+4000。"
+        },
+        {
+          "category": "AUTO",
+          "timing": "ON_ATTACK",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "buff_self",
+              "power": 500
+            }
+          ],
+          "raw": "【自】當你的CX被放置到CX區時，在那個回合中，此卡的攻擊力+500，此卡獲得以下能力。『【自】［(1)］此卡攻擊時，你可以支付代價。支付代價的話，在那次攻擊中，你在判定階段執行2次判定。』"
+        }
+      ]
+    },
     "SFN/S136-027": {
       "id": "SFN/S136-027",
       "base_id": "SFN/S136-027",
@@ -24015,58 +24001,6 @@
         }
       ]
     },
-    "SFN/S136-027PS": {
-      "id": "SFN/S136-027PS",
-      "base_id": "SFN/S136-027",
-      "series": "SFN/S108",
-      "name": "“一級魔法使”梅特戴",
-      "jp_name": "“一級魔法使い”メトーデ",
-      "type": "CHAR",
-      "color": "綠",
-      "level": 3,
-      "cost": 2,
-      "power": 8500,
-      "soul": 2,
-      "trigger": "SOUL",
-      "traits": [
-        "魔法"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】此卡從手牌被放置到舞台時，你將自己的傷害區上方最多1張，放到休息室，在那個回合中，此卡的攻擊力+3000。\n【自】【CX連動】此卡攻擊時，CX區有「戰局逆轉」，有其他的你的前列的「“一級魔法使”梅特戴」存在，你的手牌在6張以下的話，你看對手的牌組上方最多2張，選擇卡片最多2張，以任意順序放到牌組上方，剩下的卡片放到休息室，到下次的對手回合結束前，此卡獲得以下能力。『【自】【回合1次】此卡正面的角色給予的傷害被取消時，你可以給對手3點傷害。』(會發生傷害取消)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_027PS.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_027PS.png",
-        "https://img.bottleneko.app/SFN_S136_027PS.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "AUTO",
-          "timing": "ON_PLAY",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "buff_self",
-              "power": 3000
-            }
-          ],
-          "raw": "【自】此卡從手牌被放置到舞台時，你將自己的傷害區上方最多1張，放到休息室，在那個回合中，此卡的攻擊力+3000。"
-        }
-      ]
-    },
     "SFN/S136-027S": {
       "id": "SFN/S136-027S",
       "base_id": "SFN/S136-027",
@@ -24093,6 +24027,58 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_027S.png",
         "https://img.bottleneko.app/SFN_S136_027S.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "AUTO",
+          "timing": "ON_PLAY",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "buff_self",
+              "power": 3000
+            }
+          ],
+          "raw": "【自】此卡從手牌被放置到舞台時，你將自己的傷害區上方最多1張，放到休息室，在那個回合中，此卡的攻擊力+3000。"
+        }
+      ]
+    },
+    "SFN/S136-027PS": {
+      "id": "SFN/S136-027PS",
+      "base_id": "SFN/S136-027",
+      "series": "SFN/S108",
+      "name": "“一級魔法使”梅特戴",
+      "jp_name": "“一級魔法使い”メトーデ",
+      "type": "CHAR",
+      "color": "綠",
+      "level": 3,
+      "cost": 2,
+      "power": 8500,
+      "soul": 2,
+      "trigger": "SOUL",
+      "traits": [
+        "魔法"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【自】此卡從手牌被放置到舞台時，你將自己的傷害區上方最多1張，放到休息室，在那個回合中，此卡的攻擊力+3000。\n【自】【CX連動】此卡攻擊時，CX區有「戰局逆轉」，有其他的你的前列的「“一級魔法使”梅特戴」存在，你的手牌在6張以下的話，你看對手的牌組上方最多2張，選擇卡片最多2張，以任意順序放到牌組上方，剩下的卡片放到休息室，到下次的對手回合結束前，此卡獲得以下能力。『【自】【回合1次】此卡正面的角色給予的傷害被取消時，你可以給對手3點傷害。』(會發生傷害取消)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_027PS.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_027PS.png",
+        "https://img.bottleneko.app/SFN_S136_027PS.png"
       ],
       "parsed_abilities": [
         {
@@ -26053,6 +26039,37 @@
       ],
       "parsed_abilities": []
     },
+    "SFN/S136-049R": {
+      "id": "SFN/S136-049R",
+      "base_id": "SFN/S136-049",
+      "series": "SFN/S108",
+      "name": "戰局逆轉",
+      "jp_name": "戦局逆転",
+      "type": "CX",
+      "color": "綠",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "SOUL",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "RRR",
+      "is_high_rarity": true,
+      "high_rarity_id": "SFN/S136-049PS",
+      "effects": [
+        "CX_ALL_1000_1SOUL"
+      ],
+      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (金磚：當你判定出此卡時，你將此卡返回手牌，你可以將自己的牌組上方1張，放到能量區)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_049R.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_049R.png",
+        "https://img.bottleneko.app/SFN_S136_049R.png"
+      ],
+      "parsed_abilities": []
+    },
     "SFN/S136-049P": {
       "id": "SFN/S136-049P",
       "base_id": "SFN/S136-049",
@@ -26115,37 +26132,6 @@
       ],
       "parsed_abilities": []
     },
-    "SFN/S136-049R": {
-      "id": "SFN/S136-049R",
-      "base_id": "SFN/S136-049",
-      "series": "SFN/S108",
-      "name": "戰局逆轉",
-      "jp_name": "戦局逆転",
-      "type": "CX",
-      "color": "綠",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "SOUL",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "RRR",
-      "is_high_rarity": true,
-      "high_rarity_id": "SFN/S136-049PS",
-      "effects": [
-        "CX_ALL_1000_1SOUL"
-      ],
-      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (金磚：當你判定出此卡時，你將此卡返回手牌，你可以將自己的牌組上方1張，放到能量區)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_049R.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_049R.png",
-        "https://img.bottleneko.app/SFN_S136_049R.png"
-      ],
-      "parsed_abilities": []
-    },
     "SFN/S136-050": {
       "id": "SFN/S136-050",
       "base_id": "SFN/S136-050",
@@ -26174,6 +26160,37 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_050.png",
         "https://img.bottleneko.app/SFN_S136_050.png"
+      ],
+      "parsed_abilities": []
+    },
+    "SFN/S136-050R": {
+      "id": "SFN/S136-050R",
+      "base_id": "SFN/S136-050",
+      "series": "SFN/S108",
+      "name": "人類的時代",
+      "jp_name": "人間の時代",
+      "type": "CX",
+      "color": "綠",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "SOUL",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "RRR",
+      "is_high_rarity": true,
+      "high_rarity_id": "SFN/S136-050PS",
+      "effects": [
+        "CX_ALL_1000_1SOUL"
+      ],
+      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (金磚：當你判定出此卡時，你將此卡返回手牌，你可以將自己的牌組上方1張，放到能量區)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_050R.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_050R.png",
+        "https://img.bottleneko.app/SFN_S136_050R.png"
       ],
       "parsed_abilities": []
     },
@@ -26239,37 +26256,6 @@
       ],
       "parsed_abilities": []
     },
-    "SFN/S136-050R": {
-      "id": "SFN/S136-050R",
-      "base_id": "SFN/S136-050",
-      "series": "SFN/S108",
-      "name": "人類的時代",
-      "jp_name": "人間の時代",
-      "type": "CX",
-      "color": "綠",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "SOUL",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "RRR",
-      "is_high_rarity": true,
-      "high_rarity_id": "SFN/S136-050PS",
-      "effects": [
-        "CX_ALL_1000_1SOUL"
-      ],
-      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (金磚：當你判定出此卡時，你將此卡返回手牌，你可以將自己的牌組上方1張，放到能量區)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_050R.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_050R.png",
-        "https://img.bottleneko.app/SFN_S136_050R.png"
-      ],
-      "parsed_abilities": []
-    },
     "SFN/S136-051": {
       "id": "SFN/S136-051",
       "base_id": "SFN/S136-051",
@@ -26296,42 +26282,6 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_051.png",
         "https://img.bottleneko.app/SFN_S136_051.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "CONT",
-          "effect": "my_turn_self_buff",
-          "power": 2000,
-          "raw": "【永】在你的回合中，此卡的攻擊力+2000。"
-        }
-      ]
-    },
-    "SFN/S136-051PS": {
-      "id": "SFN/S136-051PS",
-      "base_id": "SFN/S136-051",
-      "series": "SFN/S108",
-      "name": "身為弟子 芙莉蓮&費倫",
-      "jp_name": "弟子として フリーレン＆フェルン",
-      "type": "CHAR",
-      "color": "紅",
-      "level": 0,
-      "cost": 0,
-      "power": 500,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "冒險者魔法"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】在你的回合中，此卡的攻擊力+2000。\n【自】［你的牌組上方1張放到傷害區，或將你的能量區上方1張放到休息室］此卡攻擊時，你可以支付代價。支付代價的話，在那次攻擊中，你在判定階段執行2次判定。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_051PS.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_051PS.png",
-        "https://img.bottleneko.app/SFN_S136_051PS.png"
       ],
       "parsed_abilities": [
         {
@@ -26414,6 +26364,42 @@
         }
       ]
     },
+    "SFN/S136-051PS": {
+      "id": "SFN/S136-051PS",
+      "base_id": "SFN/S136-051",
+      "series": "SFN/S108",
+      "name": "身為弟子 芙莉蓮&費倫",
+      "jp_name": "弟子として フリーレン＆フェルン",
+      "type": "CHAR",
+      "color": "紅",
+      "level": 0,
+      "cost": 0,
+      "power": 500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "冒險者魔法"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】在你的回合中，此卡的攻擊力+2000。\n【自】［你的牌組上方1張放到傷害區，或將你的能量區上方1張放到休息室］此卡攻擊時，你可以支付代價。支付代價的話，在那次攻擊中，你在判定階段執行2次判定。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_051PS.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_051PS.png",
+        "https://img.bottleneko.app/SFN_S136_051PS.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "CONT",
+          "effect": "my_turn_self_buff",
+          "power": 2000,
+          "raw": "【永】在你的回合中，此卡的攻擊力+2000。"
+        }
+      ]
+    },
     "SFN/S136-052": {
       "id": "SFN/S136-052",
       "base_id": "SFN/S136-052",
@@ -26440,50 +26426,6 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_052.png",
         "https://img.bottleneko.app/SFN_S136_052.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "CONT",
-          "effect": "early_play_stage_4",
-          "level_mod": -1,
-          "raw": "【永】你的《冒險者》或《魔法》的角色存在4張以上的話，你的手牌的此卡等級-1。"
-        },
-        {
-          "category": "CONT",
-          "effect": "other_char_count_buff",
-          "min_count": 2,
-          "power": 2000,
-          "my_turn_only": false,
-          "raw": "【永】其他的你的《冒險者》或《魔法》的角色存在2張以上的話，此卡的攻擊力+2000。"
-        }
-      ]
-    },
-    "SFN/S136-052PS": {
-      "id": "SFN/S136-052PS",
-      "base_id": "SFN/S136-052",
-      "series": "SFN/S108",
-      "name": "配合你的步伐 費倫&修塔爾克",
-      "jp_name": "歩幅を合わせて フェルン＆シュタルク",
-      "type": "CHAR",
-      "color": "紅",
-      "level": 3,
-      "cost": 2,
-      "power": 8000,
-      "soul": 2,
-      "trigger": "SOUL",
-      "traits": [
-        "冒險者魔法"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": true,
-      "high_rarity_id": "SFN/S136-052SSP",
-      "effects": [],
-      "text": "【永】你的《冒險者》或《魔法》的角色存在4張以上的話，你的手牌的此卡等級-1。\n【永】其他的你的《冒險者》或《魔法》的角色存在2張以上的話，此卡的攻擊力+2000。\n【自】此卡從手牌被放置到舞台時，以下的2個效果之中你選擇1個執行。『你可以將自己的傷害區上方1張，放到休息室。』『其他的你的《冒險者》或《魔法》的角色存在2張以上的話，到下次的對手回合結束前，此卡獲得以下能力。『【永】此卡正面的角色魂傷-2。』』",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_052PS.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_052PS.png",
-        "https://img.bottleneko.app/SFN_S136_052PS.png"
       ],
       "parsed_abilities": [
         {
@@ -26572,6 +26514,50 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_052SSP.png",
         "https://img.bottleneko.app/SFN_S136_052SSP.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "CONT",
+          "effect": "early_play_stage_4",
+          "level_mod": -1,
+          "raw": "【永】你的《冒險者》或《魔法》的角色存在4張以上的話，你的手牌的此卡等級-1。"
+        },
+        {
+          "category": "CONT",
+          "effect": "other_char_count_buff",
+          "min_count": 2,
+          "power": 2000,
+          "my_turn_only": false,
+          "raw": "【永】其他的你的《冒險者》或《魔法》的角色存在2張以上的話，此卡的攻擊力+2000。"
+        }
+      ]
+    },
+    "SFN/S136-052PS": {
+      "id": "SFN/S136-052PS",
+      "base_id": "SFN/S136-052",
+      "series": "SFN/S108",
+      "name": "配合你的步伐 費倫&修塔爾克",
+      "jp_name": "歩幅を合わせて フェルン＆シュタルク",
+      "type": "CHAR",
+      "color": "紅",
+      "level": 3,
+      "cost": 2,
+      "power": 8000,
+      "soul": 2,
+      "trigger": "SOUL",
+      "traits": [
+        "冒險者魔法"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": true,
+      "high_rarity_id": "SFN/S136-052SSP",
+      "effects": [],
+      "text": "【永】你的《冒險者》或《魔法》的角色存在4張以上的話，你的手牌的此卡等級-1。\n【永】其他的你的《冒險者》或《魔法》的角色存在2張以上的話，此卡的攻擊力+2000。\n【自】此卡從手牌被放置到舞台時，以下的2個效果之中你選擇1個執行。『你可以將自己的傷害區上方1張，放到休息室。』『其他的你的《冒險者》或《魔法》的角色存在2張以上的話，到下次的對手回合結束前，此卡獲得以下能力。『【永】此卡正面的角色魂傷-2。』』",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_052PS.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_052PS.png",
+        "https://img.bottleneko.app/SFN_S136_052PS.png"
       ],
       "parsed_abilities": [
         {
@@ -28303,6 +28289,37 @@
       ],
       "parsed_abilities": []
     },
+    "SFN/S136-074R": {
+      "id": "SFN/S136-074R",
+      "base_id": "SFN/S136-074",
+      "series": "SFN/S108",
+      "name": "埃托維斯山的秘湯",
+      "jp_name": "エトヴァス山の秘湯",
+      "type": "CX",
+      "color": "紅",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "STANDBY",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "RRR",
+      "is_high_rarity": true,
+      "high_rarity_id": "SFN/S136-074PS",
+      "effects": [
+        "CX_STANDBY"
+      ],
+      "text": "【自】當此卡從手牌放到CX區時，執行開機的效果。\n (開機：當你判定出此卡時，你可以從自己的休息室選擇自己等級+1以下的等級的角色1張，【橫置】放到舞台上任意的格子)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_074R.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_074R.png",
+        "https://img.bottleneko.app/SFN_S136_074R.png"
+      ],
+      "parsed_abilities": []
+    },
     "SFN/S136-074P": {
       "id": "SFN/S136-074P",
       "base_id": "SFN/S136-074",
@@ -28365,37 +28382,6 @@
       ],
       "parsed_abilities": []
     },
-    "SFN/S136-074R": {
-      "id": "SFN/S136-074R",
-      "base_id": "SFN/S136-074",
-      "series": "SFN/S108",
-      "name": "埃托維斯山的秘湯",
-      "jp_name": "エトヴァス山の秘湯",
-      "type": "CX",
-      "color": "紅",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "STANDBY",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "RRR",
-      "is_high_rarity": true,
-      "high_rarity_id": "SFN/S136-074PS",
-      "effects": [
-        "CX_STANDBY"
-      ],
-      "text": "【自】當此卡從手牌放到CX區時，執行開機的效果。\n (開機：當你判定出此卡時，你可以從自己的休息室選擇自己等級+1以下的等級的角色1張，【橫置】放到舞台上任意的格子)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_074R.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_074R.png",
-        "https://img.bottleneko.app/SFN_S136_074R.png"
-      ],
-      "parsed_abilities": []
-    },
     "SFN/S136-075": {
       "id": "SFN/S136-075",
       "base_id": "SFN/S136-075",
@@ -28424,6 +28410,37 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_075.png",
         "https://img.bottleneko.app/SFN_S136_075.png"
+      ],
+      "parsed_abilities": []
+    },
+    "SFN/S136-075R": {
+      "id": "SFN/S136-075R",
+      "base_id": "SFN/S136-075",
+      "series": "SFN/S108",
+      "name": "第一次的約會",
+      "jp_name": "初めてのデート",
+      "type": "CX",
+      "color": "紅",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "STANDBY",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "RRR",
+      "is_high_rarity": true,
+      "high_rarity_id": "SFN/S136-075PS",
+      "effects": [
+        "CX_STANDBY"
+      ],
+      "text": "【自】當此卡從手牌放到CX區時，執行開機的效果。\n (開機：當你判定出此卡時，你可以從自己的休息室選擇自己等級+1以下的等級的角色1張，【橫置】放到舞台上任意的格子)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_075R.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_075R.png",
+        "https://img.bottleneko.app/SFN_S136_075R.png"
       ],
       "parsed_abilities": []
     },
@@ -28489,37 +28506,6 @@
       ],
       "parsed_abilities": []
     },
-    "SFN/S136-075R": {
-      "id": "SFN/S136-075R",
-      "base_id": "SFN/S136-075",
-      "series": "SFN/S108",
-      "name": "第一次的約會",
-      "jp_name": "初めてのデート",
-      "type": "CX",
-      "color": "紅",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "STANDBY",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "RRR",
-      "is_high_rarity": true,
-      "high_rarity_id": "SFN/S136-075PS",
-      "effects": [
-        "CX_STANDBY"
-      ],
-      "text": "【自】當此卡從手牌放到CX區時，執行開機的效果。\n (開機：當你判定出此卡時，你可以從自己的休息室選擇自己等級+1以下的等級的角色1張，【橫置】放到舞台上任意的格子)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_075R.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_075R.png",
-        "https://img.bottleneko.app/SFN_S136_075R.png"
-      ],
-      "parsed_abilities": []
-    },
     "SFN/S136-076": {
       "id": "SFN/S136-076",
       "base_id": "SFN/S136-076",
@@ -28546,58 +28532,6 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_076.png",
         "https://img.bottleneko.app/SFN_S136_076.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "AUTO",
-          "timing": "ON_STAGE_TO_WR",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "charge_stock_top",
-              "count": 2
-            }
-          ],
-          "raw": "【自】此卡從舞台被放到休息室時，有你的《冒險者》或《魔法》的角色存在的話，你將自己的牌組上方2張，放到休息室。那些卡片中有事件的話，你可以將此卡放到能量區下方。"
-        }
-      ]
-    },
-    "SFN/S136-076PS": {
-      "id": "SFN/S136-076PS",
-      "base_id": "SFN/S136-076",
-      "series": "SFN/S108",
-      "name": "“一級魔法使”費倫",
-      "jp_name": "“一級魔法使い”フェルン",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 0,
-      "cost": 0,
-      "power": 500,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "冒險者魔法"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】你的角色全部都是《冒險者》或《魔法》的話，此卡的攻擊力+3000，此卡獲得以下能力。『【自】此卡攻擊時，你看自己的牌組上方1張，放到牌組上方或下方或休息室。』\n【自】此卡從舞台被放到休息室時，有你的《冒險者》或《魔法》的角色存在的話，你將自己的牌組上方2張，放到休息室。那些卡片中有事件的話，你可以將此卡放到能量區下方。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_076PS.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_076PS.png",
-        "https://img.bottleneko.app/SFN_S136_076PS.png"
       ],
       "parsed_abilities": [
         {
@@ -28728,6 +28662,58 @@
         }
       ]
     },
+    "SFN/S136-076PS": {
+      "id": "SFN/S136-076PS",
+      "base_id": "SFN/S136-076",
+      "series": "SFN/S108",
+      "name": "“一級魔法使”費倫",
+      "jp_name": "“一級魔法使い”フェルン",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 0,
+      "cost": 0,
+      "power": 500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "冒險者魔法"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】你的角色全部都是《冒險者》或《魔法》的話，此卡的攻擊力+3000，此卡獲得以下能力。『【自】此卡攻擊時，你看自己的牌組上方1張，放到牌組上方或下方或休息室。』\n【自】此卡從舞台被放到休息室時，有你的《冒險者》或《魔法》的角色存在的話，你將自己的牌組上方2張，放到休息室。那些卡片中有事件的話，你可以將此卡放到能量區下方。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_076PS.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_076PS.png",
+        "https://img.bottleneko.app/SFN_S136_076PS.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "AUTO",
+          "timing": "ON_STAGE_TO_WR",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "charge_stock_top",
+              "count": 2
+            }
+          ],
+          "raw": "【自】此卡從舞台被放到休息室時，有你的《冒險者》或《魔法》的角色存在的話，你將自己的牌組上方2張，放到休息室。那些卡片中有事件的話，你可以將此卡放到能量區下方。"
+        }
+      ]
+    },
     "SFN/S136-077": {
       "id": "SFN/S136-077",
       "base_id": "SFN/S136-077",
@@ -28754,66 +28740,6 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_077.png",
         "https://img.bottleneko.app/SFN_S136_077.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "CONT",
-          "effect": "other_char_count_buff",
-          "min_count": 2,
-          "power": 4000,
-          "my_turn_only": true,
-          "raw": "【永】在你的回合中，其他的你的《冒險者》或《魔法》的角色存在2張以上的話，此卡的攻擊力+4000。"
-        },
-        {
-          "category": "AUTO",
-          "timing": "OTHER",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": true,
-          "cx_name": "偶然的相遇",
-          "actions": [
-            {
-              "action": "search_deck_char",
-              "count": 1
-            }
-          ],
-          "raw": "【自】【CX連動】在你的安可階段開始時，CX區有「偶然的相遇」，此卡存在於前列，有其他的你的角色存在的話，你從自己的牌組選擇《冒險者》或《魔法》的角色最多X張給對手確認，選擇最多1張，加到手牌，剩下的卡片放到休息室，將那個牌組洗牌。X當你的等級是2以上的話等於1，1以下的話等於2。"
-        }
-      ]
-    },
-    "SFN/S136-077PS": {
-      "id": "SFN/S136-077PS",
-      "base_id": "SFN/S136-077",
-      "series": "SFN/S108",
-      "name": "卓越的魔法技術 芙莉蓮",
-      "jp_name": "卓越した魔法技術 フリーレン",
-      "type": "CHAR",
-      "color": "藍",
-      "level": 1,
-      "cost": 0,
-      "power": 3500,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "冒險者魔法"
-      ],
-      "default_count": 0,
-      "rarity": "PR",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【永】在你的回合中，其他的你的《冒險者》或《魔法》的角色存在2張以上的話，此卡的攻擊力+4000。\n【自】【CX連動】在你的安可階段開始時，CX區有「偶然的相遇」，此卡存在於前列，有其他的你的角色存在的話，你從自己的牌組選擇《冒險者》或《魔法》的角色最多X張給對手確認，選擇最多1張，加到手牌，剩下的卡片放到休息室，將那個牌組洗牌。X當你的等級是2以上的話等於1，1以下的話等於2。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_077PS.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_077PS.png",
-        "https://img.bottleneko.app/SFN_S136_077PS.png"
       ],
       "parsed_abilities": [
         {
@@ -28934,6 +28860,66 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_077SP.png",
         "https://img.bottleneko.app/SFN_S136_077SP.png"
+      ],
+      "parsed_abilities": [
+        {
+          "category": "CONT",
+          "effect": "other_char_count_buff",
+          "min_count": 2,
+          "power": 4000,
+          "my_turn_only": true,
+          "raw": "【永】在你的回合中，其他的你的《冒險者》或《魔法》的角色存在2張以上的話，此卡的攻擊力+4000。"
+        },
+        {
+          "category": "AUTO",
+          "timing": "OTHER",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": true,
+          "cx_name": "偶然的相遇",
+          "actions": [
+            {
+              "action": "search_deck_char",
+              "count": 1
+            }
+          ],
+          "raw": "【自】【CX連動】在你的安可階段開始時，CX區有「偶然的相遇」，此卡存在於前列，有其他的你的角色存在的話，你從自己的牌組選擇《冒險者》或《魔法》的角色最多X張給對手確認，選擇最多1張，加到手牌，剩下的卡片放到休息室，將那個牌組洗牌。X當你的等級是2以上的話等於1，1以下的話等於2。"
+        }
+      ]
+    },
+    "SFN/S136-077PS": {
+      "id": "SFN/S136-077PS",
+      "base_id": "SFN/S136-077",
+      "series": "SFN/S108",
+      "name": "卓越的魔法技術 芙莉蓮",
+      "jp_name": "卓越した魔法技術 フリーレン",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 1,
+      "cost": 0,
+      "power": 3500,
+      "soul": 1,
+      "trigger": "NONE",
+      "traits": [
+        "冒險者魔法"
+      ],
+      "default_count": 0,
+      "rarity": "PR",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "【永】在你的回合中，其他的你的《冒險者》或《魔法》的角色存在2張以上的話，此卡的攻擊力+4000。\n【自】【CX連動】在你的安可階段開始時，CX區有「偶然的相遇」，此卡存在於前列，有其他的你的角色存在的話，你從自己的牌組選擇《冒險者》或《魔法》的角色最多X張給對手確認，選擇最多1張，加到手牌，剩下的卡片放到休息室，將那個牌組洗牌。X當你的等級是2以上的話等於1，1以下的話等於2。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_077PS.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_077PS.png",
+        "https://img.bottleneko.app/SFN_S136_077PS.png"
       ],
       "parsed_abilities": [
         {
@@ -30627,6 +30613,37 @@
       ],
       "parsed_abilities": []
     },
+    "SFN/S136-097R": {
+      "id": "SFN/S136-097R",
+      "base_id": "SFN/S136-097",
+      "series": "SFN/S108",
+      "name": "偶然的相遇",
+      "jp_name": "偶然の出会い",
+      "type": "CX",
+      "color": "藍",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "GATE",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "RRR",
+      "is_high_rarity": true,
+      "high_rarity_id": "SFN/S136-097PS",
+      "effects": [
+        "CX_ALL_1000_1SOUL"
+      ],
+      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (城門：當你判定出此卡時，你可以選擇自己休息室的1張CX，回到手牌)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_097R.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_097R.png",
+        "https://img.bottleneko.app/SFN_S136_097R.png"
+      ],
+      "parsed_abilities": []
+    },
     "SFN/S136-097P": {
       "id": "SFN/S136-097P",
       "base_id": "SFN/S136-097",
@@ -30689,37 +30706,6 @@
       ],
       "parsed_abilities": []
     },
-    "SFN/S136-097R": {
-      "id": "SFN/S136-097R",
-      "base_id": "SFN/S136-097",
-      "series": "SFN/S108",
-      "name": "偶然的相遇",
-      "jp_name": "偶然の出会い",
-      "type": "CX",
-      "color": "藍",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "GATE",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "RRR",
-      "is_high_rarity": true,
-      "high_rarity_id": "SFN/S136-097PS",
-      "effects": [
-        "CX_ALL_1000_1SOUL"
-      ],
-      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (城門：當你判定出此卡時，你可以選擇自己休息室的1張CX，回到手牌)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_097R.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_097R.png",
-        "https://img.bottleneko.app/SFN_S136_097R.png"
-      ],
-      "parsed_abilities": []
-    },
     "SFN/S136-098": {
       "id": "SFN/S136-098",
       "base_id": "SFN/S136-098",
@@ -30748,6 +30734,37 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_098.png",
         "https://img.bottleneko.app/SFN_S136_098.png"
+      ],
+      "parsed_abilities": []
+    },
+    "SFN/S136-098R": {
+      "id": "SFN/S136-098R",
+      "base_id": "SFN/S136-098",
+      "series": "SFN/S108",
+      "name": "充足的勝機",
+      "jp_name": "十分な勝機",
+      "type": "CX",
+      "color": "藍",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "GATE",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "RRR",
+      "is_high_rarity": true,
+      "high_rarity_id": "SFN/S136-098PS",
+      "effects": [
+        "CX_ALL_1000_1SOUL"
+      ],
+      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (城門：當你判定出此卡時，你可以選擇自己休息室的1張CX，回到手牌)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_098R.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_098R.png",
+        "https://img.bottleneko.app/SFN_S136_098R.png"
       ],
       "parsed_abilities": []
     },
@@ -30813,37 +30830,6 @@
       ],
       "parsed_abilities": []
     },
-    "SFN/S136-098R": {
-      "id": "SFN/S136-098R",
-      "base_id": "SFN/S136-098",
-      "series": "SFN/S108",
-      "name": "充足的勝機",
-      "jp_name": "十分な勝機",
-      "type": "CX",
-      "color": "藍",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "GATE",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "RRR",
-      "is_high_rarity": true,
-      "high_rarity_id": "SFN/S136-098PS",
-      "effects": [
-        "CX_ALL_1000_1SOUL"
-      ],
-      "text": "【永】你的角色全部，攻擊力+1000，魂傷+1。\n (城門：當你判定出此卡時，你可以選擇自己休息室的1張CX，回到手牌)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_098R.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_098R.png",
-        "https://img.bottleneko.app/SFN_S136_098R.png"
-      ],
-      "parsed_abilities": []
-    },
     "SFN/S136-099": {
       "id": "SFN/S136-099",
       "base_id": "SFN/S136-099",
@@ -30870,6 +30856,35 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_099.png",
         "https://img.bottleneko.app/SFN_S136_099.png"
+      ],
+      "parsed_abilities": []
+    },
+    "SFN/S136-099R": {
+      "id": "SFN/S136-099R",
+      "base_id": "SFN/S136-099",
+      "series": "SFN/S108",
+      "name": "欣梅爾的自傳",
+      "jp_name": "ヒンメルの自伝",
+      "type": "CX",
+      "color": "藍",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "NONE",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "RRR",
+      "is_high_rarity": true,
+      "high_rarity_id": "SFN/S136-099PS",
+      "effects": [],
+      "text": "【自】此卡從手牌被放置到CX區時，你抽最多1張牌，選擇自己的角色最多2張，在那個回合中，魂傷+1。\n (書本：當你判定出此卡時，你可以抽1張牌)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_099R.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_099R.png",
+        "https://img.bottleneko.app/SFN_S136_099R.png"
       ],
       "parsed_abilities": []
     },
@@ -30931,35 +30946,6 @@
       ],
       "parsed_abilities": []
     },
-    "SFN/S136-099R": {
-      "id": "SFN/S136-099R",
-      "base_id": "SFN/S136-099",
-      "series": "SFN/S108",
-      "name": "欣梅爾的自傳",
-      "jp_name": "ヒンメルの自伝",
-      "type": "CX",
-      "color": "藍",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "NONE",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "RRR",
-      "is_high_rarity": true,
-      "high_rarity_id": "SFN/S136-099PS",
-      "effects": [],
-      "text": "【自】此卡從手牌被放置到CX區時，你抽最多1張牌，選擇自己的角色最多2張，在那個回合中，魂傷+1。\n (書本：當你判定出此卡時，你可以抽1張牌)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_099R.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_099R.png",
-        "https://img.bottleneko.app/SFN_S136_099R.png"
-      ],
-      "parsed_abilities": []
-    },
     "SFN/S136-100": {
       "id": "SFN/S136-100",
       "base_id": "SFN/S136-100",
@@ -30986,6 +30972,35 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_100.png",
         "https://img.bottleneko.app/SFN_S136_100.png"
+      ],
+      "parsed_abilities": []
+    },
+    "SFN/S136-100R": {
+      "id": "SFN/S136-100R",
+      "base_id": "SFN/S136-100",
+      "series": "SFN/S108",
+      "name": "封魔礦的洞窟",
+      "jp_name": "封魔鉱の洞窟",
+      "type": "CX",
+      "color": "藍",
+      "level": 0,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "NONE",
+      "traits": [
+        "-"
+      ],
+      "default_count": 0,
+      "rarity": "RRR",
+      "is_high_rarity": true,
+      "high_rarity_id": "SFN/S136-100PS",
+      "effects": [],
+      "text": "【自】此卡從手牌被放置到CX區時，你抽最多1張牌，選擇自己的角色最多2張，在那個回合中，魂傷+1。\n (書本：當你判定出此卡時，你可以抽1張牌)",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_100R.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_100R.png",
+        "https://img.bottleneko.app/SFN_S136_100R.png"
       ],
       "parsed_abilities": []
     },
@@ -31047,35 +31062,6 @@
       ],
       "parsed_abilities": []
     },
-    "SFN/S136-100R": {
-      "id": "SFN/S136-100R",
-      "base_id": "SFN/S136-100",
-      "series": "SFN/S108",
-      "name": "封魔礦的洞窟",
-      "jp_name": "封魔鉱の洞窟",
-      "type": "CX",
-      "color": "藍",
-      "level": 0,
-      "cost": 0,
-      "power": 0,
-      "soul": 0,
-      "trigger": "NONE",
-      "traits": [
-        "-"
-      ],
-      "default_count": 0,
-      "rarity": "RRR",
-      "is_high_rarity": true,
-      "high_rarity_id": "SFN/S136-100PS",
-      "effects": [],
-      "text": "【自】此卡從手牌被放置到CX區時，你抽最多1張牌，選擇自己的角色最多2張，在那個回合中，魂傷+1。\n (書本：當你判定出此卡時，你可以抽1張牌)",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_100R.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_100R.png",
-        "https://img.bottleneko.app/SFN_S136_100R.png"
-      ],
-      "parsed_abilities": []
-    },
     "SFN/S136-P01": {
       "id": "SFN/S136-P01",
       "base_id": "SFN/S136-P01",
@@ -31102,58 +31088,6 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_P01.png",
         "https://img.bottleneko.app/SFN_S136_P01.png"
-      ],
-      "parsed_abilities": [
-        {
-          "category": "AUTO",
-          "timing": "OTHER",
-          "cost": {
-            "stock": 0,
-            "discard_hand": 0,
-            "discard_cx": 0,
-            "clock_top_deck": 0,
-            "rest_self": 0,
-            "send_self_wr": false,
-            "send_self_memory": false
-          },
-          "is_cx_combo": false,
-          "cx_name": null,
-          "actions": [
-            {
-              "action": "buff_self",
-              "power": 1000
-            }
-          ],
-          "raw": "【自】其他的你的《冒險者》或《魔法》的角色攻擊時，在那個回合中，此卡的攻擊力+1000。"
-        }
-      ]
-    },
-    "SFN/S136-P01EX": {
-      "id": "SFN/S136-P01EX",
-      "base_id": "SFN/S136-P01",
-      "series": "SFN/S108",
-      "name": "Happy New Year 芙莉蓮",
-      "jp_name": "Happy New Year フリーレン",
-      "type": "CHAR",
-      "color": "黃",
-      "level": 0,
-      "cost": 0,
-      "power": 2000,
-      "soul": 1,
-      "trigger": "NONE",
-      "traits": [
-        "冒險者魔法"
-      ],
-      "default_count": 0,
-      "rarity": "PR+",
-      "is_high_rarity": true,
-      "high_rarity_id": null,
-      "effects": [],
-      "text": "【自】其他的你的《冒險者》或《魔法》的角色攻擊時，在那個回合中，此卡的攻擊力+1000。\n【自】［將此卡放到傷害區］其他的你的《冒險者》或《魔法》的角色被正打時，你可以支付代價。支付代價的話，將那張角色返回手牌。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_P01EX.png",
-      "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_P01EX.png",
-        "https://img.bottleneko.app/SFN_S136_P01EX.png"
       ],
       "parsed_abilities": [
         {
@@ -31232,32 +31166,57 @@
         }
       ]
     },
-    "SFN/S136-P02EX": {
-      "id": "SFN/S136-P02EX",
-      "base_id": "SFN/S136-P02S",
+    "SFN/S136-P01EX": {
+      "id": "SFN/S136-P01EX",
+      "base_id": "SFN/S136-P01",
       "series": "SFN/S108",
-      "name": "新たな旅路",
-      "jp_name": "新たな旅路",
+      "name": "Happy New Year 芙莉蓮",
+      "jp_name": "Happy New Year フリーレン",
       "type": "CHAR",
-      "color": "藍",
-      "level": 1,
+      "color": "黃",
+      "level": 0,
       "cost": 0,
-      "power": 0,
-      "soul": 0,
+      "power": 2000,
+      "soul": 1,
       "trigger": "NONE",
-      "traits": [],
+      "traits": [
+        "冒險者魔法"
+      ],
       "default_count": 0,
       "rarity": "PR+",
       "is_high_rarity": true,
       "high_rarity_id": null,
       "effects": [],
-      "text": "このカードは、あなたのカード名に「フェルン」を含むキャラがいないなら、手札からプレイできない。\n次の2つの効果のうちあなたが選んだ1つを行う。\n『あなたは自分の山札を見て《冒険者》か《魔法》のキャラを1枚まで選び、控え室に置き、その山札をシャッフルする。』\n『あなたは自分のストックすべてを、控え室に置き、自分の控え室のカードを同じ枚数選び、ストック置場に置き、そのストックをシャッフルする。』\nこのカードをストック置場の下に置く。",
-      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_P02EX.png",
+      "text": "【自】其他的你的《冒險者》或《魔法》的角色攻擊時，在那個回合中，此卡的攻擊力+1000。\n【自】［將此卡放到傷害區］其他的你的《冒險者》或《魔法》的角色被正打時，你可以支付代價。支付代價的話，將那張角色返回手牌。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_P01EX.png",
       "parallel_urls": [
-        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_P02EX.png",
-        "https://img.bottleneko.app/SFN_S136_P02EX.png"
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_P01EX.png",
+        "https://img.bottleneko.app/SFN_S136_P01EX.png"
       ],
-      "parsed_abilities": []
+      "parsed_abilities": [
+        {
+          "category": "AUTO",
+          "timing": "OTHER",
+          "cost": {
+            "stock": 0,
+            "discard_hand": 0,
+            "discard_cx": 0,
+            "clock_top_deck": 0,
+            "rest_self": 0,
+            "send_self_wr": false,
+            "send_self_memory": false
+          },
+          "is_cx_combo": false,
+          "cx_name": null,
+          "actions": [
+            {
+              "action": "buff_self",
+              "power": 1000
+            }
+          ],
+          "raw": "【自】其他的你的《冒險者》或《魔法》的角色攻擊時，在那個回合中，此卡的攻擊力+1000。"
+        }
+      ]
     },
     "SFN/S136-P02S": {
       "id": "SFN/S136-P02S",
@@ -31283,6 +31242,33 @@
       "parallel_urls": [
         "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_P02S.png",
         "https://img.bottleneko.app/SFN_S136_P02S.png"
+      ],
+      "parsed_abilities": []
+    },
+    "SFN/S136-P02EX": {
+      "id": "SFN/S136-P02EX",
+      "base_id": "SFN/S136-P02S",
+      "series": "SFN/S108",
+      "name": "新たな旅路",
+      "jp_name": "新たな旅路",
+      "type": "CHAR",
+      "color": "藍",
+      "level": 1,
+      "cost": 0,
+      "power": 0,
+      "soul": 0,
+      "trigger": "NONE",
+      "traits": [],
+      "default_count": 0,
+      "rarity": "PR+",
+      "is_high_rarity": true,
+      "high_rarity_id": null,
+      "effects": [],
+      "text": "このカードは、あなたのカード名に「フェルン」を含むキャラがいないなら、手札からプレイできない。\n次の2つの効果のうちあなたが選んだ1つを行う。\n『あなたは自分の山札を見て《冒険者》か《魔法》のキャラを1枚まで選び、控え室に置き、その山札をシャッフルする。』\n『あなたは自分のストックすべてを、控え室に置き、自分の控え室のカードを同じ枚数選び、ストック置場に置き、そのストックをシャッフルする。』\nこのカードをストック置場の下に置く。",
+      "url": "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_P02EX.png",
+      "parallel_urls": [
+        "https://img.bottleneko.app/w_900,f_webp&q_80/SFN_S136_P02EX.png",
+        "https://img.bottleneko.app/SFN_S136_P02EX.png"
       ],
       "parsed_abilities": []
     }
