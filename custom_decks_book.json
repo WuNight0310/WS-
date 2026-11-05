@@ -123,6 +123,26 @@
     "BFR/S78-081SP": 1,
     "BFR/S78-082SP": 1
   },
-  "_active_series": "CUSTOM",
+  "BN_DECK_1": {
+    "BFR/S78-015": 2,
+    "BFR/S78-087": 2,
+    "BFR/S78-059": 3,
+    "BFR/S78-066": 4,
+    "BFR/S78-091": 3,
+    "BFR/S78-109": 3,
+    "BFR/S78-003SPb": 3,
+    "BFR/S78-004S": 2,
+    "BFR/S78-033S": 3,
+    "BFR/S78-056SP": 3,
+    "BFR/S78-063S": 1,
+    "BFR/S78-077R": 1,
+    "BFR/S78-080S": 4,
+    "BFR/S78-081SP": 4,
+    "BFR/S78-082SP": 1,
+    "BFR/S78-083S": 3,
+    "BFR/S78-088S": 4,
+    "BFR/S78-108R": 4
+  },
+  "_active_series": "BN_DECK_1",
   "_ai_series": "GA/S131"
 }

@@ -1711,6 +1711,251 @@ class BottleNekoImporter:
         }
 
     @classmethod
+    def _http_get_text(cls, url: str, timeout: int = 20) -> str:
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        req = urllib.request.Request(
+            url,
+            headers={
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+                "Accept": "text/html,application/xhtml+xml,application/json,text/plain,*/*",
+                "Accept-Language": "zh-TW,zh;q=0.9,ja;q=0.8,en;q=0.7",
+            },
+        )
+        with urllib.request.urlopen(req, timeout=timeout, context=ctx) as resp:
+            return resp.read().decode("utf-8", errors="replace")
+
+    @classmethod
+    def search_social_decks(cls, keyword: str = "", series_id: str = "", log_callback=None) -> list:
+        """
+        搜尋貓罐子社群牌組 (https://bottleneko.app/social/?k=...&s=...)
+        回傳清單: [{"code": "KxDS8", "title": "帕瓦！", "author": "MaXXC", "date": "2023-06-14", "desc": "帕瓦臉單", "display": "..."}]
+        """
+        def _log(msg):
+            if log_callback:
+                log_callback(msg)
+            print(msg)
+
+        import urllib.parse
+        q_parts = []
+        if keyword and keyword.strip():
+            q_parts.append(f"k={urllib.parse.quote(keyword.strip())}")
+        if series_id and str(series_id).strip() and str(series_id).strip() != "ALL":
+            q_parts.append(f"s={urllib.parse.quote(str(series_id).strip())}")
+        qs = ("?" + "&".join(q_parts)) if q_parts else ""
+
+        results = []
+        seen_codes = set()
+
+        for api_u in [
+            f"https://api.bottleneko.app/social{qs}",
+            f"https://api.bottleneko.app/decks{qs}",
+            f"https://api.bottleneko.app/ws/social{qs}",
+        ]:
+            try:
+                data = cls._http_get_json(api_u, timeout=10)
+                items = data if isinstance(data, list) else (data.get("list") or data.get("data") or data.get("items") or data.get("decks") or []) if isinstance(data, dict) else []
+                if isinstance(items, list) and items:
+                    for it in items:
+                        if not isinstance(it, dict):
+                            continue
+                        code = str(it.get("code") or it.get("id") or it.get("deckCode") or it.get("shortId") or "").strip()
+                        if not code or code in seen_codes:
+                            continue
+                        seen_codes.add(code)
+                        title = str(it.get("title") or it.get("name") or "未命名社群牌組").strip()
+                        author = str((it.get("author") or {}).get("name") if isinstance(it.get("author"), dict) else (it.get("author") or it.get("userName") or it.get("user") or "社群玩家")).strip()
+                        date_s = str(it.get("date") or it.get("createdAt") or it.get("updatedAt") or "")[:10]
+                        desc = str(it.get("description") or it.get("content") or "").replace("\n", " ").strip()[:40]
+                        disp = f"[{code}] {title} — 作者:{author} ({date_s}) {desc}"
+                        results.append({
+                            "code": code,
+                            "title": title,
+                            "author": author,
+                            "date": date_s,
+                            "desc": desc,
+                            "display": disp,
+                        })
+                    if results:
+                        return results
+            except Exception:
+                pass
+
+        for web_u in [
+            f"https://bottleneko.app/social/{qs}",
+            f"https://bottleneko.app/ws/social{qs}",
+        ]:
+            try:
+                _log(f"🌐 正在連線搜尋貓罐子社群牌組：{web_u} ...")
+                html = cls._http_get_text(web_u, timeout=15)
+                m_next = re.search(r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>', html, re.S)
+                if m_next:
+                    nj = json.loads(m_next.group(1))
+                    pp = nj.get("props", {}).get("pageProps", {})
+                    cand_lists = [
+                        pp.get("socialList"), pp.get("articles"), pp.get("decks"), pp.get("list"), pp.get("items")
+                    ]
+                    for cl in cand_lists:
+                        if isinstance(cl, list) and cl:
+                            for it in cl:
+                                if not isinstance(it, dict):
+                                    continue
+                                code = str(it.get("code") or it.get("id") or "").strip()
+                                if not code or code in seen_codes:
+                                    continue
+                                seen_codes.add(code)
+                                title = str(it.get("title") or it.get("name") or "社群牌組").strip()
+                                author = str(it.get("authorName") or it.get("author") or "社群玩家").strip()
+                                date_s = str(it.get("publishDate") or it.get("createdAt") or "")[:10]
+                                desc = str(it.get("description") or "").replace("\n", " ").strip()[:40]
+                                results.append({
+                                    "code": code,
+                                    "title": title,
+                                    "author": author,
+                                    "date": date_s,
+                                    "desc": desc,
+                                    "display": f"[{code}] {title} — 作者:{author} ({date_s}) {desc}",
+                                })
+                for m_link in re.finditer(r'/(?:ws/)?(?:social|deck)/([A-Za-z0-9_-]{4,10})', html):
+                    c_code = m_link.group(1)
+                    if c_code not in seen_codes and c_code not in ("upload", "create", "search", "login", "index"):
+                        seen_codes.add(c_code)
+                        results.append({
+                            "code": c_code,
+                            "title": f"社群牌組 {c_code}",
+                            "author": "貓罐子社群",
+                            "date": "",
+                            "desc": "",
+                            "display": f"[{c_code}] 貓罐子社群分享牌組 (點擊即可直接載入)",
+                        })
+                clean_txt = re.sub(r"<[^>]+>", "\n", html)
+                lines = [ln.strip() for ln in clean_txt.splitlines() if ln.strip()]
+                for i, ln in enumerate(lines):
+                    if re.match(r"^\d{4}-\d{2}-\d{2}$", ln) and i + 1 < len(lines):
+                        cand_code = lines[i + 1]
+                        if re.match(r"^[A-Za-z0-9]{5}$", cand_code):
+                            author = lines[i - 1] if i - 1 >= 0 else "社群玩家"
+                            title = lines[i + 3] if i + 3 < len(lines) else f"社群牌組 {cand_code}"
+                            desc = lines[i + 4] if i + 4 < len(lines) else ""
+                            disp = f"[{cand_code}] {title} — 作者:{author} ({ln}) {desc[:30]}"
+                            existing = next((r for r in results if r["code"] == cand_code), None)
+                            if existing:
+                                existing.update({"title": title, "author": author, "date": ln, "desc": desc, "display": disp})
+                            else:
+                                seen_codes.add(cand_code)
+                                results.append({
+                                    "code": cand_code,
+                                    "title": title,
+                                    "author": author,
+                                    "date": ln,
+                                    "desc": desc,
+                                    "display": disp,
+                                })
+                if results:
+                    break
+            except Exception as e:
+                _log(f"⚠️ 搜尋頁面連線提示：{e}")
+
+        return results
+
+    @classmethod
+    def _parse_cards_from_bottleneko_html(cls, html: str, fallback_code: str = "") -> tuple:
+        """
+        從貓罐子 `/deck/{code}` 或 `/social/{code}` 網頁 HTML 中解析牌組名稱與 50 張卡片清單。
+        """
+        deck_name = f"貓罐子社群牌組 {fallback_code}".strip()
+        m_title = re.search(r"<title>(.*?)</title>", html, re.I | re.S)
+        if m_title:
+            raw_t = m_title.group(1).split("|")[0].strip()
+            if raw_t and raw_t.lower() != "undefined":
+                deck_name = raw_t
+
+        m_next = re.search(r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>', html, re.S)
+        if m_next:
+            try:
+                next_json = json.loads(m_next.group(1))
+                pp = next_json.get("props", {}).get("pageProps", {})
+                deck_obj = pp.get("deck") or pp.get("article") or pp.get("social") or pp.get("data") or next_json
+                if isinstance(deck_obj, dict):
+                    d_name = deck_obj.get("name") or deck_obj.get("title")
+                    if d_name and str(d_name).lower() != "undefined":
+                        deck_name = str(d_name).strip()
+                    raw_c = deck_obj.get("cards") or deck_obj.get("deckCards") or deck_obj.get("list") or []
+                    if isinstance(raw_c, list) and raw_c:
+                        return deck_name, raw_c
+            except Exception:
+                pass
+
+        clean_txt = re.sub(r"<[^>]+>", "\n", html)
+        lines = [ln.strip() for ln in clean_txt.splitlines() if ln.strip()]
+
+        def _normalize_scraped_cid(raw_cid: str) -> str:
+            s = raw_cid.strip()
+            for dup, single in [("RRRR", "R"), ("SPSP", "SP"), ("SBRSBR", "SBR"), ("SSR", "SR"), ("TD", ""), ("CR", ""), ("CC", ""), ("RR", ""), ("U", ""), ("C", "")]:
+                if s.endswith(dup) and len(s) > len(dup) + 5:
+                    base_part = s[: -len(dup)]
+                    if re.search(r"-[T0-9]\d{1,3}$", base_part):
+                        return base_part + single if single in ("SP", "SSP", "SEC", "OFR", "RRR", "SR", "S") else base_part
+            m_base = re.match(r"^([A-Za-z0-9]+/[A-Za-z0-9]+-[A-Za-z0-9]+?)(RR|CR|CC|TD|PR|R|U|C)$", s)
+            if m_base:
+                return m_base.group(1)
+            return s
+
+        card_entries = []
+        cid_pattern = re.compile(r"^([A-Za-z0-9]{2,6}/[SWsw]\d{1,3}-[A-Za-z0-9]{2,10})$")
+        i = 0
+        while i < len(lines):
+            ln = lines[i]
+            m_c = cid_pattern.match(ln)
+            if m_c:
+                raw_cid = m_c.group(1)
+                norm_cid = _normalize_scraped_cid(raw_cid)
+                c_title = lines[i + 1] if (i + 1 < len(lines) and not lines[i + 1].startswith("Type")) else norm_cid
+                c_type = "CHAR"
+                c_soul = 1
+                c_lv = 0
+                c_pwr = 0
+                c_cost = 0
+                for k_off in range(1, min(10, len(lines) - i)):
+                    sub = lines[i + k_off]
+                    if sub.startswith("Type"):
+                        if "クライマックス" in sub or "CX" in sub.upper():
+                            c_type = "CX"
+                        elif "イベント" in sub or "EVENT" in sub.upper():
+                            c_type = "EVENT"
+                    elif sub.startswith("Soul"):
+                        m_n = re.search(r"\d+", sub)
+                        if m_n:
+                            c_soul = int(m_n.group(0))
+                    elif sub.startswith("Level"):
+                        m_n = re.search(r"\d+", sub)
+                        if m_n:
+                            c_lv = int(m_n.group(0))
+                    elif sub.startswith("Power"):
+                        m_n = re.search(r"\d+", sub)
+                        if m_n:
+                            c_pwr = int(m_n.group(0))
+                    elif sub.startswith("Cost"):
+                        m_n = re.search(r"\d+", sub)
+                        if m_n:
+                            c_cost = int(m_n.group(0))
+                card_entries.append({
+                    "id": norm_cid,
+                    "raw_id": raw_cid,
+                    "title": c_title,
+                    "type": c_type,
+                    "soul": 0 if c_type != "CHAR" else c_soul,
+                    "level": c_lv,
+                    "attack": c_pwr,
+                    "cost": c_cost,
+                    "count": 1,
+                })
+            i += 1
+
+        return deck_name, card_entries
+
+    @classmethod
     def import_from_url_or_json(cls, source_input: str, sets_dir: str = "sets", log_callback=None) -> dict:
         def _log(msg):
             if log_callback:
@@ -1718,47 +1963,114 @@ class BottleNekoImporter:
             print(msg)
 
         source_input = source_input.strip()
-        # 1. 若輸入的是貓罐子系列網址 (https://bottleneko.app/ws/series/172) 或純數字系列 ID
         if "/ws/series/" in source_input or "/series/" in source_input or source_input.isdigit():
             return cls.import_series_by_id(source_input, sets_dir=sets_dir, log_callback=log_callback)
 
         deck_data = None
+        raw_cards = []
+        deck_name = "貓罐子社群牌組"
+
         if source_input.startswith("{") or source_input.startswith("["):
             deck_data = json.loads(source_input)
         elif os.path.isfile(source_input):
             with open(source_input, "r", encoding="utf-8") as f:
                 deck_data = json.load(f)
         else:
-            deck_id = source_input.rstrip("/").split("/")[-1]
-            # 先嘗試貓罐子 API，再嘗試網頁 __NEXT_DATA__
-            url = f"https://bottleneko.app/ws/deck/{deck_id}"
-            _log(f"🌐 正在連線至貓罐子抓取牌組資料：{url} ...")
-            ctx = ssl.create_default_context()
-            ctx.check_hostname = False
-            ctx.verify_mode = ssl.CERT_NONE
-            req = urllib.request.Request(
-                url,
-                headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"},
-            )
-            with urllib.request.urlopen(req, timeout=15, context=ctx) as resp:
-                html = resp.read().decode("utf-8", errors="replace")
-            m_next = re.search(r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>', html, re.S)
-            if m_next:
-                next_json = json.loads(m_next.group(1))
-                deck_data = next_json.get("props", {}).get("pageProps", {}).get("deck") or next_json
-            else:
-                raise ValueError("無法從貓罐子頁面解析出資料，請改用『全系列抓取』或確認網址。")
+            clean_url = source_input.split("?")[0].rstrip("/")
+            deck_id = clean_url.split("/")[-1]
+            is_social_url = "/social/" in source_input
 
-        raw_cards = []
-        deck_name = "貓罐子匯入卡表"
-        if isinstance(deck_data, dict):
-            deck_name = deck_data.get("name") or deck_data.get("title") or deck_name
-            raw_cards = deck_data.get("cards") or deck_data.get("deckCards") or deck_data.get("list") or []
-        elif isinstance(deck_data, list):
-            raw_cards = deck_data
+            api_candidates = [
+                f"https://api.bottleneko.app/deck/{deck_id}",
+                f"https://api.bottleneko.app/decks/{deck_id}",
+                f"https://api.bottleneko.app/social/{deck_id}",
+            ]
+            for api_u in api_candidates:
+                try:
+                    res_j = cls._http_get_json(api_u, timeout=10)
+                    if isinstance(res_j, dict) and (res_j.get("cards") or res_j.get("deckCards") or res_j.get("list") or isinstance(res_j.get("deck"), dict)):
+                        deck_data = res_j.get("deck") if isinstance(res_j.get("deck"), dict) else res_j
+                        _log(f"✅ 已從貓罐子 API 取得牌組資料：{api_u}")
+                        break
+                except Exception:
+                    pass
+
+            if not deck_data:
+                web_candidates = (
+                    [f"https://bottleneko.app/social/{deck_id}", f"https://bottleneko.app/deck/{deck_id}", f"https://bottleneko.app/ws/deck/{deck_id}"]
+                    if is_social_url
+                    else [f"https://bottleneko.app/deck/{deck_id}", f"https://bottleneko.app/social/{deck_id}", f"https://bottleneko.app/ws/deck/{deck_id}"]
+                )
+                for web_u in web_candidates:
+                    try:
+                        _log(f"🌐 正在連線至貓罐子抓取社群/牌組資料：{web_u} ...")
+                        html = cls._http_get_text(web_u, timeout=15)
+                        parsed_name, parsed_cards = cls._parse_cards_from_bottleneko_html(html, fallback_code=deck_id)
+                        if parsed_cards:
+                            deck_name = parsed_name
+                            raw_cards = parsed_cards
+                            _log(f"✅ 成功從 {web_u} 解析出牌組【{deck_name}】（共 {len(raw_cards)} 筆卡片項目）！")
+                            break
+                    except Exception as e:
+                        _log(f"⚠️ 嘗試 {web_u} 失敗：{e}")
+
+        if deck_data and not raw_cards:
+            if isinstance(deck_data, dict):
+                deck_name = deck_data.get("name") or deck_data.get("title") or deck_name
+                raw_cards = deck_data.get("cards") or deck_data.get("deckCards") or deck_data.get("list") or []
+            elif isinstance(deck_data, list):
+                raw_cards = deck_data
 
         if not raw_cards:
-            raise ValueError("未在資料中找到任何卡片清單！")
+            raise ValueError("無法從該網址或代碼解析出卡片清單，請確認牌組代碼（如 peAYS / o7Hhb）或網址是否正確。")
+
+        need_enrich = any(isinstance(it, dict) and not it.get("effect") and not it.get("i18n") for it in raw_cards)
+        if need_enrich:
+            try:
+                prefixes = set()
+                for it in raw_cards:
+                    c_id_tmp = str((it.get("card", it) if isinstance(it, dict) else {}).get("id") or "")
+                    if "/" in c_id_tmp and "-" in c_id_tmp:
+                        prefixes.add(c_id_tmp.split("-")[0].upper())
+                if prefixes:
+                    _log(f"🔍 正在從貓罐子系列資料庫自動補齊 {', '.join(sorted(prefixes))} 的完整繁中效果文與標記...")
+                    cats = cls.fetch_all_series_catalog()
+                    matched_sids = set()
+                    for cat in cats:
+                        cat_codes = [str(x).upper() for x in (cat.get("codes") or [])]
+                        for pref in prefixes:
+                            left_p = pref.split("/")[0]
+                            right_p = pref.split("/")[-1]
+                            if any(pref == cc or left_p == cc or right_p in cc for cc in cat_codes):
+                                matched_sids.add(cat["id"])
+                    api_card_lookup = {}
+                    for sid in list(matched_sids)[:4]:
+                        try:
+                            s_cards = cls._http_get_json(f"https://api.bottleneko.app/series/{sid}/cards", timeout=15)
+                            if isinstance(s_cards, list):
+                                for sc in s_cards:
+                                    if isinstance(sc, dict) and sc.get("id"):
+                                        api_card_lookup[sc["id"].upper()] = sc
+                        except Exception:
+                            pass
+                    if api_card_lookup:
+                        enriched_raw = []
+                        for it in raw_cards:
+                            c_obj = it.get("card", it) if isinstance(it, dict) and "card" in it else it
+                            cnt = int(it.get("count") or it.get("quantity") or 1) if isinstance(it, dict) else 1
+                            cid_u = str(c_obj.get("id") or "").upper()
+                            raw_u = str(c_obj.get("raw_id") or "").upper()
+                            full_sc = api_card_lookup.get(cid_u) or api_card_lookup.get(raw_u)
+                            if full_sc:
+                                merged = dict(full_sc)
+                                merged["count"] = cnt
+                                enriched_raw.append(merged)
+                            else:
+                                enriched_raw.append(it)
+                        raw_cards = enriched_raw
+                        _log(f"✨ 已成功補齊系列完整卡片效果資料（共比對 {len(api_card_lookup)} 張系列卡池）！")
+            except Exception as e:
+                _log(f"ℹ️ 自動補齊系列詳細效果略過：{e}")
 
         converted_cards = {}
         recipe_dict = {}
@@ -1772,7 +2084,15 @@ class BottleNekoImporter:
                 continue
             cid = c_dict["id"]
             if not series_code and "/" in cid and "-" in cid:
-                series_code = cid.split("-")[0]
+                first_prefix = cid.split("-")[0]
+                if "/S131" in first_prefix:
+                    series_code = "GA/S131"
+                elif "/W107" in first_prefix:
+                    series_code = "BTR/W107"
+                elif "/S78" in first_prefix:
+                    series_code = "BFR/S78"
+                else:
+                    series_code = first_prefix
             c_dict["series"] = series_code or "CUSTOM/S01"
             converted_cards[cid] = c_dict
             recipe_dict[cid] = recipe_dict.get(cid, 0) + count
@@ -1813,11 +2133,14 @@ class BottleNekoImporter:
             json.dump(existing_payload, f, ensure_ascii=False, indent=2)
 
         load_all_card_sets(sets_dir)
-        _log(f"✅ 成功匯入 {len(converted_cards)} 種卡片至 {out_path}，並完成萬用效果 AST 編譯！")
+        total_cards_in_deck = sum(recipe_dict.values())
+        _log(f"✅ 成功匯入社群牌組【{deck_name}】（共 {len(converted_cards)} 種 / {total_cards_in_deck} 張卡片）！")
         return {
             "series_code": series_code,
             "deck_name": deck_name,
             "card_count": len(converted_cards),
+            "total_cards": total_cards_in_deck,
+            "recipe": recipe_dict,
             "file_path": out_path,
         }
 

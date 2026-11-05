@@ -55,7 +55,8 @@
   "ace_card_by_series": {
     "GA/S131": "GA10/S131-030",
     "BFR/S78": "BFR/S78-082SP",
-    "CUSTOM": "BFR/S78-082SP"
+    "CUSTOM": "BFR/S78-082SP",
+    "BN_DECK_1": "BFR/S78-063S"
   },
   "ai_flip_interval_sec": 2.0,
   "ai_flip_end_pause_sec": 2.0,
@@ -82,5 +83,7 @@
   "custom_audio_paths": {
     "bgm_battle": "C:/Users/87qaz/Downloads/WS_Bofuri_Simulator/ws_audio/bgm_battle.mp3"
   },
-  "user_deck_names": {}
+  "user_deck_names": {
+    "BN_DECK_1": "タイトルカップ in Spring Challenge 2022 名古屋会場 優勝 牌組"
+  }
 }

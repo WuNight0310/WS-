@@ -643,8 +643,13 @@ class Widget:
         opts.update(kw)
         self._geom_opts = opts
         self._mapped = True
-        if hasattr(self._root, "_dirty"):
-            self._root._dirty = True
+        root = self._root
+        if hasattr(root, "_dirty"):
+            if getattr(root, "_ghost_widget", None) is self:
+                root._ghost_widget = None
+                root._ghost_only_dirty = False
+            root._bg_without_ghost_pil = None
+            root._dirty = True
 
     def pack_forget(self):
         if self._geom_mgr == "pack":
@@ -683,8 +688,13 @@ class Widget:
             self._geom_mgr = None
             self._place_opts = {}
             self._mapped = False
-            if hasattr(self._root, "_dirty"):
-                self._root._dirty = True
+            root = self._root
+            if hasattr(root, "_dirty"):
+                if getattr(root, "_ghost_widget", None) is self:
+                    root._ghost_widget = None
+                    root._ghost_only_dirty = False
+                root._bg_without_ghost_pil = None
+                root._dirty = True
 
     def grid(self, **kw):
         self._geom_mgr = "grid"
@@ -2529,6 +2539,10 @@ def _find_scrollable_ancestor(w: Widget):
 
 def dispatch_pointer_down(root: Tk, rx: int, ry: int, double_click: bool = False):
     rx, ry = int(rx), int(ry)
+    # 若上一個拖移尚未釋放就觸發了新的點擊（例如第二根手指點擊其他地方），先強制結束前一次拖移並清除浮標
+    prev_drag = getattr(root, "_drag_widget", None)
+    if prev_drag is not None:
+        dispatch_pointer_up(root, rx, ry)
 
     # 0. Check if clicking inside the floating Entry helper bar
     for act_k, fw, (x1, y1, x2, y2) in list(getattr(root, "_entry_helper_rects", []) or []):
@@ -2682,8 +2696,26 @@ def dispatch_pointer_up(root: Tk, rx: int, ry: int):
     ly = ry - w._rooty
     ev = Event(widget=w, x=lx, y=ly, x_root=rx, y_root=ry)
 
+    for fn in list(root._global_bindings.get("<ButtonRelease-1>", [])):
+        try:
+            fn(ev)
+        except Exception:
+            pass
+
     if "<ButtonRelease-1>" in w._bindings:
         w._fire_event("<ButtonRelease-1>", ev)
+
+    if getattr(root, "_ghost_widget", None) is not None:
+        gw = root._ghost_widget
+        root._ghost_widget = None
+        root._ghost_only_dirty = False
+        root._bg_without_ghost_pil = None
+        root._dirty = True
+        try:
+            if gw._exists:
+                gw.destroy()
+        except Exception:
+            pass
 
     if isinstance(w, (Button, Checkbutton)) and target is w:
         w.invoke()
@@ -2831,6 +2863,11 @@ def run_kivy_android_host(main_app_cls):
             return (rx, ry)
 
         def on_touch_down(self, touch):
+            # 鎖定單一主觸控點：若已經有一根手指正在按住或拖移卡片，忽略第二根手指的干擾點擊！
+            active_uid = getattr(self, "_active_touch_uid", None)
+            if active_uid is not None and active_uid != touch.uid:
+                return True
+            self._active_touch_uid = touch.uid
             rx, ry = self._screen_to_tk(touch.x, touch.y)
             self._touch_start_xy = (rx, ry)
             self._touch_scrolled = False
@@ -2844,6 +2881,8 @@ def run_kivy_android_host(main_app_cls):
             return True
 
         def on_touch_move(self, touch):
+            if getattr(self, "_active_touch_uid", None) != touch.uid:
+                return True
             rx, ry = self._screen_to_tk(touch.x, touch.y)
             if self._touch_start_xy is not None:
                 sx, sy = self._touch_start_xy
@@ -2863,12 +2902,15 @@ def run_kivy_android_host(main_app_cls):
             return True
 
         def on_touch_up(self, touch):
+            if getattr(self, "_active_touch_uid", None) != touch.uid:
+                return True
+            self._active_touch_uid = None
             rx, ry = self._screen_to_tk(touch.x, touch.y)
             self._touch_start_xy = None
-            if not self._touch_scrolled:
-                self.tk_root.post_ui_event(
-                    lambda r=rx, c=ry: dispatch_pointer_up(self.tk_root, r, c)
-                )
+            # 總是派發 pointer_up 以確保任何進行中的卡片拖移都能乾淨釋放並銷毀浮標
+            self.tk_root.post_ui_event(
+                lambda r=rx, c=ry: dispatch_pointer_up(self.tk_root, r, c)
+            )
             return True
 
         def _open_kb(self, fw):

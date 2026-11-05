@@ -2669,10 +2669,9 @@ PRESET_DECK_OPTIONS = [
 class DeckBuilderFrame(tk.Frame):
 
     def __init__(self, parent, app):
-        super().__init__(parent, bg="#111218")
+        super().__init__(parent, bg="#0d1018")
         self.app = app
         self.img_mgr = app.img_mgr
-        # 若有任何預設套牌已遺失對應設定，先同步內建三套
         self.selected_series = (
             app.active_series if app.active_series in SERIES_DB else "ALL"
         )
@@ -2684,11 +2683,14 @@ class DeckBuilderFrame(tk.Frame):
         self.sort_mode = "DEFAULT"  # "DEFAULT", "PWR_DESC", "PWR_ASC", "LVL_ASC", "LVL_DESC"
         self.search_keyword = ""
         self.current_page = 0
-        self.page_size = 24
+        self.page_size = 18
         self.working_recipe = {}
         self.count_labels = {}
         self.series_buttons = {}
         self.rarity_buttons = {}
+        self.current_inspected_cid = None
+        self._deck_grid_hitboxes = []
+        self._deck_photo_refs = []
         self._load_active_working_recipe()
         self.setup_ui()
 
@@ -2705,8 +2707,6 @@ class DeckBuilderFrame(tk.Frame):
             (f"預設套牌 3：{user_names.get('BTR/W107', '孤獨搖滾！ (BTR/W107)')}", "BTR/W107"),
         ]
         existing_keys = {k for _, k in opts}
-        # 加入玩家自建卡組與透過貓罐子牌組網址匯入的 50 張完整牌組
-        user_names = self.app.settings.get("user_deck_names") or {}
         for k, rec in self.app.decks_book.items():
             if k.startswith("_") or k in existing_keys:
                 continue
@@ -2737,99 +2737,21 @@ class DeckBuilderFrame(tk.Frame):
 
     def setup_ui(self):
         ff = self.app.get_font_family()
-        # 第一列：返回、卡組張數統計、匯入、清空、儲存、另存新卡組
-        top_bar = tk.Frame(self, bg="#1b1c24", pady=8, padx=14, relief=tk.RIDGE, bd=2)
-        top_bar.pack(fill=tk.X, padx=8, pady=(6, 3))
+        # 頂部導覽與控制列（參考圖1：返回、卡組選擇、改名、清空、儲存、另存新卡組、貓罐子匯入）
+        top_bar = tk.Frame(self, bg="#141824", pady=6, padx=10, relief=tk.RIDGE, bd=2)
+        top_bar.pack(fill=tk.X, padx=6, pady=(4, 2))
 
         tk.Button(
             top_bar,
-            text="⬅ 返回主選單",
-            bg="#3a3a48",
-            fg="white",
-            font=(ff, 11, "bold"),
-            padx=14,
-            pady=4,
-            cursor="hand2",
-            command=self.app.show_main_menu,
-        ).pack(side=tk.LEFT, padx=4)
-
-        self.lbl_summary = tk.Label(
-            top_bar,
-            text="",
-            bg="#1b1c24",
-            fg="#ffd166",
-            font=(ff, 13, "bold"),
-        )
-        self.lbl_summary.pack(side=tk.LEFT, padx=12)
-
-        self.lbl_feedback = tk.Label(
-            top_bar,
-            text="",
-            bg="#1b1c24",
-            fg="#06d6a0",
-            font=(ff, 10, "bold"),
-        )
-        self.lbl_feedback.pack(side=tk.LEFT, padx=6)
-
-        tk.Button(
-            top_bar,
-            text="💾 儲存目前卡組",
-            bg="#06d6a0",
-            fg="#000000",
-            font=(ff, 11, "bold"),
-            padx=14,
-            pady=4,
-            cursor="hand2",
-            command=self.save_deck,
-        ).pack(side=tk.RIGHT, padx=4)
-
-        tk.Button(
-            top_bar,
-            text="➕ 另存為新卡組",
-            bg="#ffd166",
-            fg="#000000",
-            font=(ff, 11, "bold"),
-            padx=12,
-            pady=4,
-            cursor="hand2",
-            command=self.save_as_new_deck_modal,
-        ).pack(side=tk.RIGHT, padx=4)
-
-        tk.Button(
-            top_bar,
-            text="🧹 清空配比",
-            bg="#4a4e69",
+            text="⬅ 返回",
+            bg="#2b3348",
             fg="white",
             font=(ff, 10, "bold"),
             padx=10,
-            pady=4,
+            pady=3,
             cursor="hand2",
-            command=self.clear_all_counts,
-        ).pack(side=tk.RIGHT, padx=4)
-
-        tk.Button(
-            top_bar,
-            text="🌐 貓罐子匯入系列/牌組",
-            bg="#9b5de5",
-            fg="white",
-            font=(ff, 10, "bold"),
-            padx=12,
-            pady=4,
-            cursor="hand2",
-            command=lambda: self.app.open_bottleneko_importer_modal(refresh_callback=self.app.open_deck_builder),
-        ).pack(side=tk.RIGHT, padx=4)
-
-        # 第二列：多套卡組切換管理選單 ＋ 查卡名即時搜索欄
-        preset_search_bar = tk.Frame(self, bg="#161822", pady=7, padx=14, relief=tk.SOLID, bd=1)
-        preset_search_bar.pack(fill=tk.X, padx=8, pady=2)
-
-        tk.Label(
-            preset_search_bar,
-            text="🃏 切換／管理我的卡組：",
-            bg="#161822",
-            fg="#ffd166",
-            font=(ff, 11, "bold"),
-        ).pack(side=tk.LEFT, padx=(0, 6))
+            command=self.app.show_main_menu,
+        ).pack(side=tk.LEFT, padx=3)
 
         self.dynamic_preset_options = self._build_deck_slot_options()
         self.preset_var = tk.StringVar()
@@ -2843,112 +2765,367 @@ class DeckBuilderFrame(tk.Frame):
             self.preset_var.set(preset_labels[cur_idx])
 
         self.cmb_preset = ttk.Combobox(
-            preset_search_bar,
+            top_bar,
             textvariable=self.preset_var,
             values=preset_labels,
             state="readonly",
-            width=30,
-            font=(ff, 11, "bold"),
+            width=26,
+            font=(ff, 10, "bold"),
         )
         self.cmb_preset.pack(side=tk.LEFT, padx=4)
         self.cmb_preset.bind("<<ComboboxSelected>>", self.on_select_preset_menu)
 
         tk.Button(
-            preset_search_bar,
-            text="📥 載入並設為出戰",
+            top_bar,
+            text="📥 載入",
             bg="#118ab2",
             fg="white",
-            font=(ff, 10, "bold"),
-            padx=10,
+            font=(ff, 9, "bold"),
+            padx=8,
             pady=3,
             cursor="hand2",
             command=self.on_select_preset_menu,
-        ).pack(side=tk.LEFT, padx=3)
+        ).pack(side=tk.LEFT, padx=2)
 
         tk.Button(
-            preset_search_bar,
-            text="✏️ 卡組改名",
+            top_bar,
+            text="✏️ 改名",
+            bg="#ffd166",
+            fg="#000000",
+            font=(ff, 9, "bold"),
+            padx=8,
+            pady=3,
+            cursor="hand2",
+            command=self.rename_current_deck_modal,
+        ).pack(side=tk.LEFT, padx=2)
+
+        tk.Button(
+            top_bar,
+            text="🗑️ 刪除",
+            bg="#e63946",
+            fg="white",
+            font=(ff, 9, "bold"),
+            padx=8,
+            pady=3,
+            cursor="hand2",
+            command=self.delete_current_custom_deck,
+        ).pack(side=tk.LEFT, padx=2)
+
+        self.lbl_feedback = tk.Label(
+            top_bar,
+            text="",
+            bg="#141824",
+            fg="#06d6a0",
+            font=(ff, 10, "bold"),
+        )
+        self.lbl_feedback.pack(side=tk.LEFT, padx=8)
+
+        tk.Button(
+            top_bar,
+            text="💾 保存",
+            bg="#06d6a0",
+            fg="#000000",
+            font=(ff, 10, "bold"),
+            padx=12,
+            pady=3,
+            cursor="hand2",
+            command=self.save_deck,
+        ).pack(side=tk.RIGHT, padx=3)
+
+        tk.Button(
+            top_bar,
+            text="➕ 另存新卡組",
             bg="#ffd166",
             fg="#000000",
             font=(ff, 10, "bold"),
             padx=10,
             pady=3,
             cursor="hand2",
-            command=self.rename_current_deck_modal,
-        ).pack(side=tk.LEFT, padx=3)
+            command=self.save_as_new_deck_modal,
+        ).pack(side=tk.RIGHT, padx=3)
 
         tk.Button(
-            preset_search_bar,
-            text="🗑️ 刪除卡組",
-            bg="#e63946",
+            top_bar,
+            text="🧹 清空",
+            bg="#4a4e69",
             fg="white",
-            font=(ff, 10, "bold"),
+            font=(ff, 9, "bold"),
+            padx=8,
+            pady=3,
+            cursor="hand2",
+            command=self.clear_all_counts,
+        ).pack(side=tk.RIGHT, padx=3)
+
+        tk.Button(
+            top_bar,
+            text="🌐 貓罐子匯入",
+            bg="#9b5de5",
+            fg="white",
+            font=(ff, 9, "bold"),
             padx=10,
             pady=3,
             cursor="hand2",
-            command=self.delete_current_custom_deck,
-        ).pack(side=tk.LEFT, padx=3)
+            command=lambda: self.app.open_bottleneko_importer_modal(refresh_callback=self.app.open_deck_builder),
+        ).pack(side=tk.RIGHT, padx=3)
 
-        # 右側：查卡名搜索框
-        search_box = tk.Frame(preset_search_bar, bg="#161822")
-        search_box.pack(side=tk.RIGHT, padx=4)
+        # 主體三欄式佈局（完全對齊圖1：左欄卡片詳情與+1/-1、中欄現有卡組視覺陣列、右欄卡片列表與篩選）
+        body = tk.Frame(self, bg="#0d1018")
+        body.pack(fill=tk.BOTH, expand=True, padx=6, pady=4)
+
+        # =========================================================
+        # 【左欄】卡片詳細資訊 ＋ [+1] [-1] ＋ 版本切換按鈕
+        # =========================================================
+        left_panel = tk.Frame(body, bg="#141824", width=335, relief=tk.RIDGE, bd=2)
+        left_panel.pack(side=tk.LEFT, fill=tk.Y, padx=(0, 6))
+        left_panel.pack_propagate(False)
+
+        self.lbl_card_title = tk.Label(
+            left_panel,
+            text="點擊卡片預覽",
+            bg="#1b2234",
+            fg="#ffd166",
+            font=(ff, 11, "bold"),
+            anchor="w",
+            justify=tk.LEFT,
+            wraplength=310,
+            padx=8,
+            pady=5,
+        )
+        self.lbl_card_title.pack(fill=tk.X, padx=6, pady=(6, 4))
+
+        top_info_area = tk.Frame(left_panel, bg="#141824")
+        top_info_area.pack(fill=tk.X, padx=8, pady=2)
+
+        self.lbl_card_img = tk.Label(top_info_area, bg="#0d1018", width=132, height=184, bd=1, relief=tk.SOLID)
+        self.lbl_card_img.pack(side=tk.LEFT, anchor="n", padx=(0, 8))
+
+        right_meta = tk.Frame(top_info_area, bg="#141824")
+        right_meta.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+
+        self.lbl_card_stats = tk.Label(
+            right_meta,
+            text="",
+            bg="#141824",
+            fg="#8ecae6",
+            font=(ff, 9, "bold"),
+            anchor="w",
+            justify=tk.LEFT,
+            wraplength=170,
+        )
+        self.lbl_card_stats.pack(fill=tk.X, pady=(2, 4))
+
+        self.txt_card_effect = scrolledtext.ScrolledText(
+            left_panel,
+            bg="#0e111a",
+            fg="#f1faee",
+            font=(ff, max(11, self.app.get_effect_font_size() - 1)),
+            wrap=tk.WORD,
+            bd=1,
+            relief=tk.SOLID,
+            padx=8,
+            pady=6,
+            height=10,
+        )
+        self.txt_card_effect.pack(fill=tk.BOTH, expand=True, padx=8, pady=(4, 6))
+        self.txt_card_effect.config(state=tk.DISABLED)
+
+        # 左欄底部操作區（完全比照圖1：上方 [+1] [-1] 雙大鈕，下方版本切換與全閃按鈕）
+        bottom_ctrl = tk.Frame(left_panel, bg="#141824")
+        bottom_ctrl.pack(fill=tk.X, side=tk.BOTTOM, padx=8, pady=(0, 8))
+
+        plus_minus_row = tk.Frame(bottom_ctrl, bg="#141824")
+        plus_minus_row.pack(fill=tk.X, pady=(0, 5))
+
+        tk.Button(
+            plus_minus_row,
+            text="➕ +1 加入卡組",
+            bg="#252c42",
+            fg="#06d6a0",
+            activebackground="#06d6a0",
+            activeforeground="#000000",
+            font=(ff, 11, "bold"),
+            pady=5,
+            bd=2,
+            relief=tk.RAISED,
+            cursor="hand2",
+            command=lambda: self.change_count(self.current_inspected_cid, 1) if self.current_inspected_cid else None,
+        ).pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(0, 4))
+
+        tk.Button(
+            plus_minus_row,
+            text="➖ -1 移出卡組",
+            bg="#252c42",
+            fg="#ff6b6b",
+            activebackground="#e63946",
+            activeforeground="#ffffff",
+            font=(ff, 11, "bold"),
+            pady=5,
+            bd=2,
+            relief=tk.RAISED,
+            cursor="hand2",
+            command=lambda: self.change_count(self.current_inspected_cid, -1) if self.current_inspected_cid else None,
+        ).pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(4, 0))
+
+        self.btn_toggle_rarity_preview = tk.Button(
+            bottom_ctrl,
+            text="✨ 切換看高版本",
+            bg="#9d4edd",
+            fg="#ffffff",
+            font=(ff, 9, "bold"),
+            pady=4,
+            cursor="hand2",
+            command=self._on_toggle_inspected_rarity,
+        )
+        self.btn_toggle_rarity_preview.pack(fill=tk.X, pady=(0, 5))
+
+        rarity_batch_row = tk.Frame(bottom_ctrl, bg="#141824")
+        rarity_batch_row.pack(fill=tk.X)
+
+        tk.Button(
+            rarity_batch_row,
+            text="✨ 全卡組換高版本",
+            bg="#5a189a",
+            fg="#ffd166",
+            font=(ff, 9, "bold"),
+            pady=3,
+            cursor="hand2",
+            command=lambda: self.convert_deck_rarity(to_high=True),
+        ).pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(0, 3))
+
+        tk.Button(
+            rarity_batch_row,
+            text="🎴 全卡組換一般版",
+            bg="#2b3348",
+            fg="#ffffff",
+            font=(ff, 9, "bold"),
+            pady=3,
+            cursor="hand2",
+            command=lambda: self.convert_deck_rarity(to_high=False),
+        ).pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(3, 0))
+
+        # =========================================================
+        # 【中欄】現有卡組視覺陣列面板（50張完整卡圖一覽、支援左鍵+1 / 右鍵-1）
+        # =========================================================
+        center_panel = tk.Frame(body, bg="#141824", width=675, relief=tk.RIDGE, bd=2)
+        center_panel.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=(0, 6))
+
+        deck_header = tk.Frame(center_panel, bg="#1b2234", padx=10, pady=6)
+        deck_header.pack(fill=tk.X)
+
+        self.lbl_active_badge = tk.Label(
+            deck_header,
+            text=f"📦 卡組：{self.app.get_deck_display_name(self.app.active_series)}",
+            bg="#1b2234",
+            fg="#ffffff",
+            font=(ff, 11, "bold"),
+        )
+        self.lbl_active_badge.pack(side=tk.LEFT)
 
         tk.Label(
-            search_box,
-            text="🔍 搜尋卡名 / 卡號 / 特徵：",
-            bg="#161822",
+            deck_header,
+            text="💡 左鍵點擊：查看卡片效果 ｜ 右鍵點擊：牌庫 +1 加入 ／ 卡組 -1 移除",
+            bg="#1b2234",
+            fg="#ffd166",
+            font=(ff, 9, "bold"),
+        ).pack(side=tk.RIGHT)
+
+        stats_bar = tk.Frame(center_panel, bg="#111520", padx=10, pady=5)
+        stats_bar.pack(fill=tk.X)
+
+        self.lbl_summary = tk.Label(
+            stats_bar,
+            text="",
+            bg="#111520",
+            fg="#06d6a0",
+            font=(ff, 10, "bold"),
+        )
+        self.lbl_summary.pack(side=tk.LEFT)
+
+        self.lbl_type_breakdown = tk.Label(
+            stats_bar,
+            text="",
+            bg="#111520",
             fg="#8ecae6",
-            font=(ff, 11, "bold"),
-        ).pack(side=tk.LEFT, padx=(0, 4))
+            font=(ff, 9, "bold"),
+        )
+        self.lbl_type_breakdown.pack(side=tk.RIGHT)
+
+        self.deck_view_canvas = tk.Canvas(center_panel, bg="#0f131d", highlightthickness=0)
+        self.deck_view_canvas.pack(fill=tk.BOTH, expand=True, padx=6, pady=6)
+        self.deck_view_canvas.bind("<Configure>", lambda e: self.render_deck_visual_grid())
+        self.deck_view_canvas.bind("<ButtonPress-1>", self._on_deck_canvas_left_click)
+        self.deck_view_canvas.bind("<ButtonPress-3>", self._on_deck_canvas_right_click)
+        self.deck_view_canvas.bind("<ButtonPress-2>", self._on_deck_canvas_right_click)
+
+        # =========================================================
+        # 【右欄】卡片列表面板（搜尋、系列、顏色/等級/版本篩選、左鍵加入/右鍵移除）
+        # =========================================================
+        right_panel = tk.Frame(body, bg="#141824", width=550, relief=tk.RIDGE, bd=2)
+        right_panel.pack(side=tk.LEFT, fill=tk.BOTH, expand=False)
+        right_panel.pack_propagate(False)
+
+        lib_header = tk.Frame(right_panel, bg="#70e000", padx=10, pady=4)
+        lib_header.pack(fill=tk.X)
+        tk.Label(
+            lib_header,
+            text="🧰 卡片列表 （左鍵查看效果 ／ 右鍵加入卡組 ＋1）",
+            bg="#70e000",
+            fg="#000000",
+            font=(ff, 10, "bold"),
+        ).pack(side=tk.LEFT)
+
+        # 右欄第1列：搜尋欄
+        search_bar = tk.Frame(right_panel, bg="#181d2c", padx=8, pady=5)
+        search_bar.pack(fill=tk.X)
+
+        tk.Label(
+            search_bar,
+            text="🔍",
+            bg="#181d2c",
+            fg="#8ecae6",
+            font=(ff, 10, "bold"),
+        ).pack(side=tk.LEFT)
 
         self.search_var = tk.StringVar()
         self.ent_search = tk.Entry(
-            search_box,
+            search_bar,
             textvariable=self.search_var,
-            bg="#10121a",
+            bg="#0d1018",
             fg="#ffffff",
             insertbackground="white",
-            font=(ff, 11, "bold"),
-            width=20,
+            font=(ff, 10, "bold"),
+            width=22,
         )
-        self.ent_search.pack(side=tk.LEFT, padx=4)
+        self.ent_search.pack(side=tk.LEFT, padx=4, fill=tk.X, expand=True)
         self.ent_search.bind("<Return>", lambda e: self.on_search_change())
 
         tk.Button(
-            search_box,
+            search_bar,
             text="搜尋",
             bg="#06d6a0",
             fg="#000000",
-            font=(ff, 10, "bold"),
+            font=(ff, 9, "bold"),
             padx=8,
-            pady=2,
+            pady=1,
             cursor="hand2",
             command=self.on_search_change,
-        ).pack(side=tk.LEFT, padx=3)
+        ).pack(side=tk.LEFT, padx=2)
 
         tk.Button(
-            search_box,
-            text="✖ 清除",
+            search_bar,
+            text="清除",
             bg="#3a3f58",
             fg="#ffffff",
-            font=(ff, 10, "bold"),
-            padx=8,
-            pady=2,
+            font=(ff, 9, "bold"),
+            padx=6,
+            pady=1,
             cursor="hand2",
             command=self.clear_search,
-        ).pack(side=tk.LEFT, padx=3)
+        ).pack(side=tk.LEFT, padx=2)
 
-        # 第三列：下拉式系列卡池選擇器 ＋ 快速切換「全部/已入編」 ＋ 版本篩選
-        series_bar = tk.Frame(self, bg="#141620", pady=6, padx=14, relief=tk.SOLID, bd=1)
-        series_bar.pack(fill=tk.X, padx=8, pady=(0, 4))
-
-        tk.Label(
-            series_bar,
-            text="📚 選擇卡池系列：",
-            bg="#141620",
-            fg="#8ecae6",
-            font=(ff, 11, "bold"),
-        ).pack(side=tk.LEFT, padx=(0, 6))
+        # 右欄第2列：系列選擇與版本切換
+        series_row = tk.Frame(right_panel, bg="#141824", padx=8, pady=4)
+        series_row.pack(fill=tk.X)
 
         self.series_filter_options = self._build_series_filter_options()
         self.series_combo_var = tk.StringVar()
@@ -2962,355 +3139,192 @@ class DeckBuilderFrame(tk.Frame):
             self.series_combo_var.set(s_labels[s_idx])
 
         self.cmb_series_filter = ttk.Combobox(
-            series_bar,
+            series_row,
             textvariable=self.series_combo_var,
             values=s_labels,
             state="readonly",
-            width=34,
-            font=(ff, 10, "bold"),
+            width=26,
+            font=(ff, 9, "bold"),
         )
-        self.cmb_series_filter.pack(side=tk.LEFT, padx=4)
+        self.cmb_series_filter.pack(side=tk.LEFT, padx=(0, 4))
         self.cmb_series_filter.bind("<<ComboboxSelected>>", self._on_series_combo_selected)
 
-        # 兩個最常用的快捷篩選鈕：看「已入編卡片」與「全部卡池」
-        for f_key, f_label in [
-            ("IN_DECK", "✅ 只看目前已入編卡片"),
-            ("ALL", "🌟 全部系列卡池"),
-        ]:
-            is_cur = f_key == self.selected_series
-            b = tk.Button(
-                series_bar,
-                text=f_label,
-                bg="#ffd166" if is_cur else "#252734",
-                fg="#000000" if is_cur else "#ffffff",
-                font=(ff, 10, "bold"),
-                padx=10,
-                pady=2,
-                cursor="hand2",
-                command=lambda s=f_key: self.set_series_filter(s),
-            )
-            b.pack(side=tk.LEFT, padx=4)
-            self.series_buttons[f_key] = b
-
-        # 版本篩選與一鍵全閃/一般版切換按鈕
-        tk.Label(
-            series_bar,
-            text="｜版本：",
-            bg="#141620",
-            fg="#ffd166",
-            font=(ff, 10, "bold"),
-        ).pack(side=tk.LEFT, padx=(8, 2))
-
         for r_key, r_lbl in [
-            ("ALL", "全部版本"),
-            ("NORMAL", "一般版"),
-            ("HIGH", "✨高版本"),
+            ("ALL", "全版本"),
+            ("NORMAL", "一般"),
+            ("HIGH", "✨高版"),
         ]:
             is_rcur = r_key == self.rarity_filter
             rb = tk.Button(
-                series_bar,
+                series_row,
                 text=r_lbl,
                 bg="#06d6a0" if is_rcur else "#252734",
                 fg="#000000" if is_rcur else "#ffffff",
                 font=(ff, 9, "bold"),
-                padx=8,
-                pady=2,
+                padx=6,
+                pady=1,
                 cursor="hand2",
                 command=lambda rk=r_key: self.set_rarity_filter(rk),
             )
             rb.pack(side=tk.LEFT, padx=2)
             self.rarity_buttons[r_key] = rb
 
-        tk.Button(
-            series_bar,
-            text="✨ 全卡組換高版本",
-            bg="#9d4edd",
-            fg="#ffffff",
-            font=(ff, 9, "bold"),
-            padx=9,
-            pady=2,
-            cursor="hand2",
-            command=lambda: self.convert_deck_rarity(to_high=True),
-        ).pack(side=tk.LEFT, padx=(8, 2))
+        # 右欄第3列：顏色與等級快速篩選
+        filter_row1 = tk.Frame(right_panel, bg="#181d2c", padx=8, pady=4)
+        filter_row1.pack(fill=tk.X)
 
-        tk.Button(
-            series_bar,
-            text="🎴 全卡組換一般版",
-            bg="#3a3f58",
-            fg="#ffffff",
-            font=(ff, 9, "bold"),
-            padx=9,
-            pady=2,
-            cursor="hand2",
-            command=lambda: self.convert_deck_rarity(to_high=False),
-        ).pack(side=tk.LEFT, padx=2)
-
-        self.lbl_active_badge = tk.Label(
-            series_bar,
-            text=f"⚔️ 出戰：{self.app.get_deck_display_name(self.app.active_series)}",
-            bg="#141620",
-            fg="#06d6a0",
-            font=(ff, 10, "bold"),
-        )
-        self.lbl_active_badge.pack(side=tk.RIGHT, padx=4)
-
-        # 第四列：多維度屬性篩選列（顏色 ／ 等級 ／ 魂傷 ／ 攻擊力門檻與排序）
-        attr_bar = tk.Frame(self, bg="#161925", pady=5, padx=14, relief=tk.SOLID, bd=1)
-        attr_bar.pack(fill=tk.X, padx=8, pady=(0, 4))
-
-        # 1. 顏色篩選
-        tk.Label(attr_bar, text="🎨 顏色：", bg="#161925", fg="#ffd166", font=(ff, 10, "bold")).pack(side=tk.LEFT)
         self.color_btns = {}
-        color_opts = [("ALL", "全部", "#252734", "#ffffff"), ("黃", "黃", "#f4a261", "#000000"), ("綠", "綠", "#06d6a0", "#000000"), ("紅", "紅", "#e63946", "#ffffff"), ("藍", "藍", "#118ab2", "#ffffff"), ("紫", "紫", "#9b5de5", "#ffffff")]
+        color_opts = [("ALL", "全色", "#252734", "#ffffff"), ("黃", "黃", "#f4a261", "#000000"), ("綠", "綠", "#06d6a0", "#000000"), ("紅", "紅", "#e63946", "#ffffff"), ("藍", "藍", "#118ab2", "#ffffff"), ("紫", "紫", "#9b5de5", "#ffffff")]
         for c_key, c_lbl, c_bg, c_fg in color_opts:
             is_c = (self.color_filter == c_key)
             b = tk.Button(
-                attr_bar,
+                filter_row1,
                 text=c_lbl,
                 bg="#ffd166" if (is_c and c_key == "ALL") else (c_bg if is_c else "#252734"),
                 fg="#000000" if (is_c and c_key in ("ALL", "黃", "綠")) else ("#ffffff" if not is_c else c_fg),
-                relief=tk.SUNKEN if is_c else tk.RAISED,
-                bd=2 if is_c else 1,
-                font=(ff, 9, "bold"),
-                padx=7,
+                font=(ff, 8, "bold"),
+                padx=5,
                 pady=1,
                 cursor="hand2",
                 command=lambda ck=c_key: self.set_color_filter(ck),
             )
-            b.pack(side=tk.LEFT, padx=2)
+            b.pack(side=tk.LEFT, padx=1)
             self.color_btns[c_key] = (b, c_bg, c_fg)
 
-        # 2. 等級篩選
-        tk.Label(attr_bar, text="｜📊 等級：", bg="#161925", fg="#8ecae6", font=(ff, 10, "bold")).pack(side=tk.LEFT, padx=(6, 0))
+        tk.Label(filter_row1, text="｜", bg="#181d2c", fg="#4a4e69").pack(side=tk.LEFT, padx=2)
+
         self.level_btns = {}
-        for lv_key, lv_lbl in [("ALL", "全部"), (0, "Lv.0"), (1, "Lv.1"), (2, "Lv.2"), (3, "Lv.3")]:
+        for lv_key, lv_lbl in [("ALL", "全Lv"), (0, "Lv0"), (1, "Lv1"), (2, "Lv2"), (3, "Lv3")]:
             is_lv = (self.level_filter == lv_key)
             b = tk.Button(
-                attr_bar,
+                filter_row1,
                 text=lv_lbl,
                 bg="#06d6a0" if is_lv else "#252734",
                 fg="#000000" if is_lv else "#ffffff",
-                font=(ff, 9, "bold"),
-                padx=6,
+                font=(ff, 8, "bold"),
+                padx=5,
                 pady=1,
                 cursor="hand2",
                 command=lambda lk=lv_key: self.set_level_filter(lk),
             )
-            b.pack(side=tk.LEFT, padx=2)
+            b.pack(side=tk.LEFT, padx=1)
             self.level_btns[lv_key] = b
 
-        # 3. 魂傷篩選
-        tk.Label(attr_bar, text="｜⚡ 魂傷：", bg="#161925", fg="#ffd166", font=(ff, 10, "bold")).pack(side=tk.LEFT, padx=(6, 0))
+        # 右欄第4列：魂傷、攻擊力、排序與重設
+        filter_row2 = tk.Frame(right_panel, bg="#141824", padx=8, pady=4)
+        filter_row2.pack(fill=tk.X)
+
         self.soul_btns = {}
-        for s_key, s_lbl in [("ALL", "全部"), (0, "0魂(CX/事件)"), (1, "1魂"), (2, "2魂+")]:
+        for s_key, s_lbl in [("ALL", "全魂"), (0, "CX/事件"), (1, "1魂"), (2, "2魂")]:
             is_s = (self.soul_filter == s_key)
             b = tk.Button(
-                attr_bar,
+                filter_row2,
                 text=s_lbl,
                 bg="#ffd166" if is_s else "#252734",
                 fg="#000000" if is_s else "#ffffff",
-                font=(ff, 9, "bold"),
-                padx=6,
+                font=(ff, 8, "bold"),
+                padx=4,
                 pady=1,
                 cursor="hand2",
                 command=lambda sk=s_key: self.set_soul_filter(sk),
             )
-            b.pack(side=tk.LEFT, padx=2)
+            b.pack(side=tk.LEFT, padx=1)
             self.soul_btns[s_key] = b
 
-        # 4. 攻擊力篩選與排序下拉選單
-        tk.Label(attr_bar, text="｜⚔️ 攻擊力：", bg="#161925", fg="#ff758f", font=(ff, 10, "bold")).pack(side=tk.LEFT, padx=(6, 2))
         self.pwr_filter_options = [
-            ("不限攻擊力", 0),
-            ("攻擊力 ≥ 1500", 1500),
-            ("攻擊力 ≥ 3000", 3000),
-            ("攻擊力 ≥ 5000", 5000),
-            ("攻擊力 ≥ 7500", 7500),
-            ("攻擊力 ≥ 9500", 9500),
-            ("攻擊力 ≥ 10000", 10000),
+            ("不限攻", 0),
+            ("≥1500", 1500),
+            ("≥3000", 3000),
+            ("≥5000", 5000),
+            ("≥7500", 7500),
+            ("≥9500", 9500),
+            ("≥10000", 10000),
         ]
-        self.pwr_filter_var = tk.StringVar(value="不限攻擊力")
+        self.pwr_filter_var = tk.StringVar(value="不限攻")
         self.cmb_pwr = ttk.Combobox(
-            attr_bar,
+            filter_row2,
             textvariable=self.pwr_filter_var,
             values=[lbl for lbl, _ in self.pwr_filter_options],
             state="readonly",
-            width=13,
-            font=(ff, 9, "bold"),
+            width=7,
+            font=(ff, 8, "bold"),
         )
-        self.cmb_pwr.pack(side=tk.LEFT, padx=2)
+        self.cmb_pwr.pack(side=tk.LEFT, padx=3)
         self.cmb_pwr.bind("<<ComboboxSelected>>", self._on_pwr_or_sort_changed)
 
-        tk.Label(attr_bar, text="排序：", bg="#161925", fg="#8ecae6", font=(ff, 10, "bold")).pack(side=tk.LEFT, padx=(6, 2))
         self.sort_options = [
-            ("預設卡號排序", "DEFAULT"),
-            ("攻擊力：高 → 低", "PWR_DESC"),
-            ("攻擊力：低 → 高", "PWR_ASC"),
-            ("等級：低 → 高", "LVL_ASC"),
-            ("等級：高 → 低", "LVL_DESC"),
+            ("卡號排序", "DEFAULT"),
+            ("攻:高→低", "PWR_DESC"),
+            ("攻:低→高", "PWR_ASC"),
+            ("Lv:低→高", "LVL_ASC"),
+            ("Lv:高→低", "LVL_DESC"),
         ]
-        self.sort_var = tk.StringVar(value="預設卡號排序")
+        self.sort_var = tk.StringVar(value="卡號排序")
         self.cmb_sort = ttk.Combobox(
-            attr_bar,
+            filter_row2,
             textvariable=self.sort_var,
             values=[lbl for lbl, _ in self.sort_options],
             state="readonly",
-            width=14,
-            font=(ff, 9, "bold"),
+            width=9,
+            font=(ff, 8, "bold"),
         )
         self.cmb_sort.pack(side=tk.LEFT, padx=2)
         self.cmb_sort.bind("<<ComboboxSelected>>", self._on_pwr_or_sort_changed)
 
         tk.Button(
-            attr_bar,
-            text="↺ 重設篩選",
+            filter_row2,
+            text="↺重設",
             bg="#3a3f58",
+            fg="#ffffff",
+            font=(ff, 8, "bold"),
+            padx=5,
+            pady=1,
+            cursor="hand2",
+            command=self.reset_all_attribute_filters,
+        ).pack(side=tk.RIGHT, padx=2)
+
+        # 右欄第5列：分頁控制列
+        page_bar = tk.Frame(right_panel, bg="#181d2c", pady=4, padx=8)
+        page_bar.pack(fill=tk.X)
+
+        self.btn_prev_page = tk.Button(
+            page_bar,
+            text="◀ 上頁",
+            bg="#2b3348",
             fg="#ffffff",
             font=(ff, 9, "bold"),
             padx=8,
             pady=1,
             cursor="hand2",
-            command=self.reset_all_attribute_filters,
-        ).pack(side=tk.RIGHT, padx=4)
-
-        body = tk.Frame(self, bg="#111218")
-        body.pack(fill=tk.BOTH, expand=True, padx=8, pady=4)
-
-        # 左側預覽面板：上方放「卡圖＋規格資訊」，下方整塊滿版全部放「效果文」，零留白浪費！
-        left_panel = tk.Frame(body, bg="#1b1c24", width=520, relief=tk.RIDGE, bd=2)
-        left_panel.pack(side=tk.LEFT, fill=tk.Y, padx=(0, 8))
-        left_panel.pack_propagate(False)
-
-        tk.Label(
-            left_panel,
-            text="◆ 卡片詳細資訊與效果文預覽 ◆",
-            bg="#1b1c24",
-            fg="#ffd166",
-            font=(ff, 12, "bold"),
-        ).pack(anchor="w", padx=12, pady=(8, 4))
-
-        detail_box = tk.Frame(left_panel, bg="#242632", bd=1, relief=tk.SOLID)
-        detail_box.pack(fill=tk.BOTH, expand=True, padx=10, pady=(0, 10))
-
-        # 上半部：左邊卡圖、右邊規格與高低版本切換
-        top_info_area = tk.Frame(detail_box, bg="#242632")
-        top_info_area.pack(fill=tk.X, padx=10, pady=(10, 6))
-
-        self.lbl_card_img = tk.Label(top_info_area, bg="#111218", width=165, height=230)
-        self.lbl_card_img.pack(side=tk.LEFT, anchor="n", padx=(0, 12))
-
-        right_meta = tk.Frame(top_info_area, bg="#242632")
-        right_meta.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-
-        self.lbl_card_title = tk.Label(
-            right_meta,
-            text="點擊右側卡片預覽",
-            bg="#242632",
-            fg="#ffffff",
-            font=(ff, 13, "bold"),
-            anchor="w",
-            justify=tk.LEFT,
-            wraplength=295,
-        )
-        self.lbl_card_title.pack(fill=tk.X)
-
-        self.lbl_card_stats = tk.Label(
-            right_meta,
-            text="",
-            bg="#242632",
-            fg="#8ecae6",
-            font=(ff, 10, "bold"),
-            anchor="w",
-            justify=tk.LEFT,
-            wraplength=295,
-        )
-        self.lbl_card_stats.pack(fill=tk.X, pady=(6, 6))
-
-        ver_btn_row = tk.Frame(right_meta, bg="#242632")
-        ver_btn_row.pack(fill=tk.X, pady=(2, 0))
-
-        self.btn_toggle_rarity_preview = tk.Button(
-            ver_btn_row,
-            text="✨ 切換看高版本",
-            bg="#9d4edd",
-            fg="#ffffff",
-            font=(ff, 10, "bold"),
-            padx=12,
-            pady=3,
-            cursor="hand2",
-            command=self._on_toggle_inspected_rarity,
-        )
-        self.btn_toggle_rarity_preview.pack(side=tk.LEFT)
-
-        # 下半部：整塊滿版寬度全部用來顯示卡片效果文，徹底消除左下方空白！
-        effect_header = tk.Frame(detail_box, bg="#1b1e2b", padx=10, pady=4)
-        effect_header.pack(fill=tk.X, padx=10, pady=(4, 0))
-        tk.Label(
-            effect_header,
-            text="📜 卡片效果文",
-            bg="#1b1e2b",
-            fg="#ffd166",
-            font=(ff, 10, "bold"),
-        ).pack(side=tk.LEFT)
-
-        self.txt_card_effect = scrolledtext.ScrolledText(
-            detail_box,
-            bg="#14151d",
-            fg="#f1faee",
-            font=(ff, max(12, self.app.get_effect_font_size())),
-            wrap=tk.WORD,
-            bd=0,
-            padx=10,
-            pady=8,
-        )
-        self.txt_card_effect.pack(fill=tk.BOTH, expand=True, padx=10, pady=(0, 10))
-        self.txt_card_effect.config(state=tk.DISABLED)
-
-        # 右側卡片網格面板
-        right_panel = tk.Frame(body, bg="#181922", relief=tk.RIDGE, bd=2)
-        right_panel.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-
-        page_bar = tk.Frame(right_panel, bg="#141620", pady=5, padx=10)
-        page_bar.pack(fill=tk.X, side=tk.TOP)
-
-        self.btn_prev_page = tk.Button(
-            page_bar,
-            text="◀ 上一頁",
-            bg="#2b3348",
-            fg="#ffffff",
-            font=(ff, 10, "bold"),
-            padx=12,
-            pady=2,
-            cursor="hand2",
             command=self.prev_page,
         )
-        self.btn_prev_page.pack(side=tk.LEFT, padx=4)
+        self.btn_prev_page.pack(side=tk.LEFT, padx=2)
 
         self.lbl_page_info = tk.Label(
             page_bar,
-            text="第 1 / 1 頁（共 0 張）",
-            bg="#141620",
+            text="第 1 / 1 頁",
+            bg="#181d2c",
             fg="#ffd166",
-            font=(ff, 11, "bold"),
+            font=(ff, 9, "bold"),
         )
-        self.lbl_page_info.pack(side=tk.LEFT, padx=12)
+        self.lbl_page_info.pack(side=tk.LEFT, padx=8)
 
         self.btn_next_page = tk.Button(
             page_bar,
-            text="下一頁 ▶",
+            text="下頁 ▶",
             bg="#2b3348",
             fg="#ffffff",
-            font=(ff, 10, "bold"),
-            padx=12,
-            pady=2,
+            font=(ff, 9, "bold"),
+            padx=8,
+            pady=1,
             cursor="hand2",
             command=self.next_page,
         )
-        self.btn_next_page.pack(side=tk.LEFT, padx=4)
+        self.btn_next_page.pack(side=tk.LEFT, padx=2)
 
-        self.canvas = tk.Canvas(right_panel, bg="#181922", highlightthickness=0)
+        self.canvas = tk.Canvas(right_panel, bg="#10131d", highlightthickness=0)
         scrollbar = tk.Scrollbar(right_panel, orient=tk.VERTICAL, command=self.canvas.yview)
-        self.grid_frame = tk.Frame(self.canvas, bg="#181922")
+        self.grid_frame = tk.Frame(self.canvas, bg="#10131d")
 
         self.grid_frame.bind(
             "<Configure>",
@@ -3319,7 +3333,7 @@ class DeckBuilderFrame(tk.Frame):
         self.canvas.create_window((0, 0), window=self.grid_frame, anchor="nw")
         self.canvas.configure(yscrollcommand=scrollbar.set)
 
-        self.canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=8, pady=8)
+        self.canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=4, pady=4)
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
         self.canvas.bind_all("<MouseWheel>", self._on_mousewheel)
@@ -3331,6 +3345,101 @@ class DeckBuilderFrame(tk.Frame):
             first_cid = next(iter(CARD_DB.keys()))
         if first_cid:
             self.inspect_card(first_cid)
+        self.after(40, self.render_deck_visual_grid)
+
+    def _on_deck_canvas_left_click(self, event):
+        """左鍵點擊中間現有卡組面板的卡片：純粹查看卡片效果與詳情"""
+        for cid, x1, y1, x2, y2 in reversed(self._deck_grid_hitboxes):
+            if x1 <= event.x <= x2 and y1 <= event.y <= y2:
+                self.inspect_card(cid)
+                return
+
+    def _on_deck_canvas_right_click(self, event):
+        """右鍵點擊中間現有卡組面板的卡片：從卡組移除 1 張 (-1) 並查看效果"""
+        for cid, x1, y1, x2, y2 in reversed(self._deck_grid_hitboxes):
+            if x1 <= event.x <= x2 and y1 <= event.y <= y2:
+                self.inspect_card(cid)
+                self.change_count(cid, -1)
+                return
+
+    def render_deck_visual_grid(self):
+        """在中間面板繪製《Master Duel》風格的 50 張現有卡組全圖矩陣（10列x5行）"""
+        if not hasattr(self, "deck_view_canvas") or not self.deck_view_canvas.winfo_exists():
+            return
+        cv = self.deck_view_canvas
+        cv.delete("all")
+        self._deck_grid_hitboxes.clear()
+        self._deck_photo_refs.clear()
+
+        cw = max(560, cv.winfo_width())
+        ch = max(460, cv.winfo_height())
+
+        # 收集並依種類(角色->事件->名場面)、等級(0->3)、卡號排序展開所有卡片
+        expanded_cards = []
+        type_order = {"CHAR": 0, "EVENT": 1, "CX": 2}
+        sorted_entries = []
+        for cid, cnt in self.working_recipe.items():
+            if cnt > 0 and cid in CARD_DB:
+                d = CARD_DB[cid]
+                sorted_entries.append((
+                    type_order.get(d.get("type", "CHAR"), 9),
+                    int(d.get("level", 0)),
+                    int(d.get("cost", 0)),
+                    cid,
+                    cnt,
+                ))
+        sorted_entries.sort()
+        for _, _, _, cid, cnt in sorted_entries:
+            for _ in range(cnt):
+                expanded_cards.append(cid)
+
+        cols = 10
+        total_slots = max(50, ((len(expanded_cards) + cols - 1) // cols) * cols)
+        rows = max(5, (total_slots + cols - 1) // cols)
+
+        pad_x = 10
+        pad_y = 10
+        gap_x = 5
+        gap_y = 7
+        avail_w = max(200, cw - pad_x * 2 - gap_x * (cols - 1))
+        avail_h = max(200, ch - pad_y * 2 - gap_y * (rows - 1))
+
+        card_w = max(44, min(68, avail_w // cols))
+        card_h = int(card_w * 1.4)
+        if card_h * rows + gap_y * (rows - 1) > ch - pad_y * 2:
+            card_h = max(60, avail_h // rows)
+            card_w = max(42, int(card_h / 1.4))
+
+        grid_total_w = cols * card_w + (cols - 1) * gap_x
+        start_x = max(6, (cw - grid_total_w) // 2)
+        start_y = max(8, (ch - (rows * card_h + (rows - 1) * gap_y)) // 2)
+
+        for idx in range(max(50, len(expanded_cards))):
+            r, c = divmod(idx, cols)
+            x1 = start_x + c * (card_w + gap_x)
+            y1 = start_y + r * (card_h + gap_y)
+            x2 = x1 + card_w
+            y2 = y1 + card_h
+
+            if idx < len(expanded_cards):
+                cid = expanded_cards[idx]
+                is_insp = (cid == self.current_inspected_cid)
+                c_img = self.img_mgr.get_card_visual(cid, card_w, card_h, is_selected=False)
+                self._deck_photo_refs.append(c_img)
+                cv.create_image(x1, y1, image=c_img, anchor="nw")
+                if is_insp:
+                    cv.create_rectangle(x1, y1, x2, y2, outline="#06d6a0", width=2)
+                self._deck_grid_hitboxes.append((cid, x1, y1, x2, y2))
+            else:
+                # 尚未填滿的空白卡槽（顯示淡淡的編號方便一眼看出還缺幾張）
+                cv.create_rectangle(x1, y1, x2, y2, fill="#151a28", outline="#252c42", width=1)
+                cv.create_text(
+                    (x1 + x2) // 2,
+                    (y1 + y2) // 2,
+                    text=str(idx + 1),
+                    fill="#2b3348",
+                    font=("Consolas", 9, "bold"),
+                )
 
     def _on_mousewheel(self, event):
         if self.winfo_exists() and event.delta:
@@ -3366,35 +3475,34 @@ class DeckBuilderFrame(tk.Frame):
         self.working_recipe = {cid: recipe.get(cid, 0) for cid in CARD_DB}
         self.app.set_active_series(chosen_key)
 
-        # 自動將卡池切換至該套牌所屬系列或「已入編卡片」
         if chosen_key in SERIES_DB:
             self.set_series_filter(chosen_key)
         else:
-            self.set_series_filter("IN_DECK")
+            self.set_series_filter("ALL")
 
         self.lbl_active_badge.config(
-            text=f"⚔️ 出戰：{self.app.get_deck_display_name(self.app.active_series)}"
+            text=f"📦 卡組：{self.app.get_deck_display_name(self.app.active_series)}"
         )
         self.update_summary()
         self.lbl_feedback.config(
-            text=f"📥 已載入【{self.app.get_deck_display_name(chosen_key)}】並設為出戰卡組！",
+            text=f"📥 已載入【{self.app.get_deck_display_name(chosen_key)}】",
             fg="#06d6a0",
         )
 
     def save_as_new_deck_modal(self):
-        """彈出命名視窗，讓玩家將目前配比儲存為一套全新的自訂卡組（支援建立多套不同卡組）"""
+        """彈出命名視窗，讓玩家將目前配比儲存為一套全新的自訂卡組"""
         total = sum(self.working_recipe.values())
         cx_total = sum(
             cnt for cid, cnt in self.working_recipe.items() if cid in CARD_DB and CARD_DB[cid]["type"] == "CX"
         )
         if total != 50:
             self.lbl_feedback.config(
-                text=f"❌ 另存失敗：卡組必須剛好 50 張（目前 {total} 張）！", fg="#ff4d6d"
+                text=f"❌ 另存失敗：卡組須滿 50 張，目前 {total} 張", fg="#ff4d6d"
             )
             return
         if cx_total > 8:
             self.lbl_feedback.config(
-                text=f"❌ 另存失敗：名場面不能超過 8 張（目前 {cx_total} 張）！", fg="#ff4d6d"
+                text=f"❌ 另存失敗：名場面上限 8 張，目前 {cx_total} 張", fg="#ff4d6d"
             )
             return
 
@@ -3441,7 +3549,6 @@ class DeckBuilderFrame(tk.Frame):
             self.app.save_series_deck(new_key, cleaned)
             self.app.set_active_series(new_key)
             win.destroy()
-            # 重新整理卡組下拉選單
             self.dynamic_preset_options = self._build_deck_slot_options()
             preset_labels = [label for label, _ in self.dynamic_preset_options]
             self.cmb_preset.config(values=preset_labels)
@@ -3449,8 +3556,8 @@ class DeckBuilderFrame(tk.Frame):
                 if k == new_key:
                     self.preset_var.set(label)
                     break
-            self.lbl_active_badge.config(text=f"⚔️ 出戰：{self.app.get_deck_display_name(new_key)}")
-            self.lbl_feedback.config(text=f"🎉 已成功建立並切換至新卡組【{d_name}】！", fg="#06d6a0")
+            self.lbl_active_badge.config(text=f"📦 卡組：{self.app.get_deck_display_name(new_key)}")
+            self.lbl_feedback.config(text=f"🎉 已建立並切換至【{d_name}】", fg="#06d6a0")
 
         btn_f = tk.Frame(win, bg="#151b29")
         btn_f.pack(pady=16)
@@ -3479,7 +3586,7 @@ class DeckBuilderFrame(tk.Frame):
     def delete_current_custom_deck(self):
         cur_k = self.app.active_series
         if cur_k in ("BFR/S78", "GA/S131", "BTR/W107"):
-            self.lbl_feedback.config(text="⚠️ 內建的三大預設套牌無法刪除，但你可以直接修改或另存新卡組！", fg="#ffd166")
+            self.lbl_feedback.config(text="⚠️ 內建預設套牌無法刪除，可直接修改或另存新卡組", fg="#ffd166")
             return
         disp_old = self.app.get_deck_display_name(cur_k)
         self.app.decks_book.pop(cur_k, None)
@@ -3494,25 +3601,25 @@ class DeckBuilderFrame(tk.Frame):
         self.cmb_preset.config(values=preset_labels)
         if preset_labels:
             self.preset_var.set(preset_labels[0])
-        self.lbl_active_badge.config(text=f"⚔️ 出戰：{self.app.get_deck_display_name(self.app.active_series)}")
+        self.lbl_active_badge.config(text=f"📦 卡組：{self.app.get_deck_display_name(self.app.active_series)}")
         self.populate_cards()
         self.update_summary()
-        self.lbl_feedback.config(text=f"🗑️ 已刪除自訂卡組【{disp_old}】，並切回預設套牌。", fg="#ffd166")
+        self.lbl_feedback.config(text=f"🗑️ 已刪除【{disp_old}】", fg="#ffd166")
 
     def inspect_card(self, cid):
         if cid not in CARD_DB:
             return
         data = CARD_DB[cid]
-        img = self.img_mgr.get_card_visual(cid, 165, 230)
-        self.lbl_card_img.config(image=img, width=165, height=230)
+        img = self.img_mgr.get_card_visual(cid, 132, 184)
+        self.lbl_card_img.config(image=img, width=132, height=184)
         self.lbl_card_img.image = img
 
         self.current_inspected_cid = cid
         is_hr = bool(data.get("is_high_rarity", False))
         r_tag = data.get("rarity", "R")
-        ver_str = f"✨ 高版本 [{r_tag}]" if is_hr else f"一般版 [{r_tag}]"
+        ver_str = f"✨高版[{r_tag}]" if is_hr else f"一般[{r_tag}]"
         self.lbl_card_title.config(
-            text=f"{data['name']}\n{cid} （{ver_str}）",
+            text=f"{data['name']}\n{cid} ｜ {ver_str}",
             fg="#ffd166" if is_hr else "#ffffff",
         )
         traits_str = " / ".join(data["traits"]) if data["traits"] else "無"
@@ -3522,11 +3629,14 @@ class DeckBuilderFrame(tk.Frame):
             for k, v in CARD_DB.items()
             if v.get("base_id", k) == base_id
         )
+        cur_cnt = self.working_recipe.get(cid, 0)
         stats_text = (
-            f"系列：{SERIES_LABELS.get(data.get('series', ''), data.get('series', ''))}\n"
-            f"同名入編：{group_total} / 4 張 ｜ 種類：{get_card_type_zh(data['type'])} ｜ 顏色：{data['color']}\n"
-            f"等級：{data['level']} ｜ 費用：{data['cost']} ｜ 攻擊力：{data['power']} ｜ 魂傷：{data['soul']}\n"
-            f"標記：{get_trigger_zh(data['trigger'])} ｜ 特徵：{traits_str}"
+            f"入編：{cur_cnt} 張 (同名 {group_total}/4)\n"
+            f"種類：{get_card_type_zh(data['type'])} ｜ 顏色：{data['color']}\n"
+            f"等級：{data['level']} ｜ 費用：{data['cost']}\n"
+            f"攻擊：{data['power']} ｜ 魂傷：{data['soul']}\n"
+            f"標記：{get_trigger_zh(data['trigger'])}\n"
+            f"特徵：{traits_str}"
         )
         self.lbl_card_stats.config(text=stats_text)
         if hasattr(self, "btn_toggle_rarity_preview"):
@@ -3542,8 +3652,9 @@ class DeckBuilderFrame(tk.Frame):
 
         self.txt_card_effect.config(state=tk.NORMAL)
         self.txt_card_effect.delete("1.0", tk.END)
-        self.txt_card_effect.insert(tk.END, data["text"] or "（無效果文）")
+        self.txt_card_effect.insert(tk.END, data["text"] or "無特殊效果")
         self.txt_card_effect.config(state=tk.DISABLED)
+        self.render_deck_visual_grid()
 
     def _on_toggle_inspected_rarity(self):
         cid = getattr(self, "current_inspected_cid", None)
@@ -3582,7 +3693,7 @@ class DeckBuilderFrame(tk.Frame):
         self.populate_cards()
 
     def convert_deck_rarity(self, to_high: bool = True):
-        """一鍵將目前卡組內所有卡片升級為高版本 (SP/SSP/RRR/SR) 或還原為一般版"""
+        """一鍵將目前卡組內所有卡片升級為高版本或還原為一般版"""
         new_recipe = {k: 0 for k in CARD_DB}
         converted_cnt = 0
         for cid, cnt in self.working_recipe.items():
@@ -3612,9 +3723,9 @@ class DeckBuilderFrame(tk.Frame):
             t_ins = c_ins.get("high_rarity_id", self.current_inspected_cid) if to_high else c_ins.get("base_id", self.current_inspected_cid)
             if t_ins in CARD_DB:
                 self.inspect_card(t_ins)
-        mode_name = "✨ 高版本" if to_high else "🎴 一般版"
+        mode_name = "高版本" if to_high else "一般版"
         self.lbl_feedback.config(
-            text=f"✨ 已將目前卡組切換為【{mode_name}】（共轉換 {converted_cnt} 張）！記得點擊『儲存目前卡組』。",
+            text=f"✨ 已將卡組切換為{mode_name}（轉換 {converted_cnt} 張）",
             fg="#ffd166" if to_high else "#06d6a0",
         )
 
@@ -3622,12 +3733,11 @@ class DeckBuilderFrame(tk.Frame):
         for cid in self.working_recipe:
             self.working_recipe[cid] = 0
         for cid, lbl in self.count_labels.items():
-            lbl.config(text="0 張", fg="#adb5bd")
+            lbl.config(text="0 / 4", fg="#8d99ae")
         self.update_summary()
-        self.lbl_feedback.config(text="🧹 已清空配比，可從上方下拉選單切換任何系列自由組建 50 張卡組。", fg="#8ecae6")
+        self.lbl_feedback.config(text="🧹 已清空卡組，左鍵點擊右側牌庫即可加入卡片", fg="#8ecae6")
 
     def rename_current_deck_modal(self):
-        """彈出視窗修改目前選中卡組的名稱（支援為預設或自訂卡組自由命名）"""
         cur_k = self.app.active_series
         cur_name = self.app.get_deck_display_name(cur_k)
         ff = self.app.get_font_family()
@@ -3675,9 +3785,9 @@ class DeckBuilderFrame(tk.Frame):
                 if k == cur_k:
                     self.preset_var.set(label)
                     break
-            self.lbl_active_badge.config(text=f"⚔️ 出戰：{new_n}")
+            self.lbl_active_badge.config(text=f"📦 卡組：{new_n}")
             self.update_summary()
-            self.lbl_feedback.config(text=f"✏️ 已將卡組名稱更新為【{new_n}】！", fg="#06d6a0")
+            self.lbl_feedback.config(text=f"✏️ 已改名為【{new_n}】", fg="#06d6a0")
 
         ent.bind("<Return>", lambda e: _do_rename())
         btn_f = tk.Frame(win, bg="#151b29")
@@ -3752,8 +3862,8 @@ class DeckBuilderFrame(tk.Frame):
         self.soul_filter = "ALL"
         self.min_power_filter = 0
         self.sort_mode = "DEFAULT"
-        self.pwr_filter_var.set("不限攻擊力")
-        self.sort_var.set("預設卡號排序")
+        self.pwr_filter_var.set("不限攻")
+        self.sort_var.set("卡號排序")
         self.set_color_filter("ALL")
         self.set_level_filter("ALL")
         self.set_soul_filter("ALL")
@@ -3829,6 +3939,10 @@ class DeckBuilderFrame(tk.Frame):
             self.populate_cards()
             self.canvas.yview_moveto(0.0)
 
+    def _format_count_dots(self, cur_cnt: int) -> str:
+        dots = "●" * cur_cnt + "○" * max(0, 4 - cur_cnt)
+        return f"{dots} ({cur_cnt})"
+
     def populate_cards(self):
         if not self.winfo_exists():
             return
@@ -3846,7 +3960,7 @@ class DeckBuilderFrame(tk.Frame):
             start_n = self.current_page * self.page_size + 1 if total_count > 0 else 0
             end_n = min(total_count, (self.current_page + 1) * self.page_size)
             self.lbl_page_info.config(
-                text=f"第 {self.current_page + 1} / {total_pages} 頁 （顯示 {start_n}~{end_n} 張，共 {total_count} 張）"
+                text=f"第 {self.current_page + 1}/{total_pages} 頁 ({start_n}~{end_n} / 共 {total_count} 張)"
             )
             self.btn_prev_page.config(state=tk.NORMAL if self.current_page > 0 else tk.DISABLED)
             self.btn_next_page.config(state=tk.NORMAL if self.current_page + 1 < total_pages else tk.DISABLED)
@@ -3854,12 +3968,12 @@ class DeckBuilderFrame(tk.Frame):
         if not filtered_items:
             tk.Label(
                 self.grid_frame,
-                text="🔍 找不到符合條件的卡片，請透過上方『📚 選擇卡池系列』下拉選單切換系列或清除關鍵字。",
-                bg="#181922",
+                text="🔍 找不到符合條件的卡片\n請切換系列或重設篩選條件",
+                bg="#10131d",
                 fg="#ffd166",
-                font=("Microsoft JhengHei", 13, "bold"),
-                padx=30,
-                pady=40,
+                font=("Microsoft JhengHei", 11, "bold"),
+                padx=20,
+                pady=30,
             ).grid(row=0, column=0, columnspan=4)
             return
 
@@ -3869,83 +3983,101 @@ class DeckBuilderFrame(tk.Frame):
             r, c = divmod(idx, cols)
             is_hr = bool(data.get("is_high_rarity", False))
             r_tag = data.get("rarity", "R")
-            box_bg = "#2b2338" if is_hr else "#252734"
+            box_bg = "#251e34" if is_hr else "#1b2030"
             card_box = tk.Frame(
                 self.grid_frame,
                 bg=box_bg,
-                bd=2,
+                bd=1,
                 relief=tk.RAISED,
-                padx=10,
-                pady=8,
-                highlightbackground="#ffd166" if is_hr else "#252734",
-                highlightthickness=2 if is_hr else 0,
+                padx=4,
+                pady=4,
+                highlightbackground="#2b3348",
+                highlightthickness=1,
             )
-            card_box.grid(row=r, column=c, padx=8, pady=8, sticky="nsew")
+            card_box.grid(row=r, column=c, padx=4, pady=4, sticky="nsew")
 
-            c_img = self.img_mgr.get_card_visual(cid, 122, 170, is_selected=is_hr)
-            img_btn = tk.Button(
+            c_img = self.img_mgr.get_card_visual(cid, 92, 128, is_selected=False)
+            # 關鍵改動：左鍵點擊牌庫卡片直接 +1 加入並預覽；右鍵點擊直接 -1 移除並預覽！
+            img_lbl = tk.Label(
                 card_box,
                 image=c_img,
-                bg="#181922",
+                bg="#10131d",
                 bd=0,
                 cursor="hand2",
-                command=lambda k=cid: self.inspect_card(k),
             )
-            img_btn.image = c_img
-            img_btn.pack()
+            img_lbl.image = c_img
+            img_lbl.pack()
 
-            type_tag = "【名場面】" if data["type"] == "CX" else f"Lv.{data['level']}"
+            type_tag = "CX" if data["type"] == "CX" else f"Lv{data['level']}"
             ver_badge = f"✨{r_tag}" if is_hr else r_tag
-            tk.Label(
+            name_lbl = tk.Label(
                 card_box,
-                text=f"{data['name'][:12]}\n{type_tag} [{ver_badge}] ｜ {cid}",
+                text=f"{data['name'][:7]}\n{type_tag}[{ver_badge}]",
                 bg=box_bg,
                 fg="#ffd166" if (is_hr or data["type"] == "CX") else "#ffffff",
-                font=("Microsoft JhengHei", 9, "bold"),
+                font=("Microsoft JhengHei", 8, "bold"),
                 justify=tk.CENTER,
-            ).pack(pady=4)
-
-            # 僅保留乾淨的「－ / 張數 / ＋」按鈕，移除每張卡多餘的王牌按鈕
-            ctrl_row = tk.Frame(card_box, bg=box_bg)
-            ctrl_row.pack(pady=2)
-
-            tk.Button(
-                ctrl_row,
-                text=" − ",
-                bg="#e63946",
-                fg="white",
-                font=("Microsoft JhengHei", 12, "bold"),
-                width=4,
                 cursor="hand2",
-                command=lambda k=cid: self.change_count(k, -1),
-            ).pack(side=tk.LEFT, padx=4)
+            )
+            name_lbl.pack(pady=1)
 
             cur_cnt = self.working_recipe.get(cid, 0)
             lbl_cnt = tk.Label(
-                ctrl_row,
-                text=f"{cur_cnt} 張",
-                bg="#14151d",
-                fg="#06d6a0" if cur_cnt > 0 else "#adb5bd",
-                font=("Microsoft JhengHei", 12, "bold"),
-                width=7,
-                pady=2,
+                card_box,
+                text=self._format_count_dots(cur_cnt),
+                bg="#0d1018",
+                fg="#ffd166" if cur_cnt > 0 else "#6c757d",
+                font=("Microsoft JhengHei", 8, "bold"),
+                padx=3,
+                pady=1,
+                cursor="hand2",
             )
-            lbl_cnt.pack(side=tk.LEFT, padx=4)
+            lbl_cnt.pack(fill=tk.X, pady=(1, 2))
             self.count_labels[cid] = lbl_cnt
 
+            # 綁定左鍵加入(+1)、右鍵移除(-1)
+            for w_bind in (card_box, img_lbl, name_lbl, lbl_cnt):
+                w_bind.bind("<ButtonPress-1>", lambda e, k=cid: self._on_library_card_left_click(k))
+                w_bind.bind("<ButtonPress-3>", lambda e, k=cid: self._on_library_card_right_click(k))
+                w_bind.bind("<ButtonPress-2>", lambda e, k=cid: self._on_library_card_right_click(k))
+
+            # 底部同時保留小巧 [-][+] 按鈕，方便手機觸控直接點按加減
+            mini_ctrl = tk.Frame(card_box, bg=box_bg)
+            mini_ctrl.pack(fill=tk.X)
             tk.Button(
-                ctrl_row,
-                text=" ＋ ",
+                mini_ctrl,
+                text="－",
+                bg="#e63946",
+                fg="white",
+                font=("Microsoft JhengHei", 8, "bold"),
+                width=3,
+                pady=0,
+                cursor="hand2",
+                command=lambda k=cid: self.change_count(k, -1),
+            ).pack(side=tk.LEFT, expand=True, fill=tk.X, padx=(0, 1))
+            tk.Button(
+                mini_ctrl,
+                text="＋",
                 bg="#06d6a0",
                 fg="black",
-                font=("Microsoft JhengHei", 12, "bold"),
-                width=4,
+                font=("Microsoft JhengHei", 8, "bold"),
+                width=3,
+                pady=0,
                 cursor="hand2",
                 command=lambda k=cid: self.change_count(k, 1),
-            ).pack(side=tk.LEFT, padx=4)
+            ).pack(side=tk.LEFT, expand=True, fill=tk.X, padx=(1, 0))
+
+    def _on_library_card_left_click(self, cid: str):
+        """左鍵點擊右側牌庫卡片：純粹查看卡片效果與詳情"""
+        self.inspect_card(cid)
+
+    def _on_library_card_right_click(self, cid: str):
+        """右鍵點擊右側牌庫卡片：加入 1 張 (+1) 到目前卡組並查看效果"""
+        self.inspect_card(cid)
+        self.change_count(cid, 1)
 
     def change_count(self, cid, delta):
-        if cid not in CARD_DB:
+        if not cid or cid not in CARD_DB:
             return
         data = CARD_DB[cid]
         base_id = data.get("base_id", cid)
@@ -3969,10 +4101,11 @@ class DeckBuilderFrame(tk.Frame):
                     if ok in self.count_labels:
                         ov = self.working_recipe[ok]
                         self.count_labels[ok].config(
-                            text=f"{ov} 張", fg="#06d6a0" if ov > 0 else "#adb5bd"
+                            text=self._format_count_dots(ov),
+                            fg="#ffd166" if ov > 0 else "#6c757d",
                         )
                     self.lbl_feedback.config(
-                        text=f"🔄 同名卡合計上限 4 張：已自動將 1 張【{ok}】替換為【{cid}】！",
+                        text=f"🔄 同名上限 4 張：已將 1 張【{ok}】替換為【{cid}】",
                         fg="#ffd166",
                     )
 
@@ -3980,32 +4113,56 @@ class DeckBuilderFrame(tk.Frame):
             if k in self.count_labels:
                 kv = self.working_recipe.get(k, 0)
                 self.count_labels[k].config(
-                    text=f"{kv} 張", fg="#06d6a0" if kv > 0 else "#adb5bd"
+                    text=self._format_count_dots(kv),
+                    fg="#ffd166" if kv > 0 else "#6c757d",
                 )
         self.inspect_card(cid)
         self.update_summary()
 
     def update_summary(self):
         total = sum(self.working_recipe.values())
+        char_total = sum(
+            cnt for cid, cnt in self.working_recipe.items() if cid in CARD_DB and CARD_DB[cid]["type"] == "CHAR"
+        )
+        ev_total = sum(
+            cnt for cid, cnt in self.working_recipe.items() if cid in CARD_DB and CARD_DB[cid]["type"] == "EVENT"
+        )
         cx_total = sum(
             cnt for cid, cnt in self.working_recipe.items() if cid in CARD_DB and CARD_DB[cid]["type"] == "CX"
+        )
+        lv0 = sum(
+            cnt for cid, cnt in self.working_recipe.items() if cid in CARD_DB and CARD_DB[cid]["type"] != "CX" and int(CARD_DB[cid].get("level", 0)) == 0
+        )
+        lv1 = sum(
+            cnt for cid, cnt in self.working_recipe.items() if cid in CARD_DB and CARD_DB[cid]["type"] != "CX" and int(CARD_DB[cid].get("level", 0)) == 1
+        )
+        lv2 = sum(
+            cnt for cid, cnt in self.working_recipe.items() if cid in CARD_DB and CARD_DB[cid]["type"] != "CX" and int(CARD_DB[cid].get("level", 0)) == 2
+        )
+        lv3 = sum(
+            cnt for cid, cnt in self.working_recipe.items() if cid in CARD_DB and CARD_DB[cid]["type"] != "CX" and int(CARD_DB[cid].get("level", 0)) >= 3
         )
         is_valid = total == 50 and cx_total <= 8
         color = "#06d6a0" if is_valid else "#ff6b6b"
         self.lbl_summary.config(
-            text=f"【{self.app.get_deck_display_name(self.app.active_series)}】總張數：{total} / 50 張 ｜ 名場面：{cx_total} / 8 張",
+            text=f"主卡組：{total} / 50 張",
             fg=color,
         )
-        if total != 50:
-            self.lbl_feedback.config(
-                text=f"⚠️ 卡組需滿 50 張（目前差 {50 - total} 張）", fg="#ff6b6b"
+        if hasattr(self, "lbl_type_breakdown"):
+            self.lbl_type_breakdown.config(
+                text=f"🟧角色 {char_total} ｜ 🟩事件 {ev_total} ｜ 🟪名場面 {cx_total}/8  （Lv0:{lv0} / Lv1:{lv1} / Lv2:{lv2} / Lv3:{lv3}）"
             )
+        if total != 50:
+            diff = 50 - total
+            msg = f"⚠️ 還差 {diff} 張滿 50 張" if diff > 0 else f"⚠️ 超過 {-diff} 張（須剛好 50 張）"
+            self.lbl_feedback.config(text=msg, fg="#ff6b6b")
         elif cx_total > 8:
             self.lbl_feedback.config(
-                text=f"⚠️ 名場面不能超過 8 張（目前 {cx_total} 張）", fg="#ff6b6b"
+                text=f"⚠️ 名場面上限 8 張（目前 {cx_total} 張）", fg="#ff6b6b"
             )
         else:
-            self.lbl_feedback.config(text="✔ 符合 50 張規則！可按『💾 儲存目前卡組』或『➕ 另存為新卡組』。", fg="#06d6a0")
+            self.lbl_feedback.config(text="✔ 符合 50 張構築規則，可點右上角『💾 保存』", fg="#06d6a0")
+        self.render_deck_visual_grid()
 
     def save_deck(self):
         total = sum(self.working_recipe.values())
@@ -4014,12 +4171,12 @@ class DeckBuilderFrame(tk.Frame):
         )
         if total != 50:
             self.lbl_feedback.config(
-                text=f"❌ 儲存失敗：卡組未滿或超過 50 張，目前 {total} 張！", fg="#ff4d6d"
+                text=f"❌ 保存失敗：卡組須滿 50 張，目前 {total} 張", fg="#ff4d6d"
             )
             return
         if cx_total > 8:
             self.lbl_feedback.config(
-                text=f"❌ 儲存失敗：名場面超過 8 張上限，目前 {cx_total} 張！", fg="#ff4d6d"
+                text=f"❌ 保存失敗：名場面超過 8 張上限，目前 {cx_total} 張", fg="#ff4d6d"
             )
             return
 
@@ -4028,9 +4185,9 @@ class DeckBuilderFrame(tk.Frame):
         self.app.save_series_deck(target_slot, cleaned)
         self.app.set_active_series(target_slot)
         disp_name = self.app.get_deck_display_name(target_slot)
-        self.lbl_active_badge.config(text=f"⚔️ 出戰：{disp_name}")
+        self.lbl_active_badge.config(text=f"📦 卡組：{disp_name}")
         self.lbl_feedback.config(
-            text=f"💾 已成功儲存【{disp_name}】並設為出戰卡組！（若想保留多套不同牌組可點『➕ 另存為新卡組』）",
+            text=f"💾 已成功保存【{disp_name}】並設為出戰卡組",
             fg="#06d6a0",
         )
 
@@ -5099,6 +5256,10 @@ class WSBofuriGameFrame(tk.Frame):
 
         # 點擊戰場上任意空白區域即可一鍵自動收回左側卡片詳情抽屜、右側戰況紀錄抽屜與角色頭頂浮動鈕
         self.bind_all("<ButtonPress-1>", self._on_any_board_click, add="+")
+        self.bind_all("<ButtonRelease-1>", self._on_global_button_release, add="+")
+        self.bind_all("<ButtonPress-3>", lambda e: self._cleanup_drag_ghost(reset_state=True), add="+")
+        self.bind_all("<ButtonPress-2>", lambda e: self._cleanup_drag_ghost(reset_state=True), add="+")
+        self.bind_all("<FocusOut>", lambda e: self._cleanup_drag_ghost(reset_state=True), add="+")
         # 全域滑鼠移動偵測：只要滑鼠離開手牌畫布，立即解除手牌懸停放大狀態，徹底防止手牌卡在放大狀態！
         self.bind_all("<Motion>", self._on_global_motion_check, add="+")
 
@@ -5133,12 +5294,48 @@ class WSBofuriGameFrame(tk.Frame):
             curr = getattr(curr, "master", None)
         return False
 
+    def _on_global_button_release(self, event):
+        if not self.winfo_exists():
+            return
+        st = getattr(self, "_drag_state", None)
+        if st and (st.get("ghost") is not None or st.get("dragging") or st.get("source") is not None):
+            self._on_drag_release(event)
+
+    def _cleanup_drag_ghost(self, reset_state: bool = True):
+        st = getattr(self, "_drag_state", None)
+        if st:
+            ghost = st.get("ghost")
+            if ghost:
+                try:
+                    if ghost.winfo_exists():
+                        ghost.place_forget()
+                        ghost.destroy()
+                except Exception:
+                    pass
+            st["ghost"] = None
+            if reset_state:
+                st["dragging"] = False
+                st["source"] = None
+                st["card"] = None
+                st["index"] = None
+        if self.winfo_exists():
+            for child in list(self.winfo_children()):
+                try:
+                    if isinstance(child, tk.Label) and str(child.cget("text") or "").startswith("拖移："):
+                        child.place_forget()
+                        child.destroy()
+                except Exception:
+                    pass
+
     def _on_any_board_click(self, event):
         if not self.winfo_exists() or self.game_over:
             return
         w = getattr(event, "widget", None)
         if w is None or not self._is_descendant_of(w, self):
             return
+        # 若正在拖移卡片途中點擊了其他位置，立即清理殘留的拖移浮標，防止產生分身殘影！
+        if self._drag_state.get("dragging") or self._drag_state.get("ghost") is not None:
+            self._cleanup_drag_ghost(reset_state=True)
         # 若點擊在左側抽屜、右側抽屜、角色頭頂浮動列或切換鈕本身，不自動關閉該面板
         if hasattr(self, "left_card_drawer") and self._is_descendant_of(w, self.left_card_drawer):
             return
@@ -6593,6 +6790,10 @@ class WSBofuriGameFrame(tk.Frame):
                     refresh_slots()
 
             def on_press(event, idx):
+                old_g = drag_info.get("ghost")
+                if old_g and old_g.winfo_exists():
+                    old_g.destroy()
+                drag_info["ghost"] = None
                 drag_info["src_idx"] = idx
                 c_obj = ordered[idx]
                 self.inspect_card(c_obj, p, None)
@@ -9067,6 +9268,7 @@ class WSBofuriGameFrame(tk.Frame):
         self.on_click_player_stage(slot_idx)
 
     def _on_hand_press(self, event, idx: int):
+        self._cleanup_drag_ghost(reset_state=True)
         if self.game_over or idx >= len(self.player.hand):
             return
         card = self.player.hand[idx]
@@ -9085,6 +9287,7 @@ class WSBofuriGameFrame(tk.Frame):
         }
 
     def _on_stage_press(self, event, slot_idx: int):
+        self._cleanup_drag_ghost(reset_state=True)
         if self.game_over:
             return
         card = self.player.stage[slot_idx]
@@ -9112,6 +9315,7 @@ class WSBofuriGameFrame(tk.Frame):
         dx = abs(event.x_root - st["start_x"])
         dy = abs(event.y_root - st["start_y"])
         if not st["dragging"] and (dx > 6 or dy > 6):
+            self._cleanup_drag_ghost(reset_state=False)
             st["dragging"] = True
             card = st["card"]
             g_img = self.img_mgr.get_card_visual(getattr(card, "skin_id", card.id), 78, 108, state="STAND", is_selected=True)
@@ -9167,10 +9371,7 @@ class WSBofuriGameFrame(tk.Frame):
 
     def _on_drag_release(self, event):
         st = self._drag_state
-        ghost = st.get("ghost")
-        if ghost and ghost.winfo_exists():
-            ghost.destroy()
-        st["ghost"] = None
+        self._cleanup_drag_ghost(reset_state=False)
 
         if not st.get("dragging"):
             st["source"] = None
@@ -14884,39 +15085,77 @@ class MainApp:
     def open_bottleneko_importer_modal(self, refresh_callback=None):
         ff = self.get_font_family()
         win = tk.Toplevel(self.root)
-        win.title("🌐 貓罐子 (BottleNeko) 全系列免組牌抓取 ＆ 20張分批匯入中心")
-        win.geometry("920x680")
+        win.title("🌐 貓罐子 (BottleNeko) 社群牌組匯入 ＆ 全系列卡表抓取中心")
+        win.geometry("960x730")
         win.configure(bg="#131926")
         win.transient(self.root)
         win.grab_set()
 
         tk.Label(
             win,
-            text="🌐 貓罐子 (BottleNeko) 全系列免組牌抓取 ／ 每次 20 張分批匯入中心",
+            text="🌐 貓罐子 (BottleNeko) 社群牌組匯入 ＆ 全系列卡表抓取中心",
             bg="#131926",
             fg="#ffd166",
-            font=(ff, 15, "bold"),
-        ).pack(pady=(12, 4))
+            font=(ff, 14, "bold"),
+        ).pack(pady=(8, 2))
 
+        # 區塊 0（新增）：貓罐子社群牌組搜尋與一鍵匯入成自訂卡組
+        soc_frame = tk.Frame(win, bg="#1b2234", padx=12, pady=6, bd=1, relief=tk.SOLID)
+        soc_frame.pack(fill=tk.X, padx=18, pady=3)
+
+        soc_top = tk.Frame(soc_frame, bg="#1b2234")
+        soc_top.pack(fill=tk.X)
         tk.Label(
-            win,
-            text="不用自己先去貓罐子組牌！直接從下方搜尋貓罐子全系列清單（或貼上系列網址如 https://bottleneko.app/ws/series/172），\n即可選擇【一次抓完整個系列】或【每次穩定抓 20 張】，自動解析中文效果與高低版本卡圖！",
-            bg="#131926",
-            fg="#8ecae6",
-            font=(ff, 10),
-            justify=tk.LEFT,
-        ).pack(padx=20, pady=(0, 6), anchor="w")
+            soc_top,
+            text="🔥 專區 A：從貓罐子社群 (bottleneko.app/social) 搜尋或貼上牌組網址／5碼代碼直接匯入牌組",
+            bg="#1b2234",
+            fg="#06d6a0",
+            font=(ff, 10, "bold"),
+        ).pack(side=tk.LEFT)
+
+        soc_search_row = tk.Frame(soc_frame, bg="#1b2234")
+        soc_search_row.pack(fill=tk.X, pady=(4, 2))
+
+        tk.Label(soc_search_row, text="🔍 搜尋社群牌組關鍵字/作者：", bg="#1b2234", fg="white", font=(ff, 9)).pack(side=tk.LEFT)
+        var_soc_kw = tk.StringVar()
+        ent_soc_kw = tk.Entry(soc_search_row, textvariable=var_soc_kw, width=18, bg="#0d111a", fg="#06d6a0", insertbackground="white", font=(ff, 10))
+        ent_soc_kw.pack(side=tk.LEFT, padx=4)
+
+        tk.Label(soc_search_row, text="或直接貼社群/牌組網址或代碼：", bg="#1b2234", fg="#ffd166", font=(ff, 9, "bold")).pack(side=tk.LEFT, padx=(8, 2))
+        var_deck_code = tk.StringVar(value="")
+        ent_deck_code = tk.Entry(soc_search_row, textvariable=var_deck_code, width=28, bg="#0d111a", fg="#ffd166", insertbackground="white", font=("Consolas", 10, "bold"))
+        ent_deck_code.pack(side=tk.LEFT, padx=4, fill=tk.X, expand=True)
+
+        soc_list_frame = tk.Frame(soc_frame, bg="#0d111a")
+        soc_list_frame.pack(fill=tk.X, pady=3)
+        sb_soc = tk.Scrollbar(soc_list_frame, orient=tk.VERTICAL)
+        lst_social = tk.Listbox(
+            soc_list_frame,
+            height=4,
+            bg="#0d111a",
+            fg="#ffffff",
+            selectbackground="#06d6a0",
+            selectforeground="#000000",
+            font=(ff, 9),
+            yscrollcommand=sb_soc.set,
+            exportselection=False,
+        )
+        sb_soc.config(command=lst_social.yview)
+        lst_social.pack(side=tk.LEFT, fill=tk.X, expand=True)
+        sb_soc.pack(side=tk.RIGHT, fill=tk.Y)
+
+        social_results = []
 
         # 區塊 A：貓罐子全系列目錄搜尋與點選
-        cat_frame = tk.Frame(win, bg="#1b2234", padx=12, pady=8, bd=1, relief=tk.SOLID)
-        cat_frame.pack(fill=tk.X, padx=20, pady=4)
+        cat_frame = tk.Frame(win, bg="#1b2234", padx=12, pady=6, bd=1, relief=tk.SOLID)
+        cat_frame.pack(fill=tk.X, padx=18, pady=3)
 
         top_cat_row = tk.Frame(cat_frame, bg="#1b2234")
         top_cat_row.pack(fill=tk.X)
 
         tk.Label(
             top_cat_row,
-            text="步驟 1：從貓罐子載入全系列清單（或直接在下方輸入系列網址／編號）：",
+            text="📚 專區 B：從貓罐子載入全系列卡池清單（免組牌直接擴充系列卡池）：",
             bg="#1b2234",
             fg="#ffd166",
             font=(ff, 10, "bold"),
@@ -14926,24 +15165,24 @@ class MainApp:
         filtered_catalog = []
 
         mid_cat_row = tk.Frame(cat_frame, bg="#1b2234")
-        mid_cat_row.pack(fill=tk.X, pady=(6, 2))
+        mid_cat_row.pack(fill=tk.X, pady=(4, 2))
 
-        tk.Label(mid_cat_row, text="🔍 篩選系列名稱/代號：", bg="#1b2234", fg="white", font=(ff, 10)).pack(side=tk.LEFT)
+        tk.Label(mid_cat_row, text="🔍 篩選系列名稱/代號：", bg="#1b2234", fg="white", font=(ff, 9)).pack(side=tk.LEFT)
         var_filter = tk.StringVar()
         ent_filter = tk.Entry(mid_cat_row, textvariable=var_filter, width=22, bg="#0d111a", fg="#06d6a0", insertbackground="white", font=(ff, 10))
         ent_filter.pack(side=tk.LEFT, padx=6)
 
         list_frame = tk.Frame(cat_frame, bg="#0d111a")
-        list_frame.pack(fill=tk.X, pady=4)
+        list_frame.pack(fill=tk.X, pady=3)
         scrollbar_cat = tk.Scrollbar(list_frame, orient=tk.VERTICAL)
         lst_series = tk.Listbox(
             list_frame,
-            height=6,
+            height=4,
             bg="#0d111a",
             fg="#ffffff",
             selectbackground="#9b5de5",
             selectforeground="#ffffff",
-            font=(ff, 10),
+            font=(ff, 9),
             yscrollcommand=scrollbar_cat.set,
             exportselection=False,
         )
@@ -14952,21 +15191,21 @@ class MainApp:
         scrollbar_cat.pack(side=tk.RIGHT, fill=tk.Y)
 
         # 區塊 B：目標網址／系列編號 與 分批進度控制
-        ctrl_frame = tk.Frame(win, bg="#1b2234", padx=12, pady=8, bd=1, relief=tk.SOLID)
-        ctrl_frame.pack(fill=tk.X, padx=20, pady=4)
+        ctrl_frame = tk.Frame(win, bg="#1b2234", padx=12, pady=6, bd=1, relief=tk.SOLID)
+        ctrl_frame.pack(fill=tk.X, padx=18, pady=3)
 
         row_url = tk.Frame(ctrl_frame, bg="#1b2234")
         row_url.pack(fill=tk.X, pady=2)
-        tk.Label(row_url, text="步驟 2：目標系列網址 / 系列 ID / 牌組網址：", bg="#1b2234", fg="white", font=(ff, 10, "bold")).pack(side=tk.LEFT)
+        tk.Label(row_url, text="目標系列網址 / 系列 ID / 社群牌組網址：", bg="#1b2234", fg="white", font=(ff, 9, "bold")).pack(side=tk.LEFT)
         var_target = tk.StringVar(value="https://bottleneko.app/ws/series/172")
-        ent_target = tk.Entry(row_url, textvariable=var_target, width=48, bg="#0d111a", fg="#06d6a0", insertbackground="white", font=("Consolas", 11))
+        ent_target = tk.Entry(row_url, textvariable=var_target, width=48, bg="#0d111a", fg="#06d6a0", insertbackground="white", font=("Consolas", 10))
         ent_target.pack(side=tk.LEFT, padx=8, fill=tk.X, expand=True)
 
         row_batch = tk.Frame(ctrl_frame, bg="#1b2234")
-        row_batch.pack(fill=tk.X, pady=(6, 2))
-        tk.Label(row_batch, text="分批起始位置 (Offset)：", bg="#1b2234", fg="#8ecae6", font=(ff, 10)).pack(side=tk.LEFT)
+        row_batch.pack(fill=tk.X, pady=(4, 2))
+        tk.Label(row_batch, text="分批起始位置 (Offset)：", bg="#1b2234", fg="#8ecae6", font=(ff, 9)).pack(side=tk.LEFT)
         var_offset = tk.IntVar(value=0)
-        spn_offset = tk.Spinbox(row_batch, from_=0, to=2000, increment=20, textvariable=var_offset, width=7, bg="#0d111a", fg="#ffd166", font=("Consolas", 11, "bold"))
+        spn_offset = tk.Spinbox(row_batch, from_=0, to=2000, increment=20, textvariable=var_offset, width=7, bg="#0d111a", fg="#ffd166", font=("Consolas", 10, "bold"))
         spn_offset.pack(side=tk.LEFT, padx=6)
 
         var_inc_high = tk.BooleanVar(value=True)
@@ -14979,26 +15218,111 @@ class MainApp:
             selectcolor="#0d111a",
             activebackground="#1b2234",
             activeforeground="#ffd166",
-            font=(ff, 10, "bold"),
-        ).pack(side=tk.LEFT, padx=14)
+            font=(ff, 9, "bold"),
+        ).pack(side=tk.LEFT, padx=12)
 
-        lbl_batch_prog = tk.Label(row_batch, text="目前進度：尚未開始", bg="#1b2234", fg="#06d6a0", font=(ff, 10, "bold"))
+        lbl_batch_prog = tk.Label(row_batch, text="目前進度：尚未開始", bg="#1b2234", fg="#06d6a0", font=(ff, 9, "bold"))
         lbl_batch_prog.pack(side=tk.RIGHT, padx=6)
 
         # 區塊 C：執行紀錄 Log
-        log_box = tk.Text(win, height=9, bg="#0b0e14", fg="#e0e1dd", font=("Consolas", 10))
-        log_box.pack(fill=tk.BOTH, expand=True, padx=20, pady=6)
+        log_box = tk.Text(win, height=7, bg="#0b0e14", fg="#e0e1dd", font=("Consolas", 9))
+        log_box.pack(fill=tk.BOTH, expand=True, padx=18, pady=4)
         log_box.insert(
             "1.0",
             "💡 使用指南：\n"
-            "  • 方式 A（最推薦）：點擊上方【🔄 連線載入貓罐子全系列清單】，點選任一你想玩的系列，接著按【📦 分批抓 20 張】或【🚀 一次抓完整個系列】！\n"
-            "  • 方式 B：直接貼上貓罐子系列網址（如 https://bottleneko.app/ws/series/172）或牌組網址（如 https://bottleneko.app/ws/deck/wMI7n）。\n",
+            "  • 【匯入貓罐子社群牌組】：在上方專區 A 輸入關鍵字按『🔎 搜尋社群牌組』點選列表，或直接貼上貓罐子社群網址（如 https://bottleneko.app/social/o7Hhb 、 https://bottleneko.app/deck/peAYS 或 5 碼代碼如 peAYS），再按【📥 一鍵匯入此社群牌組】即可直接載入 50 張牌組並自動補齊中文效果與卡圖！\n"
+            "  • 【擴充全系列卡池】：在專區 B 點擊【🔄 載入全系列清單】，點選任一系列後按【📦 分批抓 20 張】或【🚀 一次抓完整個系列】。\n",
         )
 
         def _append_log(msg):
             log_box.insert(tk.END, msg + "\n")
             log_box.see(tk.END)
             win.update_idletasks()
+
+        def _do_search_social():
+            kw = var_soc_kw.get().strip()
+            _append_log(f"🔎 正在搜尋貓罐子社群牌組（關鍵字：{kw or '最新公開牌組'}）...")
+            try:
+                items = BottleNekoImporter.search_social_decks(keyword=kw, log_callback=_append_log)
+                social_results.clear()
+                social_results.extend(items)
+                lst_social.delete(0, tk.END)
+                for it in items:
+                    lst_social.insert(tk.END, it["display"])
+                if items:
+                    _append_log(f"✅ 找到 {len(items)} 筆貓罐子社群牌組！點選上方列表即可載入網址，再按『📥 一鍵匯入此社群牌組』。")
+                else:
+                    _append_log("ℹ️ 搜尋未回傳列表，你也可以直接將貓罐子社群網址（如 https://bottleneko.app/social/o7Hhb 或 https://bottleneko.app/deck/peAYS）貼入上方欄位直接匯入！")
+            except Exception as e:
+                _append_log(f"❌ 搜尋社群牌組失敗：{e}")
+
+        def _on_select_social(evt=None):
+            sel = lst_social.curselection()
+            if not sel:
+                return
+            idx = sel[0]
+            if 0 <= idx < len(social_results):
+                item = social_results[idx]
+                url_str = f"https://bottleneko.app/social/{item['code']}"
+                var_deck_code.set(url_str)
+                var_target.set(url_str)
+                lbl_batch_prog.config(text=f"已選社群牌組：{item['title']} ({item['code']})")
+
+        lst_social.bind("<<ListboxSelect>>", _on_select_social)
+        ent_soc_kw.bind("<Return>", lambda e: _do_search_social())
+
+        def _do_import_social_deck():
+            raw_code = var_deck_code.get().strip() or var_target.get().strip()
+            if not raw_code:
+                _append_log("⚠️ 請先在專區 A 輸入貓罐子社群牌組網址或 5 碼牌組代碼（例如 peAYS 或 https://bottleneko.app/social/o7Hhb）！")
+                return
+            try:
+                res = BottleNekoImporter.import_from_url_or_json(raw_code, sets_dir="sets", log_callback=_append_log)
+                rec = res.get("recipe") or {}
+                d_name = res.get("deck_name") or "貓罐子社群牌組"
+                if rec:
+                    idx_n = 1
+                    while f"BN_DECK_{idx_n}" in self.decks_book:
+                        idx_n += 1
+                    new_slot_key = f"BN_DECK_{idx_n}"
+                    user_names = dict(self.settings.get("user_deck_names") or {})
+                    user_names[new_slot_key] = d_name
+                    self.settings["user_deck_names"] = user_names
+                    self.save_user_settings(self.settings)
+                    self.save_series_deck(new_slot_key, rec)
+                    self.set_active_series(new_slot_key)
+                    _append_log(f"🎉 已將社群牌組【{d_name}】（共 {sum(rec.values())} 張）自動註冊為你的自訂出戰卡組！")
+                s_cids = list(rec.keys()) or list((SERIES_DB.get(res.get("series_code"), {}) or {}).keys())
+                self.img_mgr.start_background_download(priority_cids=s_cids or None)
+                lbl_batch_prog.config(text=f"🎉 已匯入社群牌組：{d_name} ({res.get('total_cards', 50)}張)")
+                if refresh_callback:
+                    refresh_callback()
+            except Exception as e:
+                _append_log(f"❌ 社群牌組匯入失敗：{e}")
+
+        tk.Button(
+            soc_search_row,
+            text="🔎 搜尋社群牌組",
+            bg="#118ab2",
+            fg="white",
+            font=(ff, 9, "bold"),
+            padx=8,
+            pady=2,
+            cursor="hand2",
+            command=_do_search_social,
+        ).pack(side=tk.LEFT, padx=3)
+
+        tk.Button(
+            soc_search_row,
+            text="📥 一鍵匯入此社群牌組",
+            bg="#06d6a0",
+            fg="#000000",
+            font=(ff, 9, "bold"),
+            padx=10,
+            pady=2,
+            cursor="hand2",
+            command=_do_import_social_deck,
+        ).pack(side=tk.RIGHT, padx=3)
 
         def _refresh_listbox(*_):
             kw = var_filter.get().strip().lower()
@@ -15012,7 +15336,7 @@ class MainApp:
 
         var_filter.trace_add("write", _refresh_listbox)
 
-        def _on_select_series( evt=None):
+        def _on_select_series(evt=None):
             sel = lst_series.curselection()
             if not sel:
                 return
@@ -15032,18 +15356,18 @@ class MainApp:
                 catalog_data.clear()
                 catalog_data.extend(cats)
                 _refresh_listbox()
-                _append_log(f"✅ 成功載入 {len(cats)} 個 WS 系列！請在上方列表點選或輸入關鍵字篩選。")
+                _append_log(f"✅ 成功載入 {len(cats)} 個 WS 系列！請在列表點選或輸入關鍵字篩選。")
             except Exception as e:
                 _append_log(f"❌ 載入系列清單失敗：{e}")
 
         tk.Button(
             top_cat_row,
-            text="🔄 連線載入貓罐子全系列清單 (170+系列)",
-            bg="#06d6a0",
+            text="🔄 載入全系列清單 (170+系列)",
+            bg="#ffd166",
             fg="#000000",
-            font=(ff, 10, "bold"),
-            padx=12,
-            pady=2,
+            font=(ff, 9, "bold"),
+            padx=10,
+            pady=1,
             cursor="hand2",
             command=_fetch_catalog,
         ).pack(side=tk.RIGHT)
@@ -15054,11 +15378,31 @@ class MainApp:
                 return
             cur_off = int(var_offset.get() or 0)
             try:
-                if "/ws/deck/" in raw_val or raw_val.startswith("{") or raw_val.startswith("["):
+                is_deck_or_social = (
+                    "/deck/" in raw_val
+                    or "/social/" in raw_val
+                    or raw_val.startswith("{")
+                    or raw_val.startswith("[")
+                    or (len(raw_val) == 5 and raw_val.isalnum() and not raw_val.isdigit())
+                )
+                if is_deck_or_social:
                     res = BottleNekoImporter.import_from_url_or_json(raw_val, sets_dir="sets", log_callback=_append_log)
-                    s_cids = list((SERIES_DB.get(res.get("series_code"), {}) or {}).keys())
+                    rec = res.get("recipe") or {}
+                    d_name = res.get("deck_name") or "貓罐子社群牌組"
+                    if rec:
+                        idx_n = 1
+                        while f"BN_DECK_{idx_n}" in self.decks_book:
+                            idx_n += 1
+                        new_slot_key = f"BN_DECK_{idx_n}"
+                        user_names = dict(self.settings.get("user_deck_names") or {})
+                        user_names[new_slot_key] = d_name
+                        self.settings["user_deck_names"] = user_names
+                        self.save_user_settings(self.settings)
+                        self.save_series_deck(new_slot_key, rec)
+                        self.set_active_series(new_slot_key)
+                    s_cids = list(rec.keys()) or list((SERIES_DB.get(res.get("series_code"), {}) or {}).keys())
                     self.img_mgr.start_background_download(priority_cids=s_cids or None)
-                    lbl_batch_prog.config(text=f"已完成牌組匯入 ({res['card_count']} 種，正在背景高速下載卡圖)")
+                    lbl_batch_prog.config(text=f"已完成社群牌組匯入：{d_name} ({res['card_count']} 種)")
                 else:
                     res = BottleNekoImporter.import_series_by_id(
                         raw_val,
@@ -15088,54 +15432,66 @@ class MainApp:
                 _append_log(f"❌ 匯入失敗：{e}")
 
         btn_row = tk.Frame(win, bg="#131926")
-        btn_row.pack(fill=tk.X, padx=20, pady=8)
+        btn_row.pack(fill=tk.X, padx=18, pady=6)
 
         tk.Button(
             btn_row,
-            text="📦 分批抓取 20 張 (自動推進 +20)",
+            text="📦 分批抓取系列 20 張 (+20)",
             bg="#ffd166",
             fg="#000000",
-            font=(ff, 11, "bold"),
-            padx=16,
-            pady=6,
+            font=(ff, 10, "bold"),
+            padx=14,
+            pady=5,
             cursor="hand2",
             command=lambda: _run_series_batch(20),
-        ).pack(side=tk.LEFT, padx=5)
+        ).pack(side=tk.LEFT, padx=4)
 
         tk.Button(
             btn_row,
-            text="🚀 一次抓完整個系列 (全部卡片)",
+            text="🚀 一次抓完整個系列",
             bg="#06d6a0",
             fg="#000000",
-            font=(ff, 11, "bold"),
-            padx=16,
-            pady=6,
+            font=(ff, 10, "bold"),
+            padx=14,
+            pady=5,
             cursor="hand2",
             command=lambda: _run_series_batch(0),
-        ).pack(side=tk.LEFT, padx=5)
+        ).pack(side=tk.LEFT, padx=4)
 
         tk.Button(
             btn_row,
-            text="🛠️ 萬用效果編譯＆除錯器",
+            text="📥 匯入目標社群牌組",
+            bg="#9b5de5",
+            fg="#ffffff",
+            font=(ff, 10, "bold"),
+            padx=14,
+            pady=5,
+            cursor="hand2",
+            command=_do_import_social_deck,
+        ).pack(side=tk.LEFT, padx=4)
+
+        tk.Button(
+            btn_row,
+            text="🛠️ 效果編譯＆除錯器",
             bg="#118ab2",
             fg="#ffffff",
-            font=(ff, 11, "bold"),
-            padx=14,
-            pady=6,
+            font=(ff, 10, "bold"),
+            padx=12,
+            pady=5,
             cursor="hand2",
             command=self.open_effect_debugger_modal,
-        ).pack(side=tk.LEFT, padx=5)
+        ).pack(side=tk.LEFT, padx=4)
 
         tk.Button(
             btn_row,
             text="關閉視窗",
             bg="#3a3f58",
             fg="white",
-            font=(ff, 11, "bold"),
+            font=(ff, 10, "bold"),
             padx=14,
-            pady=6,
+            pady=5,
             command=win.destroy,
-        ).pack(side=tk.RIGHT, padx=5)
+        ).pack(side=tk.RIGHT, padx=4)
 
     def open_effect_debugger_modal(self):
         ff = self.get_font_family()
